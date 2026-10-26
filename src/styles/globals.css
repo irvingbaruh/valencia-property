@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════
+   Valencia Property — Design Tokens
+   Beyaz + Altın + Fumé palette
+   ═══════════════════════════════════════ */
+
+@theme {
+  /* ── Base / Neutrals ── */
+  --color-white: #FFFFFF;
+  --color-soft: #F5F5F7;
+  --color-warm-gray: #F8F7F5;
+  --color-border: #E8EBF0;
+
+  /* ── Dark / Fumé ── */
+  --color-dark: #1A1A2E;
+  --color-dark-mid: #252540;
+  --color-charcoal: #2C2C3A;
+  --color-charcoal-light: #3D3D50;
+
+  /* ── Gold ── */
+  --color-gold: #C9A84C;
+  --color-gold-hover: #B8963F;
+  --color-gold-dark: #A08A3C;
+  --color-gold-light: #FAF6EC;
+  --color-gold-lighter: #FDF9F0;
+
+  /* ── Text ── */
+  --color-text-primary: #1A1A2E;
+  --color-text-secondary: #4A5568;
+  --color-text-muted: #8896A6;
+
+  /* ── Semantic ── */
+  --color-success: #22C55E;
+  --color-warning: #EAB308;
+  --color-error: #C97A4C;
+  --color-info: #6B8EBD;
+
+  /* ── Fonts ── */
+  --font-serif: "DM Serif Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* ── Spacing ── */
+  --spacing-section: 6rem;
+  --spacing-section-sm: 4rem;
+
+  /* ── Radius ── */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* ── Shadows ── */
+  --shadow-card: 0 1px 3px rgba(26, 26, 46, 0.06), 0 4px 16px rgba(26, 26, 46, 0.04);
+  --shadow-card-hover: 0 4px 12px rgba(26, 26, 46, 0.08), 0 8px 32px rgba(26, 26, 46, 0.06);
+  --shadow-gold: 0 4px 20px rgba(201, 168, 76, 0.25);
+
+  /* ── Transitions ── */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ═══════════════════════════════════════
+   Base styles
+   ═══════════════════════════════════════ */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background-color: var(--color-white);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  line-height: 1.2;
+}
+
+/* ═══════════════════════════════════════
+   Utility classes
+   ═══════════════════════════════════════ */
+
+.section-padding {
+  padding-top: var(--spacing-section);
+  padding-bottom: var(--spacing-section);
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding-top: var(--spacing-section-sm);
+    padding-bottom: var(--spacing-section-sm);
+  }
+}
+
+/* Gold accent line */
+.accent-line {
+  width: 48px;
+  height: 3px;
+  background: var(--color-gold);
+  border-radius: 2px;
+}
+
+/* Glass effect for header */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.glass-dark {
+  background: rgba(26, 26, 46, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}

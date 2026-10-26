@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "title": "Valencia Property — Real Estate Investment in Spain",
+    "description": "Property investment, decoration, renovation and rental management services in Valencia"
+  },
+  "nav": {
+    "home": "Home",
+    "properties": "Properties",
+    "services": "Services",
+    "calculator": "ROI Calculator",
+    "blog": "Guides",
+    "contact": "Contact",
+    "login": "Sign In",
+    "cta": "Get Consultation"
+  },
+  "hero": {
+    "title": "Own Your Dream Property in Spain",
+    "subtitle": "Investment, lifestyle and rental income in Valencia — we're with you from legal processes to decoration.",
+    "cta_primary": "Free Consultation",
+    "cta_secondary": "Browse Properties"
+  },
+  "stats": {
+    "properties": "Property Portfolio",
+    "experience": "Years Experience",
+    "clients": "Happy Clients",
+    "partner": "RE/MAX Partnership"
+  },
+  "properties": {
+    "title": "Featured Properties",
+    "subtitle": "The best investment opportunities in and around Valencia",
+    "badge_new": "New",
+    "badge_premium": "Premium",
+    "rooms": "rooms",
+    "sqm": "sqm",
+    "view_all": "View All Properties"
+  },
+  "services": {
+    "title": "Our Comprehensive Services",
+    "subtitle": "Professional support at every step, from property search to turnkey delivery",
+    "search": {
+      "title": "Property Search",
+      "desc": "We find properties matching your budget and criteria"
+    },
+    "legal": {
+      "title": "Legal Support",
+      "desc": "We manage NIE, notary, deed and tax processes"
+    },
+    "decor": {
+      "title": "Decoration & Furniture",
+      "desc": "Turnkey interior design and furnishing"
+    },
+    "renovation": {
+      "title": "Renovation",
+      "desc": "Comprehensive renovation and refurbishment projects"
+    },
+    "rental": {
+      "title": "Rental Management",
+      "desc": "Tenant finding, contracts and monthly management"
+    },
+    "staging": {
+      "title": "Home Staging",
+      "desc": "Professional staging to increase sale and rental value"
+    }
+  },
+  "process": {
+    "title": "Own Property in 4 Steps",
+    "subtitle": "A simple and transparent process",
+    "step1": {
+      "title": "Needs Analysis",
+      "desc": "We determine your budget, location and expectations"
+    },
+    "step2": {
+      "title": "Property Selection",
+      "desc": "We share properties matching your criteria"
+    },
+    "step3": {
+      "title": "Legal Process",
+      "desc": "We manage the purchase and official procedures"
+    },
+    "step4": {
+      "title": "Turnkey Delivery",
+      "desc": "We prepare your property for living or renting"
+    }
+  },
+  "roi": {
+    "title": "Investment Return Calculator",
+    "subtitle": "Calculate the potential return on your real estate investment in Valencia",
+    "budget": "Investment Budget",
+    "type": "Property Type",
+    "type_apartment": "Apartment",
+    "type_house": "Detached House",
+    "type_commercial": "Commercial",
+    "calculate": "Calculate",
+    "annual_return": "Estimated Annual Return",
+    "monthly_income": "Monthly Rental Income",
+    "disclaimer": "This calculation is an estimate and does not constitute a guarantee."
+  },
+  "testimonials": {
+    "title": "What Our Clients Say",
+    "subtitle": "Feedback from our investors"
+  },
+  "cta_section": {
+    "title": "Start Your Investment Journey Today",
+    "subtitle": "Get in touch for a free consultation",
+    "button": "Get Started",
+    "phone": "Call Us"
+  },
+  "footer": {
+    "about": "Company",
+    "about_us": "About Us",
+    "team": "Our Team",
+    "remax": "RE/MAX Partnership",
+    "career": "Careers",
+    "services_title": "Services",
+    "resources": "Resources",
+    "blog": "Blog & Guides",
+    "roi_calc": "ROI Calculator",
+    "faq": "FAQ",
+    "glossary": "Glossary",
+    "contact": "Contact",
+    "address": "Valencia, Spain",
+    "copyright": "© 2026 Valencia Property. All rights reserved.",
+    "remax_note": "Serving in partnership with RE/MAX."
+  }
+}

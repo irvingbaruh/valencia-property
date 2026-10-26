@@ -1,0 +1,95 @@
+{
+  "meta": {
+    "title": "Valencia Property — Immobilieninvestition in Spanien",
+    "description": "Immobilieninvestition, Dekoration, Renovierung und Mietverwaltung in Valencia"
+  },
+  "nav": {
+    "home": "Startseite",
+    "properties": "Immobilien",
+    "services": "Dienstleistungen",
+    "calculator": "ROI-Rechner",
+    "blog": "Ratgeber",
+    "contact": "Kontakt",
+    "login": "Anmelden",
+    "cta": "Beratung Anfordern"
+  },
+  "hero": {
+    "title": "Besitzen Sie Ihre Traumimmobilie in Spanien",
+    "subtitle": "Investition, Lifestyle und Mietrendite in Valencia — wir begleiten Sie von rechtlichen Prozessen bis zur Einrichtung.",
+    "cta_primary": "Kostenlose Beratung",
+    "cta_secondary": "Immobilien Ansehen"
+  },
+  "stats": {
+    "properties": "Immobilienportfolio",
+    "experience": "Jahre Erfahrung",
+    "clients": "Zufriedene Kunden",
+    "partner": "RE/MAX Partnerschaft"
+  },
+  "properties": {
+    "title": "Ausgewählte Immobilien",
+    "subtitle": "Die besten Investitionsmöglichkeiten in und um Valencia",
+    "badge_new": "Neu",
+    "badge_premium": "Premium",
+    "rooms": "Zimmer",
+    "sqm": "m²",
+    "view_all": "Alle Immobilien Anzeigen"
+  },
+  "services": {
+    "title": "Unsere Umfassenden Dienstleistungen",
+    "subtitle": "Professionelle Unterstützung bei jedem Schritt, von der Immobiliensuche bis zur schlüsselfertigen Übergabe",
+    "search": { "title": "Immobiliensuche", "desc": "Wir finden Immobilien, die zu Ihrem Budget und Ihren Kriterien passen" },
+    "legal": { "title": "Rechtsberatung", "desc": "Wir verwalten NIE, Notar, Grundbuch und Steuerprozesse" },
+    "decor": { "title": "Dekoration & Möblierung", "desc": "Schlüsselfertige Inneneinrichtung und Möblierung" },
+    "renovation": { "title": "Renovierung", "desc": "Umfassende Sanierungs- und Renovierungsprojekte" },
+    "rental": { "title": "Mietverwaltung", "desc": "Mietersuche, Verträge und monatliche Verwaltung" },
+    "staging": { "title": "Home Staging", "desc": "Professionelles Staging zur Wertsteigerung bei Verkauf und Vermietung" }
+  },
+  "process": {
+    "title": "Immobilienbesitzer in 4 Schritten",
+    "subtitle": "Ein einfacher und transparenter Prozess",
+    "step1": { "title": "Bedarfsanalyse", "desc": "Wir ermitteln Ihr Budget, Ihren Standort und Ihre Erwartungen" },
+    "step2": { "title": "Immobilienauswahl", "desc": "Wir präsentieren Ihnen passende Immobilien" },
+    "step3": { "title": "Rechtlicher Prozess", "desc": "Wir verwalten den Kauf und die offiziellen Verfahren" },
+    "step4": { "title": "Schlüsselfertige Übergabe", "desc": "Wir bereiten Ihre Immobilie zum Wohnen oder Vermieten vor" }
+  },
+  "roi": {
+    "title": "Renditerechner",
+    "subtitle": "Berechnen Sie die potenzielle Rendite Ihrer Immobilieninvestition in Valencia",
+    "budget": "Investitionsbudget",
+    "type": "Immobilientyp",
+    "type_apartment": "Wohnung",
+    "type_house": "Einfamilienhaus",
+    "type_commercial": "Gewerbe",
+    "calculate": "Berechnen",
+    "annual_return": "Geschätzte Jahresrendite",
+    "monthly_income": "Monatliche Mieteinnahmen",
+    "disclaimer": "Diese Berechnung ist eine Schätzung und stellt keine Garantie dar."
+  },
+  "testimonials": {
+    "title": "Was Unsere Kunden Sagen",
+    "subtitle": "Rückmeldungen unserer Investoren"
+  },
+  "cta_section": {
+    "title": "Starten Sie Heute Ihre Investitionsreise",
+    "subtitle": "Kontaktieren Sie uns für eine kostenlose Beratung",
+    "button": "Jetzt Starten",
+    "phone": "Rufen Sie Uns An"
+  },
+  "footer": {
+    "about": "Unternehmen",
+    "about_us": "Über Uns",
+    "team": "Unser Team",
+    "remax": "RE/MAX Partnerschaft",
+    "career": "Karriere",
+    "services_title": "Dienstleistungen",
+    "resources": "Ressourcen",
+    "blog": "Blog & Ratgeber",
+    "roi_calc": "ROI-Rechner",
+    "faq": "Häufige Fragen",
+    "glossary": "Glossar",
+    "contact": "Kontakt",
+    "address": "Valencia, Spanien",
+    "copyright": "© 2026 Valencia Property. Alle Rechte vorbehalten.",
+    "remax_note": "Service in Partnerschaft mit RE/MAX."
+  }
+}

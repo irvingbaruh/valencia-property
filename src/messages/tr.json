@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "title": "Valencia Property — İspanya'da Mülk Yatırımı",
+    "description": "Valencia'da gayrimenkul yatırımı, dekorasyon, renovasyon ve kira yönetimi hizmetleri"
+  },
+  "nav": {
+    "home": "Ana Sayfa",
+    "properties": "Mülkler",
+    "services": "Hizmetler",
+    "calculator": "ROI Hesapla",
+    "blog": "Rehber",
+    "contact": "İletişim",
+    "login": "Giriş Yap",
+    "cta": "Danışmanlık Al"
+  },
+  "hero": {
+    "title": "İspanya'da Hayalinizdeki Mülke Sahip Olun",
+    "subtitle": "Valencia'da yatırım, yaşam ve kira getirisi — hukuki süreçten dekorasyona kadar yanınızdayız.",
+    "cta_primary": "Ücretsiz Danışmanlık",
+    "cta_secondary": "Mülkleri İncele"
+  },
+  "stats": {
+    "properties": "Mülk Portföyü",
+    "experience": "Yıl Tecrübe",
+    "clients": "Mutlu Müşteri",
+    "partner": "RE/MAX İşbirliği"
+  },
+  "properties": {
+    "title": "Seçkin Mülkler",
+    "subtitle": "Valencia ve çevresinde yatırım için en uygun fırsatlar",
+    "badge_new": "Yeni",
+    "badge_premium": "Premium",
+    "rooms": "oda",
+    "sqm": "m²",
+    "view_all": "Tüm Mülkleri Gör"
+  },
+  "services": {
+    "title": "Kapsamlı Hizmetlerimiz",
+    "subtitle": "Mülk arayışından anahtar teslimine kadar her adımda profesyonel destek",
+    "search": {
+      "title": "Mülk Arama",
+      "desc": "Bütçenize ve kriterlerinize uygun mülkleri buluyoruz"
+    },
+    "legal": {
+      "title": "Hukuki Destek",
+      "desc": "NIE, noter, tapu ve vergi süreçlerini yönetiyoruz"
+    },
+    "decor": {
+      "title": "Dekorasyon & Mobilya",
+      "desc": "Anahtar teslim iç mekan tasarımı ve mobilya döşeme"
+    },
+    "renovation": {
+      "title": "Renovasyon",
+      "desc": "Kapsamlı tadilat ve yenileme projeleri"
+    },
+    "rental": {
+      "title": "Kira Yönetimi",
+      "desc": "Kiracı bulma, sözleşme ve aylık yönetim"
+    },
+    "staging": {
+      "title": "Home Staging",
+      "desc": "Satış ve kira değerini artıran profesyonel sahneleme"
+    }
+  },
+  "process": {
+    "title": "4 Adımda Mülk Sahibi Olun",
+    "subtitle": "Basit ve şeffaf bir süreç",
+    "step1": {
+      "title": "İhtiyaç Analizi",
+      "desc": "Bütçe, konum ve beklentilerinizi belirliyoruz"
+    },
+    "step2": {
+      "title": "Mülk Seçimi",
+      "desc": "Kriterlere uygun mülkleri sizinle paylaşıyoruz"
+    },
+    "step3": {
+      "title": "Hukuki Süreç",
+      "desc": "Satın alma ve resmi işlemleri yönetiyoruz"
+    },
+    "step4": {
+      "title": "Anahtar Teslim",
+      "desc": "Mülkünüzü yaşama veya kiraya hazır hale getiriyoruz"
+    }
+  },
+  "roi": {
+    "title": "Yatırım Getiri Hesaplayıcı",
+    "subtitle": "Valencia'da gayrimenkul yatırımınızın potansiyel getirisini hesaplayın",
+    "budget": "Yatırım Bütçesi",
+    "type": "Mülk Tipi",
+    "type_apartment": "Daire",
+    "type_house": "Müstakil Ev",
+    "type_commercial": "Ticari",
+    "calculate": "Hesapla",
+    "annual_return": "Tahmini Yıllık Getiri",
+    "monthly_income": "Aylık Kira Geliri",
+    "disclaimer": "Bu hesaplama tahminidir ve garanti niteliği taşımaz."
+  },
+  "testimonials": {
+    "title": "Müşterilerimiz Ne Diyor?",
+    "subtitle": "Yatırımcılarımızdan geri bildirimler"
+  },
+  "cta_section": {
+    "title": "Yatırım Yolculuğunuza Bugün Başlayın",
+    "subtitle": "Ücretsiz danışmanlık görüşmesi için iletişime geçin",
+    "button": "Hemen Başlayın",
+    "phone": "Bizi Arayın"
+  },
+  "footer": {
+    "about": "Kurumsal",
+    "about_us": "Hakkımızda",
+    "team": "Ekibimiz",
+    "remax": "RE/MAX İşbirliği",
+    "career": "Kariyer",
+    "services_title": "Hizmetler",
+    "resources": "Kaynaklar",
+    "blog": "Blog & Rehberler",
+    "roi_calc": "ROI Hesaplayıcı",
+    "faq": "Sıkça Sorulan Sorular",
+    "glossary": "Sözlük",
+    "contact": "İletişim",
+    "address": "Valencia, İspanya",
+    "copyright": "© 2026 Valencia Property. Tüm hakları saklıdır.",
+    "remax_note": "RE/MAX işbirliği ile hizmet vermekteyiz."
+  }
+}
