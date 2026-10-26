@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "preinstall": "npm install --no-save --force @next/swc-linux-x64-musl || true",
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
