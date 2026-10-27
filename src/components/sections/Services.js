@@ -144,7 +144,7 @@ function ServiceCard({ service, index, isExpanded, onToggle, t }) {
                 transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
                 className="overflow-hidden"
               >
-                <div className="mt-4 -mx-5 sm:-mx-6 -mb-5 sm:-mb-6 px-5 sm:px-6 py-5 bg-gold rounded-b-2xl">
+                <div className="mt-4 px-5 sm:px-6 py-5 bg-gold rounded-xl">
                   <ul className="space-y-3">
                     {details.map((detail, i) => (
                       <motion.li

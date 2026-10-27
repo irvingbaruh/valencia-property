@@ -8,7 +8,7 @@ import { MapPin, BedDouble, Maximize2, ArrowRight } from 'lucide-react';
 const listings = [
   {
     id: 1,
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80&auto=format',
+    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&q=80&auto=format',
     location: 'El Carmen, Valencia',
     price: '€185.000',
     beds: 2,
@@ -17,7 +17,7 @@ const listings = [
   },
   {
     id: 2,
-    image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80&auto=format',
+    image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=900&q=80&auto=format',
     location: 'Benimaclet, Valencia',
     price: '€145.000',
     beds: 3,
@@ -26,7 +26,7 @@ const listings = [
   },
   {
     id: 3,
-    image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80&auto=format',
+    image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=900&q=80&auto=format',
     location: 'Ciutat Vella, Valencia',
     price: '€265.000',
     beds: 3,
@@ -35,7 +35,7 @@ const listings = [
   },
   {
     id: 4,
-    image: 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=600&q=80&auto=format',
+    image: 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=900&q=80&auto=format',
     location: 'Poblats Marítims',
     price: '€198.000',
     beds: 2,
@@ -44,7 +44,7 @@ const listings = [
   },
   {
     id: 5,
-    image: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80&auto=format',
+    image: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=900&q=80&auto=format',
     location: 'Patraix, Valencia',
     price: '€155.000',
     beds: 2,
@@ -53,7 +53,7 @@ const listings = [
   },
   {
     id: 6,
-    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&q=80&auto=format',
+    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=900&q=80&auto=format',
     location: 'Extramurs, Valencia',
     price: '€220.000',
     beds: 4,
@@ -65,13 +65,13 @@ const listings = [
 function ListingCard({ listing, t }) {
   return (
     <motion.div
-      className="flex-shrink-0 w-[300px] md:w-[340px] group cursor-pointer"
+      className="flex-shrink-0 w-[340px] md:w-[420px] group cursor-pointer"
       whileHover={{ y: -6 }}
       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-shadow duration-500 border border-border">
         {/* Image */}
-        <div className="relative h-48 overflow-hidden">
+        <div className="relative h-64 md:h-72 overflow-hidden">
           <img
             src={listing.image}
             alt={listing.location}
@@ -192,10 +192,10 @@ export default function NewListings() {
 
           {/* View All Card */}
           <motion.div
-            className="flex-shrink-0 w-[300px] md:w-[340px] flex items-center justify-center"
+            className="flex-shrink-0 w-[340px] md:w-[420px] flex items-center justify-center"
             whileHover={{ scale: 1.02 }}
           >
-            <div className="bg-white/80 backdrop-blur rounded-2xl border-2 border-dashed border-gold/30 hover:border-gold/60 transition-colors duration-300 w-full h-full min-h-[280px] flex flex-col items-center justify-center gap-4 cursor-pointer group">
+            <div className="bg-white/80 backdrop-blur rounded-2xl border-2 border-dashed border-gold/30 hover:border-gold/60 transition-colors duration-300 w-full h-full min-h-[360px] flex flex-col items-center justify-center gap-4 cursor-pointer group">
               <div className="w-14 h-14 rounded-full bg-gold-light group-hover:bg-gold transition-colors duration-300 flex items-center justify-center">
                 <ArrowRight size={24} className="text-gold group-hover:text-white transition-colors duration-300" />
               </div>
