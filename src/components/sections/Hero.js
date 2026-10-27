@@ -3,37 +3,47 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 /*
  * Cinematic Hero with Photo-Mosaic Scroll-Zoom
  * =============================================
- * Inspired by Discovery Builders' "Building Your Dream" section:
- * A grid of lifestyle photos starts as a mosaic. As the user scrolls,
- * the center image scales up and eventually fills the entire viewport,
- * creating a "window into luxury" immersion effect.
+ * Desktop: A grid of lifestyle photos starts as a mosaic. As the user scrolls,
+ * the center image scales up and eventually fills the entire viewport.
  *
- * Layout (3×2 grid with center spanning):
+ * Mobile: Single full-bleed background image with text overlay —
+ * the mosaic grid is too cramped on small screens.
+ *
+ * Layout (3×2 grid, desktop only):
  *   [img1] [CENTER_IMAGE] [img3]
  *   [img4] [  img5      ] [img6]
- *
- * On scroll: CENTER_IMAGE scales from 1 → ~3.5, other images fade + scale out,
- * overlay text fades in for the next section transition.
  */
 
 const mosaicImages = [
   { src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80&auto=format', alt: 'Modern living room' },
-  { src: 'https://images.unsplash.com/photo-1583269838827-8e1ff60b2f72?w=1200&q=80&auto=format', alt: 'Valencia aerial view', center: true },
+  { src: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80&auto=format', alt: 'Luxury villa exterior', center: true },
   { src: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80&auto=format', alt: 'Luxury villa exterior' },
   { src: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80&auto=format', alt: 'Interior design' },
   { src: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80&auto=format', alt: 'Mediterranean home' },
   { src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80&auto=format', alt: 'Pool and garden' },
 ];
 
+// Mobile hero uses a single full-bleed image
+const mobileHeroImage = 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80&auto=format';
+
 export default function Hero() {
   const t = useTranslations('hero');
   const locale = useLocale();
   const sectionRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    setIsMobile(mq.matches);
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -57,6 +67,93 @@ export default function Hero() {
   // Border radius on center image shrinks to 0
   const centerRadius = useTransform(scrollYProgress, [0, 0.5], [12, 0]);
 
+  // ─── Mobile hero: single full-bleed image ───
+  if (isMobile) {
+    return (
+      <section className="relative h-screen overflow-hidden bg-dark">
+        {/* Full-bleed background image */}
+        <motion.img
+          src={mobileHeroImage}
+          alt="Luxury Mediterranean villa"
+          className="absolute inset-0 w-full h-full object-cover"
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+        />
+
+        {/* Gradient overlays for text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/60 via-dark/20 to-dark/70" />
+
+        {/* Content */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 bg-dark/40 backdrop-blur-md border border-white/15 rounded-full mb-6"
+          >
+            <div className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+            <span className="text-gold text-[10px] font-medium tracking-widest uppercase">
+              RE/MAX Partner — Valencia
+            </span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="text-4xl font-serif text-white leading-[1.1] mb-5 drop-shadow-2xl text-center"
+          >
+            {t('title')}
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="text-base text-white/75 max-w-sm mx-auto mb-8 drop-shadow-lg text-center"
+          >
+            {t('subtitle')}
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.1 }}
+            className="flex flex-col gap-3 w-full max-w-xs"
+          >
+            <a
+              href={`/${locale}#contact`}
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gold text-dark font-semibold rounded-xl hover:bg-gold-hover active:scale-[0.98] transition-all duration-200 shadow-gold group"
+            >
+              {t('cta_primary')}
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
+            </a>
+            <a
+              href={`/${locale}#properties`}
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-white/25 text-white rounded-xl hover:bg-white/10 transition-all duration-200 backdrop-blur-sm"
+            >
+              {t('cta_secondary')}
+            </a>
+          </motion.div>
+        </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
+        >
+          <span className="text-white/40 text-[10px] tracking-widest uppercase">Scroll</span>
+          <div className="w-5 h-8 border-2 border-white/25 rounded-full flex justify-center pt-1.5">
+            <div className="w-1 h-1.5 bg-gold rounded-full" />
+          </div>
+        </motion.div>
+      </section>
+    );
+  }
+
+  // ─── Desktop hero: mosaic scroll-zoom ───
   return (
     <section
       ref={sectionRef}

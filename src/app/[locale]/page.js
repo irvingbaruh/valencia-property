@@ -20,15 +20,15 @@ export default async function HomePage({ params }) {
       <Stats />
       <Properties />
       <InterstitialWrapper
-        image="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1920&q=80&auto=format"
+        image="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80&auto=format"
         alt="Mediterranean coastline"
         translationKey="interstitial1"
       />
       <Services />
       <Process />
       <InterstitialWrapper
-        image="https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=1920&q=80&auto=format"
-        alt="Valencia architecture"
+        image="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1920&q=80&auto=format"
+        alt="Modern Mediterranean villa"
         translationKey="interstitial2"
       />
       <ROICalculator />
