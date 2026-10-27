@@ -8,6 +8,7 @@ const testimonials = [
   {
     name: 'Mehmet K.',
     location: 'Berlin, DE',
+    initials: 'MK',
     text: {
       tr: 'Valencia\'da ev alma sürecimiz inanılmaz kolay geçti. Her adımda profesyonel destek aldık.',
       en: 'The process of buying a home in Valencia was incredibly smooth. We received professional support at every step.',
@@ -18,6 +19,7 @@ const testimonials = [
   {
     name: 'Ayse & Thomas D.',
     location: 'Hamburg, DE',
+    initials: 'AT',
     text: {
       tr: 'Dekorasyon ve kiralama yönetimi hizmetleri sayesinde yatırımımız ilk aydan itibaren gelir getirdi.',
       en: 'Thanks to the decoration and rental management services, our investment generated income from the first month.',
@@ -28,6 +30,7 @@ const testimonials = [
   {
     name: 'Carlos M.',
     location: 'Madrid, ES',
+    initials: 'CM',
     text: {
       tr: 'RE/MAX ortaklığı ve ekibin uzmanlığı sayesinde güvenle yatırım yaptık.',
       en: 'The RE/MAX partnership and the team\'s expertise gave us confidence in our investment.',
@@ -36,6 +39,25 @@ const testimonials = [
     },
   },
 ];
+
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 25 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 export default function Testimonials() {
   const t = useTranslations('testimonials');
@@ -47,7 +69,8 @@ export default function Testimonials() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-12"
         >
           <div className="accent-line mx-auto mb-4" />
@@ -60,11 +83,17 @@ export default function Testimonials() {
         </motion.div>
 
         {/* Testimonial Cards */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid md:grid-cols-3 gap-6"
+        >
           {testimonials.map((item, i) => (
             <TestimonialCard key={i} item={item} index={i} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -76,20 +105,21 @@ function TestimonialCard({ item, index }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="bg-white rounded-xl p-6 border border-border"
+      variants={cardVariants}
+      whileHover={{ y: -3, transition: { duration: 0.2 } }}
+      className="bg-white rounded-xl p-6 border border-border hover:border-gold/30 hover:shadow-card-hover transition-all duration-300 relative overflow-hidden group"
     >
-      <Quote size={24} className="text-gold/30 mb-4" />
-      <p className="text-text-secondary text-sm leading-relaxed mb-5">
-        {text}
+      {/* Subtle gold glow on hover */}
+      <div className="absolute -top-20 -right-20 w-40 h-40 bg-gold/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+      <Quote size={24} className="text-gold/30 mb-4 relative" />
+      <p className="text-text-secondary text-sm leading-relaxed mb-5 relative">
+        &ldquo;{text}&rdquo;
       </p>
-      <div className="flex items-center gap-3 pt-4 border-t border-border">
-        <div className="w-10 h-10 rounded-full bg-gold-light flex items-center justify-center">
-          <span className="text-gold font-semibold text-sm">
-            {item.name.charAt(0)}
+      <div className="flex items-center gap-3 pt-4 border-t border-border relative">
+        <div className="w-10 h-10 rounded-full bg-gold-light flex items-center justify-center group-hover:bg-gold transition-colors duration-300">
+          <span className="text-gold group-hover:text-white font-semibold text-sm transition-colors duration-300">
+            {item.initials}
           </span>
         </div>
         <div>

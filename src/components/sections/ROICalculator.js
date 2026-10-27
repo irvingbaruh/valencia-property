@@ -24,9 +24,10 @@ export default function ROICalculator() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: Calculator */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -25 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="accent-line mb-4" />
             <h2 className="text-3xl md:text-4xl font-serif text-dark mb-3">
@@ -84,9 +85,10 @@ export default function ROICalculator() {
 
           {/* Right: Results */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 25 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="bg-dark rounded-2xl p-8 text-white">
               <div className="flex items-center gap-3 mb-8">

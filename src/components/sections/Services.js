@@ -13,6 +13,25 @@ const services = [
   { key: 'staging', icon: Home },
 ];
 
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 25 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
 export default function Services() {
   const t = useTranslations('services');
 
@@ -23,7 +42,8 @@ export default function Services() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-12"
         >
           <div className="accent-line mx-auto mb-4" />
@@ -36,20 +56,24 @@ export default function Services() {
         </motion.div>
 
         {/* Service Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, i) => (
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {services.map((service) => (
             <motion.div
               key={service.key}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="bg-white rounded-xl p-6 border border-border hover:shadow-card-hover hover:border-gold/30 transition-all group cursor-pointer"
+              variants={itemVariants}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="bg-white rounded-xl p-6 border border-border hover:shadow-card-hover hover:border-gold/30 transition-all duration-300 group cursor-pointer"
             >
-              <div className="w-12 h-12 rounded-xl bg-gold-light flex items-center justify-center mb-4 group-hover:bg-gold group-hover:text-white transition-colors">
-                <service.icon size={22} className="text-gold group-hover:text-white transition-colors" />
+              <div className="w-12 h-12 rounded-xl bg-gold-light flex items-center justify-center mb-4 group-hover:bg-gold transition-colors duration-300">
+                <service.icon size={22} className="text-gold group-hover:text-white transition-colors duration-300" />
               </div>
-              <h3 className="font-serif text-lg text-dark mb-2">
+              <h3 className="font-serif text-lg text-dark mb-2 group-hover:text-gold transition-colors duration-200">
                 {t(`${service.key}.title`)}
               </h3>
               <p className="text-sm text-text-secondary leading-relaxed">
@@ -57,7 +81,7 @@ export default function Services() {
               </p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

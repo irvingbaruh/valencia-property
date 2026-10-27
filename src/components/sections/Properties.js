@@ -13,6 +13,7 @@ const sampleProperties = [
     rooms: 3,
     sqm: 95,
     badge: 'new',
+    image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80&auto=format',
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ const sampleProperties = [
     rooms: 4,
     sqm: 140,
     badge: 'premium',
+    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80&auto=format',
   },
   {
     id: 3,
@@ -31,6 +33,7 @@ const sampleProperties = [
     rooms: 2,
     sqm: 80,
     badge: 'new',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80&auto=format',
   },
 ];
 
@@ -45,7 +48,8 @@ export default function Properties() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-12"
         >
           <div className="accent-line mx-auto mb-4" />
@@ -62,27 +66,28 @@ export default function Properties() {
           {sampleProperties.map((property, i) => (
             <motion.article
               key={property.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group bg-white rounded-xl border border-border overflow-hidden hover:shadow-card-hover transition-shadow"
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+              className="group bg-white rounded-xl border border-border overflow-hidden hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
             >
-              {/* Image placeholder */}
-              <div className="relative aspect-[4/3] bg-gradient-to-br from-soft to-warm-gray flex items-center justify-center">
-                <svg width="60" height="60" viewBox="0 0 80 80" fill="none" className="text-border">
-                  <rect x="10" y="25" width="60" height="45" rx="3" stroke="currentColor" strokeWidth="1.5"/>
-                  <path d="M10 40L40 20L70 40" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                  <rect x="30" y="45" width="20" height="25" rx="1" stroke="currentColor" strokeWidth="1.5"/>
-                </svg>
+              {/* Image */}
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img
+                  src={property.image}
+                  alt={property.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 {/* Badge */}
-                <span className="absolute top-3 left-3 px-2.5 py-1 bg-gold text-white text-xs font-medium rounded-md">
+                <span className="absolute top-3 left-3 px-2.5 py-1 bg-gold text-white text-xs font-medium rounded-md shadow-gold">
                   {t(`badge_${property.badge}`)}
                 </span>
               </div>
 
               <div className="p-5">
-                <h3 className="font-serif text-lg text-dark mb-1 group-hover:text-gold transition-colors">
+                <h3 className="font-serif text-lg text-dark mb-1 group-hover:text-gold transition-colors duration-200">
                   {property.title}
                 </h3>
                 <div className="flex items-center gap-1 text-text-muted text-sm mb-4">
@@ -103,9 +108,9 @@ export default function Properties() {
 
                 <div className="flex items-center justify-between pt-4 border-t border-border">
                   <span className="text-xl font-serif text-gold">{property.price}</span>
-                  <button className="text-sm text-text-muted hover:text-gold transition-colors flex items-center gap-1">
-                    <ArrowRight size={14} />
-                  </button>
+                  <span className="w-8 h-8 rounded-full bg-gold-light flex items-center justify-center group-hover:bg-gold transition-colors duration-200">
+                    <ArrowRight size={14} className="text-gold group-hover:text-white transition-colors duration-200" />
+                  </span>
                 </div>
               </div>
             </motion.article>
@@ -113,15 +118,21 @@ export default function Properties() {
         </div>
 
         {/* View All */}
-        <div className="text-center mt-10">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="text-center mt-10"
+        >
           <a
             href={`/${locale}/properties`}
-            className="inline-flex items-center gap-2 px-6 py-3 border border-border text-text-secondary hover:text-dark hover:border-gold rounded-lg transition-colors font-medium text-sm"
+            className="inline-flex items-center gap-2 px-6 py-3 border border-border text-text-secondary hover:text-dark hover:border-gold rounded-lg transition-all duration-200 font-medium text-sm group"
           >
             {t('view_all')}
-            <ArrowRight size={16} />
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
