@@ -99,6 +99,14 @@
     "title": "What Our Clients Say",
     "subtitle": "Feedback from our investors"
   },
+  "newListings": {
+    "title": "New Listings",
+    "subtitle": "Discover the latest opportunities added to our portfolio",
+    "badge": "Just Added",
+    "from": "from",
+    "beds": "bed",
+    "viewAll": "View All Listings"
+  },
   "cta_section": {
     "title": "Start Your Investment Journey Today",
     "subtitle": "Get in touch for a free consultation",

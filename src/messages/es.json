@@ -69,6 +69,14 @@
     "title": "Lo Que Dicen Nuestros Clientes",
     "subtitle": "Opiniones de nuestros inversores"
   },
+  "newListings": {
+    "title": "Nuevos Inmuebles",
+    "subtitle": "Descubra las últimas oportunidades añadidas a nuestro portafolio",
+    "badge": "Recién Añadido",
+    "from": "desde",
+    "beds": "hab.",
+    "viewAll": "Ver Todos los Inmuebles"
+  },
   "cta_section": {
     "title": "Comience su Viaje de Inversión Hoy",
     "subtitle": "Contáctenos para una consulta gratuita",

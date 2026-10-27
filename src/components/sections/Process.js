@@ -21,7 +21,7 @@ export default function Process() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ margin: "-50px" }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-14"
         >
@@ -41,7 +41,7 @@ export default function Process() {
               key={step.key}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-30px" }}
+              viewport={{ margin: "-30px" }}
               transition={{ duration: 0.5, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
               className="relative text-center group"
             >
@@ -50,7 +50,6 @@ export default function Process() {
                 <motion.div
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.3 + i * 0.2, ease: [0.22, 1, 0.36, 1] }}
                   className="hidden lg:block absolute top-10 left-[60%] w-[80%] h-px bg-gradient-to-r from-gold/40 to-transparent origin-left"
                 />
@@ -64,7 +63,6 @@ export default function Process() {
                 <motion.span
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
                   transition={{ type: "spring", stiffness: 400, damping: 15, delay: 0.4 + i * 0.15 }}
                   className="absolute -top-2 -right-2 w-7 h-7 bg-gold text-dark text-xs font-bold rounded-full flex items-center justify-center"
                 >

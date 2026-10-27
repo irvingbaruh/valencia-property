@@ -99,6 +99,14 @@
     "title": "Müşterilerimiz Ne Diyor?",
     "subtitle": "Yatırımcılarımızdan geri bildirimler"
   },
+  "newListings": {
+    "title": "Yeni İlanlar",
+    "subtitle": "Portföyümüze yeni eklenen fırsatları keşfedin",
+    "badge": "Yeni Eklendi",
+    "from": "başlangıç",
+    "beds": "oda",
+    "viewAll": "Tüm İlanları Gör"
+  },
   "cta_section": {
     "title": "Yatırım Yolculuğunuza Bugün Başlayın",
     "subtitle": "Ücretsiz danışmanlık görüşmesi için iletişime geçin",

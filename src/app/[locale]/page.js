@@ -6,6 +6,7 @@ import Services from '@/components/sections/Services';
 import Process from '@/components/sections/Process';
 import ROICalculator from '@/components/sections/ROICalculator';
 import Testimonials from '@/components/sections/Testimonials';
+import NewListings from '@/components/sections/NewListings';
 import CTASection from '@/components/sections/CTASection';
 
 export default async function HomePage({ params }) {
@@ -19,6 +20,7 @@ export default async function HomePage({ params }) {
       <Services />
       <Process />
       <ROICalculator />
+      <NewListings />
       <Testimonials />
       <CTASection />
     </>

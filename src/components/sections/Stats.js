@@ -7,11 +7,14 @@ import { useRef, useEffect, useState } from 'react';
 
 function AnimatedNumber({ value, suffix = '', duration = 1.5 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { margin: "-50px" });
   const [display, setDisplay] = useState('0');
 
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView) {
+      setDisplay('0');
+      return;
+    }
 
     const num = parseInt(value.replace(/[^0-9]/g, '')) || 0;
     const controls = animate(0, num, {
@@ -45,7 +48,6 @@ export default function Stats() {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="bg-white rounded-2xl shadow-card-hover border border-border p-6 md:p-8"
       >
@@ -55,7 +57,6 @@ export default function Stats() {
               key={stat.key}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="text-center group"
             >

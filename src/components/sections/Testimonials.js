@@ -69,7 +69,7 @@ export default function Testimonials() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ margin: "-50px" }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-12"
         >
@@ -87,7 +87,7 @@ export default function Testimonials() {
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ margin: "-50px" }}
           className="grid md:grid-cols-3 gap-6"
         >
           {testimonials.map((item, i) => (

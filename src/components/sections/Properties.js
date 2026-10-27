@@ -48,7 +48,7 @@ export default function Properties() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ margin: "-50px" }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-12"
         >
@@ -68,7 +68,7 @@ export default function Properties() {
               key={property.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
               className="group bg-white rounded-xl border border-border overflow-hidden hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
             >
@@ -121,7 +121,6 @@ export default function Properties() {
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-center mt-10"
         >

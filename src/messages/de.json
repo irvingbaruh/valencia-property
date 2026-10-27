@@ -69,6 +69,14 @@
     "title": "Was Unsere Kunden Sagen",
     "subtitle": "Rückmeldungen unserer Investoren"
   },
+  "newListings": {
+    "title": "Neue Angebote",
+    "subtitle": "Entdecken Sie die neuesten Möglichkeiten in unserem Portfolio",
+    "badge": "Neu Hinzugefügt",
+    "from": "ab",
+    "beds": "Zi.",
+    "viewAll": "Alle Angebote Anzeigen"
+  },
   "cta_section": {
     "title": "Starten Sie Heute Ihre Investitionsreise",
     "subtitle": "Kontaktieren Sie uns für eine kostenlose Beratung",
