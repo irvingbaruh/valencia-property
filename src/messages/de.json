@@ -37,12 +37,13 @@
   "services": {
     "title": "Unsere Umfassenden Dienstleistungen",
     "subtitle": "Professionelle Unterstützung bei jedem Schritt, von der Immobiliensuche bis zur schlüsselfertigen Übergabe",
-    "search": { "title": "Immobiliensuche", "desc": "Wir finden Immobilien, die zu Ihrem Budget und Ihren Kriterien passen" },
-    "legal": { "title": "Rechtsberatung", "desc": "Wir verwalten NIE, Notar, Grundbuch und Steuerprozesse" },
-    "decor": { "title": "Dekoration & Möblierung", "desc": "Schlüsselfertige Inneneinrichtung und Möblierung" },
-    "renovation": { "title": "Renovierung", "desc": "Umfassende Sanierungs- und Renovierungsprojekte" },
-    "rental": { "title": "Mietverwaltung", "desc": "Mietersuche, Verträge und monatliche Verwaltung" },
-    "staging": { "title": "Home Staging", "desc": "Professionelles Staging zur Wertsteigerung bei Verkauf und Vermietung" }
+    "explore": "Details Anzeigen",
+    "search": { "title": "Immobiliensuche", "desc": "Wir finden Immobilien, die zu Ihrem Budget und Ihren Kriterien passen", "d1": "Erstellung eines personalisierten Immobilienportfolios", "d2": "Vor-Ort-Besichtigung und Standortanalyse", "d3": "Breiter Immobilienzugang über das RE/MAX-Netzwerk", "d4": "Preis- und Renditevergleich" },
+    "legal": { "title": "Rechtsberatung", "desc": "Wir verwalten NIE, Notar, Grundbuch und Steuerprozesse", "d1": "NIE-Antrag und Nachverfolgung", "d2": "Notar- und Grundbuchverwaltung", "d3": "Steuerberatung und Erklärungshilfe", "d4": "Kaufvertragsprüfung und Unterzeichnung" },
+    "decor": { "title": "Dekoration & Möblierung", "desc": "Schlüsselfertige Inneneinrichtung und Möblierung", "d1": "3D-Innenarchitekturprojekte", "d2": "Möbelauswahl und -beschaffung", "d3": "Beleuchtungs- und Accessoire-Planung", "d4": "Schlüsselfertige Installation und Montage" },
+    "renovation": { "title": "Renovierung", "desc": "Umfassende Sanierungs- und Renovierungsprojekte", "d1": "Bad- und Küchenrenovierung", "d2": "Aktualisierung der Elektro- und Sanitärinfrastruktur", "d3": "Boden-, Wand- und Deckenverkleidung", "d4": "Baugenehmigungen und Projektmanagement" },
+    "rental": { "title": "Mietverwaltung", "desc": "Mietersuche, Verträge und monatliche Verwaltung", "d1": "Airbnb- und Langzeitmietstrategie", "d2": "Mieterprüfung und Vertragsgestaltung", "d3": "Monatliche Mieteinzüge und Berichte", "d4": "Wartungs- und Notfallkoordination" },
+    "staging": { "title": "Home Staging", "desc": "Professionelles Staging zur Wertsteigerung bei Verkauf und Vermietung", "d1": "Professionelle Foto- und Videoaufnahmen", "d2": "Wertsteigerndes Staging-Design", "d3": "Virtuelle Tour und 360°-Ansicht", "d4": "Anzeigenoptimierung und Marketing" }
   },
   "process": {
     "title": "Immobilienbesitzer in 4 Schritten",

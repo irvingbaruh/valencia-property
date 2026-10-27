@@ -37,29 +37,54 @@
   "services": {
     "title": "Kapsamlı Hizmetlerimiz",
     "subtitle": "Mülk arayışından anahtar teslimine kadar her adımda profesyonel destek",
+    "explore": "Detayları Gör",
     "search": {
       "title": "Mülk Arama",
-      "desc": "Bütçenize ve kriterlerinize uygun mülkleri buluyoruz"
+      "desc": "Bütçenize ve kriterlerinize uygun mülkleri buluyoruz",
+      "d1": "Kişiselleştirilmiş mülk portföyü hazırlama",
+      "d2": "Yerinde inceleme ve bölge analizi",
+      "d3": "RE/MAX ağı ile geniş mülk erişimi",
+      "d4": "Fiyat ve yatırım getirisi karşılaştırması"
     },
     "legal": {
       "title": "Hukuki Destek",
-      "desc": "NIE, noter, tapu ve vergi süreçlerini yönetiyoruz"
+      "desc": "NIE, noter, tapu ve vergi süreçlerini yönetiyoruz",
+      "d1": "NIE başvurusu ve takibi",
+      "d2": "Noter ve tapu işlemleri yönetimi",
+      "d3": "Vergi danışmanlığı ve beyanname desteği",
+      "d4": "Satış sözleşmesi kontrolü ve imzalama"
     },
     "decor": {
       "title": "Dekorasyon & Mobilya",
-      "desc": "Anahtar teslim iç mekan tasarımı ve mobilya döşeme"
+      "desc": "Anahtar teslim iç mekan tasarımı ve mobilya döşeme",
+      "d1": "3D iç mekan tasarım projeleri",
+      "d2": "Mobilya seçimi ve tedarik yönetimi",
+      "d3": "Aydınlatma ve aksesuar planlaması",
+      "d4": "Anahtar teslim kurulum ve montaj"
     },
     "renovation": {
       "title": "Renovasyon",
-      "desc": "Kapsamlı tadilat ve yenileme projeleri"
+      "desc": "Kapsamlı tadilat ve yenileme projeleri",
+      "d1": "Banyo ve mutfak yenileme",
+      "d2": "Elektrik ve tesisat altyapı güncelleme",
+      "d3": "Zemin, duvar ve tavan kaplaması",
+      "d4": "Belediye izinleri ve proje yönetimi"
     },
     "rental": {
       "title": "Kira Yönetimi",
-      "desc": "Kiracı bulma, sözleşme ve aylık yönetim"
+      "desc": "Kiracı bulma, sözleşme ve aylık yönetim",
+      "d1": "Airbnb ve uzun dönem kiralama stratejisi",
+      "d2": "Kiracı tarama ve sözleşme hazırlama",
+      "d3": "Aylık kira tahsilatı ve raporlama",
+      "d4": "Bakım ve acil müdahale koordinasyonu"
     },
     "staging": {
       "title": "Home Staging",
-      "desc": "Satış ve kira değerini artıran profesyonel sahneleme"
+      "desc": "Satış ve kira değerini artıran profesyonel sahneleme",
+      "d1": "Profesyonel fotoğraf ve video çekimi",
+      "d2": "Satış değerini artıran sahneleme",
+      "d3": "Sanal tur ve 360° görüntüleme",
+      "d4": "İlan optimizasyonu ve pazarlama"
     }
   },
   "process": {

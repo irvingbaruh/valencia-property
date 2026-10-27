@@ -37,29 +37,54 @@
   "services": {
     "title": "Our Comprehensive Services",
     "subtitle": "Professional support at every step, from property search to turnkey delivery",
+    "explore": "View Details",
     "search": {
       "title": "Property Search",
-      "desc": "We find properties matching your budget and criteria"
+      "desc": "We find properties matching your budget and criteria",
+      "d1": "Personalized property portfolio preparation",
+      "d2": "On-site inspection and area analysis",
+      "d3": "Wide property access through RE/MAX network",
+      "d4": "Price and ROI comparison"
     },
     "legal": {
       "title": "Legal Support",
-      "desc": "We manage NIE, notary, deed and tax processes"
+      "desc": "We manage NIE, notary, deed and tax processes",
+      "d1": "NIE application and follow-up",
+      "d2": "Notary and deed process management",
+      "d3": "Tax advisory and declaration support",
+      "d4": "Purchase contract review and signing"
     },
     "decor": {
       "title": "Decoration & Furniture",
-      "desc": "Turnkey interior design and furnishing"
+      "desc": "Turnkey interior design and furnishing",
+      "d1": "3D interior design projects",
+      "d2": "Furniture selection and procurement",
+      "d3": "Lighting and accessory planning",
+      "d4": "Turnkey installation and assembly"
     },
     "renovation": {
       "title": "Renovation",
-      "desc": "Comprehensive renovation and refurbishment projects"
+      "desc": "Comprehensive renovation and refurbishment projects",
+      "d1": "Bathroom and kitchen renovation",
+      "d2": "Electrical and plumbing infrastructure updates",
+      "d3": "Floor, wall and ceiling finishing",
+      "d4": "Municipal permits and project management"
     },
     "rental": {
       "title": "Rental Management",
-      "desc": "Tenant finding, contracts and monthly management"
+      "desc": "Tenant finding, contracts and monthly management",
+      "d1": "Airbnb and long-term rental strategy",
+      "d2": "Tenant screening and contract preparation",
+      "d3": "Monthly rent collection and reporting",
+      "d4": "Maintenance and emergency coordination"
     },
     "staging": {
       "title": "Home Staging",
-      "desc": "Professional staging to increase sale and rental value"
+      "desc": "Professional staging to increase sale and rental value",
+      "d1": "Professional photo and video shooting",
+      "d2": "Value-boosting staging design",
+      "d3": "Virtual tour and 360° viewing",
+      "d4": "Listing optimization and marketing"
     }
   },
   "process": {

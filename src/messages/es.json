@@ -37,12 +37,13 @@
   "services": {
     "title": "Nuestros Servicios Integrales",
     "subtitle": "Apoyo profesional en cada paso, desde la búsqueda hasta la entrega llave en mano",
-    "search": { "title": "Búsqueda de Inmuebles", "desc": "Encontramos propiedades que se ajustan a su presupuesto y criterios" },
-    "legal": { "title": "Asesoría Legal", "desc": "Gestionamos NIE, notaría, escrituras y trámites fiscales" },
-    "decor": { "title": "Decoración y Mobiliario", "desc": "Diseño de interiores y amueblamiento llave en mano" },
-    "renovation": { "title": "Renovación", "desc": "Proyectos integrales de reforma y rehabilitación" },
-    "rental": { "title": "Gestión de Alquileres", "desc": "Búsqueda de inquilinos, contratos y gestión mensual" },
-    "staging": { "title": "Home Staging", "desc": "Puesta en escena profesional para aumentar el valor de venta y alquiler" }
+    "explore": "Ver Detalles",
+    "search": { "title": "Búsqueda de Inmuebles", "desc": "Encontramos propiedades que se ajustan a su presupuesto y criterios", "d1": "Preparación de portafolio personalizado", "d2": "Inspección presencial y análisis de zona", "d3": "Amplio acceso a inmuebles a través de la red RE/MAX", "d4": "Comparación de precios y rentabilidad" },
+    "legal": { "title": "Asesoría Legal", "desc": "Gestionamos NIE, notaría, escrituras y trámites fiscales", "d1": "Solicitud y seguimiento del NIE", "d2": "Gestión de notaría y escrituras", "d3": "Asesoría fiscal y apoyo en declaraciones", "d4": "Revisión y firma de contratos de compraventa" },
+    "decor": { "title": "Decoración y Mobiliario", "desc": "Diseño de interiores y amueblamiento llave en mano", "d1": "Proyectos de diseño interior en 3D", "d2": "Selección y adquisición de mobiliario", "d3": "Planificación de iluminación y accesorios", "d4": "Instalación y montaje llave en mano" },
+    "renovation": { "title": "Renovación", "desc": "Proyectos integrales de reforma y rehabilitación", "d1": "Renovación de baños y cocinas", "d2": "Actualización de infraestructura eléctrica e hídrica", "d3": "Revestimientos de suelos, paredes y techos", "d4": "Permisos municipales y gestión de proyectos" },
+    "rental": { "title": "Gestión de Alquileres", "desc": "Búsqueda de inquilinos, contratos y gestión mensual", "d1": "Estrategia de alquiler Airbnb y largo plazo", "d2": "Selección de inquilinos y preparación de contratos", "d3": "Cobro mensual de alquiler e informes", "d4": "Coordinación de mantenimiento y emergencias" },
+    "staging": { "title": "Home Staging", "desc": "Puesta en escena profesional para aumentar el valor de venta y alquiler", "d1": "Fotografía y vídeo profesional", "d2": "Puesta en escena para aumentar el valor", "d3": "Tour virtual y visualización 360°", "d4": "Optimización de anuncios y marketing" }
   },
   "process": {
     "title": "Sea Propietario en 4 Pasos",
