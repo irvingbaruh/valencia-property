@@ -1,8 +1,8 @@
 'use client';
 
 import { useTranslations, useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
 import { MapPin, BedDouble, Maximize2, ArrowRight } from 'lucide-react';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 
 const sampleProperties = [
   {
@@ -45,13 +45,7 @@ export default function Properties() {
     <section id="properties" className="section-padding bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ margin: "-50px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-12"
-        >
+        <ScrollReveal className="text-center mb-12">
           <div className="accent-line mx-auto mb-4" />
           <h2 className="text-3xl md:text-4xl font-serif text-dark mb-3">
             {t('title')}
@@ -59,17 +53,14 @@ export default function Properties() {
           <p className="text-text-secondary max-w-xl mx-auto">
             {t('subtitle')}
           </p>
-        </motion.div>
+        </ScrollReveal>
 
         {/* Property Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {sampleProperties.map((property, i) => (
-            <motion.article
+            <ScrollReveal
               key={property.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+              delay={i * 0.04}
               className="group bg-white rounded-xl border border-border overflow-hidden hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
             >
               {/* Image */}
@@ -113,17 +104,12 @@ export default function Properties() {
                   </span>
                 </div>
               </div>
-            </motion.article>
+            </ScrollReveal>
           ))}
         </div>
 
         {/* View All */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="text-center mt-10"
-        >
+        <ScrollReveal delay={0.12} className="text-center mt-10">
           <a
             href={`/${locale}/properties`}
             className="inline-flex items-center gap-2 px-6 py-3 border border-border text-text-secondary hover:text-dark hover:border-gold rounded-lg transition-all duration-200 font-medium text-sm group"
@@ -131,7 +117,7 @@ export default function Properties() {
             {t('view_all')}
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
           </a>
-        </motion.div>
+        </ScrollReveal>
       </div>
     </section>
   );

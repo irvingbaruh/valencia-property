@@ -1,9 +1,10 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion';
+import { animate, useInView } from 'framer-motion';
 import { Building2, Clock, Users, Award } from 'lucide-react';
 import { useRef, useEffect, useState } from 'react';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 
 function AnimatedNumber({ value, suffix = '', duration = 1.5 }) {
   const ref = useRef(null);
@@ -45,19 +46,12 @@ export default function Stats() {
 
   return (
     <section className="relative -mt-12 z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="bg-white rounded-2xl shadow-card-hover border border-border p-6 md:p-8"
-      >
+      <ScrollReveal className="bg-white rounded-2xl shadow-card-hover border border-border p-6 md:p-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {stats.map((stat, i) => (
-            <motion.div
+            <ScrollReveal
               key={stat.key}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              delay={i * 0.03}
               className="text-center group"
             >
               <div className="w-12 h-12 rounded-xl bg-gold-light flex items-center justify-center mx-auto mb-3 group-hover:bg-gold group-hover:scale-105 transition-all duration-300">
@@ -69,10 +63,10 @@ export default function Stats() {
                 )}
               </p>
               <p className="text-sm text-text-muted">{t(stat.key)}</p>
-            </motion.div>
+            </ScrollReveal>
           ))}
         </div>
-      </motion.div>
+      </ScrollReveal>
     </section>
   );
 }

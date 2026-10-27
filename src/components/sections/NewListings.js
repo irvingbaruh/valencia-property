@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { MapPin, BedDouble, Maximize2, ArrowRight } from 'lucide-react';
 
 const listings = [
@@ -118,62 +118,102 @@ function ListingCard({ listing, t }) {
 
 export default function NewListings() {
   const t = useTranslations('newListings');
-  const sectionRef = useRef(null);
+  const outerRef = useRef(null);
+  const trackRef = useRef(null);
+  const [trackWidth, setTrackWidth] = useState(0);
 
+  // Measure the total scrollable width of the cards track
+  useEffect(() => {
+    const measure = () => {
+      if (trackRef.current) {
+        const scrollW = trackRef.current.scrollWidth;
+        const viewW = window.innerWidth;
+        setTrackWidth(Math.max(0, scrollW - viewW));
+      }
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
+
+  // useScroll on the tall outer container
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
+    target: outerRef,
+    offset: ['start start', 'end end'],
   });
 
-  // Smooth spring for natural feel
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
+  // Map vertical scroll progress → horizontal movement
+  // Reserve first 10% for header visibility, last 5% for exit
+  const x = useTransform(scrollYProgress, [0.1, 0.95], [0, -trackWidth]);
+
+  const smoothX = useSpring(x, {
+    stiffness: 120,
     damping: 30,
-    restDelta: 0.001,
+    restDelta: 0.5,
   });
 
-  // Cards move left as you scroll down (negative x), right when scrolling up
-  const x = useTransform(smoothProgress, [0, 1], ['10%', '-40%']);
+  // Header opacity — fade in during the first 10%
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.08], [0, 1]);
+  const headerY = useTransform(scrollYProgress, [0, 0.08], [30, 0]);
 
   return (
-    <section ref={sectionRef} className="py-20 overflow-hidden bg-soft">
-      {/* Section Header */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+    <section
+      ref={outerRef}
+      className="relative bg-soft"
+      style={{ height: '300vh' }}
+    >
+      {/* Sticky inner container — stays on screen */}
+      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ margin: "-50px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          style={{ opacity: headerOpacity, y: headerY }}
+          className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-8"
         >
           <h2 className="text-3xl md:text-4xl font-serif text-dark mb-3">{t('title')}</h2>
           <p className="text-text-muted max-w-xl">{t('subtitle')}</p>
         </motion.div>
-      </div>
 
-      {/* Scroll-linked Carousel */}
-      <motion.div
-        style={{ x }}
-        className="flex gap-5 pl-4 sm:pl-8 lg:pl-[calc((100vw-72rem)/2+1rem)]"
-      >
-        {listings.map((listing) => (
-          <ListingCard key={listing.id} listing={listing} t={t} />
-        ))}
-
-        {/* View All Card */}
+        {/* Horizontal track driven by vertical scroll */}
         <motion.div
-          className="flex-shrink-0 w-[300px] md:w-[340px] flex items-center justify-center"
-          whileHover={{ scale: 1.02 }}
+          ref={trackRef}
+          style={{ x: smoothX }}
+          className="flex gap-5 pl-4 sm:pl-8 lg:pl-[calc((100vw-72rem)/2+1rem)] pr-8"
         >
-          <div className="bg-white/80 backdrop-blur rounded-2xl border-2 border-dashed border-gold/30 hover:border-gold/60 transition-colors duration-300 w-full h-full min-h-[280px] flex flex-col items-center justify-center gap-4 cursor-pointer group">
-            <div className="w-14 h-14 rounded-full bg-gold-light group-hover:bg-gold transition-colors duration-300 flex items-center justify-center">
-              <ArrowRight size={24} className="text-gold group-hover:text-white transition-colors duration-300" />
+          {listings.map((listing) => (
+            <ListingCard key={listing.id} listing={listing} t={t} />
+          ))}
+
+          {/* View All Card */}
+          <motion.div
+            className="flex-shrink-0 w-[300px] md:w-[340px] flex items-center justify-center"
+            whileHover={{ scale: 1.02 }}
+          >
+            <div className="bg-white/80 backdrop-blur rounded-2xl border-2 border-dashed border-gold/30 hover:border-gold/60 transition-colors duration-300 w-full h-full min-h-[280px] flex flex-col items-center justify-center gap-4 cursor-pointer group">
+              <div className="w-14 h-14 rounded-full bg-gold-light group-hover:bg-gold transition-colors duration-300 flex items-center justify-center">
+                <ArrowRight size={24} className="text-gold group-hover:text-white transition-colors duration-300" />
+              </div>
+              <span className="text-dark font-medium group-hover:text-gold transition-colors duration-300">
+                {t('viewAll') || 'Tüm İlanlar'}
+              </span>
             </div>
-            <span className="text-dark font-medium group-hover:text-gold transition-colors duration-300">
-              {t('viewAll') || 'Tüm İlanlar'}
-            </span>
-          </div>
+          </motion.div>
         </motion.div>
-      </motion.div>
+
+        {/* Scroll hint indicator */}
+        <motion.div
+          style={{ opacity: useTransform(scrollYProgress, [0, 0.15, 0.3], [1, 1, 0]) }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-text-muted/50"
+        >
+          <span className="text-xs tracking-wider uppercase">Scroll</span>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+            className="w-5 h-8 rounded-full border-2 border-text-muted/30 flex items-start justify-center pt-1.5"
+          >
+            <div className="w-1 h-1.5 rounded-full bg-text-muted/50" />
+          </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }

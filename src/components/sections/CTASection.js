@@ -1,8 +1,8 @@
 'use client';
 
 import { useTranslations, useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
 import { ArrowRight, Phone } from 'lucide-react';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 
 export default function CTASection() {
   const t = useTranslations('cta_section');
@@ -27,12 +27,7 @@ export default function CTASection() {
       </div>
 
       <div className="relative section-padding max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ margin: "-50px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        >
+        <ScrollReveal>
           <div className="accent-line mx-auto mb-4" />
           <h2 className="text-3xl md:text-5xl font-serif text-white mb-4">
             {t('title')}
@@ -41,12 +36,7 @@ export default function CTASection() {
             {t('subtitle')}
           </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href={`/${locale}/wizard`}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold text-dark font-semibold rounded-xl hover:bg-gold-hover hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-gold group text-lg"
@@ -61,8 +51,8 @@ export default function CTASection() {
               <Phone size={18} />
               {t('phone')}
             </a>
-          </motion.div>
-        </motion.div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
 import { Calculator, TrendingUp, Wallet } from 'lucide-react';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 
 export default function ROICalculator() {
   const t = useTranslations('roi');
@@ -23,12 +23,7 @@ export default function ROICalculator() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: Calculator */}
-          <motion.div
-            initial={{ opacity: 0, x: -25 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ margin: "-50px" }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <ScrollReveal from="left">
             <div className="accent-line mb-4" />
             <h2 className="text-3xl md:text-4xl font-serif text-dark mb-3">
               {t('title')}
@@ -81,15 +76,10 @@ export default function ROICalculator() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </ScrollReveal>
 
           {/* Right: Results */}
-          <motion.div
-            initial={{ opacity: 0, x: 25 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <ScrollReveal from="right" delay={0.05}>
             <div className="bg-dark rounded-2xl p-8 text-white">
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-10 h-10 rounded-xl bg-gold/20 flex items-center justify-center">
@@ -121,7 +111,7 @@ export default function ROICalculator() {
                 {t('disclaimer')}
               </p>
             </div>
-          </motion.div>
+          </ScrollReveal>
         </div>
       </div>
     </section>
