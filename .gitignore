@@ -5,7 +5,6 @@ node_modules/
 
 # next.js
 .next/
-out/
 
 # misc
 .DS_Store

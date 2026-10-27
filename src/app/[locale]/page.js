@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import Hero from '@/components/sections/Hero';
 import Stats from '@/components/sections/Stats';
 import Properties from '@/components/sections/Properties';
@@ -7,7 +8,9 @@ import ROICalculator from '@/components/sections/ROICalculator';
 import Testimonials from '@/components/sections/Testimonials';
 import CTASection from '@/components/sections/CTASection';
 
-export default function HomePage() {
+export default async function HomePage({ params }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   return (
     <>
       <Hero />

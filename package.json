@@ -1,14 +1,12 @@
 {
   "name": "valencia-property",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Valencia Property Management",
+  "main": "server.js",
   "scripts": {
-    "dev": "SWC_NATIVE_BINDING_CACHE=$HOME/.swc-cache next dev",
-    "build": "SWC_NATIVE_BINDING_CACHE=$HOME/.swc-cache next build",
-    "start": "next start -p $PORT",
-    "preinstall": "rm -rf node_modules/.cache node_modules/.next 2>/dev/null; mkdir -p $HOME/.swc-cache 2>/dev/null || true",
-    "postinstall": "npm install --no-save @next/swc-linux-x64-musl@15.5.28 || npm install --no-save @next/swc-wasm-nodejs@15.5.28 || true"
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build:local": "next build"
   },
   "keywords": [],
   "author": "",
