@@ -167,10 +167,17 @@ export default function NewListings() {
         {/* Section Header */}
         <motion.div
           style={{ opacity: headerOpacity, y: headerY }}
-          className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-8"
+          className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center"
         >
+          <div className="inline-flex items-center gap-3 mb-6">
+            <span className="h-px w-8 bg-gold/60" />
+            <span className="text-gold text-xs font-sans tracking-[0.2em] uppercase">
+              Portfolio
+            </span>
+            <span className="h-px w-8 bg-gold/60" />
+          </div>
           <h2 className="text-3xl md:text-4xl font-serif text-dark mb-3">{t('title')}</h2>
-          <p className="text-text-muted max-w-xl">{t('subtitle')}</p>
+          <p className="text-text-muted max-w-xl mx-auto">{t('subtitle')}</p>
         </motion.div>
 
         {/* Horizontal track driven by vertical scroll */}
