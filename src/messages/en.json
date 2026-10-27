@@ -154,5 +154,11 @@
     "address": "Valencia, Spain",
     "copyright": "© 2026 Valencia Property. All rights reserved.",
     "remax_note": "Serving in partnership with RE/MAX."
+  },
+  "interstitials": {
+    "interstitial1_line1": "Life Along",
+    "interstitial1_line2": "the Mediterranean",
+    "interstitial2_line1": "Your Investment,",
+    "interstitial2_line2": "Your Future"
   }
 }

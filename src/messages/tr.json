@@ -154,5 +154,11 @@
     "address": "Valencia, İspanya",
     "copyright": "© 2026 Valencia Property. Tüm hakları saklıdır.",
     "remax_note": "RE/MAX işbirliği ile hizmet vermekteyiz."
+  },
+  "interstitials": {
+    "interstitial1_line1": "Akdeniz'de",
+    "interstitial1_line2": "Hayalinizdeki Yaşam",
+    "interstitial2_line1": "Yatırımınız,",
+    "interstitial2_line2": "Geleceğiniz"
   }
 }

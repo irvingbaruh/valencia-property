@@ -1,53 +1,187 @@
 'use client';
 
 import { useTranslations, useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
-import { ArrowRight, Play } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
+import { useRef } from 'react';
+
+/*
+ * Cinematic Hero with Photo-Mosaic Scroll-Zoom
+ * =============================================
+ * Inspired by Discovery Builders' "Building Your Dream" section:
+ * A grid of lifestyle photos starts as a mosaic. As the user scrolls,
+ * the center image scales up and eventually fills the entire viewport,
+ * creating a "window into luxury" immersion effect.
+ *
+ * Layout (3×2 grid with center spanning):
+ *   [img1] [CENTER_IMAGE] [img3]
+ *   [img4] [  img5      ] [img6]
+ *
+ * On scroll: CENTER_IMAGE scales from 1 → ~3.5, other images fade + scale out,
+ * overlay text fades in for the next section transition.
+ */
+
+const mosaicImages = [
+  { src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80&auto=format', alt: 'Modern living room' },
+  { src: 'https://images.unsplash.com/photo-1583269838827-8e1ff60b2f72?w=1200&q=80&auto=format', alt: 'Valencia aerial view', center: true },
+  { src: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80&auto=format', alt: 'Luxury villa exterior' },
+  { src: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80&auto=format', alt: 'Interior design' },
+  { src: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80&auto=format', alt: 'Mediterranean home' },
+  { src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80&auto=format', alt: 'Pool and garden' },
+];
 
 export default function Hero() {
   const t = useTranslations('hero');
   const locale = useLocale();
+  const sectionRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+
+  // Center image zoom: starts at 1, scales to fill viewport
+  const centerScale = useTransform(scrollYProgress, [0, 0.5, 0.8], [1, 1.8, 3.5]);
+  // Other images: fade and scale down
+  const sideOpacity = useTransform(scrollYProgress, [0, 0.3, 0.5], [1, 0.6, 0]);
+  const sideScale = useTransform(scrollYProgress, [0, 0.3, 0.5], [1, 0.95, 0.85]);
+  // Gap between tiles shrinks as center expands
+  const gridGap = useTransform(scrollYProgress, [0, 0.4], [12, 0]);
+  // Text content fades in mid-scroll, then out
+  const headingOpacity = useTransform(scrollYProgress, [0, 0.15, 0.55, 0.7], [1, 1, 1, 0]);
+  const headingY = useTransform(scrollYProgress, [0, 0.15, 0.55, 0.7], [0, 0, 0, -60]);
+  // Overlay darkens as center fills
+  const overlayOpacity = useTransform(scrollYProgress, [0.4, 0.7], [0, 0.55]);
+  // Scroll indicator
+  const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+  // Border radius on center image shrinks to 0
+  const centerRadius = useTransform(scrollYProgress, [0, 0.5], [12, 0]);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0">
-        <img
-          src="https://images.unsplash.com/photo-1583269838827-8e1ff60b2f72?w=1920&q=80&auto=format"
-          alt="Valencia cityscape"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-dark/95 via-dark/80 to-dark/50" />
-        <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-dark/30" />
-      </div>
+    <section
+      ref={sectionRef}
+      className="relative"
+      style={{ height: '250vh' }}
+    >
+      {/* Sticky viewport container */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden bg-dark">
+        {/* Mosaic grid — positioned center, fills viewport */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <motion.div
+            className="grid w-full h-full max-w-[100vw] max-h-[100vh]"
+            style={{
+              gridTemplateColumns: '1fr 2fr 1fr',
+              gridTemplateRows: '1.2fr 1fr',
+              gap: gridGap,
+              padding: gridGap,
+            }}
+          >
+            {/* Top-left */}
+            <motion.div
+              style={{ opacity: sideOpacity, scale: sideScale }}
+              className="relative overflow-hidden rounded-xl"
+            >
+              <img
+                src={mosaicImages[0].src}
+                alt={mosaicImages[0].alt}
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
 
-      {/* Animated grain texture */}
-      <div
-        className="absolute inset-0 opacity-[0.04] pointer-events-none"
-        style={{
-          backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")',
-        }}
-      />
+            {/* CENTER — the hero image that zooms */}
+            <motion.div
+              style={{
+                scale: centerScale,
+                borderRadius: centerRadius,
+                zIndex: 10,
+              }}
+              className="relative overflow-hidden rounded-xl row-span-1"
+            >
+              <img
+                src={mosaicImages[1].src}
+                alt={mosaicImages[1].alt}
+                className="w-full h-full object-cover"
+              />
+              {/* Dark overlay that fades in during zoom */}
+              <motion.div
+                style={{ opacity: overlayOpacity }}
+                className="absolute inset-0 bg-dark"
+              />
+            </motion.div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left: Text */}
-          <div>
+            {/* Top-right */}
+            <motion.div
+              style={{ opacity: sideOpacity, scale: sideScale }}
+              className="relative overflow-hidden rounded-xl"
+            >
+              <img
+                src={mosaicImages[2].src}
+                alt={mosaicImages[2].alt}
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+
+            {/* Bottom-left */}
+            <motion.div
+              style={{ opacity: sideOpacity, scale: sideScale }}
+              className="relative overflow-hidden rounded-xl"
+            >
+              <img
+                src={mosaicImages[3].src}
+                alt={mosaicImages[3].alt}
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+
+            {/* Bottom-center */}
+            <motion.div
+              style={{ opacity: sideOpacity, scale: sideScale }}
+              className="relative overflow-hidden rounded-xl"
+            >
+              <img
+                src={mosaicImages[4].src}
+                alt={mosaicImages[4].alt}
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+
+            {/* Bottom-right */}
+            <motion.div
+              style={{ opacity: sideOpacity, scale: sideScale }}
+              className="relative overflow-hidden rounded-xl"
+            >
+              <img
+                src={mosaicImages[5].src}
+                alt={mosaicImages[5].alt}
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Heading overlay — centered on mosaic */}
+        <motion.div
+          style={{ opacity: headingOpacity, y: headingY }}
+          className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
+        >
+          <div className="text-center px-4 pointer-events-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 bg-gold/10 border border-gold/20 rounded-full mb-6 backdrop-blur-sm"
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="inline-flex items-center gap-2 px-5 py-2 bg-dark/40 backdrop-blur-md border border-white/15 rounded-full mb-8"
             >
               <div className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-              <span className="text-gold text-xs font-medium tracking-wide">RE/MAX Partner — Valencia, Spain</span>
+              <span className="text-gold text-xs font-medium tracking-widest uppercase">
+                RE/MAX Partner — Valencia, Spain
+              </span>
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-serif text-white leading-[1.1] mb-6"
+              transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="text-5xl sm:text-6xl lg:text-8xl font-serif text-white leading-[1.05] mb-6 drop-shadow-2xl"
             >
               {t('title')}
             </motion.h1>
@@ -55,8 +189,8 @@ export default function Hero() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="text-lg text-white/60 leading-relaxed mb-8 max-w-lg"
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="text-lg sm:text-xl text-white/70 max-w-xl mx-auto mb-10 drop-shadow-lg"
             >
               {t('subtitle')}
             </motion.p>
@@ -64,116 +198,43 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col sm:flex-row gap-4"
+              transition={{ duration: 0.8, delay: 1.1 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <a
                 href={`/${locale}#contact`}
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-gold text-dark font-semibold rounded-xl hover:bg-gold-hover hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-gold group"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold text-dark font-semibold rounded-xl hover:bg-gold-hover hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-gold group"
               >
                 {t('cta_primary')}
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-200" />
               </a>
               <a
                 href={`/${locale}#properties`}
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 border border-white/20 text-white rounded-xl hover:bg-white/10 hover:border-white/30 transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/25 text-white rounded-xl hover:bg-white/10 hover:border-white/40 transition-all duration-200 backdrop-blur-sm"
               >
-                <Play size={16} />
                 {t('cta_secondary')}
               </a>
             </motion.div>
           </div>
+        </motion.div>
 
-          {/* Right: Property Preview Card */}
+        {/* Scroll indicator */}
+        <motion.div
+          style={{ opacity: scrollIndicatorOpacity }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+        >
           <motion.div
-            initial={{ opacity: 0, scale: 0.92, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="hidden lg:block"
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="flex flex-col items-center gap-3"
           >
-            <div className="relative">
-              {/* Main property card */}
-              <div className="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 shadow-2xl">
-                <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-4">
-                  <img
-                    src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80&auto=format"
-                    alt="Luxury property"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark/40 to-transparent" />
-                  <span className="absolute top-3 left-3 px-3 py-1 bg-gold text-white text-xs font-semibold rounded-md">
-                    Premium
-                  </span>
-                  <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
-                    <div>
-                      <p className="text-white font-serif text-lg drop-shadow-lg">Ruzafa Penthouse</p>
-                      <p className="text-white/80 text-xs drop-shadow-lg">Ruzafa, Valencia</p>
-                    </div>
-                    <p className="text-gold font-serif text-xl drop-shadow-lg">€320,000</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 text-white/70 text-sm px-1">
-                  <span>🛏 4 rooms</span>
-                  <span>📐 140m²</span>
-                  <span>🏠 Penthouse</span>
-                </div>
-              </div>
-
-              {/* Floating badge */}
-              <motion.div
-                initial={{ opacity: 0, x: -20, y: 10 }}
-                animate={{ opacity: 1, x: 0, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute -bottom-4 -left-4 bg-white rounded-xl px-4 py-3 shadow-card-hover"
-              >
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-gold-light flex items-center justify-center">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-dark">500+</p>
-                    <p className="text-[10px] text-text-muted">Happy Clients</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Floating ROI badge */}
-              <motion.div
-                initial={{ opacity: 0, x: 20, y: -10 }}
-                animate={{ opacity: 1, x: 0, y: 0 }}
-                transition={{ duration: 0.5, delay: 1, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute -top-3 -right-3 bg-white rounded-xl px-4 py-3 shadow-card-hover"
-              >
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-success/10 flex items-center justify-center">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-dark">6.5%</p>
-                    <p className="text-[10px] text-text-muted">Avg. ROI</p>
-                  </div>
-                </div>
-              </motion.div>
+            <span className="text-white/50 text-xs tracking-widest uppercase">Scroll</span>
+            <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
+              <div className="w-1 h-2 bg-gold rounded-full" />
             </div>
           </motion.div>
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2"
-        >
-          <div className="w-1 h-2 bg-gold rounded-full" />
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }
