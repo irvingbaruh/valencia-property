@@ -20,9 +20,11 @@
     "cta_secondary": "Immobilien Ansehen"
   },
   "stats": {
-    "properties": "Immobilienportfolio",
-    "experience": "Jahre Erfahrung",
-    "clients": "Zufriedene Kunden",
+    "languages": "Sprachen",
+    "serviceHeadline": "Komplett",
+    "service": "Service: Suche, Recht, Deko",
+    "consultationHeadline": "Kostenlos",
+    "consultation": "Erstberatung",
     "partner": "RE/MAX Partnerschaft"
   },
   "properties": {

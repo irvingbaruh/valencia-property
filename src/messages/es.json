@@ -20,9 +20,11 @@
     "cta_secondary": "Ver Inmuebles"
   },
   "stats": {
-    "properties": "Cartera de Inmuebles",
-    "experience": "Años de Experiencia",
-    "clients": "Clientes Satisfechos",
+    "languages": "Idiomas",
+    "serviceHeadline": "Integral",
+    "service": "Servicio: Búsqueda, Legal, Decoración",
+    "consultationHeadline": "Gratis",
+    "consultation": "Primera Consulta",
     "partner": "Colaboración RE/MAX"
   },
   "properties": {

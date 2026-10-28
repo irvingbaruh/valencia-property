@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { animate, useInView } from 'framer-motion';
-import { Building2, Clock, Users, Award } from 'lucide-react';
+import { Globe, Route, MessageCircle, Award } from 'lucide-react';
 import { useRef, useEffect, useState } from 'react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
@@ -35,9 +35,9 @@ function AnimatedNumber({ value, suffix = '', duration = 1.5 }) {
 }
 
 const stats = [
-  { key: 'properties', value: '350', suffix: '+', icon: Building2 },
-  { key: 'experience', value: '15', suffix: '+', icon: Clock },
-  { key: 'clients', value: '500', suffix: '+', icon: Users },
+  { key: 'languages', value: '4', suffix: '', icon: Globe },
+  { key: 'service', icon: Route, isText: true },
+  { key: 'consultation', icon: MessageCircle, isText: true },
   { key: 'partner', value: 'RE/MAX', suffix: '', icon: Award, isText: true },
 ];
 
@@ -58,7 +58,7 @@ export default function Stats() {
                 <stat.icon size={22} className="text-gold group-hover:text-white transition-colors duration-300" />
               </div>
               <p className="text-2xl md:text-3xl font-serif text-dark mb-1">
-                {stat.isText ? stat.value : (
+                {stat.isText ? (stat.value || t(`${stat.key}Headline`)) : (
                   <AnimatedNumber value={stat.value} suffix={stat.suffix} duration={1.5 + i * 0.2} />
                 )}
               </p>

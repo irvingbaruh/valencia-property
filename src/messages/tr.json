@@ -20,9 +20,11 @@
     "cta_secondary": "Mülkleri İncele"
   },
   "stats": {
-    "properties": "Mülk Portföyü",
-    "experience": "Yıl Tecrübe",
-    "clients": "Mutlu Müşteri",
+    "languages": "Dil Desteği",
+    "serviceHeadline": "Uçtan Uca",
+    "service": "Hizmet: Arama, Hukuk, Dekorasyon",
+    "consultationHeadline": "Ücretsiz",
+    "consultation": "İlk Danışmanlık",
     "partner": "RE/MAX İşbirliği"
   },
   "properties": {

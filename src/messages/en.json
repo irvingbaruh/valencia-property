@@ -20,9 +20,11 @@
     "cta_secondary": "Browse Properties"
   },
   "stats": {
-    "properties": "Property Portfolio",
-    "experience": "Years Experience",
-    "clients": "Happy Clients",
+    "languages": "Languages",
+    "serviceHeadline": "End-to-End",
+    "service": "Service: Search, Legal, Decor",
+    "consultationHeadline": "Free",
+    "consultation": "Initial Consultation",
     "partner": "RE/MAX Partnership"
   },
   "properties": {
