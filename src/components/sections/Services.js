@@ -30,12 +30,12 @@ const services = [
   {
     key: 'rental',
     icon: KeyRound,
-    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80&auto=format',
+    image: 'https://images.unsplash.com/photo-1733244766159-f58f4184fd38?w=800&q=80&auto=format',
   },
   {
     key: 'staging',
     icon: Home,
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80&auto=format',
+    image: 'https://images.unsplash.com/photo-1746517757473-7c88850e539b?w=800&q=80&auto=format',
   },
 ];
 

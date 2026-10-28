@@ -189,6 +189,8 @@ export default function Hero() {
                 scale: centerScale,
                 borderRadius: centerRadius,
                 zIndex: 10,
+                transformOrigin: '50% 0%',
+                marginTop: -12,
               }}
               className="relative overflow-hidden rounded-xl row-span-1"
             >
