@@ -21,7 +21,7 @@ import { useRef, useState, useEffect } from 'react';
 
 const mosaicImages = [
   { src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80&auto=format', alt: 'Modern living room' },
-  { src: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80&auto=format', alt: 'Luxury villa exterior', center: true },
+  { src: '/images/hero/entrance-perspective.jpg', alt: 'Walking into a modern Mediterranean villa entrance', center: true },
   { src: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80&auto=format', alt: 'Luxury villa exterior' },
   { src: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80&auto=format', alt: 'Interior design' },
   { src: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80&auto=format', alt: 'Mediterranean home' },
