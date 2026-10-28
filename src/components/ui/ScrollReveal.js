@@ -27,11 +27,14 @@ export default function ScrollReveal({
     offset: ['start end', 'end start'],
   });
 
-  // Animation happens in the first ~20% of the element's scroll range
-  // (when it first enters the viewport from the bottom).
+  // Animation happens in the first ~10% of the element's scroll range
+  // (when it first enters the viewport from the bottom), so it finishes
+  // almost immediately after the element becomes visible rather than
+  // staying visibly mid-fade (washed out / low-opacity) for a long
+  // stretch of scrolling.
   // Scrolling back up rewinds through this exact same range.
-  const start = 0.05 + delay;
-  const end = 0.25 + delay;
+  const start = 0.02 + delay;
+  const end = 0.1 + delay;
 
   const opacity = useTransform(scrollYProgress, [start, end], [0, 1]);
 
