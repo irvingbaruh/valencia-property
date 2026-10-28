@@ -20,7 +20,8 @@
     "cta_secondary": "Ver Inmuebles"
   },
   "stats": {
-    "languages": "Idiomas",
+    "localHeadline": "Local",
+    "local": "Experiencia Local en Valencia",
     "serviceHeadline": "Integral",
     "service": "Servicio: Búsqueda, Legal, Decoración",
     "consultationHeadline": "Gratis",

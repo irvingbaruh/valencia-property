@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { animate, useInView } from 'framer-motion';
-import { Globe, Route, MessageCircle, Award } from 'lucide-react';
+import { MapPin, Route, MessageCircle, Award } from 'lucide-react';
 import { useRef, useEffect, useState } from 'react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
@@ -35,7 +35,7 @@ function AnimatedNumber({ value, suffix = '', duration = 1.5 }) {
 }
 
 const stats = [
-  { key: 'languages', value: '4', suffix: '', icon: Globe },
+  { key: 'local', icon: MapPin, isText: true },
   { key: 'service', icon: Route, isText: true },
   { key: 'consultation', icon: MessageCircle, isText: true },
   { key: 'partner', value: 'RE/MAX', suffix: '', icon: Award, isText: true },

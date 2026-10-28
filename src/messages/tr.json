@@ -20,7 +20,8 @@
     "cta_secondary": "Mülkleri İncele"
   },
   "stats": {
-    "languages": "Dil Desteği",
+    "localHeadline": "Yerinde",
+    "local": "Valencia'da Yerel Uzmanlık",
     "serviceHeadline": "Uçtan Uca",
     "service": "Hizmet: Arama, Hukuk, Dekorasyon",
     "consultationHeadline": "Ücretsiz",

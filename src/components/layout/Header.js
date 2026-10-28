@@ -30,9 +30,25 @@ export default function Header() {
   const [langOpen, setLangOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    // On desktop, the hero's photo-mosaic zooms to fill the screen over a 250vh
+    // scroll section — keep the header transparent (with the top gradient for
+    // contrast) until that zoom has finished, so the white background doesn't
+    // snap in while the enlarging image is still mid-animation.
+    // On mobile the hero is a single full-bleed image with no scroll-zoom, so
+    // switch over almost immediately.
+    let threshold = window.innerWidth > 768 ? window.innerHeight * 2 : 20;
+
+    const onScroll = () => setScrolled(window.scrollY > threshold);
+    const onResize = () => {
+      threshold = window.innerWidth > 768 ? window.innerHeight * 2 : 20;
+    };
+
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener('resize', onResize);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
+    };
   }, []);
 
   // Close mobile menu on route change
@@ -69,7 +85,7 @@ export default function Header() {
         className={`absolute inset-x-0 top-0 h-28 pointer-events-none transition-opacity duration-500 -z-10 ${
           scrolled ? 'opacity-0' : 'opacity-100'
         }`}
-        style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0))' }}
+        style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0))' }}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18 md:h-20">

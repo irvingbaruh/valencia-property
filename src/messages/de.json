@@ -20,7 +20,8 @@
     "cta_secondary": "Immobilien Ansehen"
   },
   "stats": {
-    "languages": "Sprachen",
+    "localHeadline": "Vor Ort",
+    "local": "Lokale Expertise in Valencia",
     "serviceHeadline": "Komplett",
     "service": "Service: Suche, Recht, Deko",
     "consultationHeadline": "Kostenlos",
