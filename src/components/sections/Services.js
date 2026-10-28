@@ -25,7 +25,7 @@ const services = [
   {
     key: 'renovation',
     icon: Hammer,
-    image: 'https://images.unsplash.com/photo-1585128903994-9788298932a4?w=800&q=80&auto=format',
+    image: 'https://images.unsplash.com/photo-1768321916877-8cf4e4ef7487?w=800&q=80&auto=format',
   },
   {
     key: 'rental',
@@ -75,7 +75,7 @@ function ServiceCard({ service, index, isExpanded, onToggle, t }) {
         />
 
         {/* Service image */}
-        <motion.div layout className="relative h-40 sm:h-44 overflow-hidden">
+        <motion.div layout className="relative h-[400px] sm:h-[440px] overflow-hidden">
           <img
             src={service.image}
             alt=""
