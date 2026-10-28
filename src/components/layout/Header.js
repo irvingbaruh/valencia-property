@@ -63,6 +63,27 @@ export default function Header() {
     setLangOpen(false);
   };
 
+  // Homepage section links (e.g. "/tr#services") feel jarring from an inner
+  // page: a full reload back to the homepage followed by an instant jump to
+  // the anchor. When we're already on the homepage, intercept the click and
+  // smooth-scroll instead; when navigating in from elsewhere, let the normal
+  // link happen — ScrollToHash on the homepage picks up the hash on load and
+  // smooth-scrolls there too, so both paths end up feeling the same.
+  const isHome = pathname === `/${locale}` || pathname === `/${locale}/`;
+
+  const handleNavClick = (e, href) => {
+    const hashIndex = href.indexOf('#');
+    if (hashIndex === -1) return;
+    if (!isHome) return; // let the browser navigate to the homepage normally
+    const id = href.slice(hashIndex + 1);
+    const el = document.getElementById(id);
+    if (el) {
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setMobileOpen(false);
+    }
+  };
+
   const navLinks = [
     { label: t('properties'), href: `/${locale}#properties` },
     { label: t('services'), href: `/${locale}#services` },
@@ -118,6 +139,7 @@ export default function Header() {
               <a
                 key={link.label}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                   scrolled
                     ? 'text-text-secondary hover:text-dark hover:bg-soft'
@@ -203,6 +225,7 @@ export default function Header() {
               <a
                 key={link.label}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="block px-3 py-2.5 text-text-secondary hover:text-dark hover:bg-soft rounded-md text-sm font-medium transition-colors"
               >
                 {link.label}

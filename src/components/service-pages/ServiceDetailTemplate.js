@@ -1,9 +1,14 @@
 import { getTranslations } from 'next-intl/server';
-import { ChevronRight, CheckCircle2, ArrowRight } from 'lucide-react';
+import { ChevronRight, ArrowRight } from 'lucide-react';
+import ScrollReveal from '@/components/ui/ScrollReveal';
+import ParallaxBreak from '@/components/ui/ParallaxBreak';
 
 /**
- * Shared static template for all /hizmetler/<slug> service detail pages.
- * Server component — all content comes from translations, no client JS needed.
+ * Shared template for all /hizmetler/<slug> service detail pages.
+ * Server component for data (translations), but renders the same client
+ * motion components the homepage uses — ParallaxBreak for the hero image,
+ * ScrollReveal on every section — so these pages feel consistent with the
+ * homepage's scroll-driven style instead of a flat static page.
  */
 export default async function ServiceDetailTemplate({ locale, serviceKey, image, secondaryCta }) {
   const t = await getTranslations({ locale, namespace: `servicePages.${serviceKey}` });
@@ -26,71 +31,74 @@ export default async function ServiceDetailTemplate({ locale, serviceKey, image,
         </div>
       </div>
 
-      {/* Hero */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10 text-center">
-        <h1 className="text-4xl sm:text-5xl font-serif text-dark mb-4 leading-tight">{t('title')}</h1>
-        <p className="text-lg text-text-muted max-w-2xl mx-auto leading-relaxed">{t('intro')}</p>
+      {/* Intro */}
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10 text-center">
+        <p className="text-lg text-text-muted leading-relaxed">{t('intro')}</p>
       </div>
 
-      {/* Hero image */}
+      {/* Cinematic parallax hero — same component as the homepage interstitials */}
       {image && (
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-          <div className="relative h-[320px] sm:h-[420px] rounded-2xl overflow-hidden shadow-card">
-            <img src={image} alt={t('title')} className="w-full h-full object-cover" />
-          </div>
-        </div>
+        <ParallaxBreak image={image} alt={t('title')} line1={t('title')} height="60vh" overlay={0.45} />
       )}
 
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 space-y-16">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-24 space-y-16">
         {/* Overview */}
-        <section>
+        <ScrollReveal>
           <h2 className="text-2xl font-serif text-dark mb-4">{c('overviewTitle')}</h2>
           <p className="text-text-secondary leading-relaxed text-base">{t('overview')}</p>
-        </section>
+        </ScrollReveal>
 
         {/* Process */}
         {steps.length > 0 && (
           <section>
-            <h2 className="text-2xl font-serif text-dark mb-6">{c('processTitle')}</h2>
+            <ScrollReveal>
+              <h2 className="text-2xl font-serif text-dark mb-6">{c('processTitle')}</h2>
+            </ScrollReveal>
             <div className="grid sm:grid-cols-2 gap-5">
               {steps.map((step, i) => (
-                <div key={i} className="bg-white rounded-xl border border-border p-5">
-                  <div className="w-8 h-8 rounded-full bg-gold-light text-gold font-serif font-semibold flex items-center justify-center mb-3">
-                    {i + 1}
+                <ScrollReveal key={i} delay={i * 0.04}>
+                  <div className="bg-white rounded-xl border border-border p-5 h-full">
+                    <div className="w-8 h-8 rounded-full bg-gold-light text-gold font-serif font-semibold flex items-center justify-center mb-3">
+                      {i + 1}
+                    </div>
+                    <h3 className="font-semibold text-dark mb-1.5">{step.title}</h3>
+                    <p className="text-sm text-text-muted leading-relaxed">{step.desc}</p>
                   </div>
-                  <h3 className="font-semibold text-dark mb-1.5">{step.title}</h3>
-                  <p className="text-sm text-text-muted leading-relaxed">{step.desc}</p>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
           </section>
         )}
 
         {/* Who we work with */}
-        <section>
+        <ScrollReveal>
           <h2 className="text-2xl font-serif text-dark mb-4">{c('whoTitle')}</h2>
           <div className="bg-white rounded-xl border border-border p-6">
             <p className="text-text-secondary leading-relaxed">{t('who')}</p>
           </div>
-        </section>
+        </ScrollReveal>
 
         {/* FAQ */}
         {faqs.length > 0 && (
           <section>
-            <h2 className="text-2xl font-serif text-dark mb-6">{c('faqTitle')}</h2>
+            <ScrollReveal>
+              <h2 className="text-2xl font-serif text-dark mb-6">{c('faqTitle')}</h2>
+            </ScrollReveal>
             <div className="space-y-5">
               {faqs.map((faq, i) => (
-                <div key={i} className="border-b border-border pb-5 last:border-0">
-                  <p className="font-semibold text-dark mb-2">{faq.q}</p>
-                  <p className="text-text-muted leading-relaxed">{faq.a}</p>
-                </div>
+                <ScrollReveal key={i} delay={i * 0.04}>
+                  <div className="border-b border-border pb-5 last:border-0">
+                    <p className="font-semibold text-dark mb-2">{faq.q}</p>
+                    <p className="text-text-muted leading-relaxed">{faq.a}</p>
+                  </div>
+                </ScrollReveal>
               ))}
             </div>
           </section>
         )}
 
         {/* CTA box */}
-        <section className="bg-dark rounded-2xl p-8 sm:p-10 text-center">
+        <ScrollReveal className="bg-dark rounded-2xl p-8 sm:p-10 text-center">
           <h2 className="text-2xl font-serif text-white mb-2">{c('ctaBoxTitle')}</h2>
           <p className="text-white/70 mb-7 max-w-md mx-auto">{c('ctaBoxSubtitle')}</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -112,7 +120,7 @@ export default async function ServiceDetailTemplate({ locale, serviceKey, image,
               </a>
             )}
           </div>
-        </section>
+        </ScrollReveal>
       </div>
     </div>
   );

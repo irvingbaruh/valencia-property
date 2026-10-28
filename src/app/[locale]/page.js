@@ -10,12 +10,14 @@ import NewListings from '@/components/sections/NewListings';
 import CTASection from '@/components/sections/CTASection';
 import ParallaxBreak from '@/components/ui/ParallaxBreak';
 import { InterstitialWrapper } from '@/components/ui/InterstitialWrapper';
+import ScrollToHash from '@/components/ui/ScrollToHash';
 
 export default async function HomePage({ params }) {
   const { locale } = await params;
   setRequestLocale(locale);
   return (
     <>
+      <ScrollToHash />
       <Hero />
       <Stats />
       <Properties />
