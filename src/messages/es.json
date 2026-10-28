@@ -41,6 +41,9 @@
     "title": "Nuestros Servicios Integrales",
     "subtitle": "Apoyo profesional en cada paso, desde la búsqueda hasta la entrega llave en mano",
     "explore": "Ver Detalles",
+    "viewServicePage": "Ver Página del Servicio",
+    "decorCta": "Explora la Colección de Decor Petit",
+    "stagingCta": "Descubre el Servicio de Home Staging",
     "search": {
       "title": "Búsqueda de Inmuebles",
       "desc": "Encontramos propiedades que se ajustan a su presupuesto y criterios",
@@ -88,6 +91,139 @@
       "d2": "Puesta en escena para aumentar el valor",
       "d3": "Tour virtual y visualización 360°",
       "d4": "Optimización de anuncios y marketing"
+    }
+  },
+  "servicePages": {
+    "common": {
+      "breadcrumbHome": "Inicio",
+      "breadcrumbServices": "Servicios",
+      "overviewTitle": "Resumen",
+      "processTitle": "Proceso",
+      "whoTitle": "Con Quién Trabajamos",
+      "faqTitle": "Preguntas Frecuentes",
+      "ctaBoxTitle": "¿Le Interesa Este Servicio?",
+      "ctaBoxSubtitle": "Evaluemos sus necesidades y le propongamos un plan a medida.",
+      "ctaPrimary": "Solicitar Consulta"
+    },
+    "search": {
+      "title": "Búsqueda de Propiedades",
+      "intro": "Descubra las mejores oportunidades de inversión y vivienda en Valencia y alrededores, todo en un solo lugar.",
+      "overview": "Ofrecemos un amplio inventario de dos fuentes: anuncios exclusivos encontrados directamente por nuestro equipo y propiedades de la cartera de RE/MAX Valencia. Filtre por zona, presupuesto y necesidades.",
+      "steps": [
+        { "title": "Reunión Inicial", "desc": "Definimos juntos presupuesto, zona y uso previsto." },
+        { "title": "Lista Personalizada", "desc": "Seleccionamos las propiedades que encajan con sus necesidades." },
+        { "title": "Visita in Situ", "desc": "Visitamos las propiedades con usted o en su representación." },
+        { "title": "Oferta y Proceso", "desc": "Le acompañamos en la oferta, negociación y compra." }
+      ],
+      "who": "Accedemos a una amplia cartera gracias a la colaboración con RE/MAX Valencia, además de contactar directamente con propietarios independientes.",
+      "faqs": [
+        { "q": "¿Solo tengo acceso a anuncios publicados?", "a": "No, también tendrá acceso a oportunidades que aún no han salido al mercado." },
+        { "q": "¿Puedo gestionar el proceso desde Turquía?", "a": "Sí, es posible mediante videollamadas y poder notarial." }
+      ]
+    },
+    "legal": {
+      "title": "Apoyo Legal",
+      "intro": "Le acompañamos en cada paso legal de la compra de una propiedad en España, con abogados colaboradores de confianza.",
+      "overview": "Desde la solicitud del NIE hasta la escritura, desde los impuestos hasta el contrato, gestionamos todo el proceso con transparencia; nosotros no prestamos servicios legales, le conectamos con colaboradores de confianza.",
+      "steps": [
+        { "title": "Reunión Inicial", "desc": "Se evalúan las necesidades y el plazo." },
+        { "title": "Solicitud del NIE", "desc": "Le guiamos en la obtención del Número de Identidad de Extranjero." },
+        { "title": "Due Diligence", "desc": "Se verifica el registro de la propiedad y posibles cargas." },
+        { "title": "Notaría y Registro", "desc": "Se completa la firma y la transferencia de titularidad." }
+      ],
+      "who": "Trabajamos con abogados colaboradores establecidos en Valencia, especializados en derecho inmobiliario, que se comunican en turco o inglés.",
+      "faqs": [
+        { "q": "¿Puedo comprar sin NIE?", "a": "No, el NIE es obligatorio; el proceso suele tardar entre 1 y 4 semanas." },
+        { "q": "¿Quién paga los honorarios del abogado?", "a": "Los paga el comprador, normalmente entre el 1% y el 1,5% del precio de la propiedad." }
+      ]
+    },
+    "decor": {
+      "title": "Decoración y Mobiliario",
+      "intro": "Amueblamos su propiedad llave en mano, desde el concepto hasta la instalación.",
+      "overview": "Junto a nuestro socio de decoración Decor Petit, gestionamos todo el proceso: selección de mobiliario y accesorios acorde a su estilo de vida, hasta la instalación final.",
+      "steps": [
+        { "title": "Descubrimiento y Concepto", "desc": "Medición del espacio y conversación sobre el estilo." },
+        { "title": "Moodboard y Visualización", "desc": "Aprobación visual del estilo elegido." },
+        { "title": "Selección de Mobiliario", "desc": "Selección de la colección Decor Petit." },
+        { "title": "Instalación", "desc": "Entrega, montaje y últimos detalles." }
+      ],
+      "who": "Contamos con la colección de Decor Petit, activa en Valencia desde 2023, y proveedores de confianza.",
+      "faqs": [
+        { "q": "¿Solo mobiliario o decoración completa?", "a": "Ambos — desde una sola pieza hasta un diseño interior integral." },
+        { "q": "¿También dan servicio a propiedades de alquiler?", "a": "Sí, también ofrecemos paquetes de amueblado para propiedades en alquiler o Airbnb." }
+      ]
+    },
+    "renovation": {
+      "title": "Renovación",
+      "intro": "Transformamos propiedades que necesitan reforma en espacios de vida que ganan valor.",
+      "overview": "Desde pequeñas renovaciones hasta reformas integrales, gestionamos la obra de principio a fin, incluyendo permisos y entrega final.",
+      "steps": [
+        { "title": "Inspección y Evaluación", "desc": "Se revisa el estado estructural y los permisos necesarios." },
+        { "title": "Proyecto y Presupuesto", "desc": "Se define el alcance, el calendario y el coste." },
+        { "title": "Permisos", "desc": "Se gestionan los trámites con el Ayuntamiento." },
+        { "title": "Ejecución y Entrega", "desc": "Se supervisa la obra y se realiza el control final." }
+      ],
+      "who": "Trabajamos con arquitectos e ingenieros licenciados en Valencia y equipos de contratistas de confianza.",
+      "faqs": [
+        { "q": "¿Cuánto tiempo tarda?", "a": "Depende del alcance: de 2-4 semanas a 3-6 meses." },
+        { "q": "¿Puedo hacer seguimiento a distancia?", "a": "Sí, con informes periódicos de fotos y vídeo." }
+      ]
+    },
+    "rental": {
+      "title": "Gestión de Alquileres",
+      "intro": "Gestionamos su propiedad en Valencia mientras usted está en el extranjero.",
+      "overview": "Desde encontrar inquilinos hasta el contrato, desde el cobro mensual hasta la coordinación del mantenimiento, nos ocupamos de todo el proceso.",
+      "steps": [
+        { "title": "Evaluación", "desc": "Se define la estrategia de alquiler (larga estancia o Airbnb)." },
+        { "title": "Preparación", "desc": "Si es necesario, se prepara la propiedad con home staging." },
+        { "title": "Búsqueda de Inquilino", "desc": "Anuncio, entrevistas y verificación de referencias." },
+        { "title": "Gestión Mensual", "desc": "Cobro, mantenimiento y reportes continuos." }
+      ],
+      "who": "Trabajamos con equipos de mantenimiento locales y una red de inquilinos de confianza.",
+      "faqs": [
+        { "q": "¿Cuál es la comisión?", "a": "Un porcentaje del alquiler; los detalles se concretan en la reunión." },
+        { "q": "¿Es legal el alquiler tipo Airbnb?", "a": "Puede requerir licencia según la zona; le informamos al respecto." }
+      ]
+    },
+    "staging": {
+      "title": "Home Staging",
+      "intro": "Preparamos su propiedad para que luzca su mejor versión antes de la venta o el alquiler.",
+      "overview": "Con una ambientación profesional buscamos una venta o alquiler más rápido y ofertas más altas; trabajamos de forma integrada con el servicio de home staging de Decor Petit.",
+      "steps": [
+        { "title": "Evaluación", "desc": "Análisis del espacio y del público objetivo." },
+        { "title": "Plan de Staging", "desc": "Se planifica el mobiliario y la iluminación." },
+        { "title": "Ejecución", "desc": "Se completa la instalación." },
+        { "title": "Fotografía y Anuncio", "desc": "Sesión fotográfica profesional." }
+      ],
+      "who": "Trabajamos junto al equipo de home staging de Decor Petit.",
+      "faqs": [
+        { "q": "¿Se puede hacer en propiedades vacías?", "a": "Sí, es donde más se nota la diferencia." },
+        { "q": "¿De qué depende el coste?", "a": "Del tamaño de la propiedad y el alcance del proyecto." }
+      ]
+    }
+  },
+  "blog": {
+    "title": "Guía",
+    "subtitle": "Todo lo que necesita saber sobre inversión y vida en España",
+    "readMore": "Leer",
+    "backToList": "Volver a la Guía",
+    "posts": [
+      { "category": "Proceso Legal", "title": "Cómo Obtener el NIE en España", "date": "2026-10-01", "image": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80&auto=format" },
+      { "category": "Paso a Paso", "title": "El Proceso de Compra de Propiedad en España para Ciudadanos Turcos", "date": "2026-10-05", "image": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80&auto=format" },
+      { "category": "Impuestos y Finanzas", "title": "Impuestos Inmobiliarios en España: ITP, IVA e IBI", "date": "2026-10-10", "image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80&auto=format" },
+      { "category": "Guía de Zonas", "title": "¿Qué Zona de Valencia Debería Elegir?", "date": "2026-10-14", "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80&auto=format" },
+      { "category": "Estrategia de Inversión", "title": "¿Airbnb o Alquiler a Largo Plazo? Comparativa de Inversión en Valencia", "date": "2026-10-18", "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80&auto=format" },
+      { "category": "Guía de Vida", "title": "Coste de Vida en Valencia: Guía Práctica para Inmigrantes Turcos", "date": "2026-10-22", "image": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80&auto=format" }
+    ],
+    "detail": {
+      "title": "Artículo de Ejemplo",
+      "excerpt": "Esta es una página de ejemplo que pronto será reemplazada por artículos reales de nuestro equipo editorial.",
+      "body": [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
+      ]
     }
   },
   "process": {

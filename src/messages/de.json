@@ -41,6 +41,9 @@
     "title": "Unsere Umfassenden Dienstleistungen",
     "subtitle": "Professionelle Unterstützung bei jedem Schritt, von der Immobiliensuche bis zur schlüsselfertigen Übergabe",
     "explore": "Details Anzeigen",
+    "viewServicePage": "Service-Seite Ansehen",
+    "decorCta": "Decor Petit Kollektion Entdecken",
+    "stagingCta": "Home-Staging-Service Entdecken",
     "search": {
       "title": "Immobiliensuche",
       "desc": "Wir finden Immobilien, die zu Ihrem Budget und Ihren Kriterien passen",
@@ -88,6 +91,139 @@
       "d2": "Wertsteigerndes Staging-Design",
       "d3": "Virtuelle Tour und 360°-Ansicht",
       "d4": "Anzeigenoptimierung und Marketing"
+    }
+  },
+  "servicePages": {
+    "common": {
+      "breadcrumbHome": "Startseite",
+      "breadcrumbServices": "Services",
+      "overviewTitle": "Überblick",
+      "processTitle": "Ablauf",
+      "whoTitle": "Mit Wem Wir Arbeiten",
+      "faqTitle": "Häufige Fragen",
+      "ctaBoxTitle": "Interesse an Diesem Service?",
+      "ctaBoxSubtitle": "Lassen Sie uns Ihre Bedürfnisse besprechen und einen passenden Plan erstellen.",
+      "ctaPrimary": "Beratung Anfordern"
+    },
+    "search": {
+      "title": "Immobiliensuche",
+      "intro": "Entdecken Sie die besten Investitions- und Wohnmöglichkeiten in Valencia und Umgebung, alles an einem Ort.",
+      "overview": "Wir bieten ein breites Angebot aus zwei Quellen: exklusive Objekte, die unser Team direkt vor Ort findet, und Immobilien aus dem Portfolio von RE/MAX Valencia. Filtern Sie nach Lage, Budget und Bedarf.",
+      "steps": [
+        { "title": "Erstgespräch", "desc": "Gemeinsam klären wir Budget, Lage und Nutzungszweck." },
+        { "title": "Persönliche Auswahl", "desc": "Wir wählen passende Immobilien für Sie aus." },
+        { "title": "Besichtigung vor Ort", "desc": "Wir besichtigen die Immobilien mit Ihnen oder in Ihrem Auftrag." },
+        { "title": "Angebot & Kaufprozess", "desc": "Wir begleiten Sie bei Angebot, Verhandlung und Kauf." }
+      ],
+      "who": "Durch die Partnerschaft mit RE/MAX Valencia haben wir Zugang zu einem breiten Portfolio und stehen auch in direktem Kontakt mit unabhängigen Eigentümern.",
+      "faqs": [
+        { "q": "Habe ich nur Zugang zu veröffentlichten Angeboten?", "a": "Nein, Sie erhalten auch Zugang zu Gelegenheiten, die noch nicht auf dem offenen Markt sind." },
+        { "q": "Kann ich den Prozess aus der Türkei heraus abwickeln?", "a": "Ja, das ist per Videoanruf und Vollmacht möglich." }
+      ]
+    },
+    "legal": {
+      "title": "Rechtliche Unterstützung",
+      "intro": "Wir begleiten Sie bei jedem rechtlichen Schritt des Immobilienkaufs in Spanien, mit vertrauenswürdigen Partneranwälten.",
+      "overview": "Vom NIE-Antrag bis zur Eigentumsübertragung, von Steuern bis zum Vertrag wird der gesamte Prozess transparent abgewickelt; wir selbst erbringen keine Rechtsdienstleistungen, sondern vermitteln vertrauenswürdige Partner.",
+      "steps": [
+        { "title": "Erstgespräch", "desc": "Bedarf und Zeitplan werden besprochen." },
+        { "title": "NIE-Antrag", "desc": "Wir begleiten Sie bei der Beantragung Ihrer Ausländer-Identifikationsnummer." },
+        { "title": "Due Diligence", "desc": "Grundbuch und Schuldenprüfung werden durchgeführt." },
+        { "title": "Notar & Eigentumsübertragung", "desc": "Unterzeichnung und Eigentumsübertragung werden abgeschlossen." }
+      ],
+      "who": "Wir arbeiten mit in Valencia ansässigen Partneranwälten, spezialisiert auf Immobilienrecht, die auf Türkisch oder Englisch kommunizieren.",
+      "faqs": [
+        { "q": "Kann ich ohne NIE kaufen?", "a": "Nein, die NIE ist Pflicht; der Prozess dauert meist 1-4 Wochen." },
+        { "q": "Wer zahlt das Anwaltshonorar?", "a": "Der Käufer, in der Regel etwa 1-1,5% des Kaufpreises." }
+      ]
+    },
+    "decor": {
+      "title": "Dekoration & Möbel",
+      "intro": "Wir richten Ihre Immobilie schlüsselfertig ein, vom Konzept bis zur Installation.",
+      "overview": "Gemeinsam mit unserem Dekorationspartner Decor Petit übernehmen wir den gesamten Prozess — von der zu Ihrem Lebensstil passenden Möbel- und Accessoire-Auswahl bis zur Installation.",
+      "steps": [
+        { "title": "Analyse & Konzept", "desc": "Raumvermessung und Stilgespräch." },
+        { "title": "Moodboard & Visualisierung", "desc": "Visuelle Freigabe des gewählten Stils." },
+        { "title": "Möbelauswahl", "desc": "Auswahl aus der Decor-Petit-Kollektion." },
+        { "title": "Installation", "desc": "Lieferung, Montage und letzte Details." }
+      ],
+      "who": "Wir greifen auf die Kollektion von Decor Petit zurück, seit 2023 in Valencia aktiv, sowie auf vertrauenswürdige Lieferanten.",
+      "faqs": [
+        { "q": "Nur Möbel oder komplette Dekoration?", "a": "Beides — von einem einzelnen Möbelstück bis zur kompletten Inneneinrichtung." },
+        { "q": "Bieten Sie das auch für Mietobjekte an?", "a": "Ja, auch für Miet- und Airbnb-Objekte bieten wir Einrichtungspakete an." }
+      ]
+    },
+    "renovation": {
+      "title": "Renovierung",
+      "intro": "Wir verwandeln renovierungsbedürftige Immobilien in wertsteigernde Wohnräume.",
+      "overview": "Von kleinen Erneuerungen bis zur Komplettsanierung übernehmen wir das Projektmanagement von Genehmigungen bis zur Übergabe.",
+      "steps": [
+        { "title": "Begutachtung", "desc": "Bauzustand und Genehmigungsanforderungen werden geprüft." },
+        { "title": "Projekt & Budget", "desc": "Umfang, Zeitplan und Kosten werden festgelegt." },
+        { "title": "Genehmigungen", "desc": "Behördliche Genehmigungsverfahren werden abgewickelt." },
+        { "title": "Umsetzung & Übergabe", "desc": "Die Bauausführung wird bis zur Endabnahme begleitet." }
+      ],
+      "who": "Wir arbeiten mit lizenzierten Architekten, Ingenieuren und vertrauenswürdigen Handwerkerteams in Valencia.",
+      "faqs": [
+        { "q": "Wie lange dauert es?", "a": "Je nach Umfang: 2-4 Wochen bei kleinen Arbeiten, 3-6 Monate bei Komplettsanierungen." },
+        { "q": "Kann ich den Fortschritt aus der Ferne verfolgen?", "a": "Ja, mit regelmäßigen Foto- und Videoberichten." }
+      ]
+    },
+    "rental": {
+      "title": "Mietverwaltung",
+      "intro": "Wir verwalten Ihre Immobilie in Valencia, während Sie im Ausland sind.",
+      "overview": "Von der Mietersuche bis zum Vertrag, von der monatlichen Mietabrechnung bis zur Koordination der Instandhaltung übernehmen wir den gesamten Prozess.",
+      "steps": [
+        { "title": "Bewertung", "desc": "Die Mietstrategie (Langzeit oder Airbnb) wird festgelegt." },
+        { "title": "Vorbereitung", "desc": "Bei Bedarf wird die Immobilie mit Home Staging vorbereitet." },
+        { "title": "Mietersuche", "desc": "Inserat, Gespräche und Referenzprüfung." },
+        { "title": "Monatliche Verwaltung", "desc": "Mieteinzug, Instandhaltung und laufende Berichte." }
+      ],
+      "who": "Wir arbeiten mit lokalen Instandhaltungsteams und einem vertrauenswürdigen Mieternetzwerk.",
+      "faqs": [
+        { "q": "Wie hoch ist die Provision?", "a": "Ein Prozentsatz der Miete; Details werden im Gespräch geklärt." },
+        { "q": "Ist eine Airbnb-Vermietung legal?", "a": "Je nach Gebiet kann eine Lizenz erforderlich sein; wir informieren Sie dazu." }
+      ]
+    },
+    "staging": {
+      "title": "Home Staging",
+      "intro": "Wir bringen Ihre Immobilie vor dem Verkauf oder der Vermietung in ihre beste Form.",
+      "overview": "Mit professionellem Staging streben wir einen schnelleren Verkauf bzw. eine schnellere Vermietung und höhere Angebote an; wir arbeiten eng mit dem Home-Staging-Service von Decor Petit zusammen.",
+      "steps": [
+        { "title": "Bewertung", "desc": "Analyse des Raums und der Zielgruppe." },
+        { "title": "Staging-Plan", "desc": "Möbel- und Lichtkonzept werden geplant." },
+        { "title": "Umsetzung", "desc": "Die Installation wird abgeschlossen." },
+        { "title": "Fotografie & Inserat", "desc": "Professionelles Fotoshooting." }
+      ],
+      "who": "Wir arbeiten gemeinsam mit dem Home-Staging-Team von Decor Petit.",
+      "faqs": [
+        { "q": "Funktioniert Staging auch bei leeren Immobilien?", "a": "Ja, dort macht es den größten Unterschied." },
+        { "q": "Wovon hängen die Kosten ab?", "a": "Von der Größe der Immobilie und dem Projektumfang, individuell festgelegt." }
+      ]
+    }
+  },
+  "blog": {
+    "title": "Ratgeber",
+    "subtitle": "Alles, was Sie über Investition und Leben in Spanien wissen müssen",
+    "readMore": "Lesen",
+    "backToList": "Zurück zum Ratgeber",
+    "posts": [
+      { "category": "Rechtlicher Prozess", "title": "Wie Erhält Man eine NIE-Nummer in Spanien?", "date": "2026-10-01", "image": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80&auto=format" },
+      { "category": "Schritt für Schritt", "title": "Der Immobilienkaufprozess in Spanien für Türkische Staatsbürger", "date": "2026-10-05", "image": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80&auto=format" },
+      { "category": "Steuern & Finanzen", "title": "Immobiliensteuern in Spanien: ITP, IVA und Jährliche Grundsteuer", "date": "2026-10-10", "image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80&auto=format" },
+      { "category": "Stadtteil-Guide", "title": "Welchen Stadtteil von Valencia Sollten Sie Wählen?", "date": "2026-10-14", "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80&auto=format" },
+      { "category": "Investitionsstrategie", "title": "Airbnb oder Langzeitvermietung? Investitionsvergleich in Valencia", "date": "2026-10-18", "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80&auto=format" },
+      { "category": "Lebens-Guide", "title": "Lebenshaltungskosten in Valencia: Praktischer Guide für Türkische Auswanderer", "date": "2026-10-22", "image": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80&auto=format" }
+    ],
+    "detail": {
+      "title": "Beispiel-Ratgeberartikel",
+      "excerpt": "Dies ist eine Platzhalterseite, die bald durch echte Artikel unseres Redaktionsteams ersetzt wird.",
+      "body": [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
+      ]
     }
   },
   "process": {

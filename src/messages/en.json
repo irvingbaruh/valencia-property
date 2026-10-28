@@ -41,6 +41,9 @@
     "title": "Our Comprehensive Services",
     "subtitle": "Professional support at every step, from property search to turnkey delivery",
     "explore": "View Details",
+    "viewServicePage": "View Service Page",
+    "decorCta": "Browse the Decor Petit Collection",
+    "stagingCta": "See the Home Staging Service",
     "search": {
       "title": "Property Search",
       "desc": "We find properties matching your budget and criteria",
@@ -88,6 +91,139 @@
       "d2": "Value-boosting staging design",
       "d3": "Virtual tour and 360° viewing",
       "d4": "Listing optimization and marketing"
+    }
+  },
+  "servicePages": {
+    "common": {
+      "breadcrumbHome": "Home",
+      "breadcrumbServices": "Services",
+      "overviewTitle": "Overview",
+      "processTitle": "Process",
+      "whoTitle": "Who We Work With",
+      "faqTitle": "Frequently Asked Questions",
+      "ctaBoxTitle": "Interested in This Service?",
+      "ctaBoxSubtitle": "Let's assess your needs and put together a plan for you.",
+      "ctaPrimary": "Get a Consultation"
+    },
+    "search": {
+      "title": "Property Search",
+      "intro": "Discover the best investment and lifestyle opportunities in Valencia and the surrounding area, all in one place.",
+      "overview": "We offer a wide inventory from two sources: exclusive listings our team sources directly, and properties from RE/MAX Valencia's portfolio. Filter by area, budget and your needs.",
+      "steps": [
+        { "title": "Discovery Call", "desc": "We clarify your budget, area and intended use together." },
+        { "title": "Personalized Shortlist", "desc": "We select properties that match your needs." },
+        { "title": "On-Site Viewing", "desc": "We view the properties with you, or on your behalf." },
+        { "title": "Offer & Process", "desc": "We support you through the offer, negotiation and purchase." }
+      ],
+      "who": "We access a wide portfolio through our RE/MAX Valencia partnership, and also deal directly with independent property owners.",
+      "faqs": [
+        { "q": "Can I only access published listings?", "a": "No, you'll also get access to opportunities not yet on the open market." },
+        { "q": "Can I run the process remotely from Turkey?", "a": "Yes, this is possible via video calls and a power of attorney." }
+      ]
+    },
+    "legal": {
+      "title": "Legal Support",
+      "intro": "We guide you through every legal step of buying property in Spain, with trusted partner lawyers.",
+      "overview": "From the NIE application to the title transfer, from taxes to the contract, the whole process is managed transparently; we don't provide legal services ourselves — we connect you with trusted partners.",
+      "steps": [
+        { "title": "Initial Meeting", "desc": "Needs and timeline are assessed." },
+        { "title": "NIE Application", "desc": "We guide you through obtaining your Foreigner Identity Number." },
+        { "title": "Due Diligence", "desc": "Land registry and debt checks are carried out." },
+        { "title": "Notary & Title Transfer", "desc": "Signing and ownership transfer are completed." }
+      ],
+      "who": "We work with Valencia-based partner lawyers specialized in real estate law who communicate in Turkish or English.",
+      "faqs": [
+        { "q": "Can I buy without an NIE?", "a": "No, an NIE is mandatory; the process usually takes 1-4 weeks." },
+        { "q": "Who pays the lawyer's fee?", "a": "The buyer does, typically around 1-1.5% of the property price." }
+      ]
+    },
+    "decor": {
+      "title": "Decor & Furnishing",
+      "intro": "We furnish your property turnkey, from concept design to installation.",
+      "overview": "With our decor partner Decor Petit, we manage the whole process — from furniture and accessory selection that fits your lifestyle, through to installation.",
+      "steps": [
+        { "title": "Discovery & Concept", "desc": "Space measurement and a style conversation." },
+        { "title": "Moodboard & Visualization", "desc": "Visual sign-off on the chosen style." },
+        { "title": "Furniture Selection", "desc": "Selection from the Decor Petit collection." },
+        { "title": "Installation", "desc": "Delivery, assembly and finishing touches." }
+      ],
+      "who": "We draw on Decor Petit's collection, active in Valencia since 2023, and trusted suppliers.",
+      "faqs": [
+        { "q": "Furniture only, or full decor?", "a": "Both — from a single piece to end-to-end interior design." },
+        { "q": "Do you serve rental properties too?", "a": "Yes, we also offer furnishing packages for rental and Airbnb properties." }
+      ]
+    },
+    "renovation": {
+      "title": "Renovation",
+      "intro": "We turn properties that need work into living spaces that gain value.",
+      "overview": "From small refreshes to full renovations, we manage the project end-to-end, including permits and final handover.",
+      "steps": [
+        { "title": "Survey & Assessment", "desc": "Structural condition and permit requirements are reviewed." },
+        { "title": "Project & Budget", "desc": "Scope, timeline and cost are set." },
+        { "title": "Permits", "desc": "Local council permit processes are handled." },
+        { "title": "Build & Handover", "desc": "Construction is overseen through to final inspection." }
+      ],
+      "who": "We work with licensed architects, engineers and trusted contractor teams in Valencia.",
+      "faqs": [
+        { "q": "How long does it take?", "a": "It depends on scope: 2-4 weeks for small jobs, 3-6 months for full renovations." },
+        { "q": "Can I follow progress remotely?", "a": "Yes, with regular photo and video updates." }
+      ]
+    },
+    "rental": {
+      "title": "Rental Management",
+      "intro": "We manage your property in Valencia while you're abroad.",
+      "overview": "From finding tenants to the contract, from monthly collection to maintenance coordination, we handle the entire process.",
+      "steps": [
+        { "title": "Assessment", "desc": "Rental strategy (long-term or Airbnb) is defined." },
+        { "title": "Preparation", "desc": "The property is prepared with home staging if needed." },
+        { "title": "Finding Tenants", "desc": "Listing, interviews and reference checks." },
+        { "title": "Monthly Management", "desc": "Collection, maintenance and ongoing reporting." }
+      ],
+      "who": "We work with local maintenance teams and a trusted tenant network.",
+      "faqs": [
+        { "q": "What's the commission rate?", "a": "A percentage of the rent; details are confirmed during the consultation." },
+        { "q": "Is Airbnb-style renting legal?", "a": "A license may be required depending on the area; we keep you informed on this." }
+      ]
+    },
+    "staging": {
+      "title": "Home Staging",
+      "intro": "We get your property looking its best before a sale or rental.",
+      "overview": "Professional staging aims for a faster sale or rental and stronger offers; we work in close partnership with Decor Petit's home staging service.",
+      "steps": [
+        { "title": "Assessment", "desc": "Space and target-buyer analysis." },
+        { "title": "Staging Plan", "desc": "Furniture and lighting layout is planned." },
+        { "title": "Setup", "desc": "Installation is completed." },
+        { "title": "Photography & Listing", "desc": "Professional photo shoot." }
+      ],
+      "who": "We work alongside Decor Petit's home staging team.",
+      "faqs": [
+        { "q": "Does staging work on empty properties?", "a": "Yes, that's where it makes the biggest difference." },
+        { "q": "What determines the cost?", "a": "Property size and project scope, set on a per-project basis." }
+      ]
+    }
+  },
+  "blog": {
+    "title": "Guide",
+    "subtitle": "Everything you need to know about investing and living in Spain",
+    "readMore": "Read",
+    "backToList": "Back to the Guide",
+    "posts": [
+      { "category": "Legal Process", "title": "How to Get an NIE Number in Spain", "date": "2026-10-01", "image": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80&auto=format" },
+      { "category": "Step by Step", "title": "The Property-Buying Process in Spain for Turkish Citizens", "date": "2026-10-05", "image": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80&auto=format" },
+      { "category": "Tax & Finance", "title": "Real Estate Taxes in Spain: ITP, IVA and Annual Property Tax", "date": "2026-10-10", "image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80&auto=format" },
+      { "category": "Area Guide", "title": "Which Area of Valencia Should You Choose?", "date": "2026-10-14", "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80&auto=format" },
+      { "category": "Investment Strategy", "title": "Airbnb or Long-Term Rental? Comparing Investment Strategies in Valencia", "date": "2026-10-18", "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80&auto=format" },
+      { "category": "Living Guide", "title": "Cost of Living in Valencia: A Practical Guide for Turkish Expats", "date": "2026-10-22", "image": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80&auto=format" }
+    ],
+    "detail": {
+      "title": "Sample Guide Article",
+      "excerpt": "This is a placeholder page that will soon be replaced with real articles from our editorial team.",
+      "body": [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
+      ]
     }
   },
   "process": {
