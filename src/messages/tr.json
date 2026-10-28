@@ -203,6 +203,13 @@
       ]
     }
   },
+  "mulklerPage": {
+    "title": "Tüm Mülkler",
+    "subtitle": "Valencia ve çevresindeki seçkin mülk portföyümüzü keşfedin.",
+    "ctaTitle": "Aradığınız Mülkü Bulamadınız mı?",
+    "ctaSubtitle": "İhtiyaçlarınıza özel mülkler bulmamız için bizimle görüşün.",
+    "ctaButton": "Danışmanlık Al"
+  },
   "hizmetlerPage": {
     "title": "Hizmetlerimiz",
     "subtitle": "Mülk aramadan anahtar teslime kadar, İspanya'da gayrimenkul yolculuğunuzun her adımında yanınızdayız.",

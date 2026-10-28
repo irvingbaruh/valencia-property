@@ -203,6 +203,13 @@
       ]
     }
   },
+  "mulklerPage": {
+    "title": "Todas las Propiedades",
+    "subtitle": "Explore nuestra selecta cartera de propiedades en Valencia y alrededores.",
+    "ctaTitle": "¿No Encuentra lo que Busca?",
+    "ctaSubtitle": "Hable con nosotros para encontrar propiedades a medida de sus necesidades.",
+    "ctaButton": "Solicitar Consulta"
+  },
   "hizmetlerPage": {
     "title": "Nuestros Servicios",
     "subtitle": "Desde la búsqueda de propiedad hasta la entrega llave en mano, le acompañamos en cada paso de su proyecto inmobiliario en España.",

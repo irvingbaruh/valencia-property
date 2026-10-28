@@ -179,7 +179,7 @@ export default function Properties() {
           className="text-center mt-16"
         >
           <a
-            href={`/${locale}/properties`}
+            href={`/${locale}/mulkler/`}
             className="inline-flex items-center gap-3 px-8 py-4 bg-dark text-white font-medium rounded-xl hover:bg-charcoal transition-all duration-300 group"
           >
             {t('view_all')}

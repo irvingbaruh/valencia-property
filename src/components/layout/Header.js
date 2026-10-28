@@ -89,7 +89,7 @@ export default function Header() {
   };
 
   const navLinks = [
-    { label: t('properties'), href: sectionHref('properties') },
+    { label: t('properties'), href: sectionHref('properties', 'mulkler') },
     { label: t('services'), href: sectionHref('services', 'hizmetler') },
     { label: t('calculator'), href: sectionHref('calculator', 'roi-hesaplama') },
     { label: t('blog'), href: `/${locale}/blog/` },

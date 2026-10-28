@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { MapPin, BedDouble, Maximize2, ArrowRight } from 'lucide-react';
@@ -118,6 +118,7 @@ function ListingCard({ listing, t }) {
 
 export default function NewListings() {
   const t = useTranslations('newListings');
+  const locale = useLocale();
   const outerRef = useRef(null);
   const trackRef = useRef(null);
   const [trackWidth, setTrackWidth] = useState(0);
@@ -195,14 +196,17 @@ export default function NewListings() {
             className="flex-shrink-0 w-[340px] md:w-[420px] flex items-center justify-center"
             whileHover={{ scale: 1.02 }}
           >
-            <div className="bg-white/80 backdrop-blur rounded-2xl border-2 border-dashed border-gold/30 hover:border-gold/60 transition-colors duration-300 w-full h-full min-h-[540px] flex flex-col items-center justify-center gap-4 cursor-pointer group">
+            <a
+              href={`/${locale}/mulkler/`}
+              className="bg-white/80 backdrop-blur rounded-2xl border-2 border-dashed border-gold/30 hover:border-gold/60 transition-colors duration-300 w-full h-full min-h-[540px] flex flex-col items-center justify-center gap-4 cursor-pointer group"
+            >
               <div className="w-14 h-14 rounded-full bg-gold-light group-hover:bg-gold transition-colors duration-300 flex items-center justify-center">
                 <ArrowRight size={24} className="text-gold group-hover:text-white transition-colors duration-300" />
               </div>
               <span className="text-dark font-medium group-hover:text-gold transition-colors duration-300">
                 {t('viewAll') || 'Tüm İlanlar'}
               </span>
-            </div>
+            </a>
           </motion.div>
         </motion.div>
 

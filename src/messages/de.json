@@ -203,6 +203,13 @@
       ]
     }
   },
+  "mulklerPage": {
+    "title": "Alle Immobilien",
+    "subtitle": "Entdecken Sie unser ausgewähltes Immobilienportfolio in Valencia und Umgebung.",
+    "ctaTitle": "Nicht Gefunden, Wonach Sie Suchen?",
+    "ctaSubtitle": "Sprechen Sie mit uns, damit wir passende Immobilien für Sie finden.",
+    "ctaButton": "Beratung Anfordern"
+  },
   "hizmetlerPage": {
     "title": "Unsere Services",
     "subtitle": "Von der Immobiliensuche bis zur schlüsselfertigen Übergabe begleiten wir Sie bei jedem Schritt Ihres Immobilienprojekts in Spanien.",
