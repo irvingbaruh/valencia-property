@@ -1,3 +1,5 @@
+// Minimal static file server for the Next.js static export in out/.
+// GoDaddy Node.js Hosting runs `npm start` -> this file.
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
