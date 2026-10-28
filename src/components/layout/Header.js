@@ -63,6 +63,14 @@ export default function Header() {
           : 'bg-transparent'
       }`}
     >
+      {/* Subtle top gradient for contrast before scroll (header is transparent) */}
+      <div
+        aria-hidden="true"
+        className={`absolute inset-x-0 top-0 h-28 pointer-events-none transition-opacity duration-500 -z-10 ${
+          scrolled ? 'opacity-0' : 'opacity-100'
+        }`}
+        style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0))' }}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18 md:h-20">
           {/* Logo */}

@@ -71,7 +71,7 @@ function ListingCard({ listing, t }) {
     >
       <div className="bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-shadow duration-500 border border-border">
         {/* Image */}
-        <div className="relative h-64 md:h-72 overflow-hidden">
+        <div className="relative h-96 md:h-[432px] overflow-hidden">
           <img
             src={listing.image}
             alt={listing.location}
@@ -195,7 +195,7 @@ export default function NewListings() {
             className="flex-shrink-0 w-[340px] md:w-[420px] flex items-center justify-center"
             whileHover={{ scale: 1.02 }}
           >
-            <div className="bg-white/80 backdrop-blur rounded-2xl border-2 border-dashed border-gold/30 hover:border-gold/60 transition-colors duration-300 w-full h-full min-h-[360px] flex flex-col items-center justify-center gap-4 cursor-pointer group">
+            <div className="bg-white/80 backdrop-blur rounded-2xl border-2 border-dashed border-gold/30 hover:border-gold/60 transition-colors duration-300 w-full h-full min-h-[540px] flex flex-col items-center justify-center gap-4 cursor-pointer group">
               <div className="w-14 h-14 rounded-full bg-gold-light group-hover:bg-gold transition-colors duration-300 flex items-center justify-center">
                 <ArrowRight size={24} className="text-gold group-hover:text-white transition-colors duration-300" />
               </div>

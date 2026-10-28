@@ -55,8 +55,6 @@ export default function Hero() {
   // Other images: fade and scale down
   const sideOpacity = useTransform(scrollYProgress, [0, 0.3, 0.5], [1, 0.6, 0]);
   const sideScale = useTransform(scrollYProgress, [0, 0.3, 0.5], [1, 0.95, 0.85]);
-  // Gap between tiles shrinks as center expands
-  const gridGap = useTransform(scrollYProgress, [0, 0.4], [12, 0]);
   // Text content fades in mid-scroll, then out
   const headingOpacity = useTransform(scrollYProgress, [0, 0.15, 0.55, 0.7], [1, 1, 1, 0]);
   const headingY = useTransform(scrollYProgress, [0, 0.15, 0.55, 0.7], [0, 0, 0, -60]);
@@ -169,8 +167,8 @@ export default function Hero() {
             style={{
               gridTemplateColumns: '1fr 2fr 1fr',
               gridTemplateRows: '1.2fr 1fr',
-              gap: gridGap,
-              padding: gridGap,
+              gap: 12,
+              padding: 12,
             }}
           >
             {/* Top-left */}
