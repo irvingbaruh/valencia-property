@@ -1,12 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { Calculator, TrendingUp, Wallet } from 'lucide-react';
+import { useTranslations, useLocale } from 'next-intl';
+import { Calculator, TrendingUp, Wallet, ArrowRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
 export default function ROICalculator() {
   const t = useTranslations('roi');
+  const locale = useLocale();
   const [budget, setBudget] = useState(200000);
   const [type, setType] = useState('apartment');
 
@@ -110,6 +111,14 @@ export default function ROICalculator() {
               <p className="text-xs text-white/30 mt-6 leading-relaxed">
                 {t('disclaimer')}
               </p>
+
+              <a
+                href={`/${locale}/roi-hesaplama/`}
+                className="mt-6 w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-gold text-dark font-semibold rounded-xl hover:bg-gold-hover transition-colors duration-200 group"
+              >
+                {t('detailedCalculation')}
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
+              </a>
             </div>
           </ScrollReveal>
         </div>

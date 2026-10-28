@@ -20,7 +20,7 @@ export default function Footer() {
       title: t('services_title'),
       links: [
         { label: t('resources'), href: `/${locale}/blog` },
-        { label: t('roi_calc'), href: `/${locale}#calculator` },
+        { label: t('roi_calc'), href: `/${locale}/roi-hesaplama/` },
         { label: t('faq'), href: `/${locale}/faq` },
         { label: t('glossary'), href: `/${locale}/glossary` },
       ],

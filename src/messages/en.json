@@ -44,6 +44,7 @@
     "viewServicePage": "View Service Page",
     "decorCta": "Browse the Decor Petit Collection",
     "stagingCta": "See the Home Staging Service",
+    "viewAllServices": "View All Services",
     "search": {
       "title": "Property Search",
       "desc": "We find properties matching your budget and criteria",
@@ -202,6 +203,44 @@
       ]
     }
   },
+  "hizmetlerPage": {
+    "title": "Our Services",
+    "subtitle": "From the property search to turnkey handover, we support you at every step of your real estate journey in Spain.",
+    "readMore": "View Details",
+    "formTitle": "How Can We Help?",
+    "formSubtitle": "Answer a few questions and let's put together the plan that best fits your needs."
+  },
+  "roiPage": {
+    "title": "Investment Return Calculator",
+    "subtitle": "Calculate the potential return on your real estate investment in Valencia in detail.",
+    "liveDataTitle": "Current Market Data",
+    "exchangeRatesTitle": "Live Exchange Rates",
+    "exchangeRatesNote": "Rates update in real time in your browser.",
+    "exchangeRatesLoading": "Loading rates…",
+    "exchangeRatesError": "Rates couldn't be loaded right now, please try again later.",
+    "newsTitle": "Real Estate News & Resources",
+    "newsNote": "For now, direct links to current, reliable sources; a live news feed will be added soon.",
+    "ctaTitle": "Want More Information?",
+    "ctaSubtitle": "Talk to us for an investment plan tailored to your budget.",
+    "ctaButton": "Get a Consultation"
+  },
+  "iletisimPage": {
+    "title": "Contact",
+    "subtitle": "Have questions? We'd be happy to help.",
+    "formTitle": "Write to Us",
+    "nameLabel": "Full Name",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "messageLabel": "Your Message",
+    "submitButton": "Send",
+    "submittedTitle": "Thank You!",
+    "submittedBody": "We've received your message and will get back to you shortly.",
+    "detailsTitle": "Contact Details",
+    "phoneDetail": "Phone",
+    "emailDetail": "Email",
+    "whatsappButton": "Message on WhatsApp",
+    "officeNote": "The phone, email and WhatsApp details are placeholders — they'll be updated with your real information."
+  },
   "blog": {
     "title": "Guide",
     "subtitle": "Everything you need to know about investing and living in Spain",
@@ -257,7 +296,8 @@
     "calculate": "Calculate",
     "annual_return": "Estimated Annual Return",
     "monthly_income": "Monthly Rental Income",
-    "disclaimer": "This calculation is an estimate and does not constitute a guarantee."
+    "disclaimer": "This calculation is an estimate and does not constitute a guarantee.",
+    "detailedCalculation": "Detailed Calculation"
   },
   "testimonials": {
     "title": "What Our Clients Say",

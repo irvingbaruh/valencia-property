@@ -121,7 +121,7 @@ export default function Hero() {
             className="flex flex-col gap-3 w-full max-w-xs"
           >
             <a
-              href={`/${locale}#contact`}
+              href={`/${locale}/hizmetler/#consultation-form`}
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gold text-dark font-semibold rounded-xl hover:bg-gold-hover active:scale-[0.98] transition-all duration-200 shadow-gold group"
             >
               {t('cta_primary')}
@@ -299,7 +299,7 @@ export default function Hero() {
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <a
-                href={`/${locale}#contact`}
+                href={`/${locale}/hizmetler/#consultation-form`}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold text-dark font-semibold rounded-xl hover:bg-gold-hover hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-gold group"
               >
                 {t('cta_primary')}

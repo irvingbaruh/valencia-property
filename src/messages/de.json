@@ -44,6 +44,7 @@
     "viewServicePage": "Service-Seite Ansehen",
     "decorCta": "Decor Petit Kollektion Entdecken",
     "stagingCta": "Home-Staging-Service Entdecken",
+    "viewAllServices": "Alle Services Ansehen",
     "search": {
       "title": "Immobiliensuche",
       "desc": "Wir finden Immobilien, die zu Ihrem Budget und Ihren Kriterien passen",
@@ -202,6 +203,44 @@
       ]
     }
   },
+  "hizmetlerPage": {
+    "title": "Unsere Services",
+    "subtitle": "Von der Immobiliensuche bis zur schlüsselfertigen Übergabe begleiten wir Sie bei jedem Schritt Ihres Immobilienprojekts in Spanien.",
+    "readMore": "Details Ansehen",
+    "formTitle": "Wie Können Wir Helfen?",
+    "formSubtitle": "Beantworten Sie ein paar Fragen, damit wir gemeinsam den passenden Plan für Sie erstellen können."
+  },
+  "roiPage": {
+    "title": "Renditerechner",
+    "subtitle": "Berechnen Sie detailliert die potenzielle Rendite Ihrer Immobilieninvestition in Valencia.",
+    "liveDataTitle": "Aktuelle Marktdaten",
+    "exchangeRatesTitle": "Live-Wechselkurse",
+    "exchangeRatesNote": "Die Kurse werden in Echtzeit in Ihrem Browser aktualisiert.",
+    "exchangeRatesLoading": "Kurse werden geladen…",
+    "exchangeRatesError": "Die Kurse konnten derzeit nicht abgerufen werden, bitte versuchen Sie es später erneut.",
+    "newsTitle": "Immobiliennachrichten & Ressourcen",
+    "newsNote": "Vorerst direkte Links zu aktuellen, verlässlichen Quellen; ein Live-Newsfeed folgt in Kürze.",
+    "ctaTitle": "Möchten Sie Mehr Erfahren?",
+    "ctaSubtitle": "Sprechen Sie mit uns für einen individuellen Investitionsplan, der zu Ihrem Budget passt.",
+    "ctaButton": "Beratung Anfordern"
+  },
+  "iletisimPage": {
+    "title": "Kontakt",
+    "subtitle": "Haben Sie Fragen? Wir helfen Ihnen gerne weiter.",
+    "formTitle": "Schreiben Sie Uns",
+    "nameLabel": "Vollständiger Name",
+    "emailLabel": "E-Mail",
+    "phoneLabel": "Telefon",
+    "messageLabel": "Ihre Nachricht",
+    "submitButton": "Senden",
+    "submittedTitle": "Vielen Dank!",
+    "submittedBody": "Wir haben Ihre Nachricht erhalten und melden uns in Kürze bei Ihnen.",
+    "detailsTitle": "Kontaktdaten",
+    "phoneDetail": "Telefon",
+    "emailDetail": "E-Mail",
+    "whatsappButton": "Über WhatsApp Schreiben",
+    "officeNote": "Telefon-, E-Mail- und WhatsApp-Angaben sind Platzhalter — sie werden mit Ihren echten Daten aktualisiert."
+  },
   "blog": {
     "title": "Ratgeber",
     "subtitle": "Alles, was Sie über Investition und Leben in Spanien wissen müssen",
@@ -257,7 +296,8 @@
     "calculate": "Berechnen",
     "annual_return": "Geschätzte Jahresrendite",
     "monthly_income": "Monatliche Mieteinnahmen",
-    "disclaimer": "Diese Berechnung ist eine Schätzung und stellt keine Garantie dar."
+    "disclaimer": "Diese Berechnung ist eine Schätzung und stellt keine Garantie dar.",
+    "detailedCalculation": "Detaillierte Berechnung"
   },
   "testimonials": {
     "title": "Was Unsere Kunden Sagen",

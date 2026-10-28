@@ -63,19 +63,23 @@ export default function Header() {
     setLangOpen(false);
   };
 
-  // Homepage section links (e.g. "/tr#services") feel jarring from an inner
-  // page: a full reload back to the homepage followed by an instant jump to
-  // the anchor. When we're already on the homepage, intercept the click and
-  // smooth-scroll instead; when navigating in from elsewhere, let the normal
-  // link happen — ScrollToHash on the homepage picks up the hash on load and
-  // smooth-scrolls there too, so both paths end up feeling the same.
+  // Services, the ROI calculator and Contact each have both a homepage
+  // preview section AND their own dedicated page now. While on the
+  // homepage, the nav should smooth-scroll to the preview section; from any
+  // other page, it should go straight to the dedicated page instead of
+  // round-tripping through the homepage. "Mülkler" has no dedicated page
+  // yet, so it always targets the homepage section (ScrollToHash smooths
+  // the landing when arriving from elsewhere).
   const isHome = pathname === `/${locale}` || pathname === `/${locale}/`;
 
+  const sectionHref = (anchor, dedicatedPath) => {
+    if (isHome) return `#${anchor}`;
+    return dedicatedPath ? `/${locale}/${dedicatedPath}/` : `/${locale}#${anchor}`;
+  };
+
   const handleNavClick = (e, href) => {
-    const hashIndex = href.indexOf('#');
-    if (hashIndex === -1) return;
-    if (!isHome) return; // let the browser navigate to the homepage normally
-    const id = href.slice(hashIndex + 1);
+    if (!href.startsWith('#')) return; // real page link — let the browser navigate normally
+    const id = href.slice(1);
     const el = document.getElementById(id);
     if (el) {
       e.preventDefault();
@@ -85,11 +89,11 @@ export default function Header() {
   };
 
   const navLinks = [
-    { label: t('properties'), href: `/${locale}#properties` },
-    { label: t('services'), href: `/${locale}#services` },
-    { label: t('calculator'), href: `/${locale}#calculator` },
-    { label: t('blog'), href: `/${locale}/blog` },
-    { label: t('contact'), href: `/${locale}#contact` },
+    { label: t('properties'), href: sectionHref('properties') },
+    { label: t('services'), href: sectionHref('services', 'hizmetler') },
+    { label: t('calculator'), href: sectionHref('calculator', 'roi-hesaplama') },
+    { label: t('blog'), href: `/${locale}/blog/` },
+    { label: t('contact'), href: sectionHref('contact', 'iletisim') },
   ];
 
   return (
@@ -196,7 +200,7 @@ export default function Header() {
 
             {/* CTA Button */}
             <a
-              href={`/${locale}#contact`}
+              href={`/${locale}/hizmetler/#consultation-form`}
               className="hidden md:inline-flex items-center px-5 py-2.5 bg-gold text-white text-sm font-semibold rounded-lg hover:bg-gold-hover transition-colors shadow-gold"
             >
               {t('cta')}
@@ -233,7 +237,7 @@ export default function Header() {
             ))}
             <div className="pt-3 border-t border-border mt-3">
               <a
-                href={`/${locale}#contact`}
+                href={`/${locale}/hizmetler/#consultation-form`}
                 className="block w-full text-center px-5 py-3 bg-gold text-white font-semibold rounded-lg hover:bg-gold-hover transition-colors"
               >
                 {t('cta')}

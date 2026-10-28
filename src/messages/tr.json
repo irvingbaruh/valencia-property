@@ -44,6 +44,7 @@
     "viewServicePage": "Hizmet Sayfasını Gör",
     "decorCta": "Decor Petit Koleksiyonunu İncele",
     "stagingCta": "Home Staging Hizmetini İncele",
+    "viewAllServices": "Tüm Hizmetleri Gör",
     "search": {
       "title": "Mülk Arama",
       "desc": "Bütçenize ve kriterlerinize uygun mülkleri buluyoruz",
@@ -202,6 +203,44 @@
       ]
     }
   },
+  "hizmetlerPage": {
+    "title": "Hizmetlerimiz",
+    "subtitle": "Mülk aramadan anahtar teslime kadar, İspanya'da gayrimenkul yolculuğunuzun her adımında yanınızdayız.",
+    "readMore": "Detayları Gör",
+    "formTitle": "Size Nasıl Yardımcı Olabiliriz?",
+    "formSubtitle": "Birkaç soruyu yanıtlayın, ihtiyaçlarınıza en uygun planı birlikte oluşturalım."
+  },
+  "roiPage": {
+    "title": "Yatırım Getiri Hesaplayıcı",
+    "subtitle": "Valencia'da gayrimenkul yatırımınızın potansiyel getirisini detaylı şekilde hesaplayın.",
+    "liveDataTitle": "Güncel Piyasa Verileri",
+    "exchangeRatesTitle": "Canlı Döviz Kurları",
+    "exchangeRatesNote": "Kurlar tarayıcınızda gerçek zamanlı olarak güncellenir.",
+    "exchangeRatesLoading": "Kurlar yükleniyor…",
+    "exchangeRatesError": "Kurlar şu anda alınamadı, lütfen daha sonra tekrar deneyin.",
+    "newsTitle": "Gayrimenkul Haberleri ve Kaynaklar",
+    "newsNote": "Şimdilik güncel ve güvenilir kaynaklara doğrudan bağlantılar; canlı haber akışı yakında eklenecek.",
+    "ctaTitle": "Daha Fazla Bilgi mi İstiyorsunuz?",
+    "ctaSubtitle": "Bütçenize özel, kişiselleştirilmiş bir yatırım planı için bizimle görüşün.",
+    "ctaButton": "Danışmanlık Al"
+  },
+  "iletisimPage": {
+    "title": "İletişim",
+    "subtitle": "Sorularınız mı var? Size yardımcı olmaktan mutluluk duyarız.",
+    "formTitle": "Bize Yazın",
+    "nameLabel": "Ad Soyad",
+    "emailLabel": "E-posta",
+    "phoneLabel": "Telefon",
+    "messageLabel": "Mesajınız",
+    "submitButton": "Gönder",
+    "submittedTitle": "Teşekkürler!",
+    "submittedBody": "Mesajınızı aldık, en kısa sürede size dönüş yapacağız.",
+    "detailsTitle": "İletişim Bilgileri",
+    "phoneDetail": "Telefon",
+    "emailDetail": "E-posta",
+    "whatsappButton": "WhatsApp'tan Yazın",
+    "officeNote": "Telefon, e-posta ve WhatsApp bilgileri yer tutucudur — gerçek bilgilerinizi paylaşınca güncellenecek."
+  },
   "blog": {
     "title": "Rehber",
     "subtitle": "İspanya'da gayrimenkul yatırımı ve yaşamı hakkında bilmeniz gerekenler",
@@ -257,7 +296,8 @@
     "calculate": "Hesapla",
     "annual_return": "Tahmini Yıllık Getiri",
     "monthly_income": "Aylık Kira Geliri",
-    "disclaimer": "Bu hesaplama tahminidir ve garanti niteliği taşımaz."
+    "disclaimer": "Bu hesaplama tahminidir ve garanti niteliği taşımaz.",
+    "detailedCalculation": "Detaylı Hesaplama"
   },
   "testimonials": {
     "title": "Müşterilerimiz Ne Diyor?",

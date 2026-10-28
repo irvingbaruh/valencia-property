@@ -251,6 +251,16 @@ export default function Services() {
             </ScrollReveal>
           ))}
         </div>
+
+        <ScrollReveal className="text-center mt-12">
+          <a
+            href={`/${locale}/hizmetler/`}
+            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-gold/40 text-dark font-semibold rounded-xl hover:bg-gold hover:text-white hover:border-gold transition-all duration-200 group"
+          >
+            {t('viewAllServices')}
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
+          </a>
+        </ScrollReveal>
       </div>
     </section>
   );

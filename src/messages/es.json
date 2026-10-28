@@ -44,6 +44,7 @@
     "viewServicePage": "Ver Página del Servicio",
     "decorCta": "Explora la Colección de Decor Petit",
     "stagingCta": "Descubre el Servicio de Home Staging",
+    "viewAllServices": "Ver Todos los Servicios",
     "search": {
       "title": "Búsqueda de Inmuebles",
       "desc": "Encontramos propiedades que se ajustan a su presupuesto y criterios",
@@ -202,6 +203,44 @@
       ]
     }
   },
+  "hizmetlerPage": {
+    "title": "Nuestros Servicios",
+    "subtitle": "Desde la búsqueda de propiedad hasta la entrega llave en mano, le acompañamos en cada paso de su proyecto inmobiliario en España.",
+    "readMore": "Ver Detalles",
+    "formTitle": "¿Cómo Podemos Ayudarle?",
+    "formSubtitle": "Responda algunas preguntas y diseñemos juntos el plan que mejor se adapte a sus necesidades."
+  },
+  "roiPage": {
+    "title": "Calculadora de Rentabilidad",
+    "subtitle": "Calcule en detalle el retorno potencial de su inversión inmobiliaria en Valencia.",
+    "liveDataTitle": "Datos de Mercado Actuales",
+    "exchangeRatesTitle": "Tipos de Cambio en Vivo",
+    "exchangeRatesNote": "Los tipos se actualizan en tiempo real en su navegador.",
+    "exchangeRatesLoading": "Cargando tipos de cambio…",
+    "exchangeRatesError": "No se pudieron obtener los tipos de cambio en este momento, inténtelo de nuevo más tarde.",
+    "newsTitle": "Noticias y Recursos Inmobiliarios",
+    "newsNote": "Por ahora, enlaces directos a fuentes actuales y fiables; un feed de noticias en vivo se añadirá próximamente.",
+    "ctaTitle": "¿Quiere Más Información?",
+    "ctaSubtitle": "Hable con nosotros para un plan de inversión personalizado según su presupuesto.",
+    "ctaButton": "Solicitar Consulta"
+  },
+  "iletisimPage": {
+    "title": "Contacto",
+    "subtitle": "¿Tiene preguntas? Estaremos encantados de ayudarle.",
+    "formTitle": "Escríbanos",
+    "nameLabel": "Nombre Completo",
+    "emailLabel": "Correo Electrónico",
+    "phoneLabel": "Teléfono",
+    "messageLabel": "Su Mensaje",
+    "submitButton": "Enviar",
+    "submittedTitle": "¡Gracias!",
+    "submittedBody": "Hemos recibido su mensaje, le responderemos lo antes posible.",
+    "detailsTitle": "Datos de Contacto",
+    "phoneDetail": "Teléfono",
+    "emailDetail": "Correo Electrónico",
+    "whatsappButton": "Escribir por WhatsApp",
+    "officeNote": "El teléfono, correo y WhatsApp son marcadores de posición — se actualizarán con sus datos reales."
+  },
   "blog": {
     "title": "Guía",
     "subtitle": "Todo lo que necesita saber sobre inversión y vida en España",
@@ -257,7 +296,8 @@
     "calculate": "Calcular",
     "annual_return": "Rentabilidad Anual Estimada",
     "monthly_income": "Ingresos Mensuales por Alquiler",
-    "disclaimer": "Este cálculo es una estimación y no constituye una garantía."
+    "disclaimer": "Este cálculo es una estimación y no constituye una garantía.",
+    "detailedCalculation": "Cálculo Detallado"
   },
   "testimonials": {
     "title": "Lo Que Dicen Nuestros Clientes",
