@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
-import { Menu, X, Globe, ChevronDown } from 'lucide-react';
+import { Menu, X, Globe, ChevronDown, UserCircle } from 'lucide-react';
+import { useAuth } from '@/components/providers/AuthProvider';
 
 const localeLabels = {
   tr: 'Türkçe',
@@ -24,6 +25,8 @@ export default function Header() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+
+  const { user, loading: authLoading } = useAuth();
 
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -198,6 +201,21 @@ export default function Header() {
               )}
             </div>
 
+            {/* Auth Button */}
+            {!authLoading && (
+              <a
+                href={user ? `/${locale}/panel/` : `/${locale}/giris/`}
+                className={`hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                  scrolled
+                    ? 'text-text-secondary hover:text-dark hover:bg-soft'
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                <UserCircle size={18} />
+                <span>{user ? t('panel') : t('login')}</span>
+              </a>
+            )}
+
             {/* CTA Button */}
             <a
               href={`/${locale}/hizmetler/#consultation-form`}
@@ -235,6 +253,16 @@ export default function Header() {
                 {link.label}
               </a>
             ))}
+            {/* Auth link in mobile menu */}
+            {!authLoading && (
+              <a
+                href={user ? `/${locale}/panel/` : `/${locale}/giris/`}
+                className="flex items-center gap-2 px-3 py-2.5 text-text-secondary hover:text-dark hover:bg-soft rounded-md text-sm font-medium transition-colors"
+              >
+                <UserCircle size={18} />
+                {user ? t('panel') : t('login')}
+              </a>
+            )}
             <div className="pt-3 border-t border-border mt-3">
               <a
                 href={`/${locale}/hizmetler/#consultation-form`}

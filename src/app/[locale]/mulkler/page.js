@@ -1,6 +1,7 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { MapPin, BedDouble, Maximize2, ArrowRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+import FavoriteButton from '@/components/ui/FavoriteButton';
 
 const properties = [
   { id: 1, title: 'Eixample Dairesi', location: 'Eixample, Valencia', price: '€185.000', rooms: 3, sqm: 95, badge: 'new', image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80&auto=format' },
@@ -52,6 +53,7 @@ export default async function MulklerPage({ params }) {
                   <span className="absolute top-4 left-4 px-3 py-1.5 bg-gold text-dark text-xs font-semibold tracking-wide uppercase rounded-md shadow-gold">
                     {t(`badge_${property.badge}`)}
                   </span>
+                  <FavoriteButton propertyId={property.id} className="absolute top-4 right-4 shadow-sm" />
                 </div>
 
                 {/* Content */}

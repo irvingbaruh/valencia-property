@@ -4,6 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { MapPin, BedDouble, Maximize2, ArrowRight } from 'lucide-react';
+import FavoriteButton from '@/components/ui/FavoriteButton';
 
 const listings = [
   {
@@ -87,6 +88,9 @@ function ListingCard({ listing, t }) {
               {t('badge')}
             </span>
           </div>
+
+          {/* Favorite */}
+          <FavoriteButton propertyId={listing.id} className="absolute top-3 right-3 shadow-sm z-10" />
         </div>
 
         {/* Content */}

@@ -4,6 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin, BedDouble, Maximize2, ArrowRight } from 'lucide-react';
 import { useRef } from 'react';
+import FavoriteButton from '@/components/ui/FavoriteButton';
 
 const sampleProperties = [
   {
@@ -88,6 +89,7 @@ function PropertyCard({ property, index, t }) {
         <span className="absolute top-5 left-5 px-3 py-1.5 bg-gold text-dark text-xs font-semibold tracking-wide uppercase rounded-md shadow-gold z-10">
           {t(`badge_${property.badge}`)}
         </span>
+        <FavoriteButton propertyId={property.id} className="absolute top-5 right-5 shadow-sm z-10" />
         {/* Gradient overlay for mobile */}
         <div className="absolute inset-0 bg-gradient-to-t from-dark/40 via-transparent to-transparent lg:hidden" />
       </div>
