@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "node server.js",
     "start": "node server.js",
+    "build": "SWC_NATIVE_BINDING_CACHE=0 next build",
     "build:local": "next build"
   },
   "keywords": [],
