@@ -8,23 +8,23 @@ const { execSync } = require('child_process');
 const PORT = process.env.PORT || 3000;
 const STATIC_DIR = path.join(__dirname, 'out');
 
-// GoDaddy PaaS may not deploy the out/ directory from GitHub.
-// Extract it from the compressed archive if missing.
+// GoDaddy PaaS may keep a stale out/ from a previous deploy.
+// ALWAYS extract from the compressed archive to ensure the latest build is served.
 const ARCHIVE = path.join(__dirname, 'static-site.tar.gz');
-if (!fs.existsSync(STATIC_DIR)) {
-  if (fs.existsSync(ARCHIVE)) {
-    console.log('out/ directory not found — extracting from static-site.tar.gz...');
-    try {
-      execSync(`tar -xzf "${ARCHIVE}"`, { cwd: __dirname, stdio: 'inherit' });
-      console.log('Extraction complete.');
-    } catch (err) {
-      console.error('Failed to extract static-site.tar.gz:', err.message);
-      process.exit(1);
-    }
-  } else {
-    console.error('FATAL: Neither out/ directory nor static-site.tar.gz found.');
+if (fs.existsSync(ARCHIVE)) {
+  console.log('Found static-site.tar.gz — extracting (overwrites any existing out/)...');
+  try {
+    execSync(`tar -xzf "${ARCHIVE}"`, { cwd: __dirname, stdio: 'inherit' });
+    console.log('Extraction complete.');
+  } catch (err) {
+    console.error('Failed to extract static-site.tar.gz:', err.message);
     process.exit(1);
   }
+} else if (!fs.existsSync(STATIC_DIR)) {
+  console.error('FATAL: Neither out/ directory nor static-site.tar.gz found.');
+  process.exit(1);
+} else {
+  console.log('No archive found, using existing out/ directory.');
 }
 
 const MIME_TYPES = {
