@@ -3,9 +3,29 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 const PORT = process.env.PORT || 3000;
 const STATIC_DIR = path.join(__dirname, 'out');
+
+// GoDaddy PaaS may not deploy the out/ directory from GitHub.
+// Extract it from the compressed archive if missing.
+const ARCHIVE = path.join(__dirname, 'static-site.tar.gz');
+if (!fs.existsSync(STATIC_DIR)) {
+  if (fs.existsSync(ARCHIVE)) {
+    console.log('out/ directory not found — extracting from static-site.tar.gz...');
+    try {
+      execSync(`tar -xzf "${ARCHIVE}"`, { cwd: __dirname, stdio: 'inherit' });
+      console.log('Extraction complete.');
+    } catch (err) {
+      console.error('Failed to extract static-site.tar.gz:', err.message);
+      process.exit(1);
+    }
+  } else {
+    console.error('FATAL: Neither out/ directory nor static-site.tar.gz found.');
+    process.exit(1);
+  }
+}
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
