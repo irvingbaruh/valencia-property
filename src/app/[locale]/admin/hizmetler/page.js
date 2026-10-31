@@ -47,7 +47,7 @@ function AssignServiceModal({ onClose, onAssigned, serviceTemplates }) {
   useEffect(() => {
     const fetchMembers = async () => {
       const { data } = await supabase
-        .from('profiles')
+        .from('profiles_with_email')
         .select('id, full_name, email, phone')
         .order('full_name');
       setMembers(data || []);

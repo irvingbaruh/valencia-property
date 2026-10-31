@@ -136,7 +136,7 @@ export default function AdminDashboardPage() {
 
       // Fetch recent members
       const { data: recent } = await supabase
-        .from('profiles')
+        .from('profiles_with_email')
         .select('id, full_name, email, created_at, role')
         .order('created_at', { ascending: false })
         .limit(8);

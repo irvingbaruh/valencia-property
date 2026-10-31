@@ -175,7 +175,7 @@ export default function AdminMembersPage() {
     setLoading(true);
     try {
       let query = supabase
-        .from('profiles')
+        .from('profiles_with_email')
         .select('id, full_name, email, phone, whatsapp_phone, role, preferred_language, country, citizenship, has_residence_permit, created_at, updated_at')
         .order(sortField, { ascending: sortDir === 'asc' });
 
