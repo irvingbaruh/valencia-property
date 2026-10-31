@@ -14,7 +14,11 @@ const ARCHIVE = path.join(__dirname, 'static-site.tar.gz');
 if (fs.existsSync(ARCHIVE)) {
   console.log('Found static-site.tar.gz — extracting (overwrites any existing out/)...');
   try {
-    execSync(`tar -xzf "${ARCHIVE}"`, { cwd: __dirname, stdio: 'inherit' });
+    // Ensure out/ directory exists
+    if (!fs.existsSync(STATIC_DIR)) {
+      fs.mkdirSync(STATIC_DIR, { recursive: true });
+    }
+    execSync(`tar -xzf "${ARCHIVE}" -C "${STATIC_DIR}"`, { cwd: __dirname, stdio: 'inherit' });
     console.log('Extraction complete.');
   } catch (err) {
     console.error('Failed to extract static-site.tar.gz:', err.message);
