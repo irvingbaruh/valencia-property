@@ -17,12 +17,14 @@ import {
   X,
   ChevronRight,
   Home,
+  PenSquare,
 } from 'lucide-react';
 
 const navItems = [
   { id: 'dashboard', href: '/admin/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { id: 'uyeler', href: '/admin/uyeler', icon: Users, label: 'Üyeler' },
   { id: 'hizmetler', href: '/admin/hizmetler', icon: Briefcase, label: 'Hizmetler' },
+  { id: 'blog', href: '/admin/blog', icon: PenSquare, label: 'Blog' },
   { id: 'dosyalar', href: '/admin/dosyalar', icon: FileText, label: 'Dosyalar', disabled: true },
   { id: 'bildirimler', href: '/admin/bildirimler', icon: Bell, label: 'Bildirimler', disabled: true },
   { id: 'ayarlar', href: '/admin/ayarlar', icon: Settings, label: 'Ayarlar', disabled: true },
