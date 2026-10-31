@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { getFavorites, removeFavorite } from '@/lib/favorites';
-import { User, Heart, Settings, LogOut, Trash2, MapPin, BedDouble, Maximize2, Phone, Globe, Save, Check, Flag, FileCheck, MessageCircle, Shield } from 'lucide-react';
+import { User, Heart, Settings, LogOut, Trash2, MapPin, BedDouble, Maximize2, Phone, Globe, Save, Check, Flag, FileCheck, MessageCircle, Shield, Briefcase, Clock, CheckCircle2, ArrowRight, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
 // Same static property data used across the site
@@ -35,6 +35,202 @@ function ProfileField({ icon: Icon, label, value, editMode, inputProps }) {
       ) : (
         <p className="text-[var(--color-dark)] py-3">{value || '—'}</p>
       )}
+    </div>
+  );
+}
+
+const SERVICE_STATUS = {
+  pending: { label: 'Beklemede', color: '#F59E0B', icon: Clock },
+  active: { label: 'Aktif', color: '#22C55E', icon: ArrowRight },
+  completed: { label: 'Tamamlandı', color: '#C9A84C', icon: CheckCircle2 },
+  on_hold: { label: 'Durduruldu', color: '#F59E0B', icon: Clock },
+  cancelled: { label: 'İptal', color: '#DC1C2E', icon: Clock },
+};
+
+const STAGE_STATUS_COLORS = {
+  pending: '#9CA3AF',
+  in_progress: '#3B82F6',
+  completed: '#22C55E',
+  skipped: '#9CA3AF',
+};
+
+function MyServicesTab({ userId }) {
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [expandedService, setExpandedService] = useState(null);
+  const [stages, setStages] = useState({});
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      const { data } = await supabase
+        .from('client_services')
+        .select(`
+          id, status, notes, started_at, completed_at, created_at,
+          service_template:service_template_id (id, name_tr, name_en, icon, description_tr)
+        `)
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false });
+      setServices(data || []);
+      setLoading(false);
+    };
+    fetchServices();
+  }, [userId]);
+
+  const loadStages = async (serviceId) => {
+    if (stages[serviceId]) {
+      setExpandedService(expandedService === serviceId ? null : serviceId);
+      return;
+    }
+    const { data } = await supabase
+      .from('client_service_stages')
+      .select(`
+        id, status, started_at, completed_at, sort_order,
+        stage_template:stage_template_id (name_tr, description_tr, estimated_days)
+      `)
+      .eq('client_service_id', serviceId)
+      .order('sort_order');
+    setStages((prev) => ({ ...prev, [serviceId]: data || [] }));
+    setExpandedService(serviceId);
+  };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center py-16">
+        <div className="w-8 h-8 border-2 border-[var(--color-gold)] border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  if (services.length === 0) {
+    return (
+      <div className="bg-white rounded-2xl shadow-sm p-12 text-center">
+        <Briefcase className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+        <h3 className="text-lg font-serif text-[var(--color-dark)] mb-2">Henüz aktif hizmetiniz yok</h3>
+        <p className="text-[var(--color-charcoal)]">
+          Hizmet atandığında burada görüntüleyebilirsiniz
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-4">
+      {services.map((svc) => {
+        const conf = SERVICE_STATUS[svc.status] || SERVICE_STATUS.pending;
+        const ConfIcon = conf.icon;
+        const isExpanded = expandedService === svc.id;
+        const svcStages = stages[svc.id] || [];
+        const completedCount = svcStages.filter((s) => s.status === 'completed').length;
+        const progress = svcStages.length > 0 ? Math.round((completedCount / svcStages.length) * 100) : 0;
+
+        return (
+          <div key={svc.id} className="bg-white rounded-2xl shadow-sm overflow-hidden">
+            {/* Service Header */}
+            <button
+              onClick={() => loadStages(svc.id)}
+              className="w-full px-6 py-5 flex items-center gap-4 text-left hover:bg-gray-50 transition-colors"
+            >
+              <div
+                className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
+                style={{ background: `${conf.color}15` }}
+              >
+                <Briefcase className="w-5 h-5" style={{ color: conf.color }} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="font-serif text-[var(--color-dark)] font-medium">
+                  {svc.service_template?.name_tr}
+                </p>
+                <p className="text-xs text-[var(--color-charcoal)] mt-0.5">
+                  {new Date(svc.created_at).toLocaleDateString('tr-TR', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric',
+                  })}
+                </p>
+              </div>
+              <span
+                className="text-xs font-medium px-2.5 py-1 rounded-full shrink-0"
+                style={{ background: `${conf.color}15`, color: conf.color }}
+              >
+                {conf.label}
+              </span>
+              <ChevronRight
+                className={`w-4 h-4 text-gray-400 transition-transform ${isExpanded ? 'rotate-90' : ''}`}
+              />
+            </button>
+
+            {/* Expanded Stages */}
+            {isExpanded && (
+              <div className="px-6 pb-5 border-t border-gray-100">
+                {/* Progress bar */}
+                {svcStages.length > 0 && (
+                  <div className="pt-4 pb-3">
+                    <div className="flex justify-between text-xs text-[var(--color-charcoal)] mb-1.5">
+                      <span>İlerleme</span>
+                      <span>{completedCount}/{svcStages.length} aşama • %{progress}</span>
+                    </div>
+                    <div className="h-2 rounded-full bg-gray-100 overflow-hidden">
+                      <div
+                        className="h-full rounded-full transition-all duration-500"
+                        style={{
+                          width: `${progress}%`,
+                          background: progress === 100 ? '#22C55E' : 'var(--color-gold)',
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {/* Stage list */}
+                <div className="space-y-2 mt-2">
+                  {svcStages.map((stage, idx) => (
+                    <div
+                      key={stage.id}
+                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl ${
+                        stage.status === 'in_progress' ? 'bg-blue-50 border border-blue-100' : 'bg-gray-50'
+                      }`}
+                    >
+                      <div
+                        className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0"
+                        style={{
+                          background: STAGE_STATUS_COLORS[stage.status] || '#9CA3AF',
+                          color: '#fff',
+                        }}
+                      >
+                        {stage.status === 'completed' ? '✓' : idx + 1}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className={`text-sm ${stage.status === 'completed' ? 'text-gray-400 line-through' : 'text-[var(--color-dark)]'}`}>
+                          {stage.stage_template?.name_tr}
+                        </p>
+                        {stage.stage_template?.estimated_days && stage.status !== 'completed' && (
+                          <p className="text-[10px] text-gray-400">~{stage.stage_template.estimated_days} gün</p>
+                        )}
+                      </div>
+                      <span
+                        className="text-[10px] font-medium px-1.5 py-0.5 rounded-full"
+                        style={{
+                          background: `${STAGE_STATUS_COLORS[stage.status]}15`,
+                          color: STAGE_STATUS_COLORS[stage.status],
+                        }}
+                      >
+                        {stage.status === 'pending' ? 'Beklemede' : stage.status === 'in_progress' ? 'Devam Ediyor' : stage.status === 'completed' ? 'Tamamlandı' : 'Atlandı'}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Notes */}
+                {svc.notes && (
+                  <div className="mt-3 px-3 py-2 bg-amber-50 rounded-lg border border-amber-100">
+                    <p className="text-xs text-amber-800">{svc.notes}</p>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -126,6 +322,7 @@ export default function PanelContent() {
 
   const tabs = [
     { id: 'favorites', label: t('favorites'), icon: Heart },
+    { id: 'services', label: 'Hizmetlerim', icon: Briefcase },
     { id: 'profile', label: t('profile'), icon: User },
     { id: 'settings', label: t('settings'), icon: Settings },
   ];
@@ -222,6 +419,11 @@ export default function PanelContent() {
               </div>
             )}
           </div>
+        )}
+
+        {/* Services Tab */}
+        {activeTab === 'services' && (
+          <MyServicesTab userId={user.id} />
         )}
 
         {/* Profile Tab */}

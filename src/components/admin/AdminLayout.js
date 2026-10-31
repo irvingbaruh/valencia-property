@@ -22,7 +22,7 @@ import {
 const navItems = [
   { id: 'dashboard', href: '/admin/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { id: 'uyeler', href: '/admin/uyeler', icon: Users, label: 'Üyeler' },
-  { id: 'hizmetler', href: '/admin/hizmetler', icon: Briefcase, label: 'Hizmetler', disabled: true },
+  { id: 'hizmetler', href: '/admin/hizmetler', icon: Briefcase, label: 'Hizmetler' },
   { id: 'dosyalar', href: '/admin/dosyalar', icon: FileText, label: 'Dosyalar', disabled: true },
   { id: 'bildirimler', href: '/admin/bildirimler', icon: Bell, label: 'Bildirimler', disabled: true },
   { id: 'ayarlar', href: '/admin/ayarlar', icon: Settings, label: 'Ayarlar', disabled: true },
