@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { getFavorites, removeFavorite } from '@/lib/favorites';
-import { User, Heart, Settings, LogOut, Trash2, MapPin, BedDouble, Maximize2, Phone, Globe, Save, Check } from 'lucide-react';
+import { User, Heart, Settings, LogOut, Trash2, MapPin, BedDouble, Maximize2, Phone, Globe, Save, Check, Flag, FileCheck, MessageCircle, Shield } from 'lucide-react';
 import Link from 'next/link';
 
 // Same static property data used across the site
@@ -21,6 +21,24 @@ const allProperties = [
   { id: '9', title: 'Extramurs Aile Evi', location: 'Extramurs, Valencia', price: '€220.000', rooms: 4, sqm: 125, image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&q=80&auto=format' },
 ];
 
+function ProfileField({ icon: Icon, label, value, editMode, inputProps }) {
+  return (
+    <div>
+      <label className="block text-sm font-medium text-[var(--color-charcoal)] mb-1.5">
+        <Icon className="inline w-4 h-4 mr-1.5" />{label}
+      </label>
+      {editMode ? (
+        <input
+          {...inputProps}
+          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-[var(--color-gold)] focus:ring-1 focus:ring-[var(--color-gold)] outline-none text-sm"
+        />
+      ) : (
+        <p className="text-[var(--color-dark)] py-3">{value || '—'}</p>
+      )}
+    </div>
+  );
+}
+
 export default function PanelContent() {
   const t = useTranslations('panel');
   const tAuth = useTranslations('auth');
@@ -32,7 +50,7 @@ export default function PanelContent() {
   const [favorites, setFavorites] = useState([]);
   const [loadingFavorites, setLoadingFavorites] = useState(true);
   const [editMode, setEditMode] = useState(false);
-  const [formData, setFormData] = useState({ full_name: '', phone: '', preferred_language: 'tr' });
+  const [formData, setFormData] = useState({ full_name: '', phone: '', preferred_language: 'tr', country: '', citizenship: '', has_residence_permit: '', whatsapp_phone: '' });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
@@ -62,6 +80,10 @@ export default function PanelContent() {
         full_name: profile.full_name || '',
         phone: profile.phone || '',
         preferred_language: profile.preferred_language || 'tr',
+        country: profile.country || '',
+        citizenship: profile.citizenship || '',
+        has_residence_permit: profile.has_residence_permit || '',
+        whatsapp_phone: profile.whatsapp_phone || '',
       });
     }
   }, [profile]);
@@ -204,7 +226,7 @@ export default function PanelContent() {
 
         {/* Profile Tab */}
         {activeTab === 'profile' && (
-          <div className="bg-white rounded-2xl shadow-sm p-8 max-w-lg">
+          <div className="bg-white rounded-2xl shadow-sm p-8 max-w-2xl">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-serif text-[var(--color-dark)]">{t('profile')}</h2>
               {!editMode && (
@@ -218,65 +240,117 @@ export default function PanelContent() {
             </div>
 
             <div className="space-y-5">
-              <div>
-                <label className="block text-sm font-medium text-[var(--color-charcoal)] mb-1.5">
-                  <User className="inline w-4 h-4 mr-1.5" />{tAuth('fullName')}
-                </label>
-                {editMode ? (
-                  <input
-                    type="text"
-                    value={formData.full_name}
-                    onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-[var(--color-gold)] focus:ring-1 focus:ring-[var(--color-gold)] outline-none"
-                  />
-                ) : (
-                  <p className="text-[var(--color-dark)] py-3">{profile?.full_name || '—'}</p>
-                )}
+              {/* Basic Info */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <ProfileField
+                  icon={User}
+                  label={tAuth('fullName')}
+                  value={profile?.full_name}
+                  editMode={editMode}
+                  inputProps={{
+                    type: 'text',
+                    value: formData.full_name,
+                    onChange: (e) => setFormData({ ...formData, full_name: e.target.value }),
+                  }}
+                />
+                <div>
+                  <label className="block text-sm font-medium text-[var(--color-charcoal)] mb-1.5">
+                    {tAuth('email')}
+                  </label>
+                  <p className="text-[var(--color-dark)] py-3 text-sm bg-gray-50 rounded-xl px-4">{user.email}</p>
+                </div>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-[var(--color-charcoal)] mb-1.5">
-                  <Phone className="inline w-4 h-4 mr-1.5" />{t('phone')}
-                </label>
-                {editMode ? (
-                  <input
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-[var(--color-gold)] focus:ring-1 focus:ring-[var(--color-gold)] outline-none"
-                  />
-                ) : (
-                  <p className="text-[var(--color-dark)] py-3">{profile?.phone || '—'}</p>
-                )}
+              {/* Contact */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <ProfileField
+                  icon={Phone}
+                  label={t('phone')}
+                  value={profile?.phone}
+                  editMode={editMode}
+                  inputProps={{
+                    type: 'tel',
+                    value: formData.phone,
+                    onChange: (e) => setFormData({ ...formData, phone: e.target.value }),
+                    placeholder: '+90 5xx xxx xx xx',
+                  }}
+                />
+                <ProfileField
+                  icon={MessageCircle}
+                  label="WhatsApp"
+                  value={profile?.whatsapp_phone}
+                  editMode={editMode}
+                  inputProps={{
+                    type: 'tel',
+                    value: formData.whatsapp_phone,
+                    onChange: (e) => setFormData({ ...formData, whatsapp_phone: e.target.value }),
+                    placeholder: '+90 5xx xxx xx xx',
+                  }}
+                />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-[var(--color-charcoal)] mb-1.5">
-                  <Globe className="inline w-4 h-4 mr-1.5" />{t('language')}
-                </label>
-                {editMode ? (
-                  <select
-                    value={formData.preferred_language}
-                    onChange={(e) => setFormData({ ...formData, preferred_language: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-[var(--color-gold)] focus:ring-1 focus:ring-[var(--color-gold)] outline-none"
-                  >
-                    <option value="tr">Türkçe</option>
-                    <option value="es">Español</option>
-                    <option value="en">English</option>
-                    <option value="de">Deutsch</option>
-                  </select>
-                ) : (
-                  <p className="text-[var(--color-dark)] py-3">
-                    {{ tr: 'Türkçe', es: 'Español', en: 'English', de: 'Deutsch' }[profile?.preferred_language] || 'Türkçe'}
-                  </p>
-                )}
+              {/* Location & Identity */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <ProfileField
+                  icon={Flag}
+                  label={locale === 'tr' ? 'Ülke' : locale === 'es' ? 'País' : locale === 'de' ? 'Land' : 'Country'}
+                  value={profile?.country}
+                  editMode={editMode}
+                  inputProps={{
+                    type: 'text',
+                    value: formData.country,
+                    onChange: (e) => setFormData({ ...formData, country: e.target.value }),
+                    placeholder: locale === 'tr' ? 'Türkiye' : 'Turkey',
+                  }}
+                />
+                <ProfileField
+                  icon={Shield}
+                  label={locale === 'tr' ? 'Vatandaşlık' : locale === 'es' ? 'Ciudadanía' : locale === 'de' ? 'Staatsangehörigkeit' : 'Citizenship'}
+                  value={profile?.citizenship}
+                  editMode={editMode}
+                  inputProps={{
+                    type: 'text',
+                    value: formData.citizenship,
+                    onChange: (e) => setFormData({ ...formData, citizenship: e.target.value }),
+                    placeholder: 'TC',
+                  }}
+                />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-[var(--color-charcoal)] mb-1.5">
-                  {tAuth('email')}
-                </label>
-                <p className="text-[var(--color-dark)] py-3">{user.email}</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <ProfileField
+                  icon={FileCheck}
+                  label={locale === 'tr' ? 'Oturma İzni' : locale === 'es' ? 'Permiso de Residencia' : locale === 'de' ? 'Aufenthaltserlaubnis' : 'Residence Permit'}
+                  value={profile?.has_residence_permit}
+                  editMode={editMode}
+                  inputProps={{
+                    type: 'text',
+                    value: formData.has_residence_permit,
+                    onChange: (e) => setFormData({ ...formData, has_residence_permit: e.target.value }),
+                    placeholder: locale === 'tr' ? 'Var / Yok / Başvuru sürecinde' : 'Yes / No / In process',
+                  }}
+                />
+                <div>
+                  <label className="block text-sm font-medium text-[var(--color-charcoal)] mb-1.5">
+                    <Globe className="inline w-4 h-4 mr-1.5" />{t('language')}
+                  </label>
+                  {editMode ? (
+                    <select
+                      value={formData.preferred_language}
+                      onChange={(e) => setFormData({ ...formData, preferred_language: e.target.value })}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-[var(--color-gold)] focus:ring-1 focus:ring-[var(--color-gold)] outline-none text-sm"
+                    >
+                      <option value="tr">Türkçe</option>
+                      <option value="es">Español</option>
+                      <option value="en">English</option>
+                      <option value="de">Deutsch</option>
+                    </select>
+                  ) : (
+                    <p className="text-[var(--color-dark)] py-3">
+                      {{ tr: 'Türkçe', es: 'Español', en: 'English', de: 'Deutsch' }[profile?.preferred_language] || 'Türkçe'}
+                    </p>
+                  )}
+                </div>
               </div>
 
               {editMode && (

@@ -10,5 +10,17 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "@supabase/supabase-js": "^2.118.0",
+    "@swc/cli": "^0.8.2",
+    "@swc/core": "^1.16.21",
+    "@tailwindcss/postcss": "^4.3.3",
+    "framer-motion": "^14.9.0",
+    "lucide-react": "^1.66.0",
+    "next": "^15.5.28",
+    "next-intl": "^4.14.9",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tailwindcss": "^4.3.3"
+  }
 }
