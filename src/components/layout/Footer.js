@@ -1,11 +1,13 @@
 'use client';
 
 import { useTranslations, useLocale } from 'next-intl';
+import { usePathname } from 'next/navigation';
 import { MapPin, Phone, Mail } from 'lucide-react';
 
 export default function Footer() {
   const t = useTranslations('footer');
   const locale = useLocale();
+  const pathname = usePathname();
 
   const columns = [
     {
@@ -26,6 +28,8 @@ export default function Footer() {
       ],
     },
   ];
+
+  if (/\/admin(\/|$)/.test(pathname || '')) return null;
 
   return (
     <footer className="bg-dark text-white">

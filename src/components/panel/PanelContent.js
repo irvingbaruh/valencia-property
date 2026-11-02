@@ -5,7 +5,8 @@ import { useRouter } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { getFavorites, removeFavorite } from '@/lib/favorites';
-import { User, Heart, Settings, LogOut, Trash2, MapPin, BedDouble, Maximize2, Phone, Globe, Save, Check, Flag, FileCheck, MessageCircle, Shield, Briefcase, Clock, CheckCircle2, ArrowRight, ChevronRight } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
+import { User, Heart, Settings, LogOut, Trash2, MapPin, BedDouble, Maximize2, Phone, Globe, Save, Check, Flag, FileCheck, MessageCircle, Shield, Briefcase, Clock, CheckCircle2, ArrowRight, ChevronRight, Bell, FileText } from 'lucide-react';
 import Link from 'next/link';
 
 // Same static property data used across the site
@@ -235,6 +236,142 @@ function MyServicesTab({ userId }) {
   );
 }
 
+function NotificationsTab({ userId, onUnreadChange }) {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const load = async () => {
+      const { data } = await supabase
+        .from('notifications')
+        .select('id, type, title_tr, body_tr, is_read, created_at')
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false })
+        .limit(50);
+      setItems(data || []);
+      setLoading(false);
+    };
+    load();
+  }, [userId]);
+
+  const markRead = async (id) => {
+    setItems((prev) => {
+      const next = prev.map((n) => (n.id === id ? { ...n, is_read: true } : n));
+      onUnreadChange?.(next.filter((n) => !n.is_read).length);
+      return next;
+    });
+    await supabase
+      .from('notifications')
+      .update({ is_read: true, read_at: new Date().toISOString() })
+      .eq('id', id);
+  };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center py-16">
+        <div className="w-8 h-8 border-2 border-[var(--color-gold)] border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  if (items.length === 0) {
+    return (
+      <div className="bg-white rounded-2xl shadow-sm p-12 text-center">
+        <Bell className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+        <h3 className="text-lg font-serif text-[var(--color-dark)] mb-2">Bildiriminiz yok</h3>
+        <p className="text-[var(--color-charcoal)]">Yeni hizmet atandığında veya bir aşama güncellendiğinde burada görürsünüz.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-3">
+      {items.map((n) => (
+        <button
+          key={n.id}
+          onClick={() => !n.is_read && markRead(n.id)}
+          className={`w-full text-left bg-white rounded-2xl shadow-sm px-6 py-4 flex gap-4 items-start ${n.is_read ? 'opacity-70' : 'border-l-4 border-[var(--color-gold)]'}`}
+        >
+          <Bell className="w-5 h-5 mt-0.5 shrink-0 text-[var(--color-gold)]" />
+          <div className="flex-1 min-w-0">
+            <p className="font-medium text-[var(--color-dark)]">{n.title_tr}</p>
+            {n.body_tr && <p className="text-sm text-[var(--color-charcoal)] mt-0.5">{n.body_tr}</p>}
+            <p className="text-xs text-gray-400 mt-1">
+              {new Date(n.created_at).toLocaleString('tr-TR', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' })}
+            </p>
+          </div>
+          {!n.is_read && <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-[var(--color-gold)] text-white shrink-0">Yeni</span>}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+const DOC_STATUS = {
+  uploaded: { label: 'Yüklendi', color: '#3B82F6' },
+  reviewing: { label: 'İnceleniyor', color: '#F59E0B' },
+  approved: { label: 'Onaylandı', color: '#22C55E' },
+  rejected: { label: 'Reddedildi', color: '#DC1C2E' },
+};
+
+function DocumentsTab({ userId }) {
+  const [docs, setDocs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const load = async () => {
+      const { data } = await supabase
+        .from('documents')
+        .select('id, file_name, status, rejection_reason, created_at')
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false });
+      setDocs(data || []);
+      setLoading(false);
+    };
+    load();
+  }, [userId]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center py-16">
+        <div className="w-8 h-8 border-2 border-[var(--color-gold)] border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  if (docs.length === 0) {
+    return (
+      <div className="bg-white rounded-2xl shadow-sm p-12 text-center">
+        <FileText className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+        <h3 className="text-lg font-serif text-[var(--color-dark)] mb-2">Henüz belge yok</h3>
+        <p className="text-[var(--color-charcoal)]">Hizmetiniz için istenen belgeler burada listelenecek.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-3">
+      {docs.map((d) => {
+        const s = DOC_STATUS[d.status] || DOC_STATUS.uploaded;
+        return (
+          <div key={d.id} className="bg-white rounded-2xl shadow-sm px-6 py-4 flex items-center gap-4">
+            <FileText className="w-5 h-5 text-gray-400 shrink-0" />
+            <div className="flex-1 min-w-0">
+              <p className="font-medium text-[var(--color-dark)] truncate">{d.file_name}</p>
+              {d.status === 'rejected' && d.rejection_reason && (
+                <p className="text-xs text-red-600 mt-0.5">{d.rejection_reason}</p>
+              )}
+            </div>
+            <span className="text-xs font-medium px-2.5 py-1 rounded-full shrink-0" style={{ background: `${s.color}15`, color: s.color }}>
+              {s.label}
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function PanelContent() {
   const t = useTranslations('panel');
   const tAuth = useTranslations('auth');
@@ -243,6 +380,7 @@ export default function PanelContent() {
   const { user, profile, loading, signOut, updateProfile } = useAuth();
 
   const [activeTab, setActiveTab] = useState('favorites');
+  const [unreadCount, setUnreadCount] = useState(0);
   const [favorites, setFavorites] = useState([]);
   const [loadingFavorites, setLoadingFavorites] = useState(true);
   const [editMode, setEditMode] = useState(false);
@@ -256,6 +394,17 @@ export default function PanelContent() {
       router.push(`/${locale}/giris`);
     }
   }, [user, loading, locale, router]);
+
+  // Unread notification count for the tab badge
+  useEffect(() => {
+    if (!user) return;
+    supabase
+      .from('notifications')
+      .select('id', { count: 'exact', head: true })
+      .eq('user_id', user.id)
+      .eq('is_read', false)
+      .then(({ count }) => setUnreadCount(count || 0));
+  }, [user]);
 
   // Load favorites
   useEffect(() => {
@@ -323,6 +472,8 @@ export default function PanelContent() {
   const tabs = [
     { id: 'favorites', label: t('favorites'), icon: Heart },
     { id: 'services', label: 'Hizmetlerim', icon: Briefcase },
+    { id: 'documents', label: 'Dosyalarım', icon: FileText },
+    { id: 'notifications', label: 'Bildirimler', icon: Bell, badge: unreadCount },
     { id: 'profile', label: t('profile'), icon: User },
     { id: 'settings', label: t('settings'), icon: Settings },
   ];
@@ -348,12 +499,12 @@ export default function PanelContent() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-1 bg-white rounded-xl p-1 shadow-sm mb-8">
-          {tabs.map(({ id, label, icon: Icon }) => (
+        <div className="flex gap-1 bg-white rounded-xl p-1 shadow-sm mb-8 overflow-x-auto">
+          {tabs.map(({ id, label, icon: Icon, badge }) => (
             <button
               key={id}
               onClick={() => setActiveTab(id)}
-              className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-medium transition-colors ${
+              className={`flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
                 activeTab === id
                   ? 'bg-[var(--color-gold)] text-white'
                   : 'text-[var(--color-charcoal)] hover:bg-gray-50'
@@ -361,6 +512,11 @@ export default function PanelContent() {
             >
               <Icon className="w-4 h-4" />
               {label}
+              {badge > 0 && (
+                <span className="min-w-5 h-5 px-1 rounded-full bg-[var(--color-red,#DC1C2E)] text-white text-[10px] font-bold flex items-center justify-center">
+                  {badge}
+                </span>
+              )}
             </button>
           ))}
         </div>
@@ -424,6 +580,12 @@ export default function PanelContent() {
         {/* Services Tab */}
         {activeTab === 'services' && (
           <MyServicesTab userId={user.id} />
+        )}
+
+        {activeTab === 'documents' && <DocumentsTab userId={user.id} />}
+
+        {activeTab === 'notifications' && (
+          <NotificationsTab userId={user.id} onUnreadChange={setUnreadCount} />
         )}
 
         {/* Profile Tab */}

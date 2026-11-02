@@ -132,6 +132,15 @@ function AssignServiceModal({ onClose, onAssigned, serviceTemplates }) {
         },
       });
 
+      // 6) Notify the member
+      await supabase.from('notifications').insert({
+        user_id: selectedMember.id,
+        type: 'service_assigned',
+        title_tr: 'Yeni hizmet atandı',
+        body_tr: `${selectedTemplate.name_tr} hizmeti hesabınıza eklendi. Hizmetlerim sekmesinden süreci takip edebilirsiniz.`,
+        client_service_id: cs.id,
+      });
+
       onAssigned();
       onClose();
     } catch (err) {
@@ -419,6 +428,20 @@ function ServiceDetailModal({ service, onClose, onUpdate }) {
         }
       }
 
+      // Tell the member about the change
+      const changed = stages.find((s) => s.id === stageId);
+      const memberId = service.user_id || service.profile?.id;
+      if (memberId && changed) {
+        const label = newStatus === 'completed' ? 'tamamlandı' : newStatus === 'in_progress' ? 'başladı' : 'güncellendi';
+        await supabase.from('notifications').insert({
+          user_id: memberId,
+          type: 'stage_update',
+          title_tr: `${service.service_template?.name_tr || 'Hizmet'}: aşama ${label}`,
+          body_tr: changed.stage_template?.name_tr || '',
+          client_service_id: service.id,
+        });
+      }
+
       // Refresh stages
       const { data } = await supabase
         .from('client_service_stages')
@@ -619,9 +642,9 @@ export default function AdminServicesPage() {
       let query = supabase
         .from('client_services')
         .select(`
-          id, status, notes, started_at, completed_at, created_at, updated_at, current_stage_id,
+          id, user_id, status, notes, started_at, completed_at, created_at, updated_at, current_stage_id,
           service_template:service_template_id (id, name_tr, name_en, icon, slug),
-          profile:user_id (id, full_name, email, phone)
+          profile:user_id (id, full_name, phone)
         `)
         .order('created_at', { ascending: false });
 
@@ -632,10 +655,26 @@ export default function AdminServicesPage() {
         query = query.eq('service_template_id', templateFilter);
       }
 
-      const { data: svcData } = await query;
+      const { data: svcData, error: svcErr } = await query;
+      if (svcErr) console.error('Services query error:', svcErr);
+
+      // profiles has no email column; merge it in from the profiles_with_email view
+      let withEmail = svcData || [];
+      const userIds = [...new Set(withEmail.map((s) => s.user_id))];
+      if (userIds.length > 0) {
+        const { data: emails } = await supabase
+          .from('profiles_with_email')
+          .select('id, email')
+          .in('id', userIds);
+        const emailMap = Object.fromEntries((emails || []).map((e) => [e.id, e.email]));
+        withEmail = withEmail.map((s) => ({
+          ...s,
+          profile: { ...(s.profile || {}), email: emailMap[s.user_id] || '' },
+        }));
+      }
 
       // Filter by search
-      let filtered = svcData || [];
+      let filtered = withEmail;
       if (search.trim()) {
         const q = search.toLowerCase();
         filtered = filtered.filter(

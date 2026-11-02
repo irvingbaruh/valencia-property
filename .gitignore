@@ -10,3 +10,7 @@ node_modules/
 .DS_Store
 *.pem
 .env*.local
+
+# static export is shipped as static-site.tar.gz (server.js extracts it into out/ at startup);
+# tracking out/ made GoDaddy git pulls fail with local-change conflicts
+out/

@@ -99,6 +99,9 @@ export default function Header() {
     { label: t('contact'), href: sectionHref('contact', 'iletisim') },
   ];
 
+  // The admin panel has its own sidebar; the public site menu would pull the admin out of it
+  if (/\/admin(\/|$)/.test(pathname || '')) return null;
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
