@@ -60,7 +60,8 @@ export default function DetailedROICalculator() {
 
   const eur = (n) =>
     new Intl.NumberFormat(LOCALE_TAG[locale] || 'en-GB', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
-  const pct = (n) => `${(n * 100).toFixed(1)}%`;
+  const pct = (n) =>
+    new Intl.NumberFormat(LOCALE_TAG[locale] || 'en-GB', { style: 'percent', minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(n);
 
   const r = useMemo(
     () =>
