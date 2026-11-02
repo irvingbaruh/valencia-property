@@ -6,6 +6,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { getFavorites, removeFavorite } from '@/lib/favorites';
 import { supabase } from '@/lib/supabase';
+import { uploadDocument, openDocument, DOC_ACCEPT } from '@/lib/documents';
 import { User, Heart, Settings, LogOut, Trash2, MapPin, BedDouble, Maximize2, Phone, Globe, Save, Check, Flag, FileCheck, MessageCircle, Shield, Briefcase, Clock, CheckCircle2, ArrowRight, ChevronRight, Bell, FileText } from 'lucide-react';
 import Link from 'next/link';
 
@@ -316,20 +317,45 @@ const DOC_STATUS = {
 
 function DocumentsTab({ userId }) {
   const [docs, setDocs] = useState([]);
+  const [services, setServices] = useState([]);
+  const [serviceId, setServiceId] = useState('');
   const [loading, setLoading] = useState(true);
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState('');
+
+  const load = async () => {
+    const [d, s] = await Promise.all([
+      supabase
+        .from('documents')
+        .select('id, file_name, status, rejection_reason, storage_path, client_service_id, created_at')
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false }),
+      supabase
+        .from('client_services')
+        .select('id, service_template:service_template_id (name_tr)')
+        .eq('user_id', userId),
+    ]);
+    setDocs(d.data || []);
+    setServices(s.data || []);
+    setLoading(false);
+  };
 
   useEffect(() => {
-    const load = async () => {
-      const { data } = await supabase
-        .from('documents')
-        .select('id, file_name, status, rejection_reason, created_at')
-        .eq('user_id', userId)
-        .order('created_at', { ascending: false });
-      setDocs(data || []);
-      setLoading(false);
-    };
     load();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
+
+  const onFile = async (e) => {
+    const file = e.target.files?.[0];
+    e.target.value = '';
+    if (!file) return;
+    setUploading(true);
+    setError('');
+    const { error: err } = await uploadDocument({ memberId: userId, file, clientServiceId: serviceId || null });
+    setUploading(false);
+    if (err) setError(err);
+    else load();
+  };
 
   if (loading) {
     return (
@@ -339,35 +365,73 @@ function DocumentsTab({ userId }) {
     );
   }
 
-  if (docs.length === 0) {
-    return (
-      <div className="bg-white rounded-2xl shadow-sm p-12 text-center">
-        <FileText className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-        <h3 className="text-lg font-serif text-[var(--color-dark)] mb-2">Henüz belge yok</h3>
-        <p className="text-[var(--color-charcoal)]">Hizmetiniz için istenen belgeler burada listelenecek.</p>
-      </div>
-    );
-  }
+  const serviceName = (id) => services.find((s) => s.id === id)?.service_template?.name_tr;
 
   return (
-    <div className="space-y-3">
-      {docs.map((d) => {
-        const s = DOC_STATUS[d.status] || DOC_STATUS.uploaded;
-        return (
-          <div key={d.id} className="bg-white rounded-2xl shadow-sm px-6 py-4 flex items-center gap-4">
-            <FileText className="w-5 h-5 text-gray-400 shrink-0" />
-            <div className="flex-1 min-w-0">
-              <p className="font-medium text-[var(--color-dark)] truncate">{d.file_name}</p>
-              {d.status === 'rejected' && d.rejection_reason && (
-                <p className="text-xs text-red-600 mt-0.5">{d.rejection_reason}</p>
-              )}
-            </div>
-            <span className="text-xs font-medium px-2.5 py-1 rounded-full shrink-0" style={{ background: `${s.color}15`, color: s.color }}>
-              {s.label}
-            </span>
-          </div>
-        );
-      })}
+    <div className="space-y-4">
+      <div className="bg-white rounded-2xl shadow-sm px-6 py-4 flex flex-wrap items-center gap-3">
+        <div className="flex-1 min-w-[12rem]">
+          <p className="font-medium text-[var(--color-dark)]">Belge yükle</p>
+          <p className="text-xs text-[var(--color-charcoal)]">PDF, JPG, PNG veya DOCX · en fazla 10 MB</p>
+        </div>
+        {services.length > 0 && (
+          <select
+            aria-label="Belgenin ait olduğu hizmet"
+            value={serviceId}
+            onChange={(e) => setServiceId(e.target.value)}
+            className="text-sm border border-gray-200 rounded-lg px-3 py-2 bg-white"
+          >
+            <option value="">Hizmet seçmeden</option>
+            {services.map((s) => (
+              <option key={s.id} value={s.id}>
+                {s.service_template?.name_tr}
+              </option>
+            ))}
+          </select>
+        )}
+        <label className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-white bg-[var(--color-gold)] cursor-pointer">
+          <FileText className="w-4 h-4" />
+          {uploading ? 'Yükleniyor…' : 'Dosya seç'}
+          <input type="file" accept={DOC_ACCEPT} className="hidden" disabled={uploading} onChange={onFile} />
+        </label>
+      </div>
+      {error && <p className="text-sm text-red-600">{error}</p>}
+
+      {docs.length === 0 ? (
+        <div className="bg-white rounded-2xl shadow-sm p-12 text-center">
+          <FileText className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+          <h3 className="text-lg font-serif text-[var(--color-dark)] mb-2">Henüz belge yok</h3>
+          <p className="text-[var(--color-charcoal)]">Yüklediğiniz belgeler ve onay durumları burada görünür.</p>
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {docs.map((d) => {
+            const s = DOC_STATUS[d.status] || DOC_STATUS.uploaded;
+            return (
+              <div key={d.id} className="bg-white rounded-2xl shadow-sm px-6 py-4 flex items-center gap-4">
+                <FileText className="w-5 h-5 text-gray-400 shrink-0" />
+                <div className="flex-1 min-w-0">
+                  <button
+                    onClick={() => openDocument(d.storage_path)}
+                    className="font-medium text-[var(--color-dark)] truncate max-w-full text-left hover:underline"
+                  >
+                    {d.file_name}
+                  </button>
+                  {serviceName(d.client_service_id) && (
+                    <p className="text-xs text-[var(--color-charcoal)]">{serviceName(d.client_service_id)}</p>
+                  )}
+                  {d.status === 'rejected' && d.rejection_reason && (
+                    <p className="text-xs text-red-600 mt-0.5">{d.rejection_reason}</p>
+                  )}
+                </div>
+                <span className="text-xs font-medium px-2.5 py-1 rounded-full shrink-0" style={{ background: `${s.color}15`, color: s.color }}>
+                  {s.label}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
-import AdminLayout from '@/components/admin/AdminLayout';
+import { useRouter } from 'next/navigation';
+import AdminLayout, { ADMIN_BASE } from '@/components/admin/AdminLayout';
 import {
   Search,
   Filter,
@@ -163,6 +164,7 @@ function InfoRow({ icon: Icon, label, value }) {
 }
 
 export default function AdminMembersPage() {
+  const router = useRouter();
   const [members, setMembers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -237,7 +239,7 @@ export default function AdminMembersPage() {
             Üye Yönetimi
           </h1>
           <p className="text-sm text-[#9A9AAA] mt-1">
-            Kayıtlı üyeleri görüntüle, ara ve yönet
+            Bir üyeye tıklayarak hizmetlerini, aşamalarını ve dosyalarını yönet
           </p>
         </div>
 
@@ -318,7 +320,7 @@ export default function AdminMembersPage() {
                   key={member.id}
                   className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr_100px_100px_80px] gap-2 md:gap-4 px-5 py-3.5 hover:bg-white/5 transition-colors cursor-pointer"
                   style={{ borderBottom: '1px solid #1E1E2E' }}
-                  onClick={() => setSelectedMember(member)}
+                  onClick={() => router.push(`${ADMIN_BASE}/uyeler/detay/?id=${member.id}`)}
                 >
                   {/* Name */}
                   <div className="flex items-center gap-3">
@@ -328,7 +330,7 @@ export default function AdminMembersPage() {
                     >
                       {(member.full_name || 'U').charAt(0).toUpperCase()}
                     </div>
-                    <span className="text-sm font-medium text-white truncate">
+                    <span className="text-sm font-medium text-white truncate hover:text-[#C9A84C]">
                       {member.full_name || 'İsimsiz'}
                     </span>
                   </div>

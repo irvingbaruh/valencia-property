@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useLocale } from 'next-intl';
 import { useAuth } from '@/components/providers/AuthProvider';
 import Link from 'next/link';
 import {
@@ -20,31 +19,32 @@ import {
   PenSquare,
 } from 'lucide-react';
 
+export const ADMIN_BASE = '/valenciaproperty/admin';
+
 const navItems = [
-  { id: 'dashboard', href: '/admin/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-  { id: 'uyeler', href: '/admin/uyeler', icon: Users, label: 'Üyeler' },
-  { id: 'hizmetler', href: '/admin/hizmetler', icon: Briefcase, label: 'Hizmetler' },
-  { id: 'blog', href: '/admin/blog', icon: PenSquare, label: 'Blog' },
-  { id: 'dosyalar', href: '/admin/dosyalar', icon: FileText, label: 'Dosyalar', disabled: true },
-  { id: 'bildirimler', href: '/admin/bildirimler', icon: Bell, label: 'Bildirimler', disabled: true },
-  { id: 'ayarlar', href: '/admin/ayarlar', icon: Settings, label: 'Ayarlar', disabled: true },
+  { id: 'dashboard', href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+  { id: 'uyeler', href: '/uyeler', icon: Users, label: 'Üyeler' },
+  { id: 'hizmetler', href: '/hizmetler', icon: Briefcase, label: 'Hizmetler' },
+  { id: 'blog', href: '/blog', icon: PenSquare, label: 'Blog' },
+  { id: 'dosyalar', href: '/dosyalar', icon: FileText, label: 'Dosyalar', disabled: true },
+  { id: 'bildirimler', href: '/bildirimler', icon: Bell, label: 'Bildirimler', disabled: true },
+  { id: 'ayarlar', href: '/ayarlar', icon: Settings, label: 'Ayarlar', disabled: true },
 ];
 
 export default function AdminLayout({ children, activeSection = 'dashboard' }) {
-  const locale = useLocale();
   const router = useRouter();
   const { user, profile, loading, isAdmin, signOut } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     if (!loading && (!user || !isAdmin)) {
-      router.push(`/${locale}/giris`);
+      router.replace(`${ADMIN_BASE}/giris/`);
     }
-  }, [user, loading, isAdmin, locale, router]);
+  }, [user, loading, isAdmin, router]);
 
   const handleSignOut = async () => {
     await signOut();
-    router.push(`/${locale}`);
+    router.replace(`${ADMIN_BASE}/giris/`);
   };
 
   if (loading || !user || !isAdmin) {
@@ -66,7 +66,7 @@ export default function AdminLayout({ children, activeSection = 'dashboard' }) {
       >
         {/* Logo */}
         <div className="h-16 flex items-center justify-between px-5" style={{ borderBottom: '1px solid #1E1E2E' }}>
-          <Link href={`/${locale}`} className="flex items-center gap-2">
+          <Link href={`${ADMIN_BASE}/dashboard/`} className="flex items-center gap-2">
             <div
               className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold"
               style={{ background: '#DC1C2E' }}
@@ -87,7 +87,7 @@ export default function AdminLayout({ children, activeSection = 'dashboard' }) {
             return (
               <Link
                 key={id}
-                href={disabled ? '#' : `/${locale}${href}`}
+                href={disabled ? '#' : `${ADMIN_BASE}${href}/`}
                 onClick={(e) => disabled && e.preventDefault()}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                   isActive
@@ -114,7 +114,7 @@ export default function AdminLayout({ children, activeSection = 'dashboard' }) {
         {/* Bottom section */}
         <div className="absolute bottom-0 left-0 right-0 p-4" style={{ borderTop: '1px solid #1E1E2E' }}>
           <Link
-            href={`/${locale}`}
+            href="/tr/"
             className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-[#9A9AAA] hover:text-white hover:bg-white/5 transition-colors"
           >
             <Home className="w-5 h-5" />
