@@ -19,6 +19,7 @@ import {
   Home,
   PenSquare,
   ShieldCheck,
+  Calculator,
 } from 'lucide-react';
 
 export const ADMIN_BASE = '/valenciaproperty/admin';
@@ -30,6 +31,7 @@ const navItems = [
   { id: 'blog', href: '/blog', icon: PenSquare, label: 'Blog' },
   { id: 'dosyalar', href: '/dosyalar', icon: FileText, label: 'Dosyalar', disabled: true },
   { id: 'bildirimler', href: '/bildirimler', icon: Bell, label: 'Bildirimler', disabled: true },
+  { id: 'roi', href: '/roi', icon: Calculator, label: 'ROI Ayarları' },
   { id: 'guvenlik', href: '/guvenlik', icon: ShieldCheck, label: 'Güvenlik' },
   { id: 'ayarlar', href: '/ayarlar', icon: Settings, label: 'Ayarlar', disabled: true },
 ];
