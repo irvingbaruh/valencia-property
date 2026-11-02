@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/components/providers/AuthProvider';
-import { Lock, Mail, LogOut } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
+import { Lock, Mail, LogOut, ShieldCheck } from 'lucide-react';
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -12,13 +13,44 @@ export default function AdminLoginPage() {
   const [password, setPassword] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
+  const [factorId, setFactorId] = useState(null);
+  const [code, setCode] = useState('');
 
-  // Already signed in as admin → straight to the dashboard
+  // Signed in as admin → ask for the authenticator code if one is set up, otherwise go to the dashboard
   useEffect(() => {
-    if (!loading && user && isAdmin) {
-      router.replace('/valenciaproperty/admin/dashboard/');
-    }
+    if (loading || !user || !isAdmin) return;
+    let cancelled = false;
+    (async () => {
+      const { data: aal } = await supabase.auth.mfa.getAuthenticatorAssuranceLevel();
+      if (cancelled) return;
+      if (aal?.nextLevel === 'aal2' && aal.currentLevel !== 'aal2') {
+        const { data: f } = await supabase.auth.mfa.listFactors();
+        if (!cancelled) setFactorId(f?.totp?.[0]?.id || null);
+      } else {
+        router.replace('/valenciaproperty/admin/dashboard/');
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
   }, [loading, user, isAdmin, router]);
+
+  const handleCode = async (e) => {
+    e.preventDefault();
+    setError('');
+    setSubmitting(true);
+    const { data: ch, error: chErr } = await supabase.auth.mfa.challenge({ factorId });
+    const { error: vErr } = chErr
+      ? { error: chErr }
+      : await supabase.auth.mfa.verify({ factorId, challengeId: ch.id, code: code.trim() });
+    setSubmitting(false);
+    if (vErr) {
+      setError('Kod hatalı veya süresi dolmuş. Uygulamadaki güncel kodu girin.');
+      setCode('');
+      return;
+    }
+    router.replace('/valenciaproperty/admin/dashboard/');
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,7 +76,38 @@ export default function AdminLoginPage() {
           </div>
         </div>
 
-        {signedInNotAdmin ? (
+        {factorId ? (
+          <form onSubmit={handleCode} className="space-y-4">
+            <div className="flex items-center gap-2 text-sm text-white">
+              <ShieldCheck className="w-4 h-4 text-[#C9A84C]" />
+              Authenticator kodunu girin
+            </div>
+            <input
+              inputMode="numeric"
+              autoComplete="one-time-code"
+              autoFocus
+              maxLength={6}
+              value={code}
+              onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))}
+              placeholder="6 haneli kod"
+              aria-label="Authenticator kodu"
+              className="w-full px-3 py-2.5 rounded-lg text-center text-lg tracking-[0.4em] text-white outline-none focus:ring-2 focus:ring-[#C9A84C]/50"
+              style={{ background: '#0B0B11', border: '1px solid #1E1E2E' }}
+            />
+            {error && <p className="text-sm text-red-400" role="alert">{error}</p>}
+            <button
+              type="submit"
+              disabled={submitting || code.length !== 6}
+              className="w-full py-2.5 rounded-lg text-sm font-semibold disabled:opacity-60"
+              style={{ background: '#C9A84C', color: '#0B0B11' }}
+            >
+              {submitting ? 'Doğrulanıyor…' : 'Doğrula'}
+            </button>
+            <button type="button" onClick={() => { setFactorId(null); signOut(); }} className="w-full text-xs text-[#9A9AAA] hover:text-white">
+              Vazgeç, çıkış yap
+            </button>
+          </form>
+        ) : signedInNotAdmin ? (
           <div className="space-y-4">
             <p className="text-sm text-[#F5F0E8]">
               <span className="font-medium">{user.email}</span> hesabının yönetici yetkisi yok.

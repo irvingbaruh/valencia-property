@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/components/providers/AuthProvider';
+import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
 import {
   LayoutDashboard,
@@ -17,6 +18,7 @@ import {
   ChevronRight,
   Home,
   PenSquare,
+  ShieldCheck,
 } from 'lucide-react';
 
 export const ADMIN_BASE = '/valenciaproperty/admin';
@@ -28,6 +30,7 @@ const navItems = [
   { id: 'blog', href: '/blog', icon: PenSquare, label: 'Blog' },
   { id: 'dosyalar', href: '/dosyalar', icon: FileText, label: 'Dosyalar', disabled: true },
   { id: 'bildirimler', href: '/bildirimler', icon: Bell, label: 'Bildirimler', disabled: true },
+  { id: 'guvenlik', href: '/guvenlik', icon: ShieldCheck, label: 'Güvenlik' },
   { id: 'ayarlar', href: '/ayarlar', icon: Settings, label: 'Ayarlar', disabled: true },
 ];
 
@@ -35,6 +38,7 @@ export default function AdminLayout({ children, activeSection = 'dashboard' }) {
   const router = useRouter();
   const { user, profile, loading, isAdmin, signOut } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [aalOk, setAalOk] = useState(false);
 
   useEffect(() => {
     if (!loading && (!user || !isAdmin)) {
@@ -42,12 +46,29 @@ export default function AdminLayout({ children, activeSection = 'dashboard' }) {
     }
   }, [user, loading, isAdmin, router]);
 
+  // If an authenticator is enrolled, the session must have passed the code check
+  useEffect(() => {
+    if (loading || !user || !isAdmin) return;
+    let cancelled = false;
+    supabase.auth.mfa.getAuthenticatorAssuranceLevel().then(({ data }) => {
+      if (cancelled) return;
+      if (data?.nextLevel === 'aal2' && data.currentLevel !== 'aal2') {
+        router.replace(`${ADMIN_BASE}/giris/`);
+      } else {
+        setAalOk(true);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [loading, user, isAdmin, router]);
+
   const handleSignOut = async () => {
     await signOut();
     router.replace(`${ADMIN_BASE}/giris/`);
   };
 
-  if (loading || !user || !isAdmin) {
+  if (loading || !user || !isAdmin || !aalOk) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ background: '#0B0B11' }}>
         <div className="w-10 h-10 border-2 border-[#C9A84C] border-t-transparent rounded-full animate-spin" />
