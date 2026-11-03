@@ -40,10 +40,10 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-5">
               <div className="w-9 h-9 rounded-lg bg-gold flex items-center justify-center">
-                <span className="text-white font-bold text-sm">VP</span>
+                <span className="text-white font-bold text-sm">LL</span>
               </div>
               <div>
-                <span className="font-serif text-lg text-white">Valencia Property</span>
+                <span className="font-serif text-lg text-white">Lock & Loft</span>
               </div>
             </div>
             <p className="text-sm text-white/60 leading-relaxed mb-6 max-w-xs">

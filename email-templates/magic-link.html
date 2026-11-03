@@ -1,0 +1,109 @@
+{{ if and .Data.lang (eq .Data.lang "tr") }}
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>Giriş bağlantınız</title></head>
+<body style="margin:0;padding:0;background:#F4F1EA;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F4F1EA;padding:32px 12px;">
+<tr><td align="center">
+<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#FFFFFF;border-radius:12px;overflow:hidden;">
+<tr><td style="background:#0B0B11;padding:22px 32px;">
+<table role="presentation" cellpadding="0" cellspacing="0"><tr>
+<td style="width:36px;height:36px;background:#C9A84C;border-radius:8px;text-align:center;font:700 14px/36px Arial,Helvetica,sans-serif;color:#0B0B11;">LL</td>
+<td style="padding-left:12px;font:400 20px Georgia,'Times New Roman',serif;color:#FFFFFF;">Lock &amp; Loft</td>
+</tr></table></td></tr>
+<tr><td style="padding:36px 32px 12px 32px;font-family:Arial,Helvetica,sans-serif;color:#1A1A2E;">
+<h1 style="margin:0 0 16px 0;font:400 26px/1.25 Georgia,'Times New Roman',serif;color:#0B0B11;">Giriş bağlantınız</h1>
+<p style="margin:0 0 28px 0;font-size:16px;line-height:1.6;color:#1A1A2E;">Hesabınıza giriş yapmak için aşağıdaki düğmeye tıklayın.</p>
+<table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="background:#C9A84C;border-radius:8px;">
+<a href="{{ .ConfirmationURL }}" style="display:inline-block;padding:14px 28px;font:600 16px Arial,Helvetica,sans-serif;color:#0B0B11;text-decoration:none;">Giriş yap</a>
+</td></tr></table>
+<p style="margin:28px 0 0 0;font-size:14px;line-height:1.6;color:#64748B;">Bu isteği siz yapmadıysanız bu e-postayı yok sayın.</p>
+</td></tr>
+<tr><td style="padding:20px 32px 32px 32px;font-family:Arial,Helvetica,sans-serif;">
+<p style="margin:0 0 6px 0;font-size:12px;line-height:1.5;color:#64748B;">Düğme çalışmazsa bu bağlantıyı tarayıcınıza yapıştırın:</p>
+<p style="margin:0 0 20px 0;font-size:12px;line-height:1.5;word-break:break-all;"><a href="{{ .ConfirmationURL }}" style="color:#64748B;">{{ .ConfirmationURL }}</a></p>
+<p style="margin:0;font-size:12px;color:#94A3B8;border-top:1px solid #E5E7EB;padding-top:16px;">Bu e-posta Lock &amp; Loft tarafından gönderildi.</p>
+</td></tr>
+</table></td></tr></table>
+</body></html>
+{{ else if and .Data.lang (eq .Data.lang "es") }}
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>Su enlace de acceso</title></head>
+<body style="margin:0;padding:0;background:#F4F1EA;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F4F1EA;padding:32px 12px;">
+<tr><td align="center">
+<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#FFFFFF;border-radius:12px;overflow:hidden;">
+<tr><td style="background:#0B0B11;padding:22px 32px;">
+<table role="presentation" cellpadding="0" cellspacing="0"><tr>
+<td style="width:36px;height:36px;background:#C9A84C;border-radius:8px;text-align:center;font:700 14px/36px Arial,Helvetica,sans-serif;color:#0B0B11;">LL</td>
+<td style="padding-left:12px;font:400 20px Georgia,'Times New Roman',serif;color:#FFFFFF;">Lock &amp; Loft</td>
+</tr></table></td></tr>
+<tr><td style="padding:36px 32px 12px 32px;font-family:Arial,Helvetica,sans-serif;color:#1A1A2E;">
+<h1 style="margin:0 0 16px 0;font:400 26px/1.25 Georgia,'Times New Roman',serif;color:#0B0B11;">Su enlace de acceso</h1>
+<p style="margin:0 0 28px 0;font-size:16px;line-height:1.6;color:#1A1A2E;">Haga clic en el botón para acceder a su cuenta.</p>
+<table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="background:#C9A84C;border-radius:8px;">
+<a href="{{ .ConfirmationURL }}" style="display:inline-block;padding:14px 28px;font:600 16px Arial,Helvetica,sans-serif;color:#0B0B11;text-decoration:none;">Acceder</a>
+</td></tr></table>
+<p style="margin:28px 0 0 0;font-size:14px;line-height:1.6;color:#64748B;">Si usted no lo solicitó, ignore este correo.</p>
+</td></tr>
+<tr><td style="padding:20px 32px 32px 32px;font-family:Arial,Helvetica,sans-serif;">
+<p style="margin:0 0 6px 0;font-size:12px;line-height:1.5;color:#64748B;">Si el botón no funciona, pegue este enlace en su navegador:</p>
+<p style="margin:0 0 20px 0;font-size:12px;line-height:1.5;word-break:break-all;"><a href="{{ .ConfirmationURL }}" style="color:#64748B;">{{ .ConfirmationURL }}</a></p>
+<p style="margin:0;font-size:12px;color:#94A3B8;border-top:1px solid #E5E7EB;padding-top:16px;">Este correo ha sido enviado por Lock &amp; Loft.</p>
+</td></tr>
+</table></td></tr></table>
+</body></html>
+{{ else if and .Data.lang (eq .Data.lang "de") }}
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>Ihr Anmeldelink</title></head>
+<body style="margin:0;padding:0;background:#F4F1EA;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F4F1EA;padding:32px 12px;">
+<tr><td align="center">
+<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#FFFFFF;border-radius:12px;overflow:hidden;">
+<tr><td style="background:#0B0B11;padding:22px 32px;">
+<table role="presentation" cellpadding="0" cellspacing="0"><tr>
+<td style="width:36px;height:36px;background:#C9A84C;border-radius:8px;text-align:center;font:700 14px/36px Arial,Helvetica,sans-serif;color:#0B0B11;">LL</td>
+<td style="padding-left:12px;font:400 20px Georgia,'Times New Roman',serif;color:#FFFFFF;">Lock &amp; Loft</td>
+</tr></table></td></tr>
+<tr><td style="padding:36px 32px 12px 32px;font-family:Arial,Helvetica,sans-serif;color:#1A1A2E;">
+<h1 style="margin:0 0 16px 0;font:400 26px/1.25 Georgia,'Times New Roman',serif;color:#0B0B11;">Ihr Anmeldelink</h1>
+<p style="margin:0 0 28px 0;font-size:16px;line-height:1.6;color:#1A1A2E;">Klicken Sie auf die Schaltfläche, um sich in Ihrem Konto anzumelden.</p>
+<table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="background:#C9A84C;border-radius:8px;">
+<a href="{{ .ConfirmationURL }}" style="display:inline-block;padding:14px 28px;font:600 16px Arial,Helvetica,sans-serif;color:#0B0B11;text-decoration:none;">Anmelden</a>
+</td></tr></table>
+<p style="margin:28px 0 0 0;font-size:14px;line-height:1.6;color:#64748B;">Wenn Sie dies nicht angefordert haben, ignorieren Sie diese E-Mail.</p>
+</td></tr>
+<tr><td style="padding:20px 32px 32px 32px;font-family:Arial,Helvetica,sans-serif;">
+<p style="margin:0 0 6px 0;font-size:12px;line-height:1.5;color:#64748B;">Falls die Schaltfläche nicht funktioniert, fügen Sie diesen Link in Ihren Browser ein:</p>
+<p style="margin:0 0 20px 0;font-size:12px;line-height:1.5;word-break:break-all;"><a href="{{ .ConfirmationURL }}" style="color:#64748B;">{{ .ConfirmationURL }}</a></p>
+<p style="margin:0;font-size:12px;color:#94A3B8;border-top:1px solid #E5E7EB;padding-top:16px;">Diese E-Mail wurde von Lock &amp; Loft gesendet.</p>
+</td></tr>
+</table></td></tr></table>
+</body></html>
+{{ else }}
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>Your sign-in link</title></head>
+<body style="margin:0;padding:0;background:#F4F1EA;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F4F1EA;padding:32px 12px;">
+<tr><td align="center">
+<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#FFFFFF;border-radius:12px;overflow:hidden;">
+<tr><td style="background:#0B0B11;padding:22px 32px;">
+<table role="presentation" cellpadding="0" cellspacing="0"><tr>
+<td style="width:36px;height:36px;background:#C9A84C;border-radius:8px;text-align:center;font:700 14px/36px Arial,Helvetica,sans-serif;color:#0B0B11;">LL</td>
+<td style="padding-left:12px;font:400 20px Georgia,'Times New Roman',serif;color:#FFFFFF;">Lock &amp; Loft</td>
+</tr></table></td></tr>
+<tr><td style="padding:36px 32px 12px 32px;font-family:Arial,Helvetica,sans-serif;color:#1A1A2E;">
+<h1 style="margin:0 0 16px 0;font:400 26px/1.25 Georgia,'Times New Roman',serif;color:#0B0B11;">Your sign-in link</h1>
+<p style="margin:0 0 28px 0;font-size:16px;line-height:1.6;color:#1A1A2E;">Click the button below to sign in to your account.</p>
+<table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="background:#C9A84C;border-radius:8px;">
+<a href="{{ .ConfirmationURL }}" style="display:inline-block;padding:14px 28px;font:600 16px Arial,Helvetica,sans-serif;color:#0B0B11;text-decoration:none;">Sign in</a>
+</td></tr></table>
+<p style="margin:28px 0 0 0;font-size:14px;line-height:1.6;color:#64748B;">If you did not request this, ignore this email.</p>
+</td></tr>
+<tr><td style="padding:20px 32px 32px 32px;font-family:Arial,Helvetica,sans-serif;">
+<p style="margin:0 0 6px 0;font-size:12px;line-height:1.5;color:#64748B;">If the button does not work, paste this link into your browser:</p>
+<p style="margin:0 0 20px 0;font-size:12px;line-height:1.5;word-break:break-all;"><a href="{{ .ConfirmationURL }}" style="color:#64748B;">{{ .ConfirmationURL }}</a></p>
+<p style="margin:0;font-size:12px;color:#94A3B8;border-top:1px solid #E5E7EB;padding-top:16px;">This email was sent by Lock &amp; Loft.</p>
+</td></tr>
+</table></td></tr></table>
+</body></html>
+{{ end }}

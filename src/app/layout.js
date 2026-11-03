@@ -1,7 +1,7 @@
 import '../styles/globals.css';
 
 export const metadata = {
-  title: 'Valencia Property',
+  title: 'Lock & Loft',
   description: 'Property investment, decoration, renovation and rental management in Valencia, Spain',
 };
 

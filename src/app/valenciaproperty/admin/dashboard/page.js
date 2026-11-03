@@ -164,7 +164,7 @@ export default function AdminDashboardPage() {
             Dashboard
           </h1>
           <p className="text-sm text-[#9A9AAA] mt-1">
-            Valencia Property yönetim paneli genel görünümü
+            Lock & Loft yönetim paneli genel görünümü
           </p>
         </div>
 

@@ -125,7 +125,7 @@ export default function Header() {
           {/* Logo */}
           <a href={`/${locale}`} className="flex items-center gap-2 group">
             <div className="w-9 h-9 rounded-lg bg-gold flex items-center justify-center">
-              <span className="text-white font-bold text-sm">VP</span>
+              <span className="text-white font-bold text-sm">LL</span>
             </div>
             <div className="flex flex-col">
               <span
@@ -133,7 +133,7 @@ export default function Header() {
                   scrolled ? 'text-dark' : 'text-white'
                 }`}
               >
-                Valencia Property
+                Lock & Loft
               </span>
               <span
                 className={`text-[10px] tracking-widest uppercase transition-colors ${

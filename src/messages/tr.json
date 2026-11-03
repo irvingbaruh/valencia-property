@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Valencia Property — İspanya'da Mülk Yatırımı",
+    "title": "Lock & Loft — İspanya'da Mülk Yatırımı",
     "description": "Valencia'da gayrimenkul yatırımı, dekorasyon, renovasyon ve kira yönetimi hizmetleri"
   },
   "nav": {
@@ -477,7 +477,7 @@
     "glossary": "Sözlük",
     "contact": "İletişim",
     "address": "Valencia, İspanya",
-    "copyright": "© 2026 Valencia Property. Tüm hakları saklıdır.",
+    "copyright": "© 2026 Lock & Loft. Tüm hakları saklıdır.",
     "remax_note": "RE/MAX işbirliği ile hizmet vermekteyiz."
   },
   "interstitials": {
@@ -493,7 +493,7 @@
     "email": "E-posta",
     "password": "Şifre",
     "fullName": "Ad Soyad",
-    "forgotPassword": "Şifremi Unuttum",
+    "forgotPassword": "Şifremi unuttum",
     "noAccount": "Hesabınız yok mu?",
     "haveAccount": "Zaten hesabınız var mı?",
     "orContinueWith": "veya şununla devam edin",
@@ -506,7 +506,19 @@
     "checkEmailDesc": "Hesabınızı doğrulamak için e-postanıza bir bağlantı gönderdik.",
     "errorInvalidCredentials": "E-posta veya şifre hatalı",
     "errorEmailTaken": "Bu e-posta adresi zaten kullanılıyor",
-    "errorGeneric": "Bir hata oluştu, lütfen tekrar deneyin"
+    "errorGeneric": "Bir hata oluştu, lütfen tekrar deneyin",
+    "resetTitle": "Şifrenizi sıfırlayın",
+    "resetSubtitle": "E-posta adresinizi yazın, yeni şifre belirlemeniz için bir bağlantı gönderelim.",
+    "sendResetLink": "Bağlantıyı gönder",
+    "resetSentTitle": "E-postanızı kontrol edin",
+    "resetSentDesc": "Bu adrese kayıtlı bir hesap varsa şifre sıfırlama bağlantısını gönderdik. Gelen kutunuzu ve spam klasörünü kontrol edin.",
+    "backToLogin": "Girişe dön",
+    "newPasswordTitle": "Yeni şifre belirleyin",
+    "newPassword": "Yeni şifre",
+    "savePassword": "Şifreyi kaydet",
+    "passwordUpdated": "Şifreniz güncellendi. Panelinize yönlendiriliyorsunuz.",
+    "linkInvalid": "Bağlantı geçersiz veya süresi dolmuş. Şifre sıfırlamayı yeniden başlatın.",
+    "passwordTooShort": "Şifre en az 8 karakter olmalı."
   },
   "panel": {
     "title": "Üye Paneli",

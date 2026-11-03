@@ -10,9 +10,9 @@ export default function AuthForm() {
   const t = useTranslations('auth');
   const locale = useLocale();
   const router = useRouter();
-  const { signIn, signUp, signInWithGoogle } = useAuth();
+  const { signIn, signUp, signInWithGoogle, resetPassword } = useAuth();
 
-  const [mode, setMode] = useState('login'); // 'login' | 'register' | 'checkEmail'
+  const [mode, setMode] = useState('login'); // 'login' | 'register' | 'checkEmail' | 'forgot' | 'resetSent'
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
@@ -26,7 +26,11 @@ export default function AuthForm() {
     setLoading(true);
 
     try {
-      if (mode === 'login') {
+      if (mode === 'forgot') {
+        const { error: resetError } = await resetPassword(email);
+        if (resetError) setError(t('errorGeneric'));
+        else setMode('resetSent');
+      } else if (mode === 'login') {
         const { error: signInError } = await signIn(email, password);
         if (signInError) {
           if (signInError.message?.includes('Invalid login credentials')) {
@@ -79,6 +83,67 @@ export default function AuthForm() {
           <p className="text-[var(--color-charcoal)] leading-relaxed">
             {t('checkEmailDesc')}
           </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (mode === 'resetSent') {
+    return (
+      <div className="min-h-screen flex items-center justify-center px-4 bg-[var(--color-soft)]">
+        <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8 text-center">
+          <div className="w-16 h-16 rounded-full bg-[var(--color-gold)]/10 flex items-center justify-center mx-auto mb-6">
+            <Mail className="w-8 h-8 text-[var(--color-gold)]" />
+          </div>
+          <h1 className="text-2xl font-serif text-[var(--color-dark)] mb-3">{t('resetSentTitle')}</h1>
+          <p className="text-[var(--color-charcoal)] leading-relaxed mb-6">{t('resetSentDesc')}</p>
+          <button onClick={() => { setMode('login'); setError(''); }} className="text-[var(--color-gold)] font-semibold hover:underline">
+            {t('backToLogin')}
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (mode === 'forgot') {
+    return (
+      <div className="min-h-screen flex items-center justify-center px-4 py-24 bg-[var(--color-soft)]">
+        <div className="w-full max-w-md">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-serif text-[var(--color-dark)] mb-2">{t('resetTitle')}</h1>
+            <p className="text-[var(--color-charcoal)]">{t('resetSubtitle')}</p>
+          </div>
+          <div className="bg-white rounded-2xl shadow-lg p-8">
+            {error && <div className="bg-red-50 text-red-600 text-sm rounded-lg p-3 mb-4">{error}</div>}
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="reset-email" className="block text-sm font-medium text-[var(--color-charcoal)] mb-1.5">{t('email')}</label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    id="reset-email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="w-full pl-11 pr-4 py-3 border border-gray-200 rounded-xl focus:border-[var(--color-gold)] focus:ring-1 focus:ring-[var(--color-gold)] outline-none transition-colors"
+                  />
+                </div>
+              </div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full py-3 bg-[var(--color-gold)] text-white font-semibold rounded-xl hover:bg-[var(--color-gold)]/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {loading ? '...' : t('sendResetLink')}
+              </button>
+            </form>
+            <p className="text-center text-sm mt-6">
+              <button onClick={() => { setMode('login'); setError(''); }} className="text-[var(--color-gold)] font-semibold hover:underline">
+                {t('backToLogin')}
+              </button>
+            </p>
+          </div>
         </div>
       </div>
     );
@@ -186,6 +251,18 @@ export default function AuthForm() {
                 </button>
               </div>
             </div>
+
+            {mode === 'login' && (
+              <div className="text-right -mt-1">
+                <button
+                  type="button"
+                  onClick={() => { setMode('forgot'); setError(''); }}
+                  className="text-sm text-[var(--color-charcoal)] hover:text-[var(--color-gold)] hover:underline"
+                >
+                  {t('forgotPassword')}
+                </button>
+              </div>
+            )}
 
             <button
               type="submit"

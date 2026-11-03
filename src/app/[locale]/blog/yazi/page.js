@@ -109,7 +109,7 @@ function BlogDetailContent() {
       {/* Breadcrumb */}
       <div className="bg-white border-b border-border">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center gap-2 text-sm text-text-muted">
-          <a href={`/${locale}/`} className="hover:text-gold transition-colors">Valencia Property</a>
+          <a href={`/${locale}/`} className="hover:text-gold transition-colors">Lock & Loft</a>
           <ChevronRight size={14} />
           <a href={`/${locale}/blog/`} className="hover:text-gold transition-colors">{t.blog}</a>
           <ChevronRight size={14} />

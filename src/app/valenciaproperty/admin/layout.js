@@ -1,7 +1,7 @@
 import { AuthProvider } from '@/components/providers/AuthProvider';
 
 export const metadata = {
-  title: 'Valencia Property — Yönetim',
+  title: 'Lock & Loft — Yönetim',
   robots: { index: false, follow: false },
 };
 

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Valencia Property — Inversión Inmobiliaria en España",
+    "title": "Lock & Loft — Inversión Inmobiliaria en España",
     "description": "Servicios de inversión inmobiliaria, decoración, renovación y gestión de alquileres en Valencia"
   },
   "nav": {
@@ -477,7 +477,7 @@
     "glossary": "Glosario",
     "contact": "Contacto",
     "address": "Valencia, España",
-    "copyright": "© 2026 Valencia Property. Todos los derechos reservados.",
+    "copyright": "© 2026 Lock & Loft. Todos los derechos reservados.",
     "remax_note": "Servicio en colaboración con RE/MAX."
   },
   "interstitials": {
@@ -493,7 +493,7 @@
     "email": "Correo electrónico",
     "password": "Contraseña",
     "fullName": "Nombre completo",
-    "forgotPassword": "He olvidado mi contraseña",
+    "forgotPassword": "¿Olvidó su contraseña?",
     "noAccount": "¿No tienes una cuenta?",
     "haveAccount": "¿Ya tienes una cuenta?",
     "orContinueWith": "o continuar con",
@@ -506,7 +506,19 @@
     "checkEmailDesc": "Hemos enviado un enlace de verificación a tu correo.",
     "errorInvalidCredentials": "Correo o contraseña incorrectos",
     "errorEmailTaken": "Este correo ya está registrado",
-    "errorGeneric": "Ha ocurrido un error, inténtalo de nuevo"
+    "errorGeneric": "Ha ocurrido un error, inténtalo de nuevo",
+    "resetTitle": "Restablezca su contraseña",
+    "resetSubtitle": "Escriba su correo y le enviaremos un enlace para crear una nueva contraseña.",
+    "sendResetLink": "Enviar enlace",
+    "resetSentTitle": "Revise su correo",
+    "resetSentDesc": "Si existe una cuenta con esta dirección, hemos enviado un enlace para restablecer la contraseña. Revise su bandeja de entrada y el spam.",
+    "backToLogin": "Volver a iniciar sesión",
+    "newPasswordTitle": "Cree una nueva contraseña",
+    "newPassword": "Nueva contraseña",
+    "savePassword": "Guardar contraseña",
+    "passwordUpdated": "Su contraseña se ha actualizado. Le llevamos a su cuenta.",
+    "linkInvalid": "El enlace no es válido o ha caducado. Inicie de nuevo el restablecimiento.",
+    "passwordTooShort": "La contraseña debe tener al menos 8 caracteres."
   },
   "panel": {
     "title": "Panel de Miembro",

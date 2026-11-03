@@ -11,6 +11,7 @@ const AuthContext = createContext({
   signUp: async () => {},
   signIn: async () => {},
   signInWithGoogle: async () => {},
+  resetPassword: async () => {},
   signOut: async () => {},
   updateProfile: async () => {},
 });
@@ -64,12 +65,20 @@ export function AuthProvider({ children }) {
     return () => subscription.unsubscribe();
   }, []);
 
+  // First path segment is the site language (/tr/, /en/, ...). The e-mail templates read it from user data.
+  const currentLang = () => {
+    const seg = typeof window !== 'undefined' ? window.location.pathname.split('/')[1] : '';
+    return ['tr', 'es', 'en', 'de'].includes(seg) ? seg : 'en';
+  };
+
   const signUp = async (email, password, fullName) => {
+    const lang = currentLang();
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        data: { full_name: fullName },
+        data: { full_name: fullName, lang },
+        emailRedirectTo: typeof window !== 'undefined' ? `${window.location.origin}/${lang}/panel/` : undefined,
       },
     });
     return { data, error };
@@ -91,6 +100,14 @@ export function AuthProvider({ children }) {
           ? `${window.location.origin}/${document.documentElement.lang || 'tr'}/panel`
           : undefined,
       },
+    });
+    return { data, error };
+  };
+
+  const resetPassword = async (email) => {
+    const lang = currentLang();
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/${lang}/sifre-yenile/`,
     });
     return { data, error };
   };
@@ -129,6 +146,7 @@ export function AuthProvider({ children }) {
         signUp,
         signIn,
         signInWithGoogle,
+        resetPassword,
         signOut,
         updateProfile,
       }}

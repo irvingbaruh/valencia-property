@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Valencia Property — Real Estate Investment in Spain",
+    "title": "Lock & Loft — Real Estate Investment in Spain",
     "description": "Property investment, decoration, renovation and rental management services in Valencia"
   },
   "nav": {
@@ -477,7 +477,7 @@
     "glossary": "Glossary",
     "contact": "Contact",
     "address": "Valencia, Spain",
-    "copyright": "© 2026 Valencia Property. All rights reserved.",
+    "copyright": "© 2026 Lock & Loft. All rights reserved.",
     "remax_note": "Serving in partnership with RE/MAX."
   },
   "interstitials": {
@@ -506,7 +506,19 @@
     "checkEmailDesc": "We've sent a verification link to your email.",
     "errorInvalidCredentials": "Invalid email or password",
     "errorEmailTaken": "This email is already registered",
-    "errorGeneric": "An error occurred, please try again"
+    "errorGeneric": "An error occurred, please try again",
+    "resetTitle": "Reset your password",
+    "resetSubtitle": "Enter your email and we will send you a link to set a new password.",
+    "sendResetLink": "Send link",
+    "resetSentTitle": "Check your email",
+    "resetSentDesc": "If an account exists for this address, we have sent a password reset link. Check your inbox and spam folder.",
+    "backToLogin": "Back to sign in",
+    "newPasswordTitle": "Set a new password",
+    "newPassword": "New password",
+    "savePassword": "Save password",
+    "passwordUpdated": "Your password has been updated. Taking you to your account.",
+    "linkInvalid": "This link is invalid or has expired. Start the password reset again.",
+    "passwordTooShort": "Password must be at least 8 characters."
   },
   "panel": {
     "title": "Member Panel",

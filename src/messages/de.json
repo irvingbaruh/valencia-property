@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Valencia Property — Immobilieninvestition in Spanien",
+    "title": "Lock & Loft — Immobilieninvestition in Spanien",
     "description": "Immobilieninvestition, Dekoration, Renovierung und Mietverwaltung in Valencia"
   },
   "nav": {
@@ -477,7 +477,7 @@
     "glossary": "Glossar",
     "contact": "Kontakt",
     "address": "Valencia, Spanien",
-    "copyright": "© 2026 Valencia Property. Alle Rechte vorbehalten.",
+    "copyright": "© 2026 Lock & Loft. Alle Rechte vorbehalten.",
     "remax_note": "Service in Partnerschaft mit RE/MAX."
   },
   "interstitials": {
@@ -506,7 +506,19 @@
     "checkEmailDesc": "Wir haben Ihnen einen Bestätigungslink per E-Mail gesendet.",
     "errorInvalidCredentials": "E-Mail oder Passwort ungültig",
     "errorEmailTaken": "Diese E-Mail-Adresse ist bereits registriert",
-    "errorGeneric": "Ein Fehler ist aufgetreten, bitte versuchen Sie es erneut"
+    "errorGeneric": "Ein Fehler ist aufgetreten, bitte versuchen Sie es erneut",
+    "resetTitle": "Passwort zurücksetzen",
+    "resetSubtitle": "Geben Sie Ihre E-Mail-Adresse ein, wir senden Ihnen einen Link zum Festlegen eines neuen Passworts.",
+    "sendResetLink": "Link senden",
+    "resetSentTitle": "Prüfen Sie Ihr Postfach",
+    "resetSentDesc": "Falls zu dieser Adresse ein Konto besteht, haben wir einen Link zum Zurücksetzen gesendet. Prüfen Sie Posteingang und Spam-Ordner.",
+    "backToLogin": "Zurück zur Anmeldung",
+    "newPasswordTitle": "Neues Passwort festlegen",
+    "newPassword": "Neues Passwort",
+    "savePassword": "Passwort speichern",
+    "passwordUpdated": "Ihr Passwort wurde aktualisiert. Sie werden zu Ihrem Konto weitergeleitet.",
+    "linkInvalid": "Der Link ist ungültig oder abgelaufen. Starten Sie das Zurücksetzen erneut.",
+    "passwordTooShort": "Das Passwort muss mindestens 8 Zeichen haben."
   },
   "panel": {
     "title": "Mitgliederbereich",

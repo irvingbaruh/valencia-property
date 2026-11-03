@@ -68,11 +68,11 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-sm rounded-2xl p-8" style={{ background: '#151521', border: '1px solid #1E1E2E' }}>
         <div className="flex items-center gap-3 mb-8">
           <div className="w-10 h-10 rounded-lg flex items-center justify-center text-white text-sm font-bold" style={{ background: '#DC1C2E' }}>
-            VP
+            LL
           </div>
           <div>
             <h1 className="text-lg font-semibold text-white">Yönetim Paneli</h1>
-            <p className="text-xs text-[#9A9AAA]">Valencia Property</p>
+            <p className="text-xs text-[#9A9AAA]">Lock & Loft</p>
           </div>
         </div>
 

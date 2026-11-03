@@ -94,7 +94,7 @@ export default function AdminLayout({ children, activeSection = 'dashboard' }) {
               className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold"
               style={{ background: '#DC1C2E' }}
             >
-              VP
+              LL
             </div>
             <span className="font-semibold text-sm tracking-wide text-white">ADMIN PANEL</span>
           </Link>
