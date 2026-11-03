@@ -9,6 +9,7 @@ import { supabase } from '@/lib/supabase';
 import { uploadDocument, openDocument, DOC_ACCEPT } from '@/lib/documents';
 import { User, Heart, Settings, LogOut, Trash2, MapPin, BedDouble, Maximize2, Phone, Globe, Save, Check, Flag, FileCheck, MessageCircle, Shield, Briefcase, Clock, CheckCircle2, ArrowRight, ChevronRight, Bell, FileText } from 'lucide-react';
 import Link from 'next/link';
+import { localePath } from '@/lib/routes';
 
 // Same static property data used across the site
 const allProperties = [
@@ -455,7 +456,7 @@ export default function PanelContent() {
   // Redirect if not logged in
   useEffect(() => {
     if (!loading && !user) {
-      router.push(`/${locale}/giris`);
+      router.push(localePath(locale, 'giris'));
     }
   }, [user, loading, locale, router]);
 
@@ -598,7 +599,7 @@ export default function PanelContent() {
                 <h3 className="text-lg font-serif text-[var(--color-dark)] mb-2">{t('noFavorites')}</h3>
                 <p className="text-[var(--color-charcoal)] mb-6">{t('noFavoritesDesc')}</p>
                 <Link
-                  href={`/${locale}/mulkler`}
+                  href={localePath(locale, 'mulkler')}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-gold)] text-white rounded-xl font-medium hover:bg-[var(--color-gold)]/90 transition-colors"
                 >
                   {t('browseMulkler')}

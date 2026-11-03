@@ -3,6 +3,7 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { ArrowRight, Phone } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+import { localePath } from '@/lib/routes';
 
 export default function CTASection() {
   const t = useTranslations('cta_section');
@@ -38,14 +39,14 @@ export default function CTASection() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href={`/${locale}/hizmetler/#consultation-form`}
+              href={`${localePath(locale, 'hizmetler', `#consultation-form`)}`}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold text-dark font-semibold rounded-xl hover:bg-gold-hover hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-gold group text-lg"
             >
               {t('button')}
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-200" />
             </a>
             <a
-              href="tel:+34600000000"
+              href="tel:+34656738556"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white rounded-xl hover:bg-white/10 hover:border-white/30 transition-all duration-200 text-lg"
             >
               <Phone size={18} />

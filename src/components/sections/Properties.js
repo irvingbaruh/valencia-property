@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin, BedDouble, Maximize2, ArrowRight } from 'lucide-react';
 import { useRef } from 'react';
 import FavoriteButton from '@/components/ui/FavoriteButton';
+import { localePath } from '@/lib/routes';
 
 const sampleProperties = [
   {
@@ -181,7 +182,7 @@ export default function Properties() {
           className="text-center mt-16"
         >
           <a
-            href={`/${locale}/mulkler/`}
+            href={localePath(locale, 'mulkler')}
             className="inline-flex items-center gap-3 px-8 py-4 bg-gold text-dark font-semibold rounded-xl hover:bg-gold-hover transition-all duration-300 group"
           >
             {t('view_all')}

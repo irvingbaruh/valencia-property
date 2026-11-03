@@ -4,6 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
+import { localePath } from '@/lib/routes';
 
 /*
  * Cinematic Hero with Photo-Mosaic Scroll-Zoom
@@ -121,7 +122,7 @@ export default function Hero() {
             className="flex flex-col gap-3 w-full max-w-xs"
           >
             <a
-              href={`/${locale}/hizmetler/#consultation-form`}
+              href={`${localePath(locale, 'hizmetler', `#consultation-form`)}`}
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gold text-dark font-semibold rounded-xl hover:bg-gold-hover active:scale-[0.98] transition-all duration-200 shadow-gold group"
             >
               {t('cta_primary')}
@@ -299,7 +300,7 @@ export default function Hero() {
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <a
-                href={`/${locale}/hizmetler/#consultation-form`}
+                href={`${localePath(locale, 'hizmetler', `#consultation-form`)}`}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold text-dark font-semibold rounded-xl hover:bg-gold-hover hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-gold group"
               >
                 {t('cta_primary')}

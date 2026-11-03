@@ -6,6 +6,7 @@ import { Calculator, TrendingUp, Wallet, ArrowRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import { useRoiData, computeROI } from '@/lib/roi';
 import { roiText } from '@/lib/roiText';
+import { localePath } from '@/lib/routes';
 
 export default function ROICalculator() {
   const t = useTranslations('roi');
@@ -99,7 +100,7 @@ export default function ROICalculator() {
               </p>
 
               <a
-                href={`/${locale}/roi-hesaplama/`}
+                href={localePath(locale, 'roi-hesaplama')}
                 className="mt-6 w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-gold text-dark font-semibold rounded-xl hover:bg-gold-hover transition-colors duration-200 group"
               >
                 {tx.simpleCta}

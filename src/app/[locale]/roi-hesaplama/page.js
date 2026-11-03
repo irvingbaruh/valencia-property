@@ -3,6 +3,7 @@ import { ArrowRight, Newspaper } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import DetailedROICalculator from '@/components/sections/DetailedROICalculator';
 import LiveExchangeRates from '@/components/sections/LiveExchangeRates';
+import { localePath } from '@/lib/routes';
 
 const newsLinks = [
   { name: 'Idealista News', url: 'https://www.idealista.com/news/', desc: 'İspanya emlak piyasası haberleri ve fiyat analizleri' },
@@ -78,7 +79,7 @@ export default async function ROIPage({ params }) {
           <h2 className="text-2xl font-serif text-white mb-2">{t('ctaTitle')}</h2>
           <p className="text-white/70 mb-7 max-w-md mx-auto">{t('ctaSubtitle')}</p>
           <a
-            href={`/${locale}/hizmetler/#consultation-form`}
+            href={`${localePath(locale, 'hizmetler', `#consultation-form`)}`}
             className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gold text-dark font-semibold rounded-xl hover:bg-gold-hover active:scale-[0.98] transition-all duration-200 shadow-gold group"
           >
             {t('ctaButton')}

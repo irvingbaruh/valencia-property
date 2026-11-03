@@ -4,6 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import Logo from '@/components/brand/Logo';
 import { MapPin, Phone, Mail } from 'lucide-react';
+import { localePath } from '@/lib/routes';
 
 export default function Footer() {
   const t = useTranslations('footer');
@@ -23,7 +24,7 @@ export default function Footer() {
       title: t('services_title'),
       links: [
         { label: t('resources'), href: `/${locale}/blog` },
-        { label: t('roi_calc'), href: `/${locale}/roi-hesaplama/` },
+        { label: t('roi_calc'), href: localePath(locale, 'roi-hesaplama') },
         { label: t('faq'), href: `/${locale}/faq` },
         { label: t('glossary'), href: `/${locale}/glossary` },
       ],
@@ -50,8 +51,8 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <Phone size={15} className="text-gold shrink-0" />
-                <a href="tel:+34600000000" className="hover:text-gold transition-colors">
-                  +34 600 000 000
+                <a href="tel:+34656738556" className="hover:text-gold transition-colors">
+                  +34 656 738 556
                 </a>
               </div>
               <div className="flex items-center gap-2">

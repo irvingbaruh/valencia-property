@@ -5,9 +5,9 @@ import ContactForm from '@/components/forms/ContactForm';
 
 // NOTE: placeholder contact details — swap in the real phone/email/WhatsApp
 // number once provided.
-const PLACEHOLDER_PHONE = '+34 600 000 000';
+const PLACEHOLDER_PHONE = '+34 656 738 556';
 const PLACEHOLDER_EMAIL = 'info@lockandloft.com';
-const PLACEHOLDER_WHATSAPP = '34600000000'; // wa.me format, no "+" or spaces
+const PLACEHOLDER_WHATSAPP = '34656738556'; // wa.me format, no "+" or spaces
 
 export default async function IletisimPage({ params }) {
   const { locale } = await params;

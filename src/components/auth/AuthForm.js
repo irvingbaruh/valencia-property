@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { Mail, Lock, User, Eye, EyeOff } from 'lucide-react';
+import { localePath } from '@/lib/routes';
 
 export default function AuthForm() {
   const t = useTranslations('auth');
@@ -39,7 +40,7 @@ export default function AuthForm() {
             setError(t('errorGeneric'));
           }
         } else {
-          router.push(`/${locale}/panel`);
+          router.push(localePath(locale, 'panel'));
         }
       } else {
         const { data, error: signUpError } = await signUp(email, password, fullName);

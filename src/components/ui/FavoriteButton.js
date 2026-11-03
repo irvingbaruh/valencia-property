@@ -5,6 +5,7 @@ import { Heart } from 'lucide-react';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { addFavorite, removeFavorite, isFavorited } from '@/lib/favorites';
 import { useLocale } from 'next-intl';
+import { localePath } from '@/lib/routes';
 
 export default function FavoriteButton({ propertyId, className = '' }) {
   const { user } = useAuth();
@@ -26,7 +27,7 @@ export default function FavoriteButton({ propertyId, className = '' }) {
 
     if (!user) {
       // Redirect to login
-      window.location.href = `/${locale}/giris/`;
+      window.location.href = localePath(locale, 'giris');
       return;
     }
 

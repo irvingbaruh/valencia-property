@@ -2,6 +2,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { MapPin, BedDouble, Maximize2, ArrowRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import FavoriteButton from '@/components/ui/FavoriteButton';
+import { localePath } from '@/lib/routes';
 
 const properties = [
   { id: 1, title: 'Eixample Dairesi', location: 'Eixample, Valencia', price: '€185.000', rooms: 3, sqm: 95, badge: 'new', image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80&auto=format' },
@@ -94,7 +95,7 @@ export default async function MulklerPage({ params }) {
           <h2 className="text-2xl font-serif text-white mb-2">{m('ctaTitle')}</h2>
           <p className="text-white/70 mb-7 max-w-md mx-auto">{m('ctaSubtitle')}</p>
           <a
-            href={`/${locale}/hizmetler/#consultation-form`}
+            href={`${localePath(locale, 'hizmetler', `#consultation-form`)}`}
             className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gold text-dark font-semibold rounded-xl hover:bg-gold-hover active:scale-[0.98] transition-all duration-200 shadow-gold group"
           >
             {m('ctaButton')}

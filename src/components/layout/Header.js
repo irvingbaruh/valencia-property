@@ -6,6 +6,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { Menu, X, Globe, ChevronDown, UserCircle } from 'lucide-react';
 import { useAuth } from '@/components/providers/AuthProvider';
 import Logo from '@/components/brand/Logo';
+import { localePath, switchPathLocale } from '@/lib/routes';
 
 const localeLabels = {
   tr: 'Türkçe',
@@ -61,11 +62,9 @@ export default function Header() {
   }, [pathname]);
 
   const switchLocale = (newLocale) => {
-    const segments = pathname.split('/');
-    segments[1] = newLocale;
     // remember the choice so the bare domain opens in this language next time
     document.cookie = `vp_lang=${newLocale}; path=/; max-age=31536000; SameSite=Lax`;
-    router.push(segments.join('/'));
+    router.push(switchPathLocale(pathname, newLocale));
     setLangOpen(false);
   };
 
@@ -80,7 +79,7 @@ export default function Header() {
 
   const sectionHref = (anchor, dedicatedPath) => {
     if (isHome) return `#${anchor}`;
-    return dedicatedPath ? `/${locale}/${dedicatedPath}/` : `/${locale}#${anchor}`;
+    return dedicatedPath ? localePath(locale, dedicatedPath) : `/${locale}#${anchor}`;
   };
 
   const handleNavClick = (e, href) => {
@@ -188,7 +187,7 @@ export default function Header() {
             {/* Auth Button */}
             {!authLoading && (
               <a
-                href={user ? `/${locale}/panel/` : `/${locale}/giris/`}
+                href={user ? localePath(locale, 'panel') : localePath(locale, 'giris')}
                 className={`hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
                   'text-white/80 hover:text-gold hover:bg-white/5'
                 }`}
@@ -200,7 +199,7 @@ export default function Header() {
 
             {/* CTA Button */}
             <a
-              href={`/${locale}/hizmetler/#consultation-form`}
+              href={`${localePath(locale, 'hizmetler', `#consultation-form`)}`}
               className="hidden md:inline-flex items-center px-5 py-2.5 bg-gold text-dark text-sm font-semibold rounded-lg hover:bg-gold-hover transition-colors shadow-gold"
             >
               {t('cta')}
@@ -236,7 +235,7 @@ export default function Header() {
             {/* Auth link in mobile menu */}
             {!authLoading && (
               <a
-                href={user ? `/${locale}/panel/` : `/${locale}/giris/`}
+                href={user ? localePath(locale, 'panel') : localePath(locale, 'giris')}
                 className="flex items-center gap-2 px-3 py-2.5 text-white/80 hover:text-gold hover:bg-white/5 rounded-md text-sm font-medium transition-colors"
               >
                 <UserCircle size={18} />
@@ -245,7 +244,7 @@ export default function Header() {
             )}
             <div className="pt-3 border-t border-white/10 mt-3">
               <a
-                href={`/${locale}/hizmetler/#consultation-form`}
+                href={`${localePath(locale, 'hizmetler', `#consultation-form`)}`}
                 className="block w-full text-center px-5 py-3 bg-gold text-dark font-semibold rounded-lg hover:bg-gold-hover transition-colors"
               >
                 {t('cta')}

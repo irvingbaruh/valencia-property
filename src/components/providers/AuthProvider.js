@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
+import { localePath } from '@/lib/routes';
 
 const AuthContext = createContext({
   user: null,
@@ -78,7 +79,7 @@ export function AuthProvider({ children }) {
       password,
       options: {
         data: { full_name: fullName, lang },
-        emailRedirectTo: typeof window !== 'undefined' ? `${window.location.origin}/${lang}/panel/` : undefined,
+        emailRedirectTo: typeof window !== 'undefined' ? `${window.location.origin}${localePath(lang, 'panel')}` : undefined,
       },
     });
     return { data, error };
@@ -107,7 +108,7 @@ export function AuthProvider({ children }) {
   const resetPassword = async (email) => {
     const lang = currentLang();
     const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/${lang}/sifre-yenile/`,
+      redirectTo: `${window.location.origin}${localePath(lang, 'sifre-yenile')}`,
     });
     return { data, error };
   };

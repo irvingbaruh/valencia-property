@@ -73,6 +73,22 @@ function pickLocale(req) {
   return 'en';
 }
 
+// Localized page URLs (keep in sync with src/lib/routes.js). The export only has
+// the Turkish folder names, so /es/contacto/ is served from /es/iletisim/.
+const ROUTES = {
+  iletisim: { es: 'contacto', en: 'contact', de: 'kontakt' },
+  hizmetler: { es: 'servicios', en: 'services', de: 'leistungen' },
+  mulkler: { es: 'propiedades', en: 'properties', de: 'immobilien' },
+  'roi-hesaplama': { es: 'calculadora-roi', en: 'roi-calculator', de: 'rendite-rechner' },
+  giris: { es: 'acceder', en: 'login', de: 'anmelden' },
+  panel: { es: 'mi-cuenta', en: 'account', de: 'mein-konto' },
+  'sifre-yenile': { es: 'restablecer-contrasena', en: 'reset-password', de: 'passwort-zuruecksetzen' },
+};
+const SLUG_TO_CANONICAL = {};
+for (const [canon, byLocale] of Object.entries(ROUTES)) {
+  for (const [loc, slug] of Object.entries(byLocale)) SLUG_TO_CANONICAL[`${loc}/${slug}`] = canon;
+}
+
 function getMime(filePath) {
   return MIME_TYPES[path.extname(filePath).toLowerCase()] || 'application/octet-stream';
 }
@@ -105,6 +121,23 @@ const server = http.createServer((req, res) => {
     });
     res.end();
     return;
+  }
+
+  // Localized slug -> real folder; the Turkish folder name in another language -> redirect to the localized URL
+  {
+    const m = /^\/(es|en|de)\/([^/]+)(\/.*)?$/.exec(urlPath);
+    if (m) {
+      const [, loc, seg, rest = ''] = m;
+      const canon = SLUG_TO_CANONICAL[`${loc}/${seg}`];
+      if (canon) {
+        urlPath = `/${loc}/${canon}${rest}`;
+      } else if (ROUTES[seg] && ROUTES[seg][loc] && !path.extname(urlPath)) {
+        const qs = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+        res.writeHead(301, { Location: `/${loc}/${ROUTES[seg][loc]}${rest}${qs}` });
+        res.end();
+        return;
+      }
+    }
   }
 
   // Try exact file

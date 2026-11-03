@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { MapPin, BedDouble, Maximize2, ArrowRight } from 'lucide-react';
 import FavoriteButton from '@/components/ui/FavoriteButton';
+import { localePath } from '@/lib/routes';
 
 const listings = [
   {
@@ -201,7 +202,7 @@ export default function NewListings() {
             whileHover={{ scale: 1.02 }}
           >
             <a
-              href={`/${locale}/mulkler/`}
+              href={localePath(locale, 'mulkler')}
               className="bg-white/80 backdrop-blur rounded-2xl border-2 border-dashed border-gold/30 hover:border-gold/60 transition-colors duration-300 w-full h-full min-h-[540px] flex flex-col items-center justify-center gap-4 cursor-pointer group"
             >
               <div className="w-14 h-14 rounded-full bg-gold-light group-hover:bg-gold transition-colors duration-300 flex items-center justify-center">

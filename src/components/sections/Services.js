@@ -5,6 +5,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Scale, Paintbrush, Hammer, KeyRound, Home, ChevronRight, CheckCircle2, ArrowRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+import { localePath } from '@/lib/routes';
 
 const services = [
   {
@@ -180,7 +181,7 @@ function ServiceCard({ service, index, isExpanded, onToggle, t, locale }) {
                     onClick={(e) => e.stopPropagation()}
                   >
                     <a
-                      href={`/${locale}/hizmetler/${service.slug}/`}
+                      href={`${localePath(locale, 'hizmetler', `${service.slug}/`)}`}
                       className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white text-dark text-sm font-semibold rounded-lg hover:bg-gold-light transition-colors duration-200 group/btn"
                     >
                       {t('viewServicePage')}
@@ -254,7 +255,7 @@ export default function Services() {
 
         <ScrollReveal className="text-center mt-12">
           <a
-            href={`/${locale}/hizmetler/`}
+            href={localePath(locale, 'hizmetler')}
             className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-gold/40 text-dark font-semibold rounded-xl hover:bg-gold hover:text-dark hover:border-gold transition-all duration-200 group"
           >
             {t('viewAllServices')}

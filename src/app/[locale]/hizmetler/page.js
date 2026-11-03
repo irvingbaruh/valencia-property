@@ -2,6 +2,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Search, Scale, Paintbrush, Hammer, KeyRound, Home, ArrowRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import ConsultationForm from '@/components/forms/ConsultationForm';
+import { localePath } from '@/lib/routes';
 
 const services = [
   { key: 'search', slug: 'mulk-arama', icon: Search },
@@ -47,7 +48,7 @@ export default async function HizmetlerPage({ params }) {
                   <h2 className="font-serif text-xl text-dark mb-2">{t(`${service.key}.title`)}</h2>
                   <p className="text-sm text-text-muted leading-relaxed mb-5 flex-1">{t(`${service.key}.desc`)}</p>
                   <a
-                    href={`/${locale}/hizmetler/${service.slug}/`}
+                    href={`${localePath(locale, 'hizmetler', `${service.slug}/`)}`}
                     className="inline-flex items-center gap-1.5 text-sm text-gold font-semibold hover:gap-2.5 transition-all duration-200 w-fit"
                   >
                     {p('readMore')}

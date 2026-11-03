@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { supabase } from '@/lib/supabase';
 import { Lock } from 'lucide-react';
+import { localePath } from '@/lib/routes';
 
 // Landing page of the reset link in the "forgot password" e-mail.
 // Supabase signs the visitor in with a short-lived recovery session; here they choose the new password.
@@ -47,7 +48,7 @@ export default function NewPasswordForm() {
     setSaving(false);
     if (err) return setError(t('errorGeneric'));
     setDone(true);
-    setTimeout(() => router.push(`/${locale}/panel/`), 1500);
+    setTimeout(() => router.push(localePath(locale, 'panel')), 1500);
   };
 
   return (
@@ -60,7 +61,7 @@ export default function NewPasswordForm() {
         ) : invalid && !ready ? (
           <div className="text-center space-y-4">
             <p className="text-[var(--color-charcoal)]">{t('linkInvalid')}</p>
-            <a href={`/${locale}/giris/`} className="text-[var(--color-gold)] font-semibold hover:underline">
+            <a href={localePath(locale, 'giris')} className="text-[var(--color-gold)] font-semibold hover:underline">
               {t('backToLogin')}
             </a>
           </div>
