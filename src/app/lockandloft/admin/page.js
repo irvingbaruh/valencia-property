@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 export default function AdminIndex() {
   const router = useRouter();
   useEffect(() => {
-    router.replace('/valenciaproperty/admin/dashboard/');
+    router.replace('/lockandloft/admin/dashboard/');
   }, [router]);
   return null;
 }

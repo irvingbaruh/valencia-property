@@ -17,7 +17,7 @@ function Choice({ options, value, onChange }) {
           type="button"
           onClick={() => onChange(opt.value)}
           className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
-            value === opt.value ? 'bg-gold text-white shadow-gold' : 'bg-soft text-text-secondary hover:bg-border'
+            value === opt.value ? 'bg-gold text-dark shadow-gold' : 'bg-soft text-text-secondary hover:bg-border'
           }`}
         >
           {opt.label}

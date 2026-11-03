@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { supabase } from '@/lib/supabase';
+import Logo from '@/components/brand/Logo';
 import { Lock, Mail, LogOut, ShieldCheck } from 'lucide-react';
 
 export default function AdminLoginPage() {
@@ -27,7 +28,7 @@ export default function AdminLoginPage() {
         const { data: f } = await supabase.auth.mfa.listFactors();
         if (!cancelled) setFactorId(f?.totp?.[0]?.id || null);
       } else {
-        router.replace('/valenciaproperty/admin/dashboard/');
+        router.replace('/lockandloft/admin/dashboard/');
       }
     })();
     return () => {
@@ -49,7 +50,7 @@ export default function AdminLoginPage() {
       setCode('');
       return;
     }
-    router.replace('/valenciaproperty/admin/dashboard/');
+    router.replace('/lockandloft/admin/dashboard/');
   };
 
   const handleSubmit = async (e) => {
@@ -67,9 +68,7 @@ export default function AdminLoginPage() {
     <div className="min-h-screen flex items-center justify-center px-4" style={{ background: '#0B0B11', color: '#F5F0E8' }}>
       <div className="w-full max-w-sm rounded-2xl p-8" style={{ background: '#151521', border: '1px solid #1E1E2E' }}>
         <div className="flex items-center gap-3 mb-8">
-          <div className="w-10 h-10 rounded-lg flex items-center justify-center text-white text-sm font-bold" style={{ background: '#DC1C2E' }}>
-            LL
-          </div>
+          <Logo icon variant="dark" className="h-11 w-auto" />
           <div>
             <h1 className="text-lg font-semibold text-white">Yönetim Paneli</h1>
             <p className="text-xs text-[#9A9AAA]">Lock & Loft</p>

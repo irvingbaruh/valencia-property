@@ -46,7 +46,7 @@ export default function Stats() {
 
   return (
     <section className="relative -mt-12 z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <ScrollReveal className="bg-white rounded-2xl shadow-card-hover border border-border p-6 md:p-8">
+      <ScrollReveal className="bg-dark-mid rounded-2xl shadow-card-hover border border-gold/30 p-6 md:p-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {stats.map((stat, i) => (
             <ScrollReveal
@@ -54,15 +54,15 @@ export default function Stats() {
               delay={i * 0.03}
               className="text-center group"
             >
-              <div className="w-12 h-12 rounded-xl bg-gold-light flex items-center justify-center mx-auto mb-3 group-hover:bg-gold group-hover:scale-105 transition-all duration-300">
-                <stat.icon size={22} className="text-gold group-hover:text-white transition-colors duration-300" />
+              <div className="w-12 h-12 rounded-xl bg-gold/15 flex items-center justify-center mx-auto mb-3 group-hover:bg-gold group-hover:scale-105 transition-all duration-300">
+                <stat.icon size={22} className="text-gold group-hover:text-dark transition-colors duration-300" />
               </div>
-              <p className="text-2xl md:text-3xl font-serif text-dark mb-1">
+              <p className="text-2xl md:text-3xl font-serif text-white mb-1">
                 {stat.isText ? (stat.value || t(`${stat.key}Headline`)) : (
                   <AnimatedNumber value={stat.value} suffix={stat.suffix} duration={1.5 + i * 0.2} />
                 )}
               </p>
-              <p className="text-sm text-text-muted">{t(stat.key)}</p>
+              <p className="text-sm text-white/55">{t(stat.key)}</p>
             </ScrollReveal>
           ))}
         </div>

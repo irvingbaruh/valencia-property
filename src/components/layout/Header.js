@@ -5,6 +5,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
 import { Menu, X, Globe, ChevronDown, UserCircle } from 'lucide-react';
 import { useAuth } from '@/components/providers/AuthProvider';
+import Logo from '@/components/brand/Logo';
 
 const localeLabels = {
   tr: 'Türkçe',
@@ -108,7 +109,7 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/90 backdrop-blur-xl shadow-card'
+          ? 'bg-dark/90 backdrop-blur-xl border-b border-gold/25 shadow-card'
           : 'bg-transparent'
       }`}
     >
@@ -123,26 +124,8 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18 md:h-20">
           {/* Logo */}
-          <a href={`/${locale}`} className="flex items-center gap-2 group">
-            <div className="w-9 h-9 rounded-lg bg-gold flex items-center justify-center">
-              <span className="text-white font-bold text-sm">LL</span>
-            </div>
-            <div className="flex flex-col">
-              <span
-                className={`font-serif text-lg leading-tight transition-colors ${
-                  scrolled ? 'text-dark' : 'text-white'
-                }`}
-              >
-                Lock & Loft
-              </span>
-              <span
-                className={`text-[10px] tracking-widest uppercase transition-colors ${
-                  scrolled ? 'text-gold' : 'text-gold-light'
-                }`}
-              >
-                RE/MAX Partner
-              </span>
-            </div>
+          <a href={`/${locale}`} className="flex items-center group" aria-label="Lock & Loft">
+            <Logo variant="dark" className="h-9 md:h-11 w-auto transition-opacity" />
           </a>
 
           {/* Desktop Nav */}
@@ -153,9 +136,7 @@ export default function Header() {
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                  scrolled
-                    ? 'text-text-secondary hover:text-dark hover:bg-soft'
-                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                  'text-white/80 hover:text-gold hover:bg-white/5'
                 }`}
               >
                 {link.label}
@@ -170,9 +151,7 @@ export default function Header() {
               <button
                 onClick={() => setLangOpen(!langOpen)}
                 className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-sm transition-colors ${
-                  scrolled
-                    ? 'text-text-secondary hover:text-dark hover:bg-soft'
-                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                  'text-white/80 hover:text-gold hover:bg-white/5'
                 }`}
               >
                 <Globe size={16} />
@@ -186,15 +165,15 @@ export default function Header() {
                     className="fixed inset-0 z-40"
                     onClick={() => setLangOpen(false)}
                   />
-                  <div className="absolute right-0 top-full mt-2 w-44 bg-white rounded-lg shadow-card-hover border border-border py-1 z-50">
+                  <div className="absolute right-0 top-full mt-2 w-44 bg-dark-mid rounded-lg shadow-card-hover border border-gold/25 py-1 z-50">
                     {Object.entries(localeLabels).map(([code, label]) => (
                       <button
                         key={code}
                         onClick={() => switchLocale(code)}
                         className={`w-full flex items-center gap-2.5 px-3 py-2 text-sm transition-colors ${
                           code === locale
-                            ? 'bg-gold-light text-dark font-medium'
-                            : 'text-text-secondary hover:bg-soft hover:text-dark'
+                            ? 'bg-gold/10 text-gold font-medium'
+                            : 'text-white/75 hover:bg-white/5 hover:text-gold'
                         }`}
                       >
                         <span>{localeFlags[code]}</span>
@@ -211,9 +190,7 @@ export default function Header() {
               <a
                 href={user ? `/${locale}/panel/` : `/${locale}/giris/`}
                 className={`hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
-                  scrolled
-                    ? 'text-text-secondary hover:text-dark hover:bg-soft'
-                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                  'text-white/80 hover:text-gold hover:bg-white/5'
                 }`}
               >
                 <UserCircle size={18} />
@@ -224,7 +201,7 @@ export default function Header() {
             {/* CTA Button */}
             <a
               href={`/${locale}/hizmetler/#consultation-form`}
-              className="hidden md:inline-flex items-center px-5 py-2.5 bg-gold text-white text-sm font-semibold rounded-lg hover:bg-gold-hover transition-colors shadow-gold"
+              className="hidden md:inline-flex items-center px-5 py-2.5 bg-gold text-dark text-sm font-semibold rounded-lg hover:bg-gold-hover transition-colors shadow-gold"
             >
               {t('cta')}
             </a>
@@ -233,9 +210,7 @@ export default function Header() {
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className={`lg:hidden p-2 rounded-md transition-colors ${
-                scrolled
-                  ? 'text-dark hover:bg-soft'
-                  : 'text-white hover:bg-white/10'
+                'text-white hover:bg-white/10'
               }`}
             >
               {mobileOpen ? <X size={22} /> : <Menu size={22} />}
@@ -246,14 +221,14 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-white border-t border-border shadow-card-hover">
+        <div className="lg:hidden bg-dark border-t border-gold/25 shadow-card-hover">
           <div className="px-4 py-4 space-y-1">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="block px-3 py-2.5 text-text-secondary hover:text-dark hover:bg-soft rounded-md text-sm font-medium transition-colors"
+                className="block px-3 py-2.5 text-white/80 hover:text-gold hover:bg-white/5 rounded-md text-sm font-medium transition-colors"
               >
                 {link.label}
               </a>
@@ -262,16 +237,16 @@ export default function Header() {
             {!authLoading && (
               <a
                 href={user ? `/${locale}/panel/` : `/${locale}/giris/`}
-                className="flex items-center gap-2 px-3 py-2.5 text-text-secondary hover:text-dark hover:bg-soft rounded-md text-sm font-medium transition-colors"
+                className="flex items-center gap-2 px-3 py-2.5 text-white/80 hover:text-gold hover:bg-white/5 rounded-md text-sm font-medium transition-colors"
               >
                 <UserCircle size={18} />
                 {user ? t('panel') : t('login')}
               </a>
             )}
-            <div className="pt-3 border-t border-border mt-3">
+            <div className="pt-3 border-t border-white/10 mt-3">
               <a
                 href={`/${locale}/hizmetler/#consultation-form`}
-                className="block w-full text-center px-5 py-3 bg-gold text-white font-semibold rounded-lg hover:bg-gold-hover transition-colors"
+                className="block w-full text-center px-5 py-3 bg-gold text-dark font-semibold rounded-lg hover:bg-gold-hover transition-colors"
               >
                 {t('cta')}
               </a>

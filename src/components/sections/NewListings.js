@@ -83,7 +83,7 @@ function ListingCard({ listing, t }) {
 
           {/* Badge */}
           <div className="absolute top-3 left-3">
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-gold text-white text-xs font-semibold rounded-full shadow-lg">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-gold text-dark text-xs font-semibold rounded-full shadow-lg">
               <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
               {t('badge')}
             </span>

@@ -45,15 +45,15 @@ export default function Testimonials() {
   const t = useTranslations('testimonials');
 
   return (
-    <section className="section-padding bg-soft">
+    <section className="section-padding bg-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <ScrollReveal className="text-center mb-12">
           <div className="accent-line mx-auto mb-4" />
-          <h2 className="text-3xl md:text-4xl font-serif text-dark mb-3">
+          <h2 className="text-3xl md:text-4xl font-serif text-white mb-3">
             {t('title')}
           </h2>
-          <p className="text-text-secondary max-w-xl mx-auto">
+          <p className="text-white/70 max-w-xl mx-auto">
             {t('subtitle')}
           </p>
         </ScrollReveal>
@@ -77,24 +77,24 @@ function TestimonialCard({ item, index }) {
     <ScrollReveal delay={index * 0.04}>
       <motion.div
         whileHover={{ y: -3, transition: { duration: 0.2 } }}
-        className="bg-white rounded-xl p-6 border border-border hover:border-gold/30 hover:shadow-card-hover transition-all duration-300 relative overflow-hidden group"
+        className="bg-dark-mid rounded-xl p-6 border border-white/10 hover:border-gold/40 hover:shadow-card-hover transition-all duration-300 relative overflow-hidden group"
       >
         {/* Subtle gold glow on hover */}
         <div className="absolute -top-20 -right-20 w-40 h-40 bg-gold/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
         <Quote size={24} className="text-gold/30 mb-4 relative" />
-        <p className="text-text-secondary text-sm leading-relaxed mb-5 relative">
+        <p className="text-white/75 text-sm leading-relaxed mb-5 relative">
           &ldquo;{text}&rdquo;
         </p>
-        <div className="flex items-center gap-3 pt-4 border-t border-border relative">
-          <div className="w-10 h-10 rounded-full bg-gold-light flex items-center justify-center group-hover:bg-gold transition-colors duration-300">
-            <span className="text-gold group-hover:text-white font-semibold text-sm transition-colors duration-300">
+        <div className="flex items-center gap-3 pt-4 border-t border-white/10 relative">
+          <div className="w-10 h-10 rounded-full bg-gold/15 flex items-center justify-center group-hover:bg-gold transition-colors duration-300">
+            <span className="text-gold group-hover:text-dark font-semibold text-sm transition-colors duration-300">
               {item.initials}
             </span>
           </div>
           <div>
-            <p className="text-sm font-medium text-dark">{item.name}</p>
-            <p className="text-xs text-text-muted">{item.location}</p>
+            <p className="text-sm font-medium text-white">{item.name}</p>
+            <p className="text-xs text-white/50">{item.location}</p>
           </div>
           <div className="ml-auto flex gap-0.5">
             {[...Array(5)].map((_, j) => (

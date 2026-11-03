@@ -95,7 +95,7 @@ export default function BlogPage() {
                 onClick={() => setSelectedCategory('all')}
                 className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors border ${
                   selectedCategory === 'all'
-                    ? 'bg-gold text-white border-gold'
+                    ? 'bg-gold text-dark border-gold'
                     : 'bg-white text-text-muted border-border hover:border-gold/50'
                 }`}
               >
@@ -107,7 +107,7 @@ export default function BlogPage() {
                   onClick={() => setSelectedCategory(cat)}
                   className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors border ${
                     selectedCategory === cat
-                      ? 'bg-gold text-white border-gold'
+                      ? 'bg-gold text-dark border-gold'
                       : 'bg-white text-text-muted border-border hover:border-gold/50'
                   }`}
                 >

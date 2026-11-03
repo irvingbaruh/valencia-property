@@ -63,7 +63,7 @@ export default function ParallaxBreak({
       {/* Overlay */}
       <div
         className="absolute inset-0"
-        style={{ backgroundColor: `rgba(26, 26, 46, ${overlay})` }}
+        style={{ backgroundColor: `rgba(11, 11, 17, ${overlay})` }}
       />
 
       {/* Typography overlay */}

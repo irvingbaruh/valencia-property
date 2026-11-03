@@ -2,7 +2,7 @@
 
 /* ═══════════════════════════════════════
    Lock & Loft — Design Tokens
-   Beyaz + Altın + Fumé palette
+   Siyah + Altın + Beyaz palette
    ═══════════════════════════════════════ */
 
 @theme {
@@ -12,11 +12,11 @@
   --color-warm-gray: #F8F7F5;
   --color-border: #E8EBF0;
 
-  /* ── Dark / Fumé ── */
-  --color-dark: #1A1A2E;
-  --color-dark-mid: #252540;
-  --color-charcoal: #2C2C3A;
-  --color-charcoal-light: #3D3D50;
+  /* ── Dark / Black (logo black #0B0B11) ── */
+  --color-dark: #0B0B11;
+  --color-dark-mid: #14141C;
+  --color-charcoal: #1C1C26;
+  --color-charcoal-light: #2E2E3A;
 
   /* ── Gold ── */
   --color-gold: #C9A84C;
@@ -26,7 +26,7 @@
   --color-gold-lighter: #FDF9F0;
 
   /* ── Text ── */
-  --color-text-primary: #1A1A2E;
+  --color-text-primary: #0B0B11;
   --color-text-secondary: #4A5568;
   --color-text-muted: #8896A6;
 
@@ -51,8 +51,8 @@
   --radius-xl: 24px;
 
   /* ── Shadows ── */
-  --shadow-card: 0 1px 3px rgba(26, 26, 46, 0.06), 0 4px 16px rgba(26, 26, 46, 0.04);
-  --shadow-card-hover: 0 4px 12px rgba(26, 26, 46, 0.08), 0 8px 32px rgba(26, 26, 46, 0.06);
+  --shadow-card: 0 1px 3px rgba(11, 11, 17, 0.06), 0 4px 16px rgba(11, 11, 17, 0.04);
+  --shadow-card-hover: 0 4px 12px rgba(11, 11, 17, 0.08), 0 8px 32px rgba(11, 11, 17, 0.06);
   --shadow-gold: 0 4px 20px rgba(201, 168, 76, 0.25);
 
   /* ── Transitions ── */
@@ -115,7 +115,7 @@ h1, h2, h3 {
 }
 
 .glass-dark {
-  background: rgba(26, 26, 46, 0.92);
+  background: rgba(11, 11, 17, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }

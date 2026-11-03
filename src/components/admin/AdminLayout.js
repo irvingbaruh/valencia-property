@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { supabase } from '@/lib/supabase';
+import Logo from '@/components/brand/Logo';
 import Link from 'next/link';
 import {
   LayoutDashboard,
@@ -22,7 +23,7 @@ import {
   Calculator,
 } from 'lucide-react';
 
-export const ADMIN_BASE = '/valenciaproperty/admin';
+export const ADMIN_BASE = '/lockandloft/admin';
 
 const navItems = [
   { id: 'dashboard', href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
@@ -90,12 +91,7 @@ export default function AdminLayout({ children, activeSection = 'dashboard' }) {
         {/* Logo */}
         <div className="h-16 flex items-center justify-between px-5" style={{ borderBottom: '1px solid #1E1E2E' }}>
           <Link href={`${ADMIN_BASE}/dashboard/`} className="flex items-center gap-2">
-            <div
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold"
-              style={{ background: '#DC1C2E' }}
-            >
-              LL
-            </div>
+            <Logo icon variant="dark" className="h-9 w-auto" />
             <span className="font-semibold text-sm tracking-wide text-white">ADMIN PANEL</span>
           </Link>
           <button onClick={() => setSidebarOpen(false)} className="lg:hidden text-[#9A9AAA] hover:text-white">

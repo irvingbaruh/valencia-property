@@ -1,7 +1,7 @@
 {
-  "name": "valencia-property",
+  "name": "lockandloft",
   "version": "1.0.0",
-  "description": "Valencia Property Management",
+  "description": "Lock & Loft — property services in Valencia",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

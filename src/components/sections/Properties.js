@@ -97,7 +97,7 @@ function PropertyCard({ property, index, t }) {
       {/* Content panel — dark with gold accents */}
       <motion.div
         style={{ opacity: contentOpacity, x: contentX }}
-        className={`relative lg:w-[40%] bg-dark flex flex-col justify-center p-8 lg:p-12 ${
+        className={`relative lg:w-[40%] bg-dark-mid flex flex-col justify-center p-8 lg:p-12 ${
           isReversed ? 'lg:rounded-l-2xl' : 'lg:rounded-r-2xl'
         } -mt-8 lg:mt-0 mx-4 lg:mx-0 rounded-2xl lg:rounded-none z-10`}
       >
@@ -140,7 +140,7 @@ export default function Properties() {
   const locale = useLocale();
 
   return (
-    <section id="properties" className="py-24 lg:py-32 bg-soft">
+    <section id="properties" className="py-24 lg:py-32 bg-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16 lg:mb-20">
@@ -151,10 +151,10 @@ export default function Properties() {
             transition={{ duration: 0.6 }}
           >
             <div className="accent-line mx-auto mb-4" />
-            <h2 className="text-3xl md:text-5xl font-serif text-dark mb-4">
+            <h2 className="text-3xl md:text-5xl font-serif text-white mb-4">
               {t('title')}
             </h2>
-            <p className="text-text-secondary max-w-xl mx-auto text-lg">
+            <p className="text-white/70 max-w-xl mx-auto text-lg">
               {t('subtitle')}
             </p>
           </motion.div>
@@ -182,7 +182,7 @@ export default function Properties() {
         >
           <a
             href={`/${locale}/mulkler/`}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-dark text-white font-medium rounded-xl hover:bg-charcoal transition-all duration-300 group"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-gold text-dark font-semibold rounded-xl hover:bg-gold-hover transition-all duration-300 group"
           >
             {t('view_all')}
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />

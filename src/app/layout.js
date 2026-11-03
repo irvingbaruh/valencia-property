@@ -1,9 +1,14 @@
 import '../styles/globals.css';
 
 export const metadata = {
-  title: 'Lock & Loft',
+  metadataBase: new URL('https://lockandloft.com'),
+  title: { default: 'Lock & Loft', template: '%s | Lock & Loft' },
   description: 'Property investment, decoration, renovation and rental management in Valencia, Spain',
+  applicationName: 'Lock & Loft',
+  openGraph: { siteName: 'Lock & Loft', type: 'website' },
 };
+
+export const viewport = { themeColor: '#0B0B11' };
 
 export default function RootLayout({ children }) {
   return (

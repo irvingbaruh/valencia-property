@@ -1,5 +1,5 @@
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Header from '@/components/layout/Header';
@@ -8,6 +8,16 @@ import { AuthProvider } from '@/components/providers/AuthProvider';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'meta' });
+  return {
+    title: { absolute: t('title') },
+    description: t('description'),
+    openGraph: { title: t('title'), description: t('description'), locale },
+  };
 }
 
 export default async function LocaleLayout({ children, params }) {

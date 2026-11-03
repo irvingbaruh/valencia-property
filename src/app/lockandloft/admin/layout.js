@@ -1,7 +1,7 @@
 import { AuthProvider } from '@/components/providers/AuthProvider';
 
 export const metadata = {
-  title: 'Lock & Loft — Yönetim',
+  title: { absolute: 'Yönetim | Lock & Loft' },
   robots: { index: false, follow: false },
 };
 

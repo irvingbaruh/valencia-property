@@ -2,6 +2,7 @@
 
 import { useTranslations, useLocale } from 'next-intl';
 import { usePathname } from 'next/navigation';
+import Logo from '@/components/brand/Logo';
 import { MapPin, Phone, Mail } from 'lucide-react';
 
 export default function Footer() {
@@ -38,14 +39,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2 mb-5">
-              <div className="w-9 h-9 rounded-lg bg-gold flex items-center justify-center">
-                <span className="text-white font-bold text-sm">LL</span>
-              </div>
-              <div>
-                <span className="font-serif text-lg text-white">Lock & Loft</span>
-              </div>
-            </div>
+            <Logo variant="dark" className="h-12 w-auto mb-5" />
             <p className="text-sm text-white/60 leading-relaxed mb-6 max-w-xs">
               {t('remax_note')}
             </p>
@@ -62,8 +56,8 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <Mail size={15} className="text-gold shrink-0" />
-                <a href="mailto:info@valenciaproperty.com" className="hover:text-gold transition-colors">
-                  info@valenciaproperty.com
+                <a href="mailto:info@lockandloft.com" className="hover:text-gold transition-colors">
+                  info@lockandloft.com
                 </a>
               </div>
             </div>

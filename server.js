@@ -89,6 +89,13 @@ function tryFile(filePath) {
 const server = http.createServer((req, res) => {
   let urlPath = decodeURIComponent(req.url.split('?')[0]);
 
+  // The admin panel used to live under /valenciaproperty/admin; keep old bookmarks working
+  if (urlPath.startsWith('/valenciaproperty/admin')) {
+    res.writeHead(302, { Location: urlPath.replace('/valenciaproperty/admin', '/lockandloft/admin') });
+    res.end();
+    return;
+  }
+
   // Bare domain: send the visitor to the language that fits them
   if (urlPath === '/' || urlPath === '') {
     res.writeHead(302, {

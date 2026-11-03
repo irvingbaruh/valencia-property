@@ -77,7 +77,7 @@ export default function ContactForm() {
       </div>
       <button
         type="submit"
-        className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gold text-white font-semibold rounded-xl hover:bg-gold-hover transition-colors duration-200"
+        className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gold text-dark font-semibold rounded-xl hover:bg-gold-hover transition-colors duration-200"
       >
         {t('submitButton')}
         <Send size={16} />
