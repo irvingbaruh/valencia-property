@@ -89,6 +89,18 @@ for (const [canon, byLocale] of Object.entries(ROUTES)) {
   for (const [loc, slug] of Object.entries(byLocale)) SLUG_TO_CANONICAL[`${loc}/${slug}`] = canon;
 }
 
+const SERVICE_SLUGS = {
+  'mulk-arama': { es: 'busqueda-propiedades', en: 'property-search', de: 'immobiliensuche' },
+  'hukuki-destek': { es: 'asesoria-legal', en: 'legal-support', de: 'rechtsberatung' },
+  'dekorasyon-mobilya': { es: 'decoracion-mobiliario', en: 'decor-furniture', de: 'einrichtung-moebel' },
+  renovasyon: { es: 'reformas', en: 'renovation', de: 'renovierung' },
+  'kira-yonetimi': { es: 'gestion-alquileres', en: 'rental-management', de: 'vermietungsverwaltung' },
+};
+const SERVICE_TO_CANONICAL = {};
+for (const [canon, byLocale] of Object.entries(SERVICE_SLUGS)) {
+  for (const [loc, slug] of Object.entries(byLocale)) SERVICE_TO_CANONICAL[`${loc}/${slug}`] = canon;
+}
+
 function getMime(filePath) {
   return MIME_TYPES[path.extname(filePath).toLowerCase()] || 'application/octet-stream';
 }
@@ -130,7 +142,19 @@ const server = http.createServer((req, res) => {
       const [, loc, seg, rest = ''] = m;
       const canon = SLUG_TO_CANONICAL[`${loc}/${seg}`];
       if (canon) {
-        urlPath = `/${loc}/${canon}${rest}`;
+        let r = rest;
+        const sm = canon === 'hizmetler' && /^\/([^/]+)(\/.*)?$/.exec(rest);
+        if (sm) {
+          const svc = SERVICE_TO_CANONICAL[`${loc}/${sm[1]}`];
+          if (svc) r = `/${svc}${sm[2] || ''}`;
+          else if (SERVICE_SLUGS[sm[1]] && !path.extname(urlPath)) {
+            const qs = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+            res.writeHead(301, { Location: `/${loc}/${seg}/${SERVICE_SLUGS[sm[1]][loc]}${sm[2] || '/'}${qs}` });
+            res.end();
+            return;
+          }
+        }
+        urlPath = `/${loc}/${canon}${r}`;
       } else if (ROUTES[seg] && ROUTES[seg][loc] && !path.extname(urlPath)) {
         const qs = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
         res.writeHead(301, { Location: `/${loc}/${ROUTES[seg][loc]}${rest}${qs}` });

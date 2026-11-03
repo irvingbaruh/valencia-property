@@ -11,10 +11,24 @@ export const ROUTES = {
   'sifre-yenile': { tr: 'sifre-yenile', es: 'restablecer-contrasena', en: 'reset-password', de: 'passwort-zuruecksetzen' },
 };
 
+// Service detail pages: /hizmetler/<slug>
+export const SERVICE_SLUGS = {
+  'mulk-arama': { tr: 'mulk-arama', es: 'busqueda-propiedades', en: 'property-search', de: 'immobiliensuche' },
+  'hukuki-destek': { tr: 'hukuki-destek', es: 'asesoria-legal', en: 'legal-support', de: 'rechtsberatung' },
+  'dekorasyon-mobilya': { tr: 'dekorasyon-mobilya', es: 'decoracion-mobiliario', en: 'decor-furniture', de: 'einrichtung-moebel' },
+  renovasyon: { tr: 'renovasyon', es: 'reformas', en: 'renovation', de: 'renovierung' },
+  'kira-yonetimi': { tr: 'kira-yonetimi', es: 'gestion-alquileres', en: 'rental-management', de: 'vermietungsverwaltung' },
+  'home-staging': { tr: 'home-staging', es: 'home-staging', en: 'home-staging', de: 'home-staging' },
+};
+
 // localePath('es', 'iletisim') -> '/es/contacto/'
 // localePath('es', 'hizmetler', 'renovacion/') -> '/es/servicios/renovacion/'
 export function localePath(locale, key, rest = '') {
   const slug = (ROUTES[key] && ROUTES[key][locale]) || key;
+  if (key === 'hizmetler' && rest) {
+    const m = /^([^/#?]+)(.*)$/.exec(rest);
+    if (m && SERVICE_SLUGS[m[1]]) rest = SERVICE_SLUGS[m[1]][locale] + m[2];
+  }
   return `/${locale}/${slug}/${rest}`;
 }
 
@@ -25,5 +39,9 @@ export function switchPathLocale(pathname, newLocale) {
   const key = Object.keys(ROUTES).find((k) => ROUTES[k][current] === segs[2]);
   segs[1] = newLocale;
   if (key) segs[2] = ROUTES[key][newLocale];
+  if (key === 'hizmetler' && segs[3]) {
+    const svc = Object.keys(SERVICE_SLUGS).find((k) => SERVICE_SLUGS[k][current] === segs[3]);
+    if (svc) segs[3] = SERVICE_SLUGS[svc][newLocale];
+  }
   return segs.join('/');
 }
