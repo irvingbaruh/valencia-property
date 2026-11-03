@@ -48,6 +48,31 @@ const MIME_TYPES = {
   '.webp': 'image/webp',
 };
 
+
+// Pick the language for a visitor who opens the bare domain.
+// 1) language they chose earlier (cookie), 2) country: DE -> de, ES -> es, TR -> tr, anywhere else -> en,
+// 3) if the country is unknown, the browser language (tr/de/es), otherwise en.
+const LOCALES = ['tr', 'es', 'en', 'de'];
+const COUNTRY_LOCALE = { DE: 'de', ES: 'es', TR: 'tr' };
+
+function pickLocale(req) {
+  const cookie = /(?:^|;\s*)vp_lang=(tr|es|en|de)\b/.exec(req.headers.cookie || '');
+  if (cookie) return cookie[1];
+
+  const country = String(req.headers['cf-ipcountry'] || '').toUpperCase();
+  if (/^[A-Z]{2}$/.test(country) && country !== 'XX' && country !== 'T1') {
+    return COUNTRY_LOCALE[country] || 'en';
+  }
+
+  const accept = String(req.headers['accept-language'] || '').toLowerCase();
+  for (const part of accept.split(',')) {
+    const code = part.trim().split(/[-;]/)[0];
+    if (LOCALES.includes(code) && code !== 'en') return code;
+    if (code === 'en') return 'en';
+  }
+  return 'en';
+}
+
 function getMime(filePath) {
   return MIME_TYPES[path.extname(filePath).toLowerCase()] || 'application/octet-stream';
 }
@@ -63,6 +88,17 @@ function tryFile(filePath) {
 
 const server = http.createServer((req, res) => {
   let urlPath = decodeURIComponent(req.url.split('?')[0]);
+
+  // Bare domain: send the visitor to the language that fits them
+  if (urlPath === '/' || urlPath === '') {
+    res.writeHead(302, {
+      Location: `/${pickLocale(req)}/`,
+      'Cache-Control': 'no-store',
+      Vary: 'Cookie, Accept-Language, CF-IPCountry',
+    });
+    res.end();
+    return;
+  }
 
   // Try exact file
   let filePath = tryFile(path.join(STATIC_DIR, urlPath));
@@ -80,13 +116,6 @@ const server = http.createServer((req, res) => {
   // Try adding .html
   if (!filePath) {
     filePath = tryFile(path.join(STATIC_DIR, urlPath + '.html'));
-  }
-
-  // Root redirect to /tr/
-  if (!filePath && (urlPath === '/' || urlPath === '')) {
-    res.writeHead(302, { Location: '/tr/' });
-    res.end();
-    return;
   }
 
   if (filePath) {

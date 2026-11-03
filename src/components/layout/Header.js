@@ -62,6 +62,8 @@ export default function Header() {
   const switchLocale = (newLocale) => {
     const segments = pathname.split('/');
     segments[1] = newLocale;
+    // remember the choice so the bare domain opens in this language next time
+    document.cookie = `vp_lang=${newLocale}; path=/; max-age=31536000; SameSite=Lax`;
     router.push(segments.join('/'));
     setLangOpen(false);
   };
