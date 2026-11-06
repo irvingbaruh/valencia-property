@@ -79,6 +79,7 @@ const ROUTES = {
   iletisim: { es: 'contacto', en: 'contact', de: 'kontakt' },
   hizmetler: { es: 'servicios', en: 'services', de: 'leistungen' },
   mulkler: { es: 'propiedades', en: 'properties', de: 'immobilien' },
+  piyasa: { es: 'mercado', en: 'market', de: 'markt' },
   'roi-hesaplama': { es: 'calculadora-roi', en: 'roi-calculator', de: 'rendite-rechner' },
   giris: { es: 'acceder', en: 'login', de: 'anmelden' },
   panel: { es: 'mi-cuenta', en: 'account', de: 'mein-konto' },

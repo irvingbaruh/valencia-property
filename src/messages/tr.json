@@ -964,5 +964,21 @@
   "rates": {
     "label": "Döviz kurları",
     "source": "AMB referans kuru · {date}"
+  },
+  "market": {
+    "title": "Piyasa Notları",
+    "subtitle": "İspanya gayrimenkul ve ekonomisinden, resmi kaynaklara dayanan kısa özetler",
+    "viewAll": "Tüm notlar",
+    "all": "Tümü",
+    "empty": "Bu başlıkta henüz not yok.",
+    "source": "Kaynak",
+    "dataDate": "Veri tarihi",
+    "disclaimer": "Bu notlar genel bilgi amaçlıdır; yatırım veya hukuki tavsiye değildir. Rakamlar belirtilen kaynaktan alınmış ve kendi ifademizle özetlenmiştir.",
+    "topics": {
+      "realestate": "Gayrimenkul",
+      "economy": "Ekonomi",
+      "rates": "Faiz",
+      "legal": "Hukuk"
+    }
   }
 }

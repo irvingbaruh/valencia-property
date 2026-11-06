@@ -5,6 +5,7 @@ export const ROUTES = {
   iletisim: { tr: 'iletisim', es: 'contacto', en: 'contact', de: 'kontakt' },
   hizmetler: { tr: 'hizmetler', es: 'servicios', en: 'services', de: 'leistungen' },
   mulkler: { tr: 'mulkler', es: 'propiedades', en: 'properties', de: 'immobilien' },
+  piyasa: { tr: 'piyasa', es: 'mercado', en: 'market', de: 'markt' },
   'roi-hesaplama': { tr: 'roi-hesaplama', es: 'calculadora-roi', en: 'roi-calculator', de: 'rendite-rechner' },
   giris: { tr: 'giris', es: 'acceder', en: 'login', de: 'anmelden' },
   panel: { tr: 'panel', es: 'mi-cuenta', en: 'account', de: 'mein-konto' },

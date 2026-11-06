@@ -964,5 +964,21 @@
   "rates": {
     "label": "Exchange rates",
     "source": "ECB reference rate · {date}"
+  },
+  "market": {
+    "title": "Market Notes",
+    "subtitle": "Short summaries of Spanish property and economic data, based on official sources",
+    "viewAll": "All notes",
+    "all": "All",
+    "empty": "No notes in this topic yet.",
+    "source": "Source",
+    "dataDate": "Data date",
+    "disclaimer": "These notes are for general information only and are not investment or legal advice. Figures come from the cited source and are summarised in our own words.",
+    "topics": {
+      "realestate": "Property",
+      "economy": "Economy",
+      "rates": "Rates",
+      "legal": "Legal"
+    }
   }
 }

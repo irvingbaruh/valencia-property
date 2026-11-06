@@ -964,5 +964,21 @@
   "rates": {
     "label": "Tipos de cambio",
     "source": "Tipo de referencia BCE · {date}"
+  },
+  "market": {
+    "title": "Notas de mercado",
+    "subtitle": "Resúmenes breves del mercado inmobiliario y la economía de España, basados en fuentes oficiales",
+    "viewAll": "Todas las notas",
+    "all": "Todas",
+    "empty": "Aún no hay notas en este tema.",
+    "source": "Fuente",
+    "dataDate": "Fecha del dato",
+    "disclaimer": "Estas notas son informativas y no constituyen asesoramiento financiero ni jurídico. Las cifras proceden de la fuente indicada y se resumen con nuestras propias palabras.",
+    "topics": {
+      "realestate": "Inmobiliario",
+      "economy": "Economía",
+      "rates": "Tipos",
+      "legal": "Legal"
+    }
   }
 }

@@ -964,5 +964,21 @@
   "rates": {
     "label": "Wechselkurse",
     "source": "EZB-Referenzkurs · {date}"
+  },
+  "market": {
+    "title": "Marktnotizen",
+    "subtitle": "Kurze Zusammenfassungen zu Spaniens Immobilienmarkt und Wirtschaft auf Basis offizieller Quellen",
+    "viewAll": "Alle Notizen",
+    "all": "Alle",
+    "empty": "Zu diesem Thema gibt es noch keine Notizen.",
+    "source": "Quelle",
+    "dataDate": "Stand der Daten",
+    "disclaimer": "Diese Notizen dienen nur der allgemeinen Information und sind keine Anlage- oder Rechtsberatung. Die Zahlen stammen aus der genannten Quelle und sind in eigenen Worten zusammengefasst.",
+    "topics": {
+      "realestate": "Immobilien",
+      "economy": "Wirtschaft",
+      "rates": "Zinsen",
+      "legal": "Recht"
+    }
   }
 }

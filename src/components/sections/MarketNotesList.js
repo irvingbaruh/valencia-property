@@ -1,0 +1,37 @@
+'use client';
+import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { fetchNotes, TOPICS } from '@/lib/marketNotes';
+import MarketNoteCard from './MarketNoteCard';
+
+export default function MarketNotesList() {
+  const t = useTranslations('market');
+  const [notes, setNotes] = useState(null);
+  const [topic, setTopic] = useState('all');
+  useEffect(() => {
+    let off = false;
+    fetchNotes().then((r) => { if (!off) setNotes(r); });
+    return () => { off = true; };
+  }, []);
+  const list = (notes || []).filter((n) => topic === 'all' || n.topic === topic);
+  return (
+    <>
+      <div className="flex flex-wrap gap-2 mb-8">
+        {['all', ...TOPICS].map((k) => (
+          <button key={k} onClick={() => setTopic(k)}
+            className={`px-4 py-2 rounded-full text-sm border transition-colors ${topic === k ? 'bg-dark text-white border-dark' : 'bg-white text-text-muted border-border hover:border-gold'}`}>
+            {k === 'all' ? t('all') : t(`topics.${k}`)}
+          </button>
+        ))}
+      </div>
+      {notes === null ? null : list.length === 0 ? (
+        <p className="text-text-muted py-12 text-center">{t('empty')}</p>
+      ) : (
+        <div className="grid md:grid-cols-2 gap-6">
+          {list.map((n) => <MarketNoteCard key={n.id} note={n} />)}
+        </div>
+      )}
+      <p className="text-xs text-text-muted mt-10 max-w-2xl">{t('disclaimer')}</p>
+    </>
+  );
+}

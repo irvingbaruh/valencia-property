@@ -7,6 +7,7 @@ import Process from '@/components/sections/Process';
 import ROICalculator from '@/components/sections/ROICalculator';
 import Testimonials from '@/components/sections/Testimonials';
 import NewListings from '@/components/sections/NewListings';
+import MarketNotes from '@/components/sections/MarketNotes';
 import CTASection from '@/components/sections/CTASection';
 import ParallaxBreak from '@/components/ui/ParallaxBreak';
 import { InterstitialWrapper } from '@/components/ui/InterstitialWrapper';
@@ -35,6 +36,7 @@ export default async function HomePage({ params }) {
       />
       <ROICalculator />
       <NewListings />
+      <MarketNotes />
       <Testimonials />
       <CTASection />
     </>
