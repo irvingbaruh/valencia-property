@@ -603,33 +603,89 @@
     "sending": "Sending…",
     "multiHint": "You can select more than one option.",
     "q": {
-      "propertyType": {
-        "title": "What kind of property are you looking for?"
+      "investType": {
+        "title": "Preferred type of investment"
       },
-      "investmentStrategy": {
-        "title": "What is your investment strategy?"
+      "timeframe": {
+        "title": "When do you plan to invest?"
       },
-      "landPlan": {
-        "title": "What are your plans for the land?"
+      "readyToBuy": {
+        "title": "Are you ready to start the purchase process once a suitable property is found?"
+      },
+      "purpose": {
+        "title": "What is your main purpose for buying property in Valencia?"
+      },
+      "priority": {
+        "title": "What is your priority for the investment?"
+      },
+      "rentalType": {
+        "title": "If you plan to rent the property out, would you prefer long-term or seasonal (Airbnb) rental?"
+      },
+      "holdYears": {
+        "title": "How many years do you plan to hold this investment?"
+      },
+      "area": {
+        "title": "Are you looking for property in the city centre or in more affordable surrounding areas?"
       },
       "condition": {
-        "title": "How important is the condition of the property?"
+        "title": "What is your preference for the condition of the property?"
       },
-      "region": {
-        "title": "Which area do you prefer?"
+      "propertyType": {
+        "title": "Which type of property are you considering?"
+      },
+      "bedrooms": {
+        "title": "How many bedrooms do you prefer?"
+      },
+      "bathrooms": {
+        "title": "What is the minimum number of bathrooms you prefer?"
+      },
+      "unwanted": {
+        "title": "Are there features you do not want in the property? (For example: building without a lift, ground floor, property needing maintenance)"
+      },
+      "furnished": {
+        "title": "Do you prefer the property to be furnished?"
       },
       "budget": {
-        "title": "What is your budget range?"
+        "title": "What is the total budget you have set aside for the purchase?"
       },
-      "timeline": {
-        "title": "What is your timeline?"
+      "budgetIncludes": {
+        "title": "Does this budget include taxes, notary and land registry fees, and possible renovation costs?"
       },
-      "services": {
-        "title": "Which services are you interested in?",
-        "subtitle": "We will add the services you choose to your account; you can change them any time."
+      "payment": {
+        "title": "How do you plan to pay?"
       },
-      "location": {
-        "title": "Where do you live right now?"
+      "targetRent": {
+        "title": "What monthly rental income do you aim to earn from this investment?"
+      },
+      "renovation": {
+        "title": "Would you consider increasing rental income through renovation?"
+      },
+      "management": {
+        "title": "Would you like rental and property management services after the purchase?"
+      },
+      "legal": {
+        "title": "Would you like support from a lawyer or tax advisor during the purchase process?"
+      },
+      "note": {
+        "title": "Do you have any special requests or questions you would like to add?"
+      },
+      "s_contact": {
+        "title": "Contact details"
+      },
+      "s_purpose": {
+        "title": "Investment goal"
+      },
+      "s_prefs": {
+        "title": "Area and property preferences"
+      },
+      "s_budget": {
+        "title": "Budget and payment"
+      },
+      "s_income": {
+        "title": "Rental income and expected return"
+      },
+      "s_legal": {
+        "title": "Legal and administrative matters"
       },
       "contact": {
         "title": "Your contact details"
@@ -640,64 +696,103 @@
       }
     },
     "o": {
-      "propertyType": {
-        "home": "A home to live in",
-        "investment": "Investment property",
-        "land": "Land",
-        "unsure": "Not decided yet"
+      "investType": {
+        "residential": "Residential investment",
+        "commercial": "Commercial real estate",
+        "land": "Plots and land",
+        "other": "Other"
       },
-      "investmentStrategy": {
-        "airbnb": "Short-term rental (Airbnb)",
-        "longterm": "Long-term rental",
-        "flip": "Buy and sell (capital gain)",
-        "unsure": "Not decided yet"
+      "timeframe": {
+        "now": "Right away",
+        "3-6": "Within 3 to 6 months",
+        "6plus": "In more than 6 months"
       },
-      "landPlan": {
-        "build": "Build my own home",
-        "project": "Investment / construction project",
-        "unsure": "Not decided yet"
+      "readyToBuy": {
+        "yes": "Yes",
+        "no": "No"
       },
-      "condition": {
-        "ready": "Fully ready, move-in condition",
-        "light": "Open to minor renovations",
-        "renovation": "I want a renovation project (bargain price)",
+      "purpose": {
+        "rental": "Rental income",
+        "holiday": "Holiday home",
+        "live": "I want to live there myself in the future",
+        "other": "Other"
+      },
+      "priority": {
+        "monthly": "Monthly rental income",
+        "appreciation": "Selling later for capital gain",
+        "both": "Both equally important"
+      },
+      "rentalType": {
+        "long": "Long-term rental",
+        "seasonal": "Seasonal (Airbnb) rental",
+        "both": "Either could work"
+      },
+      "holdYears": {
+        "1-3": "1-3 years",
+        "3-5": "3-5 years",
+        "5-10": "5-10 years",
+        "10plus": "10+ years",
+        "undecided": "I have not decided yet"
+      },
+      "area": {
+        "center": "City centre",
+        "sea": "Close to the sea",
+        "nearCenter": "Towns close to the city centre",
+        "outside": "Outside the city",
         "any": "No preference"
       },
-      "region": {
-        "valencia-centro": "Central Valencia",
-        "el-carmen": "El Carmen",
-        "benimaclet": "Benimaclet",
-        "ciutat-vella": "Ciutat Vella",
-        "poblats-maritims": "Poblats Marítims",
-        "alicante": "Alicante area",
-        "any": "No preference / I want suggestions"
+      "condition": {
+        "ready": "Ready to move in",
+        "newProject": "New development",
+        "any": "Any of these"
       },
-      "budget": {
-        "under150": "Under €150,000",
-        "150-300": "€150,000 – €300,000",
-        "300-500": "€300,000 – €500,000",
-        "500plus": "€500,000 and above"
+      "propertyType": {
+        "apartment": "Apartment",
+        "penthouse": "Penthouse",
+        "house": "Detached house"
       },
-      "timeline": {
-        "now": "Right away",
-        "3-6": "Within 3-6 months",
-        "6-12": "Within 6-12 months",
-        "researching": "Just researching"
+      "bedrooms": {
+        "studio": "Studio (1+0)",
+        "1": "1 bedroom",
+        "2": "2 bedrooms",
+        "3": "3 bedrooms",
+        "any": "No preference"
       },
-      "services": {
-        "emlak": "Property search & advisory",
-        "legal": "Legal services (NIE, residency, contracts)",
-        "renovasyon": "Renovation / reform",
-        "staging": "Home staging & interior design",
-        "management": "Long-term rental management",
-        "airbnb": "Airbnb management",
-        "insaat": "Construction management"
+      "bathrooms": {
+        "1": "1 bathroom",
+        "2": "2 bathrooms",
+        "3plus": "3 or more",
+        "any": "No preference"
       },
-      "location": {
-        "turkey": "Turkey",
-        "europe-tr": "Turkish, living in Europe",
-        "spain": "I live in Spain",
-        "other": "Other"
+      "furnished": {
+        "furnished": "Furnished",
+        "unfurnished": "Unfurnished",
+        "any": "No preference"
+      },
+      "budgetIncludes": {
+        "all": "Yes, all costs included",
+        "separate": "No, I have set aside a separate budget",
+        "unknown": "I do not know yet"
+      },
+      "payment": {
+        "cash": "Full cash payment",
+        "partial": "Partly financed by a loan",
+        "undecided": "I have not decided yet"
+      },
+      "renovation": {
+        "yes": "Yes",
+        "no": "No",
+        "budget": "Depends on the budget"
+      },
+      "management": {
+        "yes": "Yes",
+        "no": "No",
+        "offer": "I will decide after seeing the offer"
+      },
+      "legal": {
+        "yes": "Yes",
+        "no": "No",
+        "info": "I would like more information"
       }
     },
     "nameLabel": "Full name",
@@ -722,7 +817,9 @@
     "thanksCheckEmail": "Your account has been created and your answers saved. Click the link we emailed you to activate it.",
     "thanksSaved": "Your request has been saved to your account. Our team will contact you shortly.",
     "goPanel": "Go to my account",
-    "marketing": "I would like to receive property, market and investment news by email (optional; you can unsubscribe at any time). Email open and click statistics are recorded."
+    "marketing": "I would like to receive property, market and investment news by email (optional; you can unsubscribe at any time). Email open and click statistics are recorded.",
+    "optional": "optional",
+    "answerPh": "Your answer"
   },
   "propertyType": {
     "apartment": "Apartment",

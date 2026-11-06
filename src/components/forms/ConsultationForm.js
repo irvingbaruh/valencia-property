@@ -1,9 +1,9 @@
 'use client';
 
 /*
- * ConsultationForm — branching consultation wizard
- * ================================================
- * Questions -> contact details -> account. The last step creates the member
+ * ConsultationForm — consultation questionnaire (6 sections)
+ * ==========================================================
+ * Contact details + five question sections -> account. The last step creates the member
  * account and stores every answer with it:
  *  - new visitor: answers travel in the sign-up metadata; a database trigger
  *    (handle_new_user) writes the profile and a client_intake row, so nothing
@@ -20,44 +20,71 @@ import { useAuth } from '@/components/providers/AuthProvider';
 import { supabase } from '@/lib/supabase';
 import { localePath } from '@/lib/routes';
 
-const opts = (values) => values.map((value) => ({ value }));
+// The questionnaire: six sections, one page each (single = pick one, text = free text).
+const SECTIONS = [
+  { key: 'contact', type: 'contact' },
+  {
+    key: 'purpose',
+    questions: [
+      { key: 'investType', type: 'single', options: ['residential', 'commercial', 'land', 'other'] },
+      { key: 'timeframe', type: 'single', options: ['now', '3-6', '6plus'] },
+      { key: 'readyToBuy', type: 'single', options: ['yes', 'no'] },
+      { key: 'purpose', type: 'single', options: ['rental', 'holiday', 'live', 'other'] },
+      { key: 'priority', type: 'single', options: ['monthly', 'appreciation', 'both'] },
+      { key: 'rentalType', type: 'single', options: ['long', 'seasonal', 'both'] },
+      { key: 'holdYears', type: 'single', options: ['1-3', '3-5', '5-10', '10plus', 'undecided'] },
+    ],
+  },
+  {
+    key: 'prefs',
+    questions: [
+      { key: 'area', type: 'single', options: ['center', 'sea', 'nearCenter', 'outside', 'any'] },
+      { key: 'condition', type: 'single', options: ['ready', 'newProject', 'any'] },
+      { key: 'propertyType', type: 'single', options: ['apartment', 'penthouse', 'house'] },
+      { key: 'bedrooms', type: 'single', options: ['studio', '1', '2', '3', 'any'] },
+      { key: 'bathrooms', type: 'single', options: ['1', '2', '3plus', 'any'] },
+      { key: 'unwanted', type: 'textarea' },
+      { key: 'furnished', type: 'single', options: ['furnished', 'unfurnished', 'any'] },
+    ],
+  },
+  {
+    key: 'budget',
+    questions: [
+      { key: 'budget', type: 'text', required: true },
+      { key: 'budgetIncludes', type: 'single', options: ['all', 'separate', 'unknown'] },
+      { key: 'payment', type: 'single', options: ['cash', 'partial', 'undecided'] },
+    ],
+  },
+  {
+    key: 'income',
+    questions: [
+      { key: 'targetRent', type: 'text' },
+      { key: 'renovation', type: 'single', options: ['yes', 'no', 'budget'] },
+      { key: 'management', type: 'single', options: ['yes', 'no', 'offer'] },
+    ],
+  },
+  {
+    key: 'legal',
+    questions: [
+      { key: 'legal', type: 'single', options: ['yes', 'no', 'info'] },
+      { key: 'note', type: 'textarea' },
+    ],
+  },
+];
 
-const getSteps = (answers, loggedIn) => {
-  const steps = [{ key: 'propertyType', type: 'single', options: opts(['home', 'investment', 'land', 'unsure']) }];
+const getSteps = (loggedIn) => [
+  ...SECTIONS,
+  ...(loggedIn ? [] : [{ key: 'account', type: 'account', subtitle: true }]),
+];
 
-  if (answers.propertyType === 'investment') {
-    steps.push({ key: 'investmentStrategy', type: 'single', options: opts(['airbnb', 'longterm', 'flip', 'unsure']) });
-  }
-  if (answers.propertyType === 'land') {
-    steps.push({ key: 'landPlan', type: 'single', options: opts(['build', 'project', 'unsure']) });
-  }
-  if (answers.propertyType !== 'land') {
-    steps.push({ key: 'condition', type: 'single', options: opts(['ready', 'light', 'renovation', 'any']) });
-  }
-
-  steps.push({
-    key: 'region',
-    type: 'multi',
-    hint: true,
-    options: opts(['valencia-centro', 'el-carmen', 'benimaclet', 'ciutat-vella', 'poblats-maritims', 'alicante', 'any']),
-  });
-  steps.push({ key: 'budget', type: 'single', options: opts(['under150', '150-300', '300-500', '500plus']) });
-  steps.push({ key: 'timeline', type: 'single', options: opts(['now', '3-6', '6-12', 'researching']) });
-  steps.push({
-    key: 'services',
-    type: 'multi',
-    hint: true,
-    subtitle: true,
-    options: opts(['emlak', 'legal', 'renovasyon', 'staging', 'management', 'airbnb', 'insaat']),
-  });
-  steps.push({ key: 'location', type: 'single', options: opts(['turkey', 'europe-tr', 'spain', 'other']) });
-  steps.push({ key: 'contact', type: 'contact' });
-  if (!loggedIn) steps.push({ key: 'account', type: 'account', subtitle: true });
-
-  return steps;
+// Services the admin can assign, derived from the yes/no answers
+const deriveServices = (a) => {
+  const list = [];
+  if (a.legal === 'yes') list.push('legal');
+  if (a.management === 'yes') list.push('management');
+  if (a.renovation === 'yes') list.push('renovasyon');
+  return list;
 };
-
-const COUNTRY_BY_LOCATION = { turkey: 'Turkey', spain: 'Spain' };
 
 const inputCls = (bad) =>
   `w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-gold/50 ${bad ? 'border-red-500/60' : 'border-white/15'}`;
@@ -75,7 +102,7 @@ export default function ConsultationForm() {
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState('');
 
-  const steps = getSteps(answers, loggedIn);
+  const steps = getSteps(loggedIn);
   const current = steps[stepIndex];
   const isLast = stepIndex === steps.length - 1;
   const progress = ((stepIndex + 1) / steps.length) * 100;
@@ -95,11 +122,18 @@ export default function ConsultationForm() {
     return fallback;
   };
 
-  const canProceed = () => (current.type === 'single' ? Boolean(answers[current.key]) : true);
+  const canProceed = () => {
+    if (!current.questions) return true;
+    return current.questions.every((q) => {
+      if (q.type === 'single') return Boolean(answers[q.key]);
+      if (q.required) return Boolean((answers[q.key] || '').trim());
+      return true;
+    });
+  };
 
   const intakePayload = () => {
     const { password, consent, marketing, name, email, phone, preferredLanguage, ...rest } = answers;
-    return rest; // propertyType, investmentStrategy, region, budget, timeline, services, location, note...
+    return { ...rest, services: deriveServices(answers) };
   };
 
   const submit = async () => {
@@ -108,20 +142,20 @@ export default function ConsultationForm() {
     const name = val('name').trim();
     const email = val('email').trim();
     const phone = val('phone').trim();
-    const prefLang = answers.preferredLanguage || locale;
+    const prefLang = locale;
     const intake = intakePayload();
-    const country = COUNTRY_BY_LOCATION[answers.location] || null;
+    const country = null;
 
     try {
       if (loggedIn) {
         const { error } = await supabase.from('client_intake').insert({
           user_id: user.id,
-          goals: [intake.propertyType, intake.investmentStrategy, intake.landPlan].filter(Boolean),
-          budget_range: intake.budget || null,
-          timeline: intake.timeline || null,
-          preferred_regions: intake.region || [],
+          goals: [intake.investType, intake.purpose].filter(Boolean),
+          budget_range: (intake.budget || '').slice(0, 200) || null,
+          timeline: intake.timeframe || null,
+          preferred_regions: intake.area ? [intake.area] : [],
           property_types: intake.propertyType ? [intake.propertyType] : [],
-          desired_features: intake.condition ? [intake.condition] : [],
+          desired_features: [intake.condition, intake.furnished].filter(Boolean),
           selected_services: intake.services || [],
           notes: intake.note || null,
           status: 'submitted',
@@ -172,8 +206,8 @@ export default function ConsultationForm() {
         setMessage(t('errRequired'));
         return;
       }
-      if (loggedIn) return submit();
     }
+    if (isLast && current.type !== 'account') return submit();
     if (current.type === 'account') {
       const errs = {};
       if (!answers.password || answers.password.length < 8) errs.password = true;
@@ -239,53 +273,61 @@ export default function ConsultationForm() {
           exit={{ opacity: 0, x: -16 }}
           transition={{ duration: 0.25 }}
         >
-          <h3 className="text-xl sm:text-2xl font-serif text-white mb-1.5">{t(`q.${current.key}.title`)}</h3>
+          <h3 className="text-xl sm:text-2xl font-serif text-white mb-1.5">{t(`q.${current.type === 'account' || current.type === 'contact' ? current.key : 's_' + current.key}.title`)}</h3>
           {current.subtitle ? (
             <p className="text-sm text-white/50 mb-6">{t(`q.${current.key}.subtitle`)}</p>
-          ) : current.hint ? (
-            <p className="text-sm text-white/50 mb-6">{t('multiHint')}</p>
           ) : (
             <div className="mb-6" />
           )}
 
-          {current.type === 'single' && (
-            <div className="grid sm:grid-cols-2 gap-3">
-              {current.options.map((opt) => (
-                <button
-                  key={opt.value}
-                  type="button"
-                  onClick={() => set(current.key, opt.value)}
-                  className={`text-left px-5 py-4 rounded-xl border transition-all duration-200 ${
-                    answers[current.key] === opt.value
-                      ? 'bg-gold border-gold text-dark font-semibold'
-                      : 'bg-white/5 border-white/10 text-white/80 hover:border-gold/40 hover:bg-white/10'
-                  }`}
-                >
-                  {t(`o.${current.key}.${opt.value}`)}
-                </button>
+          {current.questions && (
+            <div className="space-y-7">
+              {current.questions.map((q) => (
+                <div key={q.key}>
+                  <p className="text-sm sm:text-base text-white mb-3 leading-snug">
+                    {t(`q.${q.key}.title`)}
+                    {q.type !== 'single' && !q.required && (
+                      <span className="text-white/40"> ({t('optional')})</span>
+                    )}
+                  </p>
+                  {q.type === 'single' && (
+                    <div className="flex flex-wrap gap-2.5">
+                      {q.options.map((value) => (
+                        <button
+                          key={value}
+                          type="button"
+                          onClick={() => set(q.key, value)}
+                          className={`text-left px-4 py-2.5 rounded-xl border text-sm transition-all duration-200 ${
+                            answers[q.key] === value
+                              ? 'bg-gold border-gold text-dark font-semibold'
+                              : 'bg-white/5 border-white/10 text-white/80 hover:border-gold/40 hover:bg-white/10'
+                          }`}
+                        >
+                          {t(`o.${q.key}.${value}`)}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  {q.type === 'text' && (
+                    <input
+                      type="text"
+                      value={answers[q.key] || ''}
+                      onChange={(e) => set(q.key, e.target.value)}
+                      className={inputCls(false)}
+                      placeholder={t('answerPh')}
+                    />
+                  )}
+                  {q.type === 'textarea' && (
+                    <textarea
+                      value={answers[q.key] || ''}
+                      onChange={(e) => set(q.key, e.target.value)}
+                      rows={3}
+                      className={`${inputCls(false)} resize-none`}
+                      placeholder={t('answerPh')}
+                    />
+                  )}
+                </div>
               ))}
-            </div>
-          )}
-
-          {current.type === 'multi' && (
-            <div className="flex flex-wrap gap-2.5">
-              {current.options.map((opt) => {
-                const selected = (answers[current.key] || []).includes(opt.value);
-                return (
-                  <button
-                    key={opt.value}
-                    type="button"
-                    onClick={() => toggleMulti(current.key, opt.value)}
-                    className={`px-4 py-2.5 rounded-full border text-sm transition-all duration-200 ${
-                      selected
-                        ? 'bg-gold border-gold text-dark font-semibold'
-                        : 'bg-white/5 border-white/10 text-white/80 hover:border-gold/40 hover:bg-white/10'
-                    }`}
-                  >
-                    {t(`o.${current.key}.${opt.value}`)}
-                  </button>
-                );
-              })}
             </div>
           )}
 
@@ -323,29 +365,6 @@ export default function ConsultationForm() {
                   onChange={(e) => set('phone', e.target.value)}
                   className={inputCls(errors.phone)}
                   placeholder="+90 5XX XXX XX XX"
-                />
-              </div>
-              <div className="sm:col-span-2">
-                <label className="block text-xs text-white/50 mb-1.5">{t('langLabel')}</label>
-                <select
-                  value={answers.preferredLanguage || locale}
-                  onChange={(e) => set('preferredLanguage', e.target.value)}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-gold/50"
-                >
-                  <option value="tr" className="bg-dark">Türkçe</option>
-                  <option value="en" className="bg-dark">English</option>
-                  <option value="es" className="bg-dark">Español</option>
-                  <option value="de" className="bg-dark">Deutsch</option>
-                </select>
-              </div>
-              <div className="sm:col-span-2">
-                <label className="block text-xs text-white/50 mb-1.5">{t('noteLabel')}</label>
-                <textarea
-                  value={answers.note || ''}
-                  onChange={(e) => set('note', e.target.value)}
-                  rows={3}
-                  className={`${inputCls(false)} resize-none`}
-                  placeholder={t('notePh')}
                 />
               </div>
               {loggedIn && <p className="sm:col-span-2 text-xs text-gold">{t('loggedInAs')}</p>}
@@ -438,9 +457,9 @@ export default function ConsultationForm() {
         >
           {sending ? (
             t('sending')
-          ) : isLast || (current.type === 'contact' && loggedIn) ? (
+          ) : isLast ? (
             <>
-              {loggedIn ? t('submitLoggedIn') : t('submit')}
+              {current.type === 'account' ? t('submit') : t('submitLoggedIn')}
               <Send size={16} />
             </>
           ) : (

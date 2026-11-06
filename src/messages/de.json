@@ -603,33 +603,89 @@
     "sending": "Wird gesendet…",
     "multiHint": "Mehrfachauswahl möglich.",
     "q": {
-      "propertyType": {
-        "title": "Welche Art von Immobilie suchen Sie?"
+      "investType": {
+        "title": "Bevorzugte Anlageart"
       },
-      "investmentStrategy": {
-        "title": "Wie lautet Ihre Anlagestrategie?"
+      "timeframe": {
+        "title": "In welchem Zeitraum planen Sie die Investition?"
       },
-      "landPlan": {
-        "title": "Was haben Sie mit dem Grundstück vor?"
+      "readyToBuy": {
+        "title": "Sind Sie bereit, den Kaufprozess zu starten, sobald eine passende Immobilie gefunden wird?"
+      },
+      "purpose": {
+        "title": "Was ist Ihr Hauptziel beim Immobilienkauf in Valencia?"
+      },
+      "priority": {
+        "title": "Was ist Ihre Priorität bei der Investition?"
+      },
+      "rentalType": {
+        "title": "Falls Sie die Immobilie vermieten möchten: langfristig oder saisonal (Airbnb)?"
+      },
+      "holdYears": {
+        "title": "Wie viele Jahre möchten Sie diese Investition halten?"
+      },
+      "area": {
+        "title": "Suchen Sie eine Immobilie im Stadtzentrum oder in günstigeren Randgebieten?"
       },
       "condition": {
-        "title": "Wie wichtig ist Ihnen der Zustand der Immobilie?"
+        "title": "Welchen Zustand der Immobilie bevorzugen Sie?"
       },
-      "region": {
-        "title": "Welche Gegend bevorzugen Sie?"
+      "propertyType": {
+        "title": "Welche Immobilienart ziehen Sie in Betracht?"
+      },
+      "bedrooms": {
+        "title": "Wie viele Schlafzimmer bevorzugen Sie?"
+      },
+      "bathrooms": {
+        "title": "Wie viele Badezimmer wünschen Sie mindestens?"
+      },
+      "unwanted": {
+        "title": "Gibt es Merkmale, die die Immobilie nicht haben soll? (Zum Beispiel: Gebäude ohne Aufzug, Erdgeschoss, sanierungsbedürftiges Objekt)"
+      },
+      "furnished": {
+        "title": "Soll die Immobilie möbliert sein?"
       },
       "budget": {
-        "title": "Wie hoch ist Ihr Budget?"
+        "title": "Wie hoch ist Ihr Gesamtbudget für den Immobilienkauf?"
       },
-      "timeline": {
-        "title": "Wie sieht Ihr Zeitplan aus?"
+      "budgetIncludes": {
+        "title": "Sind in diesem Budget Steuern, Notar- und Grundbuchgebühren sowie mögliche Renovierungskosten enthalten?"
       },
-      "services": {
-        "title": "Welche Leistungen interessieren Sie?",
-        "subtitle": "Wir fügen die gewählten Leistungen Ihrem Konto hinzu; Sie können sie jederzeit ändern."
+      "payment": {
+        "title": "Wie möchten Sie bezahlen?"
       },
-      "location": {
-        "title": "Wo leben Sie derzeit?"
+      "targetRent": {
+        "title": "Welche monatlichen Mieteinnahmen möchten Sie mit dieser Investition erzielen?"
+      },
+      "renovation": {
+        "title": "Würden Sie in Betracht ziehen, die Mieteinnahmen durch eine Renovierung zu steigern?"
+      },
+      "management": {
+        "title": "Möchten Sie nach dem Kauf Vermietungs- und Verwaltungsleistungen in Anspruch nehmen?"
+      },
+      "legal": {
+        "title": "Möchten Sie beim Kaufprozess Unterstützung durch einen Anwalt oder Steuerberater?"
+      },
+      "note": {
+        "title": "Haben Sie besondere Wünsche oder Fragen, die Sie hinzufügen möchten?"
+      },
+      "s_contact": {
+        "title": "Kontaktdaten"
+      },
+      "s_purpose": {
+        "title": "Anlageziel"
+      },
+      "s_prefs": {
+        "title": "Region und Immobilienwünsche"
+      },
+      "s_budget": {
+        "title": "Budget und Zahlungsweise"
+      },
+      "s_income": {
+        "title": "Mieteinnahmen und Renditeerwartung"
+      },
+      "s_legal": {
+        "title": "Rechtliche und administrative Fragen"
       },
       "contact": {
         "title": "Ihre Kontaktdaten"
@@ -640,64 +696,103 @@
       }
     },
     "o": {
-      "propertyType": {
-        "home": "Wohnung zum Selbstbewohnen",
-        "investment": "Anlageimmobilie",
-        "land": "Grundstück",
-        "unsure": "Noch nicht entschieden"
+      "investType": {
+        "residential": "Wohnimmobilie",
+        "commercial": "Gewerbeimmobilie",
+        "land": "Grundstücke und Land",
+        "other": "Sonstiges"
       },
-      "investmentStrategy": {
-        "airbnb": "Kurzzeitvermietung (Airbnb)",
-        "longterm": "Langzeitvermietung",
-        "flip": "Kaufen und verkaufen (Wertsteigerung)",
-        "unsure": "Noch nicht entschieden"
+      "timeframe": {
+        "now": "Sofort",
+        "3-6": "Innerhalb von 3 bis 6 Monaten",
+        "6plus": "In mehr als 6 Monaten"
       },
-      "landPlan": {
-        "build": "Eigenes Haus bauen",
-        "project": "Investitions- / Bauprojekt",
-        "unsure": "Noch nicht entschieden"
+      "readyToBuy": {
+        "yes": "Ja",
+        "no": "Nein"
+      },
+      "purpose": {
+        "rental": "Mieteinnahmen",
+        "holiday": "Ferienhaus",
+        "live": "Ich möchte später selbst dort wohnen",
+        "other": "Sonstiges"
+      },
+      "priority": {
+        "monthly": "Monatliche Mieteinnahmen",
+        "appreciation": "Späterer Verkauf mit Wertsteigerungsgewinn",
+        "both": "Beides gleich wichtig"
+      },
+      "rentalType": {
+        "long": "Langzeitvermietung",
+        "seasonal": "Saisonale Vermietung (Airbnb)",
+        "both": "Beides möglich"
+      },
+      "holdYears": {
+        "1-3": "1-3 Jahre",
+        "3-5": "3-5 Jahre",
+        "5-10": "5-10 Jahre",
+        "10plus": "Mehr als 10 Jahre",
+        "undecided": "Noch nicht entschieden"
+      },
+      "area": {
+        "center": "Stadtzentrum",
+        "sea": "Meeresnähe",
+        "nearCenter": "Orte in Zentrumsnähe",
+        "outside": "Außerhalb der Stadt",
+        "any": "Egal"
       },
       "condition": {
         "ready": "Bezugsfertig",
-        "light": "Kleine Renovierungen sind in Ordnung",
-        "renovation": "Ich suche ein Renovierungsprojekt (Schnäppchenpreis)",
+        "newProject": "Neubauprojekt",
+        "any": "Alles möglich"
+      },
+      "propertyType": {
+        "apartment": "Wohnung",
+        "penthouse": "Penthouse",
+        "house": "Freistehendes Haus"
+      },
+      "bedrooms": {
+        "studio": "Studio (1+0)",
+        "1": "1 Schlafzimmer",
+        "2": "2 Schlafzimmer",
+        "3": "3 Schlafzimmer",
         "any": "Egal"
       },
-      "region": {
-        "valencia-centro": "Valencia Zentrum",
-        "el-carmen": "El Carmen",
-        "benimaclet": "Benimaclet",
-        "ciutat-vella": "Ciutat Vella",
-        "poblats-maritims": "Poblats Marítims",
-        "alicante": "Raum Alicante",
-        "any": "Egal / ich möchte Vorschläge"
+      "bathrooms": {
+        "1": "1 Badezimmer",
+        "2": "2 Badezimmer",
+        "3plus": "3 oder mehr",
+        "any": "Egal"
       },
-      "budget": {
-        "under150": "Unter 150.000 €",
-        "150-300": "150.000 € – 300.000 €",
-        "300-500": "300.000 € – 500.000 €",
-        "500plus": "Ab 500.000 €"
+      "furnished": {
+        "furnished": "Möbliert",
+        "unfurnished": "Unmöbliert",
+        "any": "Egal"
       },
-      "timeline": {
-        "now": "Sofort",
-        "3-6": "In 3-6 Monaten",
-        "6-12": "In 6-12 Monaten",
-        "researching": "Ich informiere mich nur"
+      "budgetIncludes": {
+        "all": "Ja, alle Kosten enthalten",
+        "separate": "Nein, ich habe ein separates Budget eingeplant",
+        "unknown": "Weiß ich noch nicht"
       },
-      "services": {
-        "emlak": "Immobiliensuche & Beratung",
-        "legal": "Rechtsdienstleistungen (NIE, Aufenthalt, Verträge)",
-        "renovasyon": "Renovierung / Reform",
-        "staging": "Home Staging & Innenarchitektur",
-        "management": "Verwaltung Langzeitvermietung",
-        "airbnb": "Airbnb-Verwaltung",
-        "insaat": "Bauleitung"
+      "payment": {
+        "cash": "Vollständig in bar",
+        "partial": "Teilweise mit Kredit",
+        "undecided": "Noch nicht entschieden"
       },
-      "location": {
-        "turkey": "Türkei",
-        "europe-tr": "Türke mit Wohnsitz in Europa",
-        "spain": "Ich lebe in Spanien",
-        "other": "Andere"
+      "renovation": {
+        "yes": "Ja",
+        "no": "Nein",
+        "budget": "Abhängig vom Budget"
+      },
+      "management": {
+        "yes": "Ja",
+        "no": "Nein",
+        "offer": "Ich entscheide nach Sicht des Angebots"
+      },
+      "legal": {
+        "yes": "Ja",
+        "no": "Nein",
+        "info": "Ich möchte mehr Informationen"
       }
     },
     "nameLabel": "Vor- und Nachname",
@@ -722,7 +817,9 @@
     "thanksCheckEmail": "Ihr Konto wurde erstellt und Ihre Antworten gespeichert. Klicken Sie auf den Link in unserer E-Mail, um es zu aktivieren.",
     "thanksSaved": "Ihre Anfrage wurde in Ihrem Konto gespeichert. Unser Team meldet sich in Kürze bei Ihnen.",
     "goPanel": "Zum Mitgliederbereich",
-    "marketing": "Ich möchte per E-Mail Neuigkeiten zu Immobilien, Markt und Investitionen erhalten (optional; Abmeldung jederzeit möglich). Öffnungs- und Klickstatistiken werden erfasst."
+    "marketing": "Ich möchte per E-Mail Neuigkeiten zu Immobilien, Markt und Investitionen erhalten (optional; Abmeldung jederzeit möglich). Öffnungs- und Klickstatistiken werden erfasst.",
+    "optional": "optional",
+    "answerPh": "Ihre Antwort"
   },
   "propertyType": {
     "apartment": "Wohnung",

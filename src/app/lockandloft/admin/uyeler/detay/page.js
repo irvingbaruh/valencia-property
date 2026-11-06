@@ -430,17 +430,15 @@ function IntakeCard({ intake, services, templates, memberId, onChanged }) {
     .map((slug) => templates.find((tpl) => tpl.slug === slug))
     .filter(Boolean);
 
-  const rows = [
-    ['Mülk türü', a.propertyType && lab('propertyType', a.propertyType)],
-    ['Yatırım stratejisi', a.investmentStrategy && lab('investmentStrategy', a.investmentStrategy)],
-    ['Arsa planı', a.landPlan && lab('landPlan', a.landPlan)],
-    ['Mülk durumu', a.condition && lab('condition', a.condition)],
-    ['Bölgeler', (a.region || []).map((v) => lab('region', v)).join(', ')],
-    ['Bütçe', a.budget && lab('budget', a.budget)],
-    ['Zaman çizelgesi', a.timeline && lab('timeline', a.timeline)],
-    ['Yaşadığı yer', a.location && lab('location', a.location)],
-    ['Not', a.note],
-  ].filter(([, v]) => v);
+  const ORDER = [
+    'investType', 'timeframe', 'readyToBuy', 'purpose', 'priority', 'rentalType', 'holdYears',
+    'area', 'condition', 'propertyType', 'bedrooms', 'bathrooms', 'unwanted', 'furnished',
+    'budget', 'budgetIncludes', 'payment', 'targetRent', 'renovation', 'management', 'legal', 'note',
+  ];
+  const rows = ORDER.map((k) => [
+    trMessages.consult.q[k]?.title || k,
+    a[k] && (trMessages.consult.o[k] ? lab(k, a[k]) : a[k]),
+  ]).filter(([, v]) => v);
 
   const assign = async (tpl) => {
     setBusy(tpl.id);
@@ -458,7 +456,7 @@ function IntakeCard({ intake, services, templates, memberId, onChanged }) {
         </h2>
         <span className="text-xs text-[#9A9AAA]">{fmtDate(intake.submitted_at || intake.created_at)}</span>
       </div>
-      <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-3">
+      <dl className="grid gap-y-3">
         {rows.map(([k, v]) => (
           <div key={k}>
             <dt className="text-xs text-[#9A9AAA]">{k}</dt>

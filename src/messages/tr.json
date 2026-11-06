@@ -603,33 +603,89 @@
     "sending": "Gönderiliyor…",
     "multiHint": "Birden fazla seçenek işaretleyebilirsiniz.",
     "q": {
-      "propertyType": {
-        "title": "Ne tür bir mülk arıyorsunuz?"
+      "investType": {
+        "title": "Tercih Ettiğiniz Yatırım Türü"
       },
-      "investmentStrategy": {
-        "title": "Yatırım stratejiniz nedir?"
+      "timeframe": {
+        "title": "Yatırımı Planladığınız Zaman Aralığı"
       },
-      "landPlan": {
-        "title": "Arsa ile ilgili planınız nedir?"
+      "readyToBuy": {
+        "title": "Uygun bir mülk bulunduğunda satın alma sürecini başlatmaya hazır mısınız?"
+      },
+      "purpose": {
+        "title": "Valencia’da gayrimenkul satın almanızın temel amacı nedir?"
+      },
+      "priority": {
+        "title": "Yatırımdaki önceliğiniz nedir?"
+      },
+      "rentalType": {
+        "title": "Konutu kiralamayı düşünüyorsanız, uzun dönemli mi, sezonluk (Airbnb) mi kiralamayı düşünüyorsunuz?"
+      },
+      "holdYears": {
+        "title": "Bu yatırımı kaç yıl boyunca portföyünüzde tutmayı planlıyorsunuz?"
+      },
+      "area": {
+        "title": "Şehir merkezinde mi, yoksa daha uygun fiyatlı çevre bölgelerde mi gayrimenkul arıyorsunuz?"
       },
       "condition": {
-        "title": "Mülkün durumu sizin için önemli mi?"
+        "title": "Mülkün durumu için tercihiniz nedir?"
       },
-      "region": {
-        "title": "Bölge tercihiniz nedir?"
+      "propertyType": {
+        "title": "Hangi mülk tipini düşünüyorsunuz?"
+      },
+      "bedrooms": {
+        "title": "Tercih ettiğiniz yatak odası sayısı nedir?"
+      },
+      "bathrooms": {
+        "title": "Tercih ettiğiniz minimum banyo sayısı nedir?"
+      },
+      "unwanted": {
+        "title": "Mülkte olmasını istemediğiniz özellikler var mı? (Örneğin asansörsüz bina, zemin kat, bakım gerektiren yapı)"
+      },
+      "furnished": {
+        "title": "Konutun eşyalı olmasını tercih eder misiniz?"
       },
       "budget": {
-        "title": "Bütçe aralığınız nedir?"
+        "title": "Gayrimenkul alımı için ayırdığınız toplam bütçe nedir?"
       },
-      "timeline": {
-        "title": "Zaman çizelgeniz nedir?"
+      "budgetIncludes": {
+        "title": "Bu bütçeye vergiler, noter ve tapu masrafları ile olası tadilat giderleri dahil mi?"
       },
-      "services": {
-        "title": "Hangi hizmetlerle ilgileniyorsunuz?",
-        "subtitle": "Seçtiğiniz hizmetleri hesabınıza ekleyeceğiz; istediğiniz zaman değiştirebilirsiniz."
+      "payment": {
+        "title": "Ödeme şekliniz nedir?"
       },
-      "location": {
-        "title": "Şu anda nerede yaşıyorsunuz?"
+      "targetRent": {
+        "title": "Bu yatırımdan aylık ne kadar kira geliri elde etmeyi hedefliyorsunuz?"
+      },
+      "renovation": {
+        "title": "Tadilatla kira gelirini artırma seçeneğini değerlendirir misiniz?"
+      },
+      "management": {
+        "title": "Satın alma sonrasında kiralama ve mülk yönetimi hizmeti almak ister misiniz?"
+      },
+      "legal": {
+        "title": "Satın alma sürecinde avukat veya mali müşavir desteği almak ister misiniz?"
+      },
+      "note": {
+        "title": "Eklemek istediğiniz özel talepleriniz veya sorularınız var mı?"
+      },
+      "s_contact": {
+        "title": "İletişim Bilgileri"
+      },
+      "s_purpose": {
+        "title": "Yatırım Amacı"
+      },
+      "s_prefs": {
+        "title": "Bölge ve Mülk Tercihleri"
+      },
+      "s_budget": {
+        "title": "Bütçe ve Ödeme Şekli"
+      },
+      "s_income": {
+        "title": "Kira Geliri ve Getiri Beklentisi"
+      },
+      "s_legal": {
+        "title": "Yasal ve İdari Durum"
       },
       "contact": {
         "title": "İletişim Bilgileriniz"
@@ -640,64 +696,103 @@
       }
     },
     "o": {
-      "propertyType": {
-        "home": "Oturmak İçin Ev",
-        "investment": "Yatırım Amaçlı Mülk",
-        "land": "Arsa",
-        "unsure": "Henüz Karar Vermedim"
+      "investType": {
+        "residential": "Konut Yatırımı",
+        "commercial": "Ticari Gayrimenkul",
+        "land": "Arsa ve Arazi",
+        "other": "Diğer"
       },
-      "investmentStrategy": {
-        "airbnb": "Kısa Dönem Kiralama (Airbnb)",
-        "longterm": "Uzun Dönem Kiralama",
-        "flip": "Al-Sat (Değer Artışı)",
-        "unsure": "Henüz Karar Vermedim"
+      "timeframe": {
+        "now": "Hemen",
+        "3-6": "3 ila 6 ay içinde",
+        "6plus": "6 aydan uzun sürede"
       },
-      "landPlan": {
-        "build": "Kendi Evimi İnşa Etmek",
-        "project": "Yatırım / İnşaat Projesi",
-        "unsure": "Henüz Karar Vermedim"
+      "readyToBuy": {
+        "yes": "Evet",
+        "no": "Hayır"
+      },
+      "purpose": {
+        "rental": "Kira geliri",
+        "holiday": "Tatil evi",
+        "live": "İleride kendim oturmak istiyorum",
+        "other": "Diğer"
+      },
+      "priority": {
+        "monthly": "Aylık kira geliri",
+        "appreciation": "İleride satıp değer artışı kazancı",
+        "both": "İkisi de eşit önemde"
+      },
+      "rentalType": {
+        "long": "Uzun dönemli kira",
+        "seasonal": "Sezonluk (Airbnb) kira",
+        "both": "İkisi de olabilir"
+      },
+      "holdYears": {
+        "1-3": "1-3 yıl",
+        "3-5": "3-5 yıl",
+        "5-10": "5-10 yıl",
+        "10plus": "10+ yıl",
+        "undecided": "Henüz karar vermedim"
+      },
+      "area": {
+        "center": "Şehir merkezi",
+        "sea": "Denize yakın",
+        "nearCenter": "Şehir merkezine yakın yerleşim yerleri",
+        "outside": "Şehir dışı",
+        "any": "Fark etmez"
       },
       "condition": {
-        "ready": "Tamamen Hazır, Taşınmaya Hazır Olmalı",
-        "light": "Küçük Yenilemelere Açığım",
-        "renovation": "Renovasyon Projesi Arıyorum (Fırsat Fiyatına)",
-        "any": "Fark Etmez"
+        "ready": "Hazır ve yaşanabilir",
+        "newProject": "Yeni proje",
+        "any": "Hepsi olabilir"
       },
-      "region": {
-        "valencia-centro": "Valencia Merkez",
-        "el-carmen": "El Carmen",
-        "benimaclet": "Benimaclet",
-        "ciutat-vella": "Ciutat Vella",
-        "poblats-maritims": "Poblats Marítims",
-        "alicante": "Alicante Bölgesi",
-        "any": "Fark Etmez / Öneri İsterim"
+      "propertyType": {
+        "apartment": "Daire",
+        "penthouse": "Çatı katı",
+        "house": "Müstakil konut"
       },
-      "budget": {
-        "under150": "150.000€'nun Altı",
-        "150-300": "150.000€ – 300.000€",
-        "300-500": "300.000€ – 500.000€",
-        "500plus": "500.000€ ve Üzeri"
+      "bedrooms": {
+        "studio": "Stüdyo (1+0)",
+        "1": "1 yatak odası",
+        "2": "2 yatak odası",
+        "3": "3 yatak odası",
+        "any": "Fark etmez"
       },
-      "timeline": {
-        "now": "Hemen",
-        "3-6": "3-6 Ay İçinde",
-        "6-12": "6-12 Ay İçinde",
-        "researching": "Sadece Araştırıyorum"
+      "bathrooms": {
+        "1": "1 banyo",
+        "2": "2 banyo",
+        "3plus": "3 ve üzeri",
+        "any": "Fark etmez"
       },
-      "services": {
-        "emlak": "Emlak Arama & Danışmanlık",
-        "legal": "Hukuki Hizmetler (NIE, oturma izni, sözleşme)",
-        "renovasyon": "Renovasyon / Reform",
-        "staging": "Home Staging & İç Tasarım",
-        "management": "Kiracı Yönetimi (Uzun Dönem)",
-        "airbnb": "Airbnb Yönetimi",
-        "insaat": "İnşaat Yönetimi"
+      "furnished": {
+        "furnished": "Eşyalı",
+        "unfurnished": "Eşyasız",
+        "any": "Fark etmez"
       },
-      "location": {
-        "turkey": "Türkiye",
-        "europe-tr": "Avrupa'da Yaşayan Türküm",
-        "spain": "İspanya'da Yaşıyorum",
-        "other": "Diğer"
+      "budgetIncludes": {
+        "all": "Evet, tüm masraflar dahil",
+        "separate": "Hayır, ayrıca bütçe ayırdım",
+        "unknown": "Henüz bilmiyorum"
+      },
+      "payment": {
+        "cash": "Tamamı peşin",
+        "partial": "Kısmen kredi",
+        "undecided": "Henüz karar vermedim"
+      },
+      "renovation": {
+        "yes": "Evet",
+        "no": "Hayır",
+        "budget": "Bütçeye bağlı"
+      },
+      "management": {
+        "yes": "Evet",
+        "no": "Hayır",
+        "offer": "Teklifi görüp karar veririm"
+      },
+      "legal": {
+        "yes": "Evet",
+        "no": "Hayır",
+        "info": "Bilgi almak istiyorum"
       }
     },
     "nameLabel": "Ad Soyad",
@@ -722,7 +817,9 @@
     "thanksCheckEmail": "Üyeliğiniz oluşturuldu ve yanıtlarınız kaydedildi. Hesabınızı etkinleştirmek için e-postanıza gönderdiğimiz bağlantıya tıklayın.",
     "thanksSaved": "Talebiniz hesabınıza kaydedildi. Ekibimiz en kısa sürede sizinle iletişime geçecek.",
     "goPanel": "Üye Paneline Git",
-    "marketing": "Yeni mülk, piyasa ve yatırım haberlerini e-posta ile almak istiyorum (isteğe bağlı, istediğiniz zaman çıkabilirsiniz). E-postalarda açılma ve tıklama istatistikleri tutulur."
+    "marketing": "Yeni mülk, piyasa ve yatırım haberlerini e-posta ile almak istiyorum (isteğe bağlı, istediğiniz zaman çıkabilirsiniz). E-postalarda açılma ve tıklama istatistikleri tutulur.",
+    "optional": "isteğe bağlı",
+    "answerPh": "Yanıtınız"
   },
   "propertyType": {
     "apartment": "Daire",
