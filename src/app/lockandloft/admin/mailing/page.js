@@ -15,6 +15,7 @@ const EMPTY = {
   name: '',
   subject_tr: '', subject_en: '', subject_es: '', subject_de: '',
   body_tr: '', body_en: '', body_es: '', body_de: '',
+  audience_langs: ['tr', 'en', 'es', 'de'],
 };
 const card = { background: '#151521', border: '1px solid #1E1E2E' };
 const inputCls =
@@ -73,7 +74,7 @@ export default function MailingPage() {
   const send = async (test) => {
     const saved = await save();
     if (!saved) return;
-    if (!test && !window.confirm(`${subs.length} aboneye gönderilsin mi? Bu işlem geri alınamaz.`)) return;
+    if (!test && !window.confirm(`${audienceCount} aboneye gönderilsin mi? Bu işlem geri alınamaz.`)) return;
     setBusy(test ? 'test' : 'send');
     const { data, error } = await supabase.functions.invoke('send-mailing', { body: { campaign_id: saved.id, test } });
     setBusy('');
@@ -98,6 +99,11 @@ export default function MailingPage() {
 
   const langCount = (code) => subs.filter((s) => (s.lang || 'tr') === code).length;
   const locked = editing?.status === 'sent';
+  const audience = editing?.audience_langs || [];
+  const audienceCount = subs.filter((s) => audience.includes(s.lang || 'tr')).length;
+  const missing = audience.filter((l) => !(editing?.[`subject_${l}`]?.trim() && editing?.[`body_${l}`]?.trim()));
+  const toggleAudience = (code) =>
+    setEditing({ ...editing, audience_langs: audience.includes(code) ? audience.filter((x) => x !== code) : [...audience, code] });
 
   return (
     <AdminLayout activeSection="mailing">
@@ -160,6 +166,31 @@ export default function MailingPage() {
             <p className="text-xs text-[#9A9AAA]">
               Her abone kendi dilindeki içeriği alır; o dil boşsa sırayla İngilizce, Türkçe, İspanyolca, Almanca kullanılır. Abonelikten çık bağlantısı otomatik eklenir.
             </p>
+            <div className="rounded-lg p-4 space-y-3" style={{ background: '#0E0E18', border: '1px solid #2A2A3C' }}>
+              <p className="text-sm text-white font-medium">Alıcılar: hangi dilde kayıtlı aboneler?</p>
+              <div className="flex flex-wrap gap-4">
+                {LANGS.map((l) => (
+                  <label key={l.code} className="flex items-center gap-2 text-sm text-white cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={audience.includes(l.code)}
+                      disabled={locked}
+                      onChange={() => toggleAudience(l.code)}
+                      className="accent-[#C9A84C]"
+                    />
+                    {l.label} ({langCount(l.code)})
+                  </label>
+                ))}
+              </div>
+              <p className="text-xs text-[#9A9AAA]">
+                Seçilen dillerdeki {audienceCount} aboneye gönderilir. Sadece seçili dillerin aboneleri e-posta alır; sekmeler yalnızca içeriği yazmak içindir.
+              </p>
+              {missing.length > 0 && (
+                <p className="text-xs text-amber-300">
+                  Şu dillerin konu veya içeriği boş: {missing.join(', ').toUpperCase()}. Bu dillerin aboneleri başka bir dildeki içeriği alır; istemiyorsanız dili kapatın.
+                </p>
+              )}
+            </div>
             <div className="flex flex-wrap gap-3">
               <button onClick={save} disabled={!!busy} className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm bg-white/10 text-white hover:bg-white/15">
                 <Save className="w-4 h-4" /> {busy === 'save' ? 'Kaydediliyor…' : 'Taslağı kaydet'}
@@ -169,11 +200,11 @@ export default function MailingPage() {
               </button>
               <button
                 onClick={() => send(false)}
-                disabled={!!busy || locked || subs.length === 0}
+                disabled={!!busy || locked || audienceCount === 0}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium text-[#0B0B11] disabled:opacity-40"
                 style={{ background: '#C9A84C' }}
               >
-                <Send className="w-4 h-4" /> {busy === 'send' ? 'Gönderiliyor…' : `${subs.length} aboneye gönder`}
+                <Send className="w-4 h-4" /> {busy === 'send' ? 'Gönderiliyor…' : `${audienceCount} aboneye gönder`}
               </button>
             </div>
           </div>

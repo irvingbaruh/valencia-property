@@ -80,7 +80,10 @@ Deno.serve(async (req) => {
     } else {
       const { data: subs, error: se } = await sb.rpc('admin_mailing_subscribers');
       if (se) return json({ error: 'subscribers_failed' }, 500);
-      recipients = (subs || []).map((s: any) => ({
+      const allowed: string[] = Array.isArray(c.audience_langs) && c.audience_langs.length ? c.audience_langs : LANGS;
+      recipients = (subs || [])
+        .filter((s: any) => allowed.includes(LANGS.includes(s.lang) ? s.lang : 'tr'))
+        .map((s: any) => ({
         email: s.email,
         lang: LANGS.includes(s.lang) ? s.lang : 'tr',
         token: s.unsubscribe_token,
