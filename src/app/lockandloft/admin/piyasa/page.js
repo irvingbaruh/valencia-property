@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { supabase } from '@/lib/supabase';
 import AdminLayout from '@/components/admin/AdminLayout';
-import { Plus, Edit3, Trash2, Eye, EyeOff, X, Save, ExternalLink } from 'lucide-react';
+import { Plus, Edit3, Trash2, Eye, EyeOff, X, Save, ExternalLink, ImagePlus } from 'lucide-react';
 
 const LANGS = [
   { k: 'tr', label: 'Türkçe' }, { k: 'es', label: 'İspanyolca' }, { k: 'en', label: 'İngilizce' }, { k: 'de', label: 'Almanca' },
@@ -11,8 +11,18 @@ const LANGS = [
 const TOPICS = [['realestate', 'Gayrimenkul'], ['economy', 'Ekonomi'], ['rates', 'Faiz'], ['legal', 'Hukuk']];
 const EMPTY = {
   title_tr: '', title_es: '', title_en: '', title_de: '', summary_tr: '', summary_es: '', summary_en: '', summary_de: '',
-  topic: 'realestate', source_name: '', source_url: '', data_date: '', status: 'draft',
+  topic: 'realestate', source_name: '', source_url: '', data_date: '', status: 'draft', image_url: '',
 };
+
+async function shrink(file) {
+  const bmp = await createImageBitmap(file);
+  const scale = Math.min(1, 1600 / Math.max(bmp.width, bmp.height));
+  const c = document.createElement('canvas');
+  c.width = Math.round(bmp.width * scale);
+  c.height = Math.round(bmp.height * scale);
+  c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
+  return new Promise((res) => c.toBlob(res, 'image/jpeg', 0.85));
+}
 const inputCls = 'w-full bg-[#0B0B11] border border-[#2A2A3A] rounded-lg px-3 py-2 text-sm text-white placeholder:text-[#6A6A7A] focus:border-[#C9A84C] focus:outline-none';
 const labelCls = 'text-xs text-[#9A9AAA] mb-1.5 block';
 
@@ -21,6 +31,19 @@ function Editor({ row, onClose, onSaved }) {
   const [lang, setLang] = useState('tr');
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState('');
+  const [up, setUp] = useState(false);
+  const upload = async (file) => {
+    if (!file) return;
+    setUp(true); setErr('');
+    try {
+      const blob = await shrink(file);
+      const path = `notes/${crypto.randomUUID()}.jpg`;
+      const { error } = await supabase.storage.from('properties').upload(path, blob, { contentType: 'image/jpeg' });
+      if (error) throw error;
+      set('image_url', supabase.storage.from('properties').getPublicUrl(path).data.publicUrl);
+    } catch (e) { setErr(e.message || 'Yükleme başarısız'); }
+    setUp(false);
+  };
   const set = (k, v) => setF((s) => ({ ...s, [k]: v }));
 
   const save = async (status) => {
@@ -34,7 +57,7 @@ function Editor({ row, onClose, onSaved }) {
     const payload = {
       title_tr: f.title_tr, title_es: f.title_es, title_en: f.title_en, title_de: f.title_de,
       summary_tr: f.summary_tr, summary_es: f.summary_es, summary_en: f.summary_en, summary_de: f.summary_de,
-      topic: f.topic, source_name: f.source_name, source_url: f.source_url, data_date: f.data_date || null, status,
+      image_url: f.image_url || '', topic: f.topic, source_name: f.source_name, source_url: f.source_url, data_date: f.data_date || null, status,
     };
     const q = row ? supabase.from('market_notes').update(payload).eq('id', row.id) : supabase.from('market_notes').insert(payload);
     const { error } = await q;
@@ -84,6 +107,17 @@ function Editor({ row, onClose, onSaved }) {
             <div>
               <label className={labelCls}>Kaynak linki</label>
               <input className={inputCls} value={f.source_url} onChange={(e) => set('source_url', e.target.value)} placeholder="https://…" />
+            </div>
+          </div>
+          <div>
+            <label className={labelCls}>Görsel (boş bırakırsan konuya uygun hazır görsel kullanılır)</label>
+            <div className="flex items-center gap-3">
+              {f.image_url && <img src={f.image_url} alt="" className="w-24 h-16 object-cover rounded-lg" />}
+              <label className="inline-flex items-center gap-2 px-3 py-2 bg-[#1E1E2E] text-white rounded-lg text-sm cursor-pointer">
+                <ImagePlus size={15} /> {up ? 'Yükleniyor…' : f.image_url ? 'Değiştir' : 'Görsel yükle'}
+                <input type="file" accept="image/*" className="hidden" onChange={(e) => upload(e.target.files?.[0])} />
+              </label>
+              {f.image_url && <button onClick={() => set('image_url', '')} className="text-xs text-[#9A9AAA] hover:text-white">Kaldır</button>}
             </div>
           </div>
           {err && <div className="text-sm text-[#DC1C2E]">{err}</div>}

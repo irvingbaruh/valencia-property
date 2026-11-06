@@ -963,7 +963,8 @@
   },
   "rates": {
     "label": "Döviz kurları",
-    "source": "AMB referans kuru · {date}"
+    "source": "AMB referans kurları (günlük) · altın: gold-api.com · Bitcoin: CoinGecko",
+    "gold": "Altın (ons)"
   },
   "market": {
     "title": "Piyasa Notları",

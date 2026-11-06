@@ -963,7 +963,8 @@
   },
   "rates": {
     "label": "Wechselkurse",
-    "source": "EZB-Referenzkurs · {date}"
+    "source": "EZB-Referenzkurse (täglich) · Gold: gold-api.com · Bitcoin: CoinGecko",
+    "gold": "Gold (Unze)"
   },
   "market": {
     "title": "Marktnotizen",

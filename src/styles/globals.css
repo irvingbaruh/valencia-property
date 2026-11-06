@@ -169,3 +169,9 @@ img {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Rate ticker marquee */
+@keyframes ll-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.ll-marquee { display: flex; width: max-content; animation: ll-marquee 45s linear infinite; }
+.ll-marquee:hover { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .ll-marquee { animation: none; } }

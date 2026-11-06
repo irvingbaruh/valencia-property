@@ -963,7 +963,8 @@
   },
   "rates": {
     "label": "Exchange rates",
-    "source": "ECB reference rate · {date}"
+    "source": "ECB reference rates (daily) · gold: gold-api.com · Bitcoin: CoinGecko",
+    "gold": "Gold (oz)"
   },
   "market": {
     "title": "Market Notes",

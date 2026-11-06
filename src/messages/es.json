@@ -963,7 +963,8 @@
   },
   "rates": {
     "label": "Tipos de cambio",
-    "source": "Tipo de referencia BCE · {date}"
+    "source": "Tipos de referencia del BCE (diarios) · oro: gold-api.com · Bitcoin: CoinGecko",
+    "gold": "Oro (onza)"
   },
   "market": {
     "title": "Notas de mercado",

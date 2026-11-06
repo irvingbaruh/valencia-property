@@ -4,6 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { ArrowRight } from 'lucide-react';
 import { localePath } from '@/lib/routes';
 import { fetchNotes } from '@/lib/marketNotes';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 import MarketNoteCard from './MarketNoteCard';
 
 // Homepage teaser: hidden until at least one note is published.
@@ -18,9 +19,9 @@ export default function MarketNotes() {
   }, []);
   if (!notes.length) return null;
   return (
-    <section className="bg-white py-20 sm:py-24">
+    <section className="bg-soft py-20 sm:py-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
+        <ScrollReveal className="flex flex-wrap items-end justify-between gap-4 mb-12">
           <div>
             <h2 className="text-3xl md:text-4xl font-serif text-dark mb-2">{t('title')}</h2>
             <p className="text-text-muted max-w-xl">{t('subtitle')}</p>
@@ -28,9 +29,9 @@ export default function MarketNotes() {
           <a href={localePath(locale, 'piyasa')} className="inline-flex items-center gap-2 text-dark font-medium hover:text-gold transition-colors">
             {t('viewAll')} <ArrowRight size={16} />
           </a>
-        </div>
+        </ScrollReveal>
         <div className="grid md:grid-cols-3 gap-6">
-          {notes.map((n) => <MarketNoteCard key={n.id} note={n} />)}
+          {notes.map((n, i) => <MarketNoteCard key={n.id} note={n} index={i} />)}
         </div>
       </div>
     </section>

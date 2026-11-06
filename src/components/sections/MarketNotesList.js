@@ -28,7 +28,7 @@ export default function MarketNotesList() {
         <p className="text-text-muted py-12 text-center">{t('empty')}</p>
       ) : (
         <div className="grid md:grid-cols-2 gap-6">
-          {list.map((n) => <MarketNoteCard key={n.id} note={n} />)}
+          {list.map((n, i) => <MarketNoteCard key={n.id} note={n} index={i} large={i === 0 && topic === 'all' && list.length > 1} />)}
         </div>
       )}
       <p className="text-xs text-text-muted mt-10 max-w-2xl">{t('disclaimer')}</p>
