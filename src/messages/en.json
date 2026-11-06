@@ -694,6 +694,18 @@
       "account": {
         "title": "Create your account",
         "subtitle": "Your answers are saved in your account, where you can follow your services and progress."
+      },
+      "nationality": {
+        "title": "What is your nationality?"
+      },
+      "residency": {
+        "title": "Do you have a residence permit in Spain?"
+      },
+      "nie": {
+        "title": "Do you have an NIE (Spanish tax/ID number for foreigners)?"
+      },
+      "bank": {
+        "title": "Do you have a bank account in Spain?"
       }
     },
     "o": {
@@ -794,6 +806,28 @@
         "yes": "Yes",
         "no": "No",
         "info": "I would like more information"
+      },
+      "nationality": {
+        "spanish": "I am a Spanish citizen",
+        "eu": "I am an EU citizen (not Spanish)",
+        "turkish": "I am a Turkish citizen",
+        "other": "I hold another nationality"
+      },
+      "residency": {
+        "resident": "Yes, I have a residence permit",
+        "applying": "I am applying for one",
+        "none": "No, I do not",
+        "info": "I would like to know my options"
+      },
+      "nie": {
+        "have": "Yes, I have one",
+        "none": "No, I do not",
+        "unknown": "I do not know what an NIE is"
+      },
+      "bank": {
+        "have": "Yes, I have one",
+        "need": "No, I need to open one",
+        "info": "I would like information"
       }
     },
     "nameLabel": "Full name",

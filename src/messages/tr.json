@@ -694,6 +694,18 @@
       "account": {
         "title": "Üyeliğinizi oluşturun",
         "subtitle": "Yanıtlarınız üye hesabınızda saklanır; hizmetlerinizi ve sürecinizi buradan takip edersiniz."
+      },
+      "nationality": {
+        "title": "Vatandaşlığınız nedir?"
+      },
+      "residency": {
+        "title": "İspanya’da oturma izniniz var mı?"
+      },
+      "nie": {
+        "title": "NIE numaranız (İspanya’da yabancılar için vergi/kimlik numarası) var mı?"
+      },
+      "bank": {
+        "title": "İspanya’da banka hesabınız var mı?"
       }
     },
     "o": {
@@ -793,6 +805,28 @@
       "legal": {
         "yes": "Evet",
         "no": "Hayır",
+        "info": "Bilgi almak istiyorum"
+      },
+      "nationality": {
+        "spanish": "İspanyol vatandaşıyım",
+        "eu": "AB vatandaşıyım (İspanyol değilim)",
+        "turkish": "Türkiye Cumhuriyeti vatandaşıyım",
+        "other": "Başka bir ülke vatandaşıyım"
+      },
+      "residency": {
+        "resident": "Evet, oturma iznim var",
+        "applying": "Başvuru sürecindeyim",
+        "none": "Hayır, yok",
+        "info": "Seçenekler hakkında bilgi almak istiyorum"
+      },
+      "nie": {
+        "have": "Evet, var",
+        "none": "Hayır, yok",
+        "unknown": "NIE’nin ne olduğunu bilmiyorum"
+      },
+      "bank": {
+        "have": "Evet, var",
+        "need": "Hayır, açtırmam gerekiyor",
         "info": "Bilgi almak istiyorum"
       }
     },

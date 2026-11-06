@@ -66,11 +66,18 @@ const SECTIONS = [
   {
     key: 'legal',
     questions: [
+      { key: 'nationality', type: 'single', options: ['spanish', 'eu', 'turkish', 'other'] },
+      { key: 'residency', type: 'single', options: ['resident', 'applying', 'none', 'info'], showIf: (a) => a.nationality === 'turkish' || a.nationality === 'other' },
+      { key: 'nie', type: 'single', options: ['have', 'none', 'unknown'], showIf: (a) => a.nationality && a.nationality !== 'spanish' },
+      { key: 'bank', type: 'single', options: ['have', 'need', 'info'], showIf: (a) => a.nationality && a.nationality !== 'spanish' },
       { key: 'legal', type: 'single', options: ['yes', 'no', 'info'] },
       { key: 'note', type: 'textarea' },
     ],
   },
 ];
+
+// Questions that apply to the answers so far (e.g. residence-permit questions only for non-EU buyers)
+const visibleQuestions = (section, a) => (section.questions || []).filter((q) => !q.showIf || q.showIf(a));
 
 const getSteps = (loggedIn) => [
   ...SECTIONS,
@@ -124,7 +131,7 @@ export default function ConsultationForm() {
 
   const canProceed = () => {
     if (!current.questions) return true;
-    return current.questions.every((q) => {
+    return visibleQuestions(current, answers).every((q) => {
       if (q.type === 'single') return Boolean(answers[q.key]);
       if (q.required) return Boolean((answers[q.key] || '').trim());
       return true;
@@ -133,6 +140,10 @@ export default function ConsultationForm() {
 
   const intakePayload = () => {
     const { password, consent, marketing, name, email, phone, preferredLanguage, ...rest } = answers;
+    // drop answers to questions that no longer apply (e.g. the buyer changed their nationality answer)
+    SECTIONS.forEach((sec) => (sec.questions || []).forEach((q) => {
+      if (q.showIf && !q.showIf(answers)) delete rest[q.key];
+    }));
     return { ...rest, services: deriveServices(answers) };
   };
 
@@ -282,7 +293,7 @@ export default function ConsultationForm() {
 
           {current.questions && (
             <div className="space-y-7">
-              {current.questions.map((q) => (
+              {visibleQuestions(current, answers).map((q) => (
                 <div key={q.key}>
                   <p className="text-sm sm:text-base text-white mb-3 leading-snug">
                     {t(`q.${q.key}.title`)}

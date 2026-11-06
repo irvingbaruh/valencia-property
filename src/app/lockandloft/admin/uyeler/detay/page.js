@@ -313,7 +313,8 @@ function IntakeCard({ intake, services, templates, memberId, onChanged }) {
   const ORDER = [
     'investType', 'timeframe', 'readyToBuy', 'purpose', 'priority', 'rentalType', 'holdYears',
     'area', 'condition', 'propertyType', 'bedrooms', 'bathrooms', 'unwanted', 'furnished',
-    'budget', 'budgetIncludes', 'payment', 'targetRent', 'renovation', 'management', 'legal', 'note',
+    'budget', 'budgetIncludes', 'payment', 'targetRent', 'renovation', 'management',
+    'nationality', 'residency', 'nie', 'bank', 'legal', 'note',
   ];
   const rows = ORDER.map((k) => [
     trMessages.consult.q[k]?.title || k,

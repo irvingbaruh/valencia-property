@@ -694,6 +694,18 @@
       "account": {
         "title": "Cree su cuenta",
         "subtitle": "Sus respuestas se guardan en su cuenta; desde allí seguirá sus servicios y su proceso."
+      },
+      "nationality": {
+        "title": "¿Cuál es su nacionalidad?"
+      },
+      "residency": {
+        "title": "¿Tiene permiso de residencia en España?"
+      },
+      "nie": {
+        "title": "¿Tiene NIE (número de identificación fiscal para extranjeros)?"
+      },
+      "bank": {
+        "title": "¿Tiene una cuenta bancaria en España?"
       }
     },
     "o": {
@@ -794,6 +806,28 @@
         "yes": "Sí",
         "no": "No",
         "info": "Quiero más información"
+      },
+      "nationality": {
+        "spanish": "Soy ciudadano español",
+        "eu": "Soy ciudadano de la UE (no español)",
+        "turkish": "Soy ciudadano turco",
+        "other": "Tengo otra nacionalidad"
+      },
+      "residency": {
+        "resident": "Sí, tengo permiso de residencia",
+        "applying": "Estoy en proceso de solicitarlo",
+        "none": "No, no tengo",
+        "info": "Quiero conocer las opciones"
+      },
+      "nie": {
+        "have": "Sí, lo tengo",
+        "none": "No, no lo tengo",
+        "unknown": "No sé qué es el NIE"
+      },
+      "bank": {
+        "have": "Sí, tengo",
+        "need": "No, necesito abrir una",
+        "info": "Quiero información"
       }
     },
     "nameLabel": "Nombre y apellidos",

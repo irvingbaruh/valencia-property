@@ -694,6 +694,18 @@
       "account": {
         "title": "Erstellen Sie Ihr Konto",
         "subtitle": "Ihre Antworten werden in Ihrem Konto gespeichert; dort verfolgen Sie Ihre Leistungen und Ihren Fortschritt."
+      },
+      "nationality": {
+        "title": "Welche Staatsangehörigkeit haben Sie?"
+      },
+      "residency": {
+        "title": "Haben Sie eine Aufenthaltserlaubnis für Spanien?"
+      },
+      "nie": {
+        "title": "Haben Sie eine NIE (spanische Steuer-/Identifikationsnummer für Ausländer)?"
+      },
+      "bank": {
+        "title": "Haben Sie ein Bankkonto in Spanien?"
       }
     },
     "o": {
@@ -794,6 +806,28 @@
         "yes": "Ja",
         "no": "Nein",
         "info": "Ich möchte mehr Informationen"
+      },
+      "nationality": {
+        "spanish": "Ich bin spanischer Staatsbürger",
+        "eu": "Ich bin EU-Bürger (nicht spanisch)",
+        "turkish": "Ich bin türkischer Staatsbürger",
+        "other": "Ich habe eine andere Staatsangehörigkeit"
+      },
+      "residency": {
+        "resident": "Ja, ich habe eine Aufenthaltserlaubnis",
+        "applying": "Ich beantrage sie gerade",
+        "none": "Nein, habe ich nicht",
+        "info": "Ich möchte meine Möglichkeiten kennenlernen"
+      },
+      "nie": {
+        "have": "Ja, habe ich",
+        "none": "Nein, habe ich nicht",
+        "unknown": "Ich weiß nicht, was eine NIE ist"
+      },
+      "bank": {
+        "have": "Ja, habe ich",
+        "need": "Nein, ich muss eines eröffnen",
+        "info": "Ich möchte Informationen"
       }
     },
     "nameLabel": "Vor- und Nachname",
