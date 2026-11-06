@@ -523,7 +523,7 @@
     "passwordUpdated": "Your password has been updated. Taking you to your account.",
     "linkInvalid": "This link is invalid or has expired. Start the password reset again.",
     "passwordTooShort": "Password must be at least 8 characters.",
-    "marketing": "I would like to receive property, market and investment news by email (optional)."
+    "marketing": "I would like to receive property, market and investment news by email (optional). Email open and click statistics are recorded."
   },
   "panel": {
     "title": "Member Panel",
@@ -588,7 +588,7 @@
     "completeBody": "Answer a few short questions so we can pick suitable properties and services for you.",
     "completeCta": "Fill in the form",
     "mailingTitle": "Our email newsletter",
-    "mailingDesc": "New properties, market updates and investment guides. You can switch it off at any time.",
+    "mailingDesc": "New properties, market updates and investment guides. You can switch it off at any time. Email open and click statistics are recorded.",
     "mailingOn": "Subscribed",
     "mailingOff": "Not subscribed",
     "mailingToggle": "Receive newsletter"
@@ -722,7 +722,7 @@
     "thanksCheckEmail": "Your account has been created and your answers saved. Click the link we emailed you to activate it.",
     "thanksSaved": "Your request has been saved to your account. Our team will contact you shortly.",
     "goPanel": "Go to my account",
-    "marketing": "I would like to receive property, market and investment news by email (optional; you can unsubscribe at any time)."
+    "marketing": "I would like to receive property, market and investment news by email (optional; you can unsubscribe at any time). Email open and click statistics are recorded."
   },
   "propertyType": {
     "apartment": "Apartment",

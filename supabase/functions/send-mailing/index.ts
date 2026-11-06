@@ -7,10 +7,10 @@ const CORS = {
 const SITE = 'https://lockandloft.com';
 const LANGS = ['tr', 'es', 'en', 'de'];
 const FOOTER: Record<string, { why: string; out: string }> = {
-  tr: { why: 'Bu e-postayı Lock & Loft bültenine abone olduğunuz için aldınız.', out: 'Abonelikten çık' },
-  es: { why: 'Recibe este correo porque se suscribió al boletín de Lock & Loft.', out: 'Darse de baja' },
-  en: { why: 'You are receiving this email because you subscribed to the Lock & Loft newsletter.', out: 'Unsubscribe' },
-  de: { why: 'Sie erhalten diese E-Mail, weil Sie den Lock & Loft Newsletter abonniert haben.', out: 'Abmelden' },
+  tr: { why: 'Bu e-postayı Lock & Loft bültenine abone olduğunuz için aldınız. E-postalarımızda açılma ve tıklama istatistikleri tutulur.', out: 'Abonelikten çık' },
+  es: { why: 'Recibe este correo porque se suscribió al boletín de Lock & Loft. En nuestros correos se registran estadísticas de apertura y clics.', out: 'Darse de baja' },
+  en: { why: 'You are receiving this email because you subscribed to the Lock & Loft newsletter. We record email open and click statistics.', out: 'Unsubscribe' },
+  de: { why: 'Sie erhalten diese E-Mail, weil Sie den Lock & Loft Newsletter abonniert haben. Wir erfassen Öffnungs- und Klickstatistiken.', out: 'Abmelden' },
 };
 
 const json = (body: unknown, status = 200) =>
@@ -101,6 +101,10 @@ Deno.serve(async (req) => {
         subject: (test ? '[TEST] ' : '') + m.subject,
         html,
         headers: { 'List-Unsubscribe': `<${link}>` },
+        tags: [
+          { name: 'campaign_id', value: String(campaign_id) },
+          { name: 'test', value: test ? '1' : '0' },
+        ],
       });
     }
     if (!messages.length) return json({ error: 'nothing_to_send' }, 400);

@@ -523,7 +523,7 @@
     "passwordUpdated": "Şifreniz güncellendi. Panelinize yönlendiriliyorsunuz.",
     "linkInvalid": "Bağlantı geçersiz veya süresi dolmuş. Şifre sıfırlamayı yeniden başlatın.",
     "passwordTooShort": "Şifre en az 8 karakter olmalı.",
-    "marketing": "Yeni mülk, piyasa ve yatırım haberlerini e-posta ile almak istiyorum (isteğe bağlı)."
+    "marketing": "Yeni mülk, piyasa ve yatırım haberlerini e-posta ile almak istiyorum (isteğe bağlı). E-postalarda açılma ve tıklama istatistikleri tutulur."
   },
   "panel": {
     "title": "Üye Paneli",
@@ -588,7 +588,7 @@
     "completeBody": "Size uygun mülkleri ve hizmetleri seçebilmemiz için birkaç kısa soruyu yanıtlayın.",
     "completeCta": "Formu doldur",
     "mailingTitle": "E-posta bültenimiz",
-    "mailingDesc": "Yeni mülkler, piyasa gelişmeleri ve yatırım rehberleri. İstediğiniz zaman kapatabilirsiniz.",
+    "mailingDesc": "Yeni mülkler, piyasa gelişmeleri ve yatırım rehberleri. İstediğiniz zaman kapatabilirsiniz. E-postalarda açılma ve tıklama istatistikleri tutulur.",
     "mailingOn": "Bülten aboneliği açık",
     "mailingOff": "Bülten aboneliği kapalı",
     "mailingToggle": "Bülteni al"
@@ -722,7 +722,7 @@
     "thanksCheckEmail": "Üyeliğiniz oluşturuldu ve yanıtlarınız kaydedildi. Hesabınızı etkinleştirmek için e-postanıza gönderdiğimiz bağlantıya tıklayın.",
     "thanksSaved": "Talebiniz hesabınıza kaydedildi. Ekibimiz en kısa sürede sizinle iletişime geçecek.",
     "goPanel": "Üye Paneline Git",
-    "marketing": "Yeni mülk, piyasa ve yatırım haberlerini e-posta ile almak istiyorum (isteğe bağlı, istediğiniz zaman çıkabilirsiniz)."
+    "marketing": "Yeni mülk, piyasa ve yatırım haberlerini e-posta ile almak istiyorum (isteğe bağlı, istediğiniz zaman çıkabilirsiniz). E-postalarda açılma ve tıklama istatistikleri tutulur."
   },
   "propertyType": {
     "apartment": "Daire",

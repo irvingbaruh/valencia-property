@@ -28,9 +28,33 @@ const ERRORS = {
   forbidden: 'Bu işlem için yetkiniz yok.',
 };
 
+function StatsRow({ c, st, pct, compact }) {
+  const delivered = st?.delivered || 0;
+  const items = [
+    ['Teslim edildi', delivered, null],
+    ['Açan', st?.opened || 0, pct(st?.opened || 0, delivered)],
+    ['Tıklayan', st?.clicked || 0, pct(st?.clicked || 0, delivered)],
+    ['Geri dönen', st?.bounced || 0, null],
+    ['Şikayet', st?.complained || 0, null],
+  ];
+  return (
+    <div className={`flex flex-wrap gap-x-5 gap-y-1 ${compact ? 'mt-1.5 text-xs' : 'text-sm'}`}>
+      {items.map(([label, n, p]) => (
+        <span key={label} className="text-[#9A9AAA]">
+          {label}: <span className="text-white font-medium">{n}</span>
+          {p ? <span> ({p})</span> : null}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 export default function MailingPage() {
   const [tab, setTab] = useState('campaigns');
   const [subs, setSubs] = useState([]);
+  const [unsubs, setUnsubs] = useState([]);
+  const [stats, setStats] = useState({});
+  const [links, setLinks] = useState([]);
   const [campaigns, setCampaigns] = useState([]);
   const [editing, setEditing] = useState(null);
   const [lang, setLang] = useState('tr');
@@ -38,17 +62,30 @@ export default function MailingPage() {
   const [msg, setMsg] = useState(null);
 
   const load = useCallback(async () => {
-    const [s, c] = await Promise.all([
+    const [s, c, u, st] = await Promise.all([
       supabase.rpc('admin_mailing_subscribers'),
       supabase.from('mailing_campaigns').select('*').order('created_at', { ascending: false }),
+      supabase.rpc('admin_mailing_unsubscribed'),
+      supabase.rpc('admin_campaign_stats'),
     ]);
     setSubs(s.data || []);
     setCampaigns(c.data || []);
+    setUnsubs(u.data || []);
+    setStats(Object.fromEntries((st.data || []).map((x) => [x.campaign_id, x])));
   }, []);
 
   useEffect(() => {
     load();
   }, [load]);
+
+  useEffect(() => {
+    setLinks([]);
+    if (editing?.id && editing.status === 'sent') {
+      supabase.rpc('admin_campaign_links', { p_campaign: editing.id }).then(({ data }) => setLinks(data || []));
+    }
+  }, [editing?.id, editing?.status]);
+
+  const pct = (n, d) => (d ? `${Math.round((n / d) * 100)}%` : '-');
 
   const save = async () => {
     if (!editing.name.trim()) {
@@ -166,6 +203,23 @@ export default function MailingPage() {
             <p className="text-xs text-[#9A9AAA]">
               Her abone kendi dilindeki içeriği alır; o dil boşsa sırayla İngilizce, Türkçe, İspanyolca, Almanca kullanılır. Abonelikten çık bağlantısı otomatik eklenir.
             </p>
+            {editing.id && editing.status === 'sent' && (
+              <div className="rounded-lg p-4 space-y-3" style={{ background: '#0E0E18', border: '1px solid #2A2A3C' }}>
+                <p className="text-sm text-white font-medium">Sonuçlar</p>
+                <StatsRow c={editing} st={stats[editing.id]} pct={pct} />
+                {links.length > 0 && (
+                  <div>
+                    <p className="text-xs text-[#9A9AAA] mb-1.5">En çok tıklanan bağlantılar</p>
+                    {links.map((l) => (
+                      <p key={l.link} className="text-xs text-white flex justify-between gap-3">
+                        <span className="truncate">{l.link}</span>
+                        <span className="text-[#9A9AAA] shrink-0">{l.people} kişi · {l.clicks} tık</span>
+                      </p>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
             <div className="rounded-lg p-4 space-y-3" style={{ background: '#0E0E18', border: '1px solid #2A2A3C' }}>
               <p className="text-sm text-white font-medium">Alıcılar: hangi dilde kayıtlı aboneler?</p>
               <div className="flex flex-wrap gap-4">
@@ -234,6 +288,7 @@ export default function MailingPage() {
                           ? `Gönderildi ${new Date(c.sent_at).toLocaleDateString('tr-TR')} · ${c.sent_count} başarılı, ${c.failed_count} başarısız`
                           : 'Taslak'}
                       </p>
+                      {c.status === 'sent' && <StatsRow c={c} st={stats[c.id]} pct={pct} compact />}
                     </button>
                     {c.status !== 'sent' && (
                       <button onClick={() => remove(c)} className="text-[#9A9AAA] hover:text-red-400" aria-label="Sil">
@@ -275,6 +330,28 @@ export default function MailingPage() {
                     </tbody>
                   </table>
                 </div>
+                {unsubs.length > 0 && (
+                  <div className="rounded-xl overflow-x-auto" style={card}>
+                    <p className="p-3 text-sm text-white font-medium">Abonelikten çıkanlar ({unsubs.length})</p>
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="text-left text-xs text-[#9A9AAA] border-b border-[#1E1E2E]">
+                          <th className="p-3">Ad</th><th className="p-3">E-posta</th><th className="p-3">Dil</th><th className="p-3">Çıkış tarihi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {unsubs.map((u) => (
+                          <tr key={u.id} className="border-b border-[#1E1E2E] last:border-0 text-white">
+                            <td className="p-3">{u.full_name || '-'}</td>
+                            <td className="p-3">{u.email}</td>
+                            <td className="p-3 uppercase">{u.lang}</td>
+                            <td className="p-3">{new Date(u.unsubscribed_at).toLocaleDateString('tr-TR')}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
               </div>
             )}
           </>
