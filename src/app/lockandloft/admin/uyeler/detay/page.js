@@ -23,6 +23,7 @@ import {
   Plus,
   Upload,
   Clock,
+  ChevronDown,
 } from 'lucide-react';
 
 const card = { background: '#151521', border: '1px solid #1E1E2E' };
@@ -424,6 +425,7 @@ const lab = (k, v) => trMessages.consult.o[k]?.[v] || v;
 // The answers the member gave in the consultation form (stored with the account at sign-up)
 function IntakeCard({ intake, services, templates, memberId, onChanged }) {
   const [busy, setBusy] = useState('');
+  const [open, setOpen] = useState(false);
   const a = intake.answers || {};
   const assigned = new Set(services.map((s) => s.service_template?.slug));
   const requested = (intake.selected_services || [])
@@ -449,14 +451,25 @@ function IntakeCard({ intake, services, templates, memberId, onChanged }) {
 
   return (
     <section className="rounded-xl p-5 space-y-4" style={card}>
-      <div className="flex flex-wrap items-center justify-between gap-3">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        className="w-full flex flex-wrap items-center justify-between gap-3 text-left"
+      >
         <h2 className="flex items-center gap-2 text-base font-semibold text-white">
           <FileText className="w-4 h-4 text-[#C9A84C]" />
           Danışmanlık talebi
+          <span className="text-xs font-normal text-[#9A9AAA]">({rows.length} yanıt)</span>
         </h2>
-        <span className="text-xs text-[#9A9AAA]">{fmtDate(intake.submitted_at || intake.created_at)}</span>
-      </div>
-      <dl className="grid gap-y-3">
+        <span className="flex items-center gap-3 text-xs text-[#9A9AAA]">
+          {fmtDate(intake.submitted_at || intake.created_at)}
+          <ChevronDown className={`w-4 h-4 transition-transform ${open ? 'rotate-180' : ''}`} />
+        </span>
+      </button>
+      {open && (
+      <div className="space-y-4">
+      <dl className="grid gap-y-3 pt-1">
         {rows.map(([k, v]) => (
           <div key={k}>
             <dt className="text-xs text-[#9A9AAA]">{k}</dt>
@@ -486,6 +499,8 @@ function IntakeCard({ intake, services, templates, memberId, onChanged }) {
             )}
           </div>
         </div>
+      )}
+      </div>
       )}
     </section>
   );
