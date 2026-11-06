@@ -205,12 +205,13 @@ export default function AdminIlanlarPage() {
   const [del, setDel] = useState(null);
   const [msg, setMsg] = useState('');
 
+  // Only the first load shows the spinner; later refreshes swap data in place so the scroll position stays.
   const load = useCallback(async () => {
-    setLoading(true);
     const { data } = await supabase.from('properties').select('*').order('created_at', { ascending: false });
     setRows(data || []);
     setLoading(false);
   }, []);
+  const patchRow = (id, patch) => setRows((rs) => rs.map((r) => (r.id === id ? { ...r, ...patch } : r)));
   useEffect(() => { load(); }, [load]);
 
   const flash = (m) => { setMsg(m); setTimeout(() => setMsg(''), 4000); };
@@ -220,12 +221,12 @@ export default function AdminIlanlarPage() {
     if (!r.is_active && (!r.title_tr || !r.price)) { flash('Yayına almak için başlık ve fiyat gerekli.'); return; }
     const patch = r.is_active ? { is_active: false, is_featured: false } : { is_active: true };
     const { error } = await supabase.from('properties').update(patch).eq('id', r.id);
-    if (error) flash(error.message); else load();
+    if (error) flash(error.message); else patchRow(r.id, patch);
   };
   const toggleFeatured = async (r) => {
     if (!r.is_featured && !r.is_active) { flash('Seçkin yapmak için önce ilanı aktif edin.'); return; }
     const { error } = await supabase.from('properties').update({ is_featured: !r.is_featured }).eq('id', r.id);
-    if (error) flash(error.message.includes('En fazla 3') ? 'En fazla 3 seçkin mülk olabilir. Önce birinin yıldızını kaldırın.' : error.message); else load();
+    if (error) flash(error.message.includes('En fazla 3') ? 'En fazla 3 seçkin mülk olabilir. Önce birinin yıldızını kaldırın.' : error.message); else patchRow(r.id, { is_featured: !r.is_featured });
   };
   const remove = async (r) => {
     if (r.images?.length) {
@@ -234,7 +235,7 @@ export default function AdminIlanlarPage() {
     }
     const { error } = await supabase.from('properties').delete().eq('id', r.id);
     setDel(null);
-    if (error) flash(error.message); else load();
+    if (error) flash(error.message); else setRows((rs) => rs.filter((x) => x.id !== r.id));
   };
 
   const list = useMemo(() => rows.filter((r) => {
