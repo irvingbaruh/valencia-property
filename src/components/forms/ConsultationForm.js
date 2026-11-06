@@ -98,7 +98,7 @@ export default function ConsultationForm() {
   const canProceed = () => (current.type === 'single' ? Boolean(answers[current.key]) : true);
 
   const intakePayload = () => {
-    const { password, consent, name, email, phone, preferredLanguage, ...rest } = answers;
+    const { password, consent, marketing, name, email, phone, preferredLanguage, ...rest } = answers;
     return rest; // propertyType, investmentStrategy, region, budget, timeline, services, location, note...
   };
 
@@ -135,6 +135,7 @@ export default function ConsultationForm() {
         if (!profile?.whatsapp_phone && phone) updates.whatsapp_phone = phone;
         if (!profile?.country && country) updates.country = country;
         if (!profile?.full_name && name) updates.full_name = name;
+        if (answers.marketing && !profile?.marketing_opt_in) updates.marketing_opt_in = true;
         if (Object.keys(updates).length) await supabase.from('profiles').update(updates).eq('id', user.id);
         setDone('saved');
       } else {
@@ -142,6 +143,7 @@ export default function ConsultationForm() {
           phone,
           country,
           preferred_language: prefLang,
+          marketing: Boolean(answers.marketing),
           intake,
         });
         if (error) {
@@ -347,6 +349,17 @@ export default function ConsultationForm() {
                 />
               </div>
               {loggedIn && <p className="sm:col-span-2 text-xs text-gold">{t('loggedInAs')}</p>}
+              {loggedIn && !profile?.marketing_opt_in && (
+                <label className="sm:col-span-2 flex items-start gap-3 text-sm cursor-pointer text-white/70">
+                  <input
+                    type="checkbox"
+                    checked={Boolean(answers.marketing)}
+                    onChange={(e) => set('marketing', e.target.checked)}
+                    className="mt-1 accent-[#C9A84C]"
+                  />
+                  <span>{t('marketing')}</span>
+                </label>
+              )}
             </div>
           )}
 
@@ -375,6 +388,15 @@ export default function ConsultationForm() {
                   className="mt-1 accent-[#C9A84C]"
                 />
                 <span>{t('consent')}</span>
+              </label>
+              <label className="flex items-start gap-3 text-sm cursor-pointer text-white/70">
+                <input
+                  type="checkbox"
+                  checked={Boolean(answers.marketing)}
+                  onChange={(e) => set('marketing', e.target.checked)}
+                  className="mt-1 accent-[#C9A84C]"
+                />
+                <span>{t('marketing')}</span>
               </label>
               <p className="text-sm text-white/50">
                 {t('haveAccount')}{' '}

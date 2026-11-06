@@ -17,6 +17,7 @@ export default function AuthForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
+  const [marketing, setMarketing] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -43,7 +44,7 @@ export default function AuthForm() {
           router.push(localePath(locale, 'panel'));
         }
       } else {
-        const { data, error: signUpError } = await signUp(email, password, fullName);
+        const { data, error: signUpError } = await signUp(email, password, fullName, { marketing });
         if (signUpError) {
           if (signUpError.message?.includes('already registered')) {
             setError(t('errorEmailTaken'));
@@ -252,6 +253,18 @@ export default function AuthForm() {
                 </button>
               </div>
             </div>
+
+            {mode === 'register' && (
+              <label className="flex items-start gap-3 text-sm text-[var(--color-charcoal)] cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={marketing}
+                  onChange={(e) => setMarketing(e.target.checked)}
+                  className="mt-1 accent-[#C9A84C]"
+                />
+                <span>{t('marketing')}</span>
+              </label>
+            )}
 
             {mode === 'login' && (
               <div className="text-right -mt-1">

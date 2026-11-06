@@ -522,7 +522,8 @@
     "savePassword": "Şifreyi kaydet",
     "passwordUpdated": "Şifreniz güncellendi. Panelinize yönlendiriliyorsunuz.",
     "linkInvalid": "Bağlantı geçersiz veya süresi dolmuş. Şifre sıfırlamayı yeniden başlatın.",
-    "passwordTooShort": "Şifre en az 8 karakter olmalı."
+    "passwordTooShort": "Şifre en az 8 karakter olmalı.",
+    "marketing": "Yeni mülk, piyasa ve yatırım haberlerini e-posta ile almak istiyorum (isteğe bağlı)."
   },
   "panel": {
     "title": "Üye Paneli",
@@ -582,7 +583,15 @@
     "residence": "Oturma İzni",
     "residencePh": "Var / Yok / Başvuru sürecinde",
     "settingsSoon": "Ayarlar yakında eklenecek.",
-    "myRequest": "Danışmanlık Talebim"
+    "myRequest": "Danışmanlık Talebim",
+    "completeTitle": "Danışmanlık formunu tamamlayın",
+    "completeBody": "Size uygun mülkleri ve hizmetleri seçebilmemiz için birkaç kısa soruyu yanıtlayın.",
+    "completeCta": "Formu doldur",
+    "mailingTitle": "E-posta bültenimiz",
+    "mailingDesc": "Yeni mülkler, piyasa gelişmeleri ve yatırım rehberleri. İstediğiniz zaman kapatabilirsiniz.",
+    "mailingOn": "Bülten aboneliği açık",
+    "mailingOff": "Bülten aboneliği kapalı",
+    "mailingToggle": "Bülteni al"
   },
   "consult": {
     "step": "Adım",
@@ -712,14 +721,15 @@
     "thanksTitle": "Teşekkürler",
     "thanksCheckEmail": "Üyeliğiniz oluşturuldu ve yanıtlarınız kaydedildi. Hesabınızı etkinleştirmek için e-postanıza gönderdiğimiz bağlantıya tıklayın.",
     "thanksSaved": "Talebiniz hesabınıza kaydedildi. Ekibimiz en kısa sürede sizinle iletişime geçecek.",
-    "goPanel": "Üye Paneline Git"
+    "goPanel": "Üye Paneline Git",
+    "marketing": "Yeni mülk, piyasa ve yatırım haberlerini e-posta ile almak istiyorum (isteğe bağlı, istediğiniz zaman çıkabilirsiniz)."
   },
   "propertyType": {
-    "apartment": "Dairesi",
+    "apartment": "Daire",
     "penthouse": "Çatı Katı",
     "beachHouse": "Sahil Evi",
-    "house": "Evi",
-    "residence": "Rezidansı",
+    "house": "Ev",
+    "residence": "Rezidans",
     "seaApartment": "Sahil Dairesi",
     "studio": "Stüdyo Daire",
     "familyHome": "Aile Evi"

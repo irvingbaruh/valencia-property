@@ -522,7 +522,8 @@
     "savePassword": "Passwort speichern",
     "passwordUpdated": "Ihr Passwort wurde aktualisiert. Sie werden zu Ihrem Konto weitergeleitet.",
     "linkInvalid": "Der Link ist ungültig oder abgelaufen. Starten Sie das Zurücksetzen erneut.",
-    "passwordTooShort": "Das Passwort muss mindestens 8 Zeichen haben."
+    "passwordTooShort": "Das Passwort muss mindestens 8 Zeichen haben.",
+    "marketing": "Ich möchte per E-Mail Neuigkeiten zu Immobilien, Markt und Investitionen erhalten (optional)."
   },
   "panel": {
     "title": "Mitgliederbereich",
@@ -582,7 +583,15 @@
     "residence": "Aufenthaltserlaubnis",
     "residencePh": "Ja / Nein / In Bearbeitung",
     "settingsSoon": "Einstellungen werden bald hinzugefügt.",
-    "myRequest": "Meine Beratungsanfrage"
+    "myRequest": "Meine Beratungsanfrage",
+    "completeTitle": "Beratungsformular ausfüllen",
+    "completeBody": "Beantworten Sie einige kurze Fragen, damit wir passende Immobilien und Leistungen auswählen können.",
+    "completeCta": "Formular ausfüllen",
+    "mailingTitle": "Unser E-Mail-Newsletter",
+    "mailingDesc": "Neue Immobilien, Marktentwicklungen und Investitionsratgeber. Sie können es jederzeit abschalten.",
+    "mailingOn": "Newsletter aktiv",
+    "mailingOff": "Newsletter inaktiv",
+    "mailingToggle": "Newsletter erhalten"
   },
   "consult": {
     "step": "Schritt",
@@ -712,7 +721,8 @@
     "thanksTitle": "Vielen Dank",
     "thanksCheckEmail": "Ihr Konto wurde erstellt und Ihre Antworten gespeichert. Klicken Sie auf den Link in unserer E-Mail, um es zu aktivieren.",
     "thanksSaved": "Ihre Anfrage wurde in Ihrem Konto gespeichert. Unser Team meldet sich in Kürze bei Ihnen.",
-    "goPanel": "Zum Mitgliederbereich"
+    "goPanel": "Zum Mitgliederbereich",
+    "marketing": "Ich möchte per E-Mail Neuigkeiten zu Immobilien, Markt und Investitionen erhalten (optional; Abmeldung jederzeit möglich)."
   },
   "propertyType": {
     "apartment": "Wohnung",

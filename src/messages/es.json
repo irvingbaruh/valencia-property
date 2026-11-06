@@ -522,7 +522,8 @@
     "savePassword": "Guardar contraseña",
     "passwordUpdated": "Su contraseña se ha actualizado. Le llevamos a su cuenta.",
     "linkInvalid": "El enlace no es válido o ha caducado. Inicie de nuevo el restablecimiento.",
-    "passwordTooShort": "La contraseña debe tener al menos 8 caracteres."
+    "passwordTooShort": "La contraseña debe tener al menos 8 caracteres.",
+    "marketing": "Quiero recibir por correo novedades de propiedades, mercado e inversión (opcional)."
   },
   "panel": {
     "title": "Panel de Miembro",
@@ -582,7 +583,15 @@
     "residence": "Permiso de residencia",
     "residencePh": "Sí / No / En trámite",
     "settingsSoon": "Las configuraciones se añadirán pronto.",
-    "myRequest": "Mi solicitud de asesoramiento"
+    "myRequest": "Mi solicitud de asesoramiento",
+    "completeTitle": "Complete el formulario de asesoramiento",
+    "completeBody": "Responda unas preguntas breves para que podamos elegir propiedades y servicios adecuados.",
+    "completeCta": "Rellenar formulario",
+    "mailingTitle": "Nuestro boletín por correo",
+    "mailingDesc": "Nuevas propiedades, novedades del mercado y guías de inversión. Puede desactivarlo cuando quiera.",
+    "mailingOn": "Suscripción activa",
+    "mailingOff": "Suscripción desactivada",
+    "mailingToggle": "Recibir boletín"
   },
   "consult": {
     "step": "Paso",
@@ -712,7 +721,8 @@
     "thanksTitle": "Gracias",
     "thanksCheckEmail": "Su cuenta se ha creado y sus respuestas se han guardado. Para activarla, haga clic en el enlace que le hemos enviado por correo.",
     "thanksSaved": "Su solicitud se ha guardado en su cuenta. Nuestro equipo se pondrá en contacto con usted en breve.",
-    "goPanel": "Ir a mi cuenta"
+    "goPanel": "Ir a mi cuenta",
+    "marketing": "Quiero recibir por correo novedades de propiedades, mercado e inversión (opcional; puede darse de baja cuando quiera)."
   },
   "propertyType": {
     "apartment": "Apartamento",

@@ -466,6 +466,7 @@ export default function PanelContent() {
   const [formData, setFormData] = useState({ full_name: '', phone: '', preferred_language: 'tr', country: '', citizenship: '', has_residence_permit: '', whatsapp_phone: '' });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [hasIntake, setHasIntake] = useState(true);
 
   // Redirect if not logged in
   useEffect(() => {
@@ -483,6 +484,16 @@ export default function PanelContent() {
       .eq('user_id', user.id)
       .eq('is_read', false)
       .then(({ count }) => setUnreadCount(count || 0));
+  }, [user]);
+
+  // Has the member filled in the consultation form yet?
+  useEffect(() => {
+    if (!user) return;
+    supabase
+      .from('client_intake')
+      .select('id', { count: 'exact', head: true })
+      .eq('user_id', user.id)
+      .then(({ count, error }) => setHasIntake(error ? true : (count || 0) > 0));
   }, [user]);
 
   // Load favorites
@@ -599,6 +610,21 @@ export default function PanelContent() {
             </button>
           ))}
         </div>
+
+        {!hasIntake && (
+          <div className="mb-6 bg-white rounded-2xl shadow-sm p-6 flex flex-col sm:flex-row sm:items-center gap-4 border border-[var(--color-gold)]/30">
+            <div className="flex-1">
+              <h3 className="font-serif text-lg text-[var(--color-dark)]">{t('completeTitle')}</h3>
+              <p className="text-sm text-[var(--color-charcoal)] mt-1">{t('completeBody')}</p>
+            </div>
+            <Link
+              href={localePath(locale, 'hizmetler', '#consultation-form')}
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--color-dark)] text-white text-sm font-medium hover:bg-black transition-colors"
+            >
+              {t('completeCta')} <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        )}
 
         {/* Favorites Tab */}
         {activeTab === 'favorites' && (
@@ -821,10 +847,19 @@ export default function PanelContent() {
         {/* Settings Tab — placeholder for now */}
         {activeTab === 'settings' && (
           <div className="bg-white rounded-2xl shadow-sm p-8 max-w-lg">
-            <h2 className="text-xl font-serif text-[var(--color-dark)] mb-4">{t('settings')}</h2>
-            <p className="text-[var(--color-charcoal)]">
-              {t('settingsSoon')}
-            </p>
+            <h2 className="text-xl font-serif text-[var(--color-dark)] mb-4">{t('mailingTitle')}</h2>
+            <p className="text-[var(--color-charcoal)] text-sm mb-5">{t('mailingDesc')}</p>
+            <label className="flex items-center gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={Boolean(profile?.marketing_opt_in)}
+                onChange={(e) => updateProfile({ marketing_opt_in: e.target.checked })}
+                className="w-5 h-5 accent-[#C9A84C]"
+              />
+              <span className="text-sm font-medium text-[var(--color-dark)]">
+                {profile?.marketing_opt_in ? t('mailingOn') : t('mailingOff')}
+              </span>
+            </label>
           </div>
         )}
       </div>
