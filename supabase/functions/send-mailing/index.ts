@@ -38,7 +38,7 @@ function render(subject: string, body: string, lang: string, token: string) {
   const html = `<!doctype html><html><body style="margin:0;background:#F4F4F1;font-family:Arial,Helvetica,sans-serif;color:#222">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:24px 12px">
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;background:#fff;border-radius:12px;overflow:hidden">
-<tr><td style="background:#0B0B11;padding:20px 28px;color:#C9A84C;font-size:20px;letter-spacing:1px">Lock &amp; Loft</td></tr>
+<tr><td style="background:#0B0B11;padding:22px 28px"><a href="${SITE}"><img src="${SITE}/brand/email-logo.png" width="255" height="48" alt="Lock &amp; Loft" style="display:block;border:0;color:#C9A84C;font-size:20px"></a></td></tr>
 <tr><td style="padding:28px;font-size:15px"><h1 style="margin:0 0 20px;font-size:22px;color:#0B0B11">${esc(subject)}</h1>${bodyToHtml(body)}</td></tr>
 <tr><td style="padding:18px 28px;background:#FAFAF8;font-size:12px;color:#777">${esc(f.why)}<br><a href="${link}" style="color:#777">${esc(f.out)}</a></td></tr>
 </table></td></tr></table></body></html>`;
