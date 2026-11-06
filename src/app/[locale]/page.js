@@ -1,6 +1,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import Hero from '@/components/sections/Hero';
 import Stats from '@/components/sections/Stats';
+import PartnerStrip from '@/components/sections/PartnerStrip';
 import Properties from '@/components/sections/Properties';
 import Services from '@/components/sections/Services';
 import Process from '@/components/sections/Process';
@@ -21,6 +22,7 @@ export default async function HomePage({ params }) {
       <ScrollToHash />
       <Hero />
       <Stats />
+      <PartnerStrip />
       <Properties />
       <InterstitialWrapper
         image="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80&auto=format"

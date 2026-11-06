@@ -981,5 +981,8 @@
       "rates": "Tipos",
       "legal": "Legal"
     }
+  },
+  "partnerStrip": {
+    "text": "En colaboración con"
   }
 }

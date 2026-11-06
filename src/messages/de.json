@@ -981,5 +981,8 @@
       "rates": "Zinsen",
       "legal": "Recht"
     }
+  },
+  "partnerStrip": {
+    "text": "In Partnerschaft mit"
   }
 }

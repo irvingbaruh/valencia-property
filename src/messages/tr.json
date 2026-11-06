@@ -981,5 +981,8 @@
       "rates": "Faiz",
       "legal": "Hukuk"
     }
+  },
+  "partnerStrip": {
+    "text": "Resmi iş ortağımız"
   }
 }

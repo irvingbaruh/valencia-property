@@ -46,6 +46,9 @@ export default function Footer() {
             <p className="text-sm text-white/60 leading-relaxed mb-6 max-w-xs">
               {t('remax_note')}
             </p>
+            <span className="inline-block bg-white rounded-lg px-3 py-2 mb-6">
+              <img src="/brand/remax-logo.png" alt="RE/MAX" width={96} height={26} className="h-6 w-auto" loading="lazy" />
+            </span>
             <div className="space-y-3 text-sm text-white/60">
               <div className="flex items-center gap-2">
                 <MapPin size={15} className="text-gold shrink-0" />

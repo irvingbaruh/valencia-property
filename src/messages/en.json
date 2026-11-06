@@ -981,5 +981,8 @@
       "rates": "Rates",
       "legal": "Legal"
     }
+  },
+  "partnerStrip": {
+    "text": "In partnership with"
   }
 }
