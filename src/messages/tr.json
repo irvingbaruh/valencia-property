@@ -960,5 +960,9 @@
     "photo": "Fotoğraf",
     "partner": "İlan RE/MAX portföyündendir.",
     "perSqm": "m² fiyatı"
+  },
+  "rates": {
+    "label": "Döviz kurları",
+    "source": "AMB referans kuru · {date}"
   }
 }

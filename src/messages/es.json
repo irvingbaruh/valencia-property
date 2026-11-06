@@ -960,5 +960,9 @@
     "photo": "Foto",
     "partner": "Anuncio de la cartera RE/MAX.",
     "perSqm": "Precio por m²"
+  },
+  "rates": {
+    "label": "Tipos de cambio",
+    "source": "Tipo de referencia BCE · {date}"
   }
 }

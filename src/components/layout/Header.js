@@ -5,6 +5,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
 import { Menu, X, Globe, ChevronDown, UserCircle } from 'lucide-react';
 import { useAuth } from '@/components/providers/AuthProvider';
+import RateTicker from '@/components/layout/RateTicker';
 import Logo from '@/components/brand/Logo';
 import { localePath, switchPathLocale } from '@/lib/routes';
 
@@ -121,6 +122,7 @@ export default function Header() {
         }`}
         style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0))' }}
       />
+      <RateTicker scrolled={scrolled} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18 md:h-20">
           {/* Logo */}

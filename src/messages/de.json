@@ -960,5 +960,9 @@
     "photo": "Foto",
     "partner": "Angebot aus dem RE/MAX-Portfolio.",
     "perSqm": "Preis pro m²"
+  },
+  "rates": {
+    "label": "Wechselkurse",
+    "source": "EZB-Referenzkurs · {date}"
   }
 }

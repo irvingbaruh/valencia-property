@@ -960,5 +960,9 @@
     "photo": "Photo",
     "partner": "Listed through the RE/MAX portfolio.",
     "perSqm": "Price per m²"
+  },
+  "rates": {
+    "label": "Exchange rates",
+    "source": "ECB reference rate · {date}"
   }
 }
