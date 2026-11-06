@@ -482,7 +482,8 @@
     "contact": "İletişim",
     "address": "Valencia, İspanya",
     "copyright": "© 2026 Lock & Loft. Tüm hakları saklıdır.",
-    "remax_note": "RE/MAX işbirliği ile hizmet vermekteyiz."
+    "remax_note": "RE/MAX işbirliği ile hizmet vermekteyiz.",
+    "privacy": "Gizlilik Politikası"
   },
   "interstitials": {
     "interstitial1_line1": "Akdeniz'de",
@@ -819,7 +820,8 @@
     "goPanel": "Üye Paneline Git",
     "marketing": "Yeni mülk, piyasa ve yatırım haberlerini e-posta ile almak istiyorum (isteğe bağlı, istediğiniz zaman çıkabilirsiniz). E-postalarda açılma ve tıklama istatistikleri tutulur.",
     "optional": "isteğe bağlı",
-    "answerPh": "Yanıtınız"
+    "answerPh": "Yanıtınız",
+    "privacyLink": "Gizlilik Politikası"
   },
   "propertyType": {
     "apartment": "Daire",
@@ -833,5 +835,72 @@
   },
   "common": {
     "viewAll": "Tüm İlanlar"
+  },
+  "privacy": {
+    "title": "Gizlilik Politikası",
+    "subtitle": "Kişisel verilerinizi nasıl topladığımızı, kullandığımızı ve koruduğumuzu burada açıklıyoruz.",
+    "updated": "Son güncelleme: Kasım 2026",
+    "back": "Ana sayfaya dön",
+    "sections": [
+      {
+        "h": "Veri sorumlusu",
+        "p": [
+          "Bu sitenin veri sorumlusu Lock & Loft’tur (Valencia, İspanya). Gizlilikle ilgili tüm sorularınız için info@lockandloft.com adresine yazabilirsiniz."
+        ]
+      },
+      {
+        "h": "Hangi verileri topluyoruz",
+        "p": [
+          "Siz bize verdiğiniz bilgileri saklarız: danışmanlık formundaki yanıtlarınız (yatırım amacı, bölge ve mülk tercihleri, bütçe, kira beklentisi, hizmet talepleri ve notlarınız), ad soyad, e-posta adresi, telefon numarası, iletişim formuna yazdığınız mesajlar ve üyelik şifreniz. Şifreniz yalnızca şifrelenmiş olarak saklanır; biz göremeyiz.",
+          "Sitenin tercih ettiğiniz dili hatırlaması için küçük bir çerez kullanırız. E-postalarımızda ayrıca açılma, tıklama ve geri dönme bilgileri tutulur (aşağıya bakın)."
+        ]
+      },
+      {
+        "h": "Verileri neden kullanıyoruz",
+        "p": [
+          "Danışmanlık talebinizi değerlendirmek, size uygun mülk ve hizmetleri hazırlamak, üyelik hesabınızı yönetmek ve mesajlarınızı yanıtlamak için. Hukuki dayanağımız talebinizi yerine getirmek (sözleşme öncesi işlemler) ve üyelik oluştururken verdiğiniz onaydır.",
+          "Bülten e-postaları yalnızca bu seçeneği ayrıca işaretlediyseniz gönderilir; dayanağı açık rızanızdır."
+        ]
+      },
+      {
+        "h": "Bülten ve e-posta takibi",
+        "p": [
+          "Bültene abone olursanız size yeni mülkler, piyasa gelişmeleri ve yatırım rehberleri göndeririz. Gönderdiğimiz e-postalarda açılma ve bağlantılara tıklama istatistikleri tutulur; bunu hangi içeriklerin işe yaradığını görmek için kullanırız.",
+          "Aboneliğinizi her e-postadaki bağlantıdan veya üyelik panelinizin ayarlarından istediğiniz zaman iptal edebilirsiniz. İptal tarihini kaydederiz ve size başka bülten göndermeyiz."
+        ]
+      },
+      {
+        "h": "Verileri kimler işliyor",
+        "p": [
+          "Verilerinizi satmayız. Siteyi çalıştırmak için şu hizmet sağlayıcılardan yararlanırız: veritabanı ve üyelik altyapısı için Supabase, e-posta gönderimi için Resend. Bu sağlayıcılar verileri yalnızca bizim adımıza ve talimatlarımıza göre işler. Avrupa Ekonomik Alanı dışına aktarım gerekirse yasal güvenceler (standart sözleşme maddeleri gibi) kullanılır.",
+          "Danışmanlık talebiniz, size hizmet verebilmek için gerekli olduğu ölçüde ortak avukat, RE/MAX ofisi ve hizmet ortaklarımızla paylaşılabilir; bunu önceden sizinle konuşuruz."
+        ]
+      },
+      {
+        "h": "Ne kadar saklıyoruz",
+        "p": [
+          "Verilerinizi üyeliğiniz sürdüğü ve hizmet ilişkisi devam ettiği sürece saklarız. Hesabınızı silmemizi istediğinizde, yasal saklama yükümlülüğü olanlar dışındaki verileri sileriz."
+        ]
+      },
+      {
+        "h": "Haklarınız",
+        "p": [
+          "Verilerinize erişme, düzeltme, silme, işlenmesini kısıtlama, itiraz etme ve verilerinizi taşınabilir biçimde alma hakkına sahipsiniz; verdiğiniz onayı da istediğiniz zaman geri çekebilirsiniz. Bunun için info@lockandloft.com adresine yazmanız yeterli.",
+          "Yanıtımızdan memnun kalmazsanız İspanya veri koruma kurumuna (AEPD, www.aepd.es) şikâyette bulunabilirsiniz."
+        ]
+      },
+      {
+        "h": "Çerezler ve yerel depolama",
+        "p": [
+          "Reklam veya izleme çerezi kullanmıyoruz. Yalnızca siteyi çalıştıran zorunlu kayıtlar vardır: seçtiğiniz dil ve giriş yaptıysanız oturumunuz."
+        ]
+      },
+      {
+        "h": "Değişiklikler",
+        "p": [
+          "Bu politikayı güncellersek yeni sürümü bu sayfada yayınlar, yukarıdaki tarihi değiştiririz."
+        ]
+      }
+    ]
   }
 }

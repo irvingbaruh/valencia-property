@@ -482,7 +482,8 @@
     "contact": "Contact",
     "address": "Valencia, Spain",
     "copyright": "© 2026 Lock & Loft. All rights reserved.",
-    "remax_note": "Serving in partnership with RE/MAX."
+    "remax_note": "Serving in partnership with RE/MAX.",
+    "privacy": "Privacy Policy"
   },
   "interstitials": {
     "interstitial1_line1": "Life Along",
@@ -819,7 +820,8 @@
     "goPanel": "Go to my account",
     "marketing": "I would like to receive property, market and investment news by email (optional; you can unsubscribe at any time). Email open and click statistics are recorded.",
     "optional": "optional",
-    "answerPh": "Your answer"
+    "answerPh": "Your answer",
+    "privacyLink": "Privacy Policy"
   },
   "propertyType": {
     "apartment": "Apartment",
@@ -833,5 +835,72 @@
   },
   "common": {
     "viewAll": "All listings"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "subtitle": "How we collect, use and protect your personal data.",
+    "updated": "Last updated: November 2026",
+    "back": "Back to home",
+    "sections": [
+      {
+        "h": "Who is responsible",
+        "p": [
+          "The controller of this website is Lock & Loft (Valencia, Spain). For any privacy question, write to info@lockandloft.com."
+        ]
+      },
+      {
+        "h": "What data we collect",
+        "p": [
+          "We store the information you give us: your answers in the consultation form (investment goal, area and property preferences, budget, rental expectations, requested services and notes), your name, email address, phone number, messages sent through the contact form, and your account password. The password is stored only in encrypted form; we cannot see it.",
+          "We use a small cookie to remember your language. Our emails also record opens, clicks and bounces (see below)."
+        ]
+      },
+      {
+        "h": "Why we use your data",
+        "p": [
+          "To assess your consultation request, prepare suitable properties and services for you, manage your account and reply to your messages. The legal basis is handling your request (pre-contractual steps) and the consent you give when creating your account.",
+          "Newsletters are sent only if you tick that option separately; the legal basis is your explicit consent."
+        ]
+      },
+      {
+        "h": "Newsletter and email tracking",
+        "p": [
+          "If you subscribe, we send you new properties, market updates and investment guides. The emails we send record open and link-click statistics, which we use to see which content is useful.",
+          "You can unsubscribe at any time from the link in every email or from your account settings. We record the date you unsubscribed and send no further newsletters."
+        ]
+      },
+      {
+        "h": "Who processes your data",
+        "p": [
+          "We do not sell your data. To run the site we use these providers: Supabase for the database and accounts, and Resend for sending email. They process data only on our behalf and under our instructions. If a transfer outside the European Economic Area is needed, legal safeguards such as standard contractual clauses apply.",
+          "Your request may be shared with partner lawyers, the RE/MAX office and service partners to the extent needed to serve you; we will discuss this with you first."
+        ]
+      },
+      {
+        "h": "How long we keep it",
+        "p": [
+          "We keep your data while your account is active and the service relationship continues. If you ask us to delete your account, we delete the data except what we must keep by law."
+        ]
+      },
+      {
+        "h": "Your rights",
+        "p": [
+          "You have the right to access, correct and delete your data, restrict or object to its processing, and receive it in a portable format; you can also withdraw your consent at any time. Just write to info@lockandloft.com.",
+          "If you are not satisfied with our reply, you can complain to the Spanish data protection authority (AEPD, www.aepd.es)."
+        ]
+      },
+      {
+        "h": "Cookies and local storage",
+        "p": [
+          "We use no advertising or tracking cookies. There are only records the site needs to work: your chosen language and, if you are logged in, your session."
+        ]
+      },
+      {
+        "h": "Changes",
+        "p": [
+          "If we update this policy, we will publish the new version on this page and change the date above."
+        ]
+      }
+    ]
   }
 }

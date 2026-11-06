@@ -406,7 +406,12 @@ export default function ConsultationForm() {
                   onChange={(e) => set('consent', e.target.checked)}
                   className="mt-1 accent-[#C9A84C]"
                 />
-                <span>{t('consent')}</span>
+                <span>
+                  {t('consent')}{' '}
+                  <a href={localePath(locale, 'gizlilik')} target="_blank" rel="noopener" className="text-gold underline">
+                    {t('privacyLink')}
+                  </a>
+                </span>
               </label>
               <label className="flex items-start gap-3 text-sm cursor-pointer text-white/70">
                 <input

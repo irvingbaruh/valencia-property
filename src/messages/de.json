@@ -482,7 +482,8 @@
     "contact": "Kontakt",
     "address": "Valencia, Spanien",
     "copyright": "© 2026 Lock & Loft. Alle Rechte vorbehalten.",
-    "remax_note": "Service in Partnerschaft mit RE/MAX."
+    "remax_note": "Service in Partnerschaft mit RE/MAX.",
+    "privacy": "Datenschutzerklärung"
   },
   "interstitials": {
     "interstitial1_line1": "Leben am",
@@ -819,7 +820,8 @@
     "goPanel": "Zum Mitgliederbereich",
     "marketing": "Ich möchte per E-Mail Neuigkeiten zu Immobilien, Markt und Investitionen erhalten (optional; Abmeldung jederzeit möglich). Öffnungs- und Klickstatistiken werden erfasst.",
     "optional": "optional",
-    "answerPh": "Ihre Antwort"
+    "answerPh": "Ihre Antwort",
+    "privacyLink": "Datenschutzerklärung"
   },
   "propertyType": {
     "apartment": "Wohnung",
@@ -833,5 +835,72 @@
   },
   "common": {
     "viewAll": "Alle Angebote"
+  },
+  "privacy": {
+    "title": "Datenschutzerklärung",
+    "subtitle": "Wie wir Ihre personenbezogenen Daten erheben, nutzen und schützen.",
+    "updated": "Zuletzt aktualisiert: November 2026",
+    "back": "Zur Startseite",
+    "sections": [
+      {
+        "h": "Verantwortlicher",
+        "p": [
+          "Verantwortlich für diese Website ist Lock & Loft (Valencia, Spanien). Bei Fragen zum Datenschutz schreiben Sie an info@lockandloft.com."
+        ]
+      },
+      {
+        "h": "Welche Daten wir erheben",
+        "p": [
+          "Wir speichern die Angaben, die Sie uns mitteilen: Ihre Antworten im Beratungsformular (Anlageziel, Region und Immobilienwünsche, Budget, Mieterwartungen, gewünschte Leistungen und Notizen), Name, E-Mail-Adresse, Telefonnummer, Nachrichten aus dem Kontaktformular und Ihr Passwort. Das Passwort wird nur verschlüsselt gespeichert; wir können es nicht einsehen.",
+          "Wir verwenden ein kleines Cookie, um Ihre Sprache zu merken. In unseren E-Mails werden außerdem Öffnungen, Klicks und Zustellfehler erfasst (siehe unten)."
+        ]
+      },
+      {
+        "h": "Wofür wir die Daten nutzen",
+        "p": [
+          "Um Ihre Beratungsanfrage zu prüfen, passende Immobilien und Leistungen für Sie vorzubereiten, Ihr Konto zu verwalten und Ihre Nachrichten zu beantworten. Rechtsgrundlage sind die Bearbeitung Ihrer Anfrage (vorvertragliche Maßnahmen) und Ihre Einwilligung bei der Kontoerstellung.",
+          "Newsletter werden nur versendet, wenn Sie diese Option gesondert ankreuzen; Rechtsgrundlage ist Ihre ausdrückliche Einwilligung."
+        ]
+      },
+      {
+        "h": "Newsletter und E-Mail-Tracking",
+        "p": [
+          "Wenn Sie sich anmelden, senden wir Ihnen neue Immobilien, Marktentwicklungen und Investitionsratgeber. In den E-Mails werden Öffnungs- und Klickstatistiken erfasst; wir nutzen sie, um zu sehen, welche Inhalte hilfreich sind.",
+          "Sie können sich jederzeit über den Link in jeder E-Mail oder in den Einstellungen Ihres Kontos abmelden. Wir speichern das Abmeldedatum und senden keine weiteren Newsletter."
+        ]
+      },
+      {
+        "h": "Wer Ihre Daten verarbeitet",
+        "p": [
+          "Wir verkaufen Ihre Daten nicht. Für den Betrieb der Website nutzen wir diese Dienstleister: Supabase für Datenbank und Konten, Resend für den E-Mail-Versand. Sie verarbeiten Daten nur in unserem Auftrag und nach unseren Weisungen. Ist eine Übermittlung außerhalb des Europäischen Wirtschaftsraums nötig, gelten rechtliche Garantien wie Standardvertragsklauseln.",
+          "Ihre Anfrage kann an Partneranwälte, das RE/MAX-Büro und Servicepartner weitergegeben werden, soweit dies zu Ihrer Betreuung nötig ist; das besprechen wir vorher mit Ihnen."
+        ]
+      },
+      {
+        "h": "Wie lange wir speichern",
+        "p": [
+          "Wir speichern Ihre Daten, solange Ihr Konto besteht und die Geschäftsbeziehung andauert. Wenn Sie die Löschung Ihres Kontos verlangen, löschen wir die Daten, soweit keine gesetzliche Aufbewahrungspflicht besteht."
+        ]
+      },
+      {
+        "h": "Ihre Rechte",
+        "p": [
+          "Sie haben das Recht auf Auskunft, Berichtigung und Löschung Ihrer Daten, auf Einschränkung der Verarbeitung, Widerspruch und Datenübertragbarkeit; Ihre Einwilligung können Sie jederzeit widerrufen. Schreiben Sie dazu an info@lockandloft.com.",
+          "Wenn Sie mit unserer Antwort nicht zufrieden sind, können Sie sich bei der spanischen Datenschutzbehörde (AEPD, www.aepd.es) beschweren."
+        ]
+      },
+      {
+        "h": "Cookies und lokaler Speicher",
+        "p": [
+          "Wir verwenden keine Werbe- oder Tracking-Cookies. Es gibt nur Einträge, die für den Betrieb nötig sind: Ihre gewählte Sprache und, falls Sie angemeldet sind, Ihre Sitzung."
+        ]
+      },
+      {
+        "h": "Änderungen",
+        "p": [
+          "Wenn wir diese Erklärung ändern, veröffentlichen wir die neue Fassung auf dieser Seite und ändern das Datum oben."
+        ]
+      }
+    ]
   }
 }

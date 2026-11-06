@@ -123,9 +123,9 @@ export default function Footer() {
           <p className="text-xs text-white/40">
             {t('copyright')}
           </p>
-          <p className="text-xs text-white/40">
-            {t('remax_note')}
-          </p>
+          <a href={localePath(locale, 'gizlilik')} className="text-xs text-white/40 hover:text-gold transition-colors">
+            {t('privacy')}
+          </a>
         </div>
       </div>
     </footer>

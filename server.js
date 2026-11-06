@@ -82,6 +82,7 @@ const ROUTES = {
   'roi-hesaplama': { es: 'calculadora-roi', en: 'roi-calculator', de: 'rendite-rechner' },
   giris: { es: 'acceder', en: 'login', de: 'anmelden' },
   panel: { es: 'mi-cuenta', en: 'account', de: 'mein-konto' },
+  gizlilik: { es: 'privacidad', en: 'privacy', de: 'datenschutz' },
   'sifre-yenile': { es: 'restablecer-contrasena', en: 'reset-password', de: 'passwort-zuruecksetzen' },
 };
 const SLUG_TO_CANONICAL = {};

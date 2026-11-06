@@ -8,6 +8,7 @@ export const ROUTES = {
   'roi-hesaplama': { tr: 'roi-hesaplama', es: 'calculadora-roi', en: 'roi-calculator', de: 'rendite-rechner' },
   giris: { tr: 'giris', es: 'acceder', en: 'login', de: 'anmelden' },
   panel: { tr: 'panel', es: 'mi-cuenta', en: 'account', de: 'mein-konto' },
+  gizlilik: { tr: 'gizlilik', es: 'privacidad', en: 'privacy', de: 'datenschutz' },
   'sifre-yenile': { tr: 'sifre-yenile', es: 'restablecer-contrasena', en: 'reset-password', de: 'passwort-zuruecksetzen' },
 };
 

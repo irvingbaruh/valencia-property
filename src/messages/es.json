@@ -482,7 +482,8 @@
     "contact": "Contacto",
     "address": "Valencia, España",
     "copyright": "© 2026 Lock & Loft. Todos los derechos reservados.",
-    "remax_note": "Servicio en colaboración con RE/MAX."
+    "remax_note": "Servicio en colaboración con RE/MAX.",
+    "privacy": "Política de privacidad"
   },
   "interstitials": {
     "interstitial1_line1": "Vida en",
@@ -819,7 +820,8 @@
     "goPanel": "Ir a mi cuenta",
     "marketing": "Quiero recibir por correo novedades de propiedades, mercado e inversión (opcional; puede darse de baja cuando quiera). En los correos se registran estadísticas de apertura y clics.",
     "optional": "opcional",
-    "answerPh": "Su respuesta"
+    "answerPh": "Su respuesta",
+    "privacyLink": "Política de privacidad"
   },
   "propertyType": {
     "apartment": "Apartamento",
@@ -833,5 +835,72 @@
   },
   "common": {
     "viewAll": "Ver todos los anuncios"
+  },
+  "privacy": {
+    "title": "Política de privacidad",
+    "subtitle": "Aquí explicamos cómo recogemos, usamos y protegemos sus datos personales.",
+    "updated": "Última actualización: noviembre de 2026",
+    "back": "Volver al inicio",
+    "sections": [
+      {
+        "h": "Responsable del tratamiento",
+        "p": [
+          "El responsable de este sitio web es Lock & Loft (Valencia, España). Para cualquier consulta sobre privacidad puede escribirnos a info@lockandloft.com."
+        ]
+      },
+      {
+        "h": "Qué datos recogemos",
+        "p": [
+          "Guardamos la información que usted nos facilita: sus respuestas en el formulario de asesoramiento (objetivo de inversión, preferencias de zona y de propiedad, presupuesto, expectativas de alquiler, servicios solicitados y notas), nombre y apellidos, correo electrónico, teléfono, los mensajes del formulario de contacto y la contraseña de su cuenta. La contraseña solo se almacena cifrada; nosotros no podemos verla.",
+          "Usamos una pequeña cookie para recordar su idioma. Además, en nuestros correos se registran aperturas, clics y rebotes (véase más abajo)."
+        ]
+      },
+      {
+        "h": "Para qué usamos los datos",
+        "p": [
+          "Para valorar su solicitud de asesoramiento, preparar propiedades y servicios adecuados para usted, gestionar su cuenta y responder a sus mensajes. La base legal es la atención de su solicitud (medidas precontractuales) y el consentimiento que da al crear la cuenta.",
+          "Los boletines solo se envían si usted marca esa opción por separado; la base legal es su consentimiento expreso."
+        ]
+      },
+      {
+        "h": "Boletín y seguimiento de correos",
+        "p": [
+          "Si se suscribe, le enviaremos novedades de propiedades, del mercado y guías de inversión. En los correos que enviamos se registran estadísticas de apertura y de clics en los enlaces, que usamos para saber qué contenidos funcionan.",
+          "Puede darse de baja en cualquier momento desde el enlace de cada correo o desde los ajustes de su panel. Registramos la fecha de baja y no le enviaremos más boletines."
+        ]
+      },
+      {
+        "h": "Quién trata los datos",
+        "p": [
+          "No vendemos sus datos. Para el funcionamiento del sitio utilizamos estos proveedores: Supabase para la base de datos y las cuentas, y Resend para el envío de correos. Tratan los datos únicamente por cuenta nuestra y según nuestras instrucciones. Si hiciera falta una transferencia fuera del Espacio Económico Europeo, se aplican garantías legales (como cláusulas contractuales tipo).",
+          "Su solicitud puede compartirse con abogados colaboradores, la oficina RE/MAX y socios de servicios en la medida necesaria para atenderle; lo hablaremos antes con usted."
+        ]
+      },
+      {
+        "h": "Cuánto tiempo los conservamos",
+        "p": [
+          "Conservamos sus datos mientras su cuenta esté activa y continúe la relación de servicio. Si nos pide eliminar su cuenta, borramos los datos salvo aquellos que debamos conservar por obligación legal."
+        ]
+      },
+      {
+        "h": "Sus derechos",
+        "p": [
+          "Tiene derecho a acceder a sus datos, rectificarlos, suprimirlos, limitar su tratamiento, oponerse y recibirlos en un formato portable; también puede retirar su consentimiento en cualquier momento. Basta con escribir a info@lockandloft.com.",
+          "Si no queda satisfecho con nuestra respuesta, puede presentar una reclamación ante la Agencia Española de Protección de Datos (AEPD, www.aepd.es)."
+        ]
+      },
+      {
+        "h": "Cookies y almacenamiento local",
+        "p": [
+          "No usamos cookies publicitarias ni de seguimiento. Solo hay registros necesarios para el funcionamiento del sitio: el idioma elegido y, si ha iniciado sesión, su sesión."
+        ]
+      },
+      {
+        "h": "Cambios",
+        "p": [
+          "Si actualizamos esta política, publicaremos la nueva versión en esta página y cambiaremos la fecha indicada arriba."
+        ]
+      }
+    ]
   }
 }
