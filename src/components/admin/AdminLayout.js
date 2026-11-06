@@ -21,6 +21,7 @@ import {
   PenSquare,
   Calculator,
   Mail,
+  Building2,
 } from 'lucide-react';
 
 export const ADMIN_BASE = '/lockandloft/admin';
@@ -28,6 +29,7 @@ export const ADMIN_BASE = '/lockandloft/admin';
 const navItems = [
   { id: 'dashboard', href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { id: 'uyeler', href: '/uyeler', icon: Users, label: 'Üyeler' },
+  { id: 'ilanlar', href: '/ilanlar', icon: Building2, label: 'İlanlar' },
   { id: 'hizmetler', href: '/hizmetler', icon: Briefcase, label: 'Hizmetler' },
   { id: 'blog', href: '/blog', icon: PenSquare, label: 'Blog' },
   { id: 'mailing', href: '/mailing', icon: Mail, label: 'Mailing' },

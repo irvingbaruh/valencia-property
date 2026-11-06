@@ -831,7 +831,11 @@
     "residence": "Residencia",
     "seaApartment": "Apartamento junto al mar",
     "studio": "Estudio",
-    "familyHome": "Casa familiar"
+    "familyHome": "Casa familiar",
+    "villa": "Villa",
+    "land": "Terreno",
+    "commercial": "Local comercial",
+    "other": "Inmueble multifamiliar"
   },
   "common": {
     "viewAll": "Ver todos los anuncios"
@@ -902,5 +906,25 @@
         ]
       }
     ]
+  },
+  "listing": {
+    "back": "Todas las propiedades",
+    "bedrooms": "Habitaciones",
+    "bathrooms": "Baños",
+    "area": "Superficie construida",
+    "plot": "Superficie de parcela",
+    "price": "Precio",
+    "details": "Detalles",
+    "description": "Descripción",
+    "location": "Ubicación",
+    "contactTitle": "Consulte por esta propiedad",
+    "contactText": "Hable con nosotros sobre precio, impuestos y el proceso de compra.",
+    "contactButton": "Solicitar información",
+    "notFound": "Este anuncio ya no está disponible.",
+    "loading": "Cargando…",
+    "empty": "Ahora mismo no hay anuncios publicados. Pronto habrá nuevas propiedades.",
+    "photo": "Foto",
+    "partner": "Anuncio de la cartera RE/MAX.",
+    "perSqm": "Precio por m²"
   }
 }

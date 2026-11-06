@@ -3,9 +3,12 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin, BedDouble, Maximize2, ArrowRight } from 'lucide-react';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import FavoriteButton from '@/components/ui/FavoriteButton';
 import { localePath } from '@/lib/routes';
+import {
+  fetchListings, listingTitle, listingCover, listingLocation, formatPrice, listingHref,
+} from '@/lib/listings';
 
 const sampleProperties = [
   {
@@ -42,6 +45,8 @@ const sampleProperties = [
 
 function PropertyCard({ property, index, t }) {
   const cardRef = useRef(null);
+  const Wrap = property.href ? 'a' : 'div';
+  const wrapProps = property.href ? { href: property.href } : {};
   const isReversed = index % 2 !== 0;
 
   const { scrollYProgress } = useScroll({
@@ -62,6 +67,7 @@ function PropertyCard({ property, index, t }) {
       ref={cardRef}
       className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-0 lg:gap-0 group`}
     >
+      <Wrap {...wrapProps} className={`contents`}>
       {/* Large image — takes ~60% width on desktop */}
       <div className="relative lg:w-[60%] aspect-[16/10] lg:aspect-auto overflow-hidden rounded-2xl lg:rounded-none lg:rounded-l-2xl">
         {isReversed && (
@@ -115,14 +121,18 @@ function PropertyCard({ property, index, t }) {
         </div>
 
         <div className="flex items-center gap-6 text-sm text-white/60 mb-8">
-          <span className="flex items-center gap-2">
-            <BedDouble size={16} className="text-gold/70" />
-            {property.rooms} {t('rooms')}
-          </span>
-          <span className="flex items-center gap-2">
-            <Maximize2 size={16} className="text-gold/70" />
-            {property.sqm} {t('sqm')}
-          </span>
+          {property.rooms ? (
+            <span className="flex items-center gap-2">
+              <BedDouble size={16} className="text-gold/70" />
+              {property.rooms} {t('rooms')}
+            </span>
+          ) : null}
+          {property.sqm ? (
+            <span className="flex items-center gap-2">
+              <Maximize2 size={16} className="text-gold/70" />
+              {property.sqm} {t('sqm')}
+            </span>
+          ) : null}
         </div>
 
         <div className="flex items-center justify-between pt-6 border-t border-white/10">
@@ -132,6 +142,7 @@ function PropertyCard({ property, index, t }) {
           </span>
         </div>
       </motion.div>
+      </Wrap>
     </motion.div>
   );
 }
@@ -139,6 +150,30 @@ function PropertyCard({ property, index, t }) {
 export default function Properties() {
   const t = useTranslations('properties');
   const locale = useLocale();
+  const [live, setLive] = useState(null);
+
+  useEffect(() => {
+    let off = false;
+    fetchListings({ featured: true, limit: 3 }).then((rows) => {
+      if (!off) setLive(rows);
+    });
+    return () => { off = true; };
+  }, []);
+
+  // Real featured listings replace the sample cards as soon as at least one is starred.
+  const items = live && live.length
+    ? live.map((p) => ({
+        id: p.id,
+        title: listingTitle(p, locale),
+        location: listingLocation(p),
+        price: formatPrice(p.price, p.currency, locale),
+        rooms: p.bedrooms,
+        sqm: p.area_sqm,
+        badge: 'premium',
+        image: listingCover(p),
+        href: listingHref(locale, p.id),
+      }))
+    : sampleProperties;
 
   return (
     <section id="properties" className="py-24 lg:py-32 bg-dark">
@@ -163,7 +198,7 @@ export default function Properties() {
 
         {/* Immersive Property Cards */}
         <div className="flex flex-col gap-12 lg:gap-16">
-          {sampleProperties.map((property, i) => (
+          {items.map((property, i) => (
             <PropertyCard
               key={property.id}
               property={property}

@@ -831,7 +831,11 @@
     "residence": "Residenz",
     "seaApartment": "Apartment am Meer",
     "studio": "Studiowohnung",
-    "familyHome": "Familienhaus"
+    "familyHome": "Familienhaus",
+    "villa": "Villa",
+    "land": "Grundstück",
+    "commercial": "Gewerbe",
+    "other": "Mehrfamilienhaus"
   },
   "common": {
     "viewAll": "Alle Angebote"
@@ -902,5 +906,25 @@
         ]
       }
     ]
+  },
+  "listing": {
+    "back": "Alle Immobilien",
+    "bedrooms": "Zimmer",
+    "bathrooms": "Bäder",
+    "area": "Wohnfläche",
+    "plot": "Grundstücksfläche",
+    "price": "Preis",
+    "details": "Details",
+    "description": "Beschreibung",
+    "location": "Lage",
+    "contactTitle": "Fragen Sie nach dieser Immobilie",
+    "contactText": "Sprechen Sie mit uns über Preis, Steuern und den Kaufprozess.",
+    "contactButton": "Informationen anfordern",
+    "notFound": "Dieses Angebot ist nicht mehr verfügbar.",
+    "loading": "Wird geladen…",
+    "empty": "Derzeit sind keine Angebote veröffentlicht. Neue Immobilien folgen bald.",
+    "photo": "Foto",
+    "partner": "Angebot aus dem RE/MAX-Portfolio.",
+    "perSqm": "Preis pro m²"
   }
 }

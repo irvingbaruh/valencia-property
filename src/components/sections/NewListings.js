@@ -6,6 +6,7 @@ import { useRef, useState, useEffect } from 'react';
 import { MapPin, BedDouble, Maximize2, ArrowRight } from 'lucide-react';
 import FavoriteButton from '@/components/ui/FavoriteButton';
 import { localePath } from '@/lib/routes';
+import { fetchListings, listingCover, listingLocation, formatPrice, listingHref } from '@/lib/listings';
 
 const listings = [
   {
@@ -65,9 +66,11 @@ const listings = [
 ];
 
 function ListingCard({ listing, t }) {
+  const Wrap = listing.href ? 'a' : 'div';
   return (
+    <Wrap href={listing.href} className="flex-shrink-0 block">
     <motion.div
-      className="flex-shrink-0 w-[340px] md:w-[420px] group cursor-pointer"
+      className="w-[340px] md:w-[420px] group cursor-pointer"
       whileHover={{ y: -6 }}
       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
     >
@@ -106,18 +109,23 @@ function ListingCard({ listing, t }) {
           </div>
 
           <div className="flex items-center gap-4 text-sm text-text-muted">
-            <span className="flex items-center gap-1.5">
-              <BedDouble size={14} />
-              {listing.beds} {t('beds') || 'bed'}
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Maximize2 size={14} />
-              {listing.sqm} m²
-            </span>
+            {listing.beds ? (
+              <span className="flex items-center gap-1.5">
+                <BedDouble size={14} />
+                {listing.beds} {t('beds') || 'bed'}
+              </span>
+            ) : null}
+            {listing.sqm ? (
+              <span className="flex items-center gap-1.5">
+                <Maximize2 size={14} />
+                {listing.sqm} m²
+              </span>
+            ) : null}
           </div>
         </div>
       </div>
     </motion.div>
+    </Wrap>
   );
 }
 
@@ -127,6 +135,26 @@ export default function NewListings() {
   const outerRef = useRef(null);
   const trackRef = useRef(null);
   const [trackWidth, setTrackWidth] = useState(0);
+  const [live, setLive] = useState(null);
+
+  useEffect(() => {
+    let off = false;
+    fetchListings({ limit: 10 }).then((rows) => { if (!off) setLive(rows); });
+    return () => { off = true; };
+  }, []);
+
+  // Newest activated listings first; samples only while nothing is published yet.
+  const items = live && live.length
+    ? live.map((p) => ({
+        id: p.id,
+        image: listingCover(p),
+        location: listingLocation(p),
+        price: formatPrice(p.price, p.currency, locale),
+        beds: p.bedrooms,
+        sqm: p.area_sqm,
+        href: listingHref(locale, p.id),
+      }))
+    : listings;
 
   // Measure the total scrollable width of the cards track
   useEffect(() => {
@@ -140,7 +168,7 @@ export default function NewListings() {
     measure();
     window.addEventListener('resize', measure);
     return () => window.removeEventListener('resize', measure);
-  }, []);
+  }, [items.length]);
 
   // useScroll on the tall outer container
   const { scrollYProgress } = useScroll({
@@ -192,7 +220,7 @@ export default function NewListings() {
           style={{ x: smoothX }}
           className="flex gap-5 pl-4 sm:pl-8 lg:pl-[calc((100vw-72rem)/2+1rem)] pr-8"
         >
-          {listings.map((listing) => (
+          {items.map((listing) => (
             <ListingCard key={listing.id} listing={listing} t={t} />
           ))}
 

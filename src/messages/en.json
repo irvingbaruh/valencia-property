@@ -831,7 +831,11 @@
     "residence": "Residence",
     "seaApartment": "Seafront apartment",
     "studio": "Studio apartment",
-    "familyHome": "Family home"
+    "familyHome": "Family home",
+    "villa": "Villa",
+    "land": "Land plot",
+    "commercial": "Commercial",
+    "other": "Multi-unit property"
   },
   "common": {
     "viewAll": "All listings"
@@ -902,5 +906,25 @@
         ]
       }
     ]
+  },
+  "listing": {
+    "back": "All properties",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "area": "Built area",
+    "plot": "Plot size",
+    "price": "Price",
+    "details": "Details",
+    "description": "Description",
+    "location": "Location",
+    "contactTitle": "Ask about this property",
+    "contactText": "Talk to us about price, taxes and the buying process.",
+    "contactButton": "Request Information",
+    "notFound": "This listing is no longer available.",
+    "loading": "Loading…",
+    "empty": "No listings are published right now. New properties are coming soon.",
+    "photo": "Photo",
+    "partner": "Listed through the RE/MAX portfolio.",
+    "perSqm": "Price per m²"
   }
 }

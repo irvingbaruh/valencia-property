@@ -1,9 +1,8 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { MapPin, BedDouble, Maximize2, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
-import FavoriteButton from '@/components/ui/FavoriteButton';
+import PropertiesGrid from '@/components/sections/PropertiesGrid';
 import { localePath } from '@/lib/routes';
-import { propertyTitle } from '@/lib/propertyText';
 
 const properties = [
   { id: 1, hood: 'Eixample', type: 'apartment', location: 'Eixample, Valencia', price: '€185.000', rooms: 3, sqm: 95, badge: 'new', image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80&auto=format' },
@@ -20,9 +19,7 @@ const properties = [
 export default async function MulklerPage({ params }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: 'properties' });
   const m = await getTranslations({ locale, namespace: 'mulklerPage' });
-  const tType = await getTranslations({ locale, namespace: 'propertyType' });
 
   return (
     <div className="bg-soft">
@@ -41,56 +38,7 @@ export default async function MulklerPage({ params }) {
 
       {/* Grid — 2 columns, large cards */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid sm:grid-cols-2 gap-8 lg:gap-10 mb-20">
-          {properties.map((property, i) => (
-            <ScrollReveal key={property.id} delay={(i % 2) * 0.04}>
-              <div className="group bg-white rounded-2xl overflow-hidden border border-border hover:border-gold/30 hover:shadow-card-hover transition-all duration-300 h-full flex flex-col">
-                {/* Big image */}
-                <div className="relative h-72 sm:h-80 overflow-hidden">
-                  <img
-                    src={property.image}
-                    alt={propertyTitle(property, tType, locale)}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <span className="absolute top-4 left-4 px-3 py-1.5 bg-gold text-dark text-xs font-semibold tracking-wide uppercase rounded-md shadow-gold">
-                    {t(`badge_${property.badge}`)}
-                  </span>
-                  <FavoriteButton propertyId={property.id} className="absolute top-4 right-4 shadow-sm" />
-                </div>
-
-                {/* Content */}
-                <div className="p-6 flex-1 flex flex-col">
-                  <h2 className="font-serif text-xl text-dark mb-2 group-hover:text-gold transition-colors duration-300">
-                    {propertyTitle(property, tType, locale)}
-                  </h2>
-                  <div className="flex items-center gap-1.5 text-text-muted text-sm mb-4">
-                    <MapPin size={14} className="text-gold" />
-                    <span>{property.location}</span>
-                  </div>
-
-                  <div className="flex items-center gap-6 text-sm text-text-muted mb-5">
-                    <span className="flex items-center gap-1.5">
-                      <BedDouble size={15} className="text-gold/70" />
-                      {property.rooms} {t('rooms')}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <Maximize2 size={15} className="text-gold/70" />
-                      {property.sqm} {t('sqm')}
-                    </span>
-                  </div>
-
-                  <div className="mt-auto pt-5 border-t border-border flex items-center justify-between">
-                    <span className="text-2xl font-serif text-dark">{property.price}</span>
-                    <span className="w-10 h-10 rounded-full border border-gold/30 flex items-center justify-center group-hover:bg-gold group-hover:border-gold transition-all duration-300">
-                      <ArrowRight size={16} className="text-gold group-hover:text-white transition-colors duration-300" />
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
+        <PropertiesGrid samples={properties} />
 
         {/* CTA */}
         <ScrollReveal className="bg-dark rounded-2xl p-8 sm:p-10 text-center">

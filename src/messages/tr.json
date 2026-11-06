@@ -831,7 +831,11 @@
     "residence": "Rezidans",
     "seaApartment": "Sahil Dairesi",
     "studio": "Stüdyo Daire",
-    "familyHome": "Aile Evi"
+    "familyHome": "Aile Evi",
+    "villa": "Villa",
+    "land": "Arsa",
+    "commercial": "Ticari",
+    "other": "Çok Birimli Mülk"
   },
   "common": {
     "viewAll": "Tüm İlanlar"
@@ -902,5 +906,25 @@
         ]
       }
     ]
+  },
+  "listing": {
+    "back": "Tüm mülkler",
+    "bedrooms": "Oda",
+    "bathrooms": "Banyo",
+    "area": "Yapı alanı",
+    "plot": "Arsa alanı",
+    "price": "Fiyat",
+    "details": "Detaylar",
+    "description": "Açıklama",
+    "location": "Konum",
+    "contactTitle": "Bu mülk hakkında bilgi alın",
+    "contactText": "Fiyat, vergi ve satın alma süreci için bizimle görüşün.",
+    "contactButton": "Bilgi Talep Et",
+    "notFound": "Bu ilan artık yayında değil.",
+    "loading": "Yükleniyor…",
+    "empty": "Şu an yayında ilan yok. Yakında yeni mülkler eklenecek.",
+    "photo": "Fotoğraf",
+    "partner": "İlan RE/MAX portföyündendir.",
+    "perSqm": "m² fiyatı"
   }
 }
