@@ -15,7 +15,7 @@ const TABS = [
   ['alerts', 'E-posta bildirimleri'],
   ['account', 'Hesabım'],
 ];
-const NOTIFY_DEFAULTS = { emails: [], contact_message: true, intake: true, member: false };
+const NOTIFY_DEFAULTS = { emails: [], contact_message: true, intake: true, member: false, document_upload: true, doc_delete_request: true };
 
 const saveSetting = (key, value, isPublic) =>
   supabase.from('site_settings').upsert({ key, value, is_public: isPublic, updated_at: new Date().toISOString() });
@@ -165,6 +165,8 @@ function AlertsSection() {
       <div className="space-y-3">
         <Toggle k="contact_message" label="Yeni iletişim mesajı" hint="İletişim formundan biri yazınca." />
         <Toggle k="intake" label="Yeni danışmanlık talebi" hint="Biri danışmanlık formunu gönderince." />
+        <Toggle k="document_upload" label="Üye yeni belge yükledi" hint="Üye kendi panelinden dosya yükleyince (sizin yüklediğiniz dosyalar bildirim üretmez)." />
+        <Toggle k="doc_delete_request" label="Belge silme isteği" hint="Üye bir belgeyi silmek için istek gönderince, nedeniyle birlikte." />
         <Toggle k="member" label="Yeni üye" hint="Herhangi bir yolla yeni üyelik oluşunca (danışmanlık formu da üyelik açar, ikisini açarsanız iki e-posta gelir)." />
       </div>
       <Flash msg={msg} />

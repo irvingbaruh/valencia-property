@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 import AdminLayout, { ADMIN_BASE } from '@/components/admin/AdminLayout';
-import { Mail, Phone, MessageCircle, Check, ClipboardList, UserPlus } from 'lucide-react';
+import { Mail, Phone, MessageCircle, Check, ClipboardList, UserPlus, FileText } from 'lucide-react';
 
 const card = { background: '#151521', border: '1px solid #1E1E2E' };
 const inner = { background: '#0B0B11', border: '1px solid #1E1E2E' };
@@ -12,6 +12,7 @@ const TABS = [
   ['messages', 'İletişim mesajları'],
   ['intakes', 'Danışmanlık talepleri'],
   ['members', 'Yeni üyeler'],
+  ['docs', 'Belgeler'],
 ];
 const LANG = { tr: 'Türkçe', es: 'Español', en: 'English', de: 'Deutsch' };
 const fmt = (d) =>
@@ -23,14 +24,16 @@ function Inbox() {
   const [messages, setMessages] = useState([]);
   const [intakes, setIntakes] = useState([]);
   const [members, setMembers] = useState([]);
+  const [docs, setDocs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showHandled, setShowHandled] = useState(false);
 
   const load = useCallback(async () => {
-    const [m, i, p] = await Promise.all([
+    const [m, i, p, dc] = await Promise.all([
       supabase.from('contact_messages').select('*').order('created_at', { ascending: false }).limit(200),
       supabase.from('client_intake').select('id, user_id, submitted_at, created_at, answers, lang').order('created_at', { ascending: false }).limit(50),
       supabase.from('profiles_with_email').select('*').order('created_at', { ascending: false }).limit(50),
+      supabase.from('documents').select('id, user_id, file_name, created_at, uploaded_by, delete_requested_at, delete_reason').order('created_at', { ascending: false }).limit(50),
     ]);
     setMessages(m.data || []);
     const profiles = p.data || [];
@@ -41,6 +44,12 @@ function Inbox() {
       const { data } = await supabase.from('profiles_with_email').select('*').in('id', missing);
       (data || []).forEach((x) => (byId[x.id] = x));
     }
+    const dids = [...new Set((dc.data || []).map((r) => r.user_id).filter((id) => !byId[id]))];
+    if (dids.length) {
+      const { data } = await supabase.from('profiles_with_email').select('*').in('id', dids);
+      (data || []).forEach((x) => (byId[x.id] = x));
+    }
+    setDocs((dc.data || []).map((r) => ({ ...r, member: byId[r.user_id] })));
     setIntakes((i.data || []).map((r) => ({ ...r, member: byId[r.user_id] })));
     setLoading(false);
   }, []);
@@ -73,6 +82,9 @@ function Inbox() {
             style={tab === id ? { background: 'rgba(201,168,76,0.15)' } : inner}
           >
             {label}
+            {id === 'docs' && docs.some((d) => d.delete_requested_at) && (
+              <span className="ml-2 text-xs px-1.5 py-0.5 rounded-full bg-[#DC1C2E] text-white">{docs.filter((d) => d.delete_requested_at).length}</span>
+            )}
             {id === 'messages' && open.length > 0 && (
               <span className="ml-2 text-xs px-1.5 py-0.5 rounded-full bg-[#DC1C2E] text-white">{open.length}</span>
             )}
@@ -153,6 +165,28 @@ function Inbox() {
                   </div>
                   <Link href={`${ADMIN_BASE}/uyeler/detay/?id=${r.user_id}`} className="text-xs text-[#C9A84C] hover:underline">
                     Talebi aç
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )
+        ) : tab === 'docs' ? (
+          docs.length === 0 ? (
+            <p className="text-sm text-[#9A9AAA]">Henüz belge yok.</p>
+          ) : (
+            <ul className="space-y-2">
+              {docs.map((d) => (
+                <li key={d.id} className="rounded-lg px-4 py-3 flex flex-wrap items-center gap-3" style={inner}>
+                  <FileText className="w-4 h-4 text-[#9A9AAA] shrink-0" />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm text-white truncate">{d.file_name}</p>
+                    <p className="text-[11px] text-[#6A6A7A]">
+                      {d.member?.full_name || d.member?.email || 'Üye'} • {fmt(d.created_at)}
+                      {d.delete_requested_at ? ` • Silme isteği: ${d.delete_reason}` : ''}
+                    </p>
+                  </div>
+                  <Link href={`${ADMIN_BASE}/dosyalar/${d.delete_requested_at ? '?filter=delete' : ''}`} className="text-xs text-[#C9A84C] hover:underline">
+                    {d.delete_requested_at ? 'İsteği aç' : 'Dosyalara git'}
                   </Link>
                 </li>
               ))}

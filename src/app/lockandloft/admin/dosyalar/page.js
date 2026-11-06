@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 import AdminLayout, { ADMIN_BASE } from '@/components/admin/AdminLayout';
 import { notifyMember, TEXT } from '@/lib/adminServices';
-import { openDocument } from '@/lib/documents';
-import { FileText, Download, Check, X, Search } from 'lucide-react';
+import { openDocument, adminDeleteDocument } from '@/lib/documents';
+import { FileText, Download, Check, X, Search, Trash2 } from 'lucide-react';
 
 const card = { background: '#151521', border: '1px solid #1E1E2E' };
 const inner = { background: '#0B0B11', border: '1px solid #1E1E2E' };
@@ -21,6 +21,7 @@ const FILTERS = [
   ['pending', 'İnceleme bekleyen'],
   ['approved', 'Onaylanan'],
   ['rejected', 'Reddedilen'],
+  ['delete', 'Silme istekleri'],
 ];
 const fmtDate = (d) =>
   d ? new Date(d).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' }) : '—';
@@ -34,6 +35,7 @@ function Files() {
   const [q, setQ] = useState('');
   const [rejecting, setRejecting] = useState(null);
   const [reason, setReason] = useState('');
+  const [confirming, setConfirming] = useState(null);
 
   const load = useCallback(async () => {
     const { data } = await supabase.from('documents').select('*').order('created_at', { ascending: false }).limit(500);
@@ -49,7 +51,22 @@ function Files() {
 
   useEffect(() => {
     load();
+    const f = new URLSearchParams(window.location.search).get('filter');
+    if (FILTERS.some(([id]) => id === f)) setFilter(f);
   }, [load]);
+
+  const removeDoc = async (doc) => {
+    await adminDeleteDocument(doc);
+    await notifyMember({ userId: doc.user_id, type: 'document_deleted', ...TEXT.documentDeleted(doc.file_name) });
+    setConfirming(null);
+    load();
+  };
+
+  const declineDeletion = async (doc) => {
+    await supabase.rpc('cancel_document_deletion', { p_doc: doc.id });
+    await notifyMember({ userId: doc.user_id, type: 'document_deletion_declined', ...TEXT.deletionRejected(doc.file_name) });
+    load();
+  };
 
   const review = async (doc, status, rejectionReason) => {
     const {
@@ -82,6 +99,7 @@ function Files() {
       pending: docs.filter((d) => d.status === 'uploaded' || d.status === 'reviewing').length,
       approved: docs.filter((d) => d.status === 'approved').length,
       rejected: docs.filter((d) => d.status === 'rejected').length,
+      delete: docs.filter((d) => d.delete_requested_at).length,
     }),
     [docs]
   );
@@ -90,6 +108,7 @@ function Files() {
     if (filter === 'pending' && !(d.status === 'uploaded' || d.status === 'reviewing')) return false;
     if (filter === 'approved' && d.status !== 'approved') return false;
     if (filter === 'rejected' && d.status !== 'rejected') return false;
+    if (filter === 'delete' && !d.delete_requested_at) return false;
     const m = members[d.user_id];
     const hay = `${d.file_name} ${m?.full_name || ''} ${m?.email || ''}`.toLowerCase();
     return !q.trim() || hay.includes(q.trim().toLowerCase());
@@ -165,6 +184,9 @@ function Files() {
                         <Check className="w-4 h-4" />
                       </button>
                     )}
+                    <button onClick={() => setConfirming(d.id)} aria-label="Sil" className="p-2 rounded-lg text-red-400 hover:bg-red-500/10">
+                      <Trash2 className="w-4 h-4" />
+                    </button>
                     {d.status !== 'rejected' && (
                       <button
                         onClick={() => {
@@ -178,6 +200,36 @@ function Files() {
                       </button>
                     )}
                   </div>
+                  {d.delete_requested_at && (
+                    <div className="mt-3 rounded-lg px-4 py-3 text-sm bg-[#DC1C2E]/10">
+                      <p className="font-medium text-red-400">Silme isteği</p>
+                      <p className="text-white mt-1">
+                        <span className="text-[#9A9AAA]">Neden: </span>
+                        {d.delete_reason}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mt-3">
+                        <button onClick={() => setConfirming(d.id)} className="px-3 py-2 rounded-lg text-sm bg-[#DC1C2E] text-white">
+                          Silmeyi onayla
+                        </button>
+                        <button onClick={() => declineDeletion(d)} className="px-3 py-2 rounded-lg text-sm text-[#9A9AAA] border border-[#2A2A3C]">
+                          Reddet
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                  {confirming === d.id && (
+                    <div className="mt-3 rounded-lg px-4 py-3 text-sm border border-[#DC1C2E]/40">
+                      <p className="text-white">Emin misiniz? “{d.file_name}” kalıcı olarak silinecek, geri alınamaz.</p>
+                      <div className="flex gap-2 mt-3">
+                        <button onClick={() => removeDoc(d)} className="px-3 py-2 rounded-lg text-sm bg-[#DC1C2E] text-white">
+                          Evet, sil
+                        </button>
+                        <button onClick={() => setConfirming(null)} className="px-3 py-2 rounded-lg text-sm text-[#9A9AAA]">
+                          Vazgeç
+                        </button>
+                      </div>
+                    </div>
+                  )}
                   {rejecting === d.id && (
                     <div className="flex flex-wrap gap-2 mt-3">
                       <input

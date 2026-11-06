@@ -62,6 +62,27 @@ export const TEXT = {
     const sn = names(service?.service_template);
     return { title: per((l) => `${sn[l]}: ${lab[l]}`) };
   },
+  documentDeleted: (fileName) => ({
+    title: { tr: 'Belgeniz silindi', es: 'Su documento ha sido eliminado', en: 'Your document was deleted', de: 'Ihr Dokument wurde gelöscht' },
+    body: fileName,
+  }),
+  deletionRejected: (fileName) => ({
+    title: {
+      tr: 'Silme isteğiniz kabul edilmedi',
+      es: 'Su solicitud de eliminación no fue aceptada',
+      en: 'Your deletion request was declined',
+      de: 'Ihre Löschanfrage wurde abgelehnt',
+    },
+    body: fileName,
+  }),
+  documentRequested: (note) => ({
+    title: { tr: 'Sizden bir belge bekleniyor', es: 'Se espera un documento suyo', en: 'We are waiting for a document from you', de: 'Wir erwarten ein Dokument von Ihnen' },
+    body: note,
+  }),
+  documentAdded: (fileName) => ({
+    title: { tr: 'Hesabınıza yeni bir belge eklendi', es: 'Se ha añadido un documento a su cuenta', en: 'A new document was added to your account', de: 'Ihrem Konto wurde ein Dokument hinzugefügt' },
+    body: fileName,
+  }),
   document: (approved, fileName, reason) => ({
     title: approved
       ? { tr: 'Belgeniz onaylandı', es: 'Su documento ha sido aprobado', en: 'Your document was approved', de: 'Ihr Dokument wurde genehmigt' }

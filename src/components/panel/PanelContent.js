@@ -6,7 +6,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { getFavorites, removeFavorite } from '@/lib/favorites';
 import { supabase } from '@/lib/supabase';
-import { uploadDocument, openDocument, DOC_ACCEPT } from '@/lib/documents';
+import DocumentManager from '@/components/documents/DocumentManager';
 import { User, Heart, Settings, LogOut, Trash2, MapPin, BedDouble, Maximize2, Phone, Globe, Save, Check, Flag, FileCheck, MessageCircle, Shield, Briefcase, Clock, CheckCircle2, ArrowRight, ChevronRight, Bell, FileText } from 'lucide-react';
 import Link from 'next/link';
 import { localePath } from '@/lib/routes';
@@ -328,126 +328,25 @@ const DOC_STATUS = {
 };
 
 function DocumentsTab({ userId }) {
-  const t = useTranslations('panel');
   const locale = useLocale();
-  const [docs, setDocs] = useState([]);
-  const [services, setServices] = useState([]);
-  const [serviceId, setServiceId] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [uploading, setUploading] = useState(false);
-  const [error, setError] = useState('');
-
-  const load = async () => {
-    const [d, s] = await Promise.all([
-      supabase
-        .from('documents')
-        .select('id, file_name, status, rejection_reason, storage_path, client_service_id, created_at')
-        .eq('user_id', userId)
-        .order('created_at', { ascending: false }),
-      supabase
-        .from('client_services')
-        .select('id, service_template:service_template_id (name_tr, name_es, name_en, name_de)')
-        .eq('user_id', userId),
-    ]);
-    setDocs(d.data || []);
-    setServices(s.data || []);
-    setLoading(false);
-  };
+  const [services, setServices] = useState(null);
 
   useEffect(() => {
-    load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userId]);
+    supabase
+      .from('client_services')
+      .select('id, service_template:service_template_id (name_tr, name_es, name_en, name_de)')
+      .eq('user_id', userId)
+      .then(({ data }) => setServices((data || []).map((s) => ({ id: s.id, name: pickName(s.service_template, locale) }))));
+  }, [userId, locale]);
 
-  const onFile = async (e) => {
-    const file = e.target.files?.[0];
-    e.target.value = '';
-    if (!file) return;
-    setUploading(true);
-    setError('');
-    const { error: err, code } = await uploadDocument({ memberId: userId, file, clientServiceId: serviceId || null });
-    setUploading(false);
-    if (err) setError(t(`docErr_${code || 'upload_failed'}`));
-    else load();
-  };
-
-  if (loading) {
+  if (services === null) {
     return (
       <div className="flex justify-center py-16">
         <div className="w-8 h-8 border-2 border-[var(--color-gold)] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
-
-  const serviceName = (id) => pickName(services.find((s) => s.id === id)?.service_template, locale);
-
-  return (
-    <div className="space-y-4">
-      <div className="bg-white rounded-2xl shadow-sm px-6 py-4 flex flex-wrap items-center gap-3">
-        <div className="flex-1 min-w-[12rem]">
-          <p className="font-medium text-[var(--color-dark)]">{t('docUpload')}</p>
-          <p className="text-xs text-[var(--color-charcoal)]">{t('docFormats')}</p>
-        </div>
-        {services.length > 0 && (
-          <select
-            aria-label={t('docForService')}
-            value={serviceId}
-            onChange={(e) => setServiceId(e.target.value)}
-            className="text-sm border border-gray-200 rounded-lg px-3 py-2 bg-white"
-          >
-            <option value="">{t('docNoService')}</option>
-            {services.map((s) => (
-              <option key={s.id} value={s.id}>
-                {pickName(s.service_template, locale)}
-              </option>
-            ))}
-          </select>
-        )}
-        <label className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-white bg-[var(--color-gold)] cursor-pointer">
-          <FileText className="w-4 h-4" />
-          {uploading ? t('docUploading') : t('docChoose')}
-          <input type="file" accept={DOC_ACCEPT} className="hidden" disabled={uploading} onChange={onFile} />
-        </label>
-      </div>
-      {error && <p className="text-sm text-red-600">{error}</p>}
-
-      {docs.length === 0 ? (
-        <div className="bg-white rounded-2xl shadow-sm p-12 text-center">
-          <FileText className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-          <h3 className="text-lg font-serif text-[var(--color-dark)] mb-2">{t('noDocs')}</h3>
-          <p className="text-[var(--color-charcoal)]">{t('noDocsDesc')}</p>
-        </div>
-      ) : (
-        <div className="space-y-3">
-          {docs.map((d) => {
-            const s = DOC_STATUS[d.status] || DOC_STATUS.uploaded;
-            return (
-              <div key={d.id} className="bg-white rounded-2xl shadow-sm px-6 py-4 flex items-center gap-4">
-                <FileText className="w-5 h-5 text-gray-400 shrink-0" />
-                <div className="flex-1 min-w-0">
-                  <button
-                    onClick={() => openDocument(d.storage_path)}
-                    className="font-medium text-[var(--color-dark)] truncate max-w-full text-left hover:underline"
-                  >
-                    {d.file_name}
-                  </button>
-                  {serviceName(d.client_service_id) && (
-                    <p className="text-xs text-[var(--color-charcoal)]">{serviceName(d.client_service_id)}</p>
-                  )}
-                  {d.status === 'rejected' && d.rejection_reason && (
-                    <p className="text-xs text-red-600 mt-0.5">{d.rejection_reason}</p>
-                  )}
-                </div>
-                <span className="text-xs font-medium px-2.5 py-1 rounded-full shrink-0" style={{ background: `${s.color}15`, color: s.color }}>
-                  {t(`doc_${DOC_STATUS[d.status] ? d.status : 'uploaded'}`)}
-                </span>
-              </div>
-            );
-          })}
-        </div>
-      )}
-    </div>
-  );
+  return <DocumentManager memberId={userId} lang={locale} services={services} />;
 }
 
 export default function PanelContent() {

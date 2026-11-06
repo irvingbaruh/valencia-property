@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 import AdminLayout, { ADMIN_BASE } from '@/components/admin/AdminLayout';
 import { assignService, setStageStatus, setServiceStatus, notifyMember, TEXT } from '@/lib/adminServices';
-import { uploadDocument, openDocument, DOC_ACCEPT } from '@/lib/documents';
+import DocumentManager from '@/components/documents/DocumentManager';
 import trMessages from '@/messages/tr.json';
 import {
   ArrowLeft,
@@ -265,157 +265,35 @@ function AssignBox({ memberId, templates, onAssigned }) {
   );
 }
 
-function DocumentsSection({ memberId, docs, services, onChanged }) {
-  const [uploading, setUploading] = useState(false);
-  const [serviceId, setServiceId] = useState('');
-  const [error, setError] = useState('');
-  const [rejecting, setRejecting] = useState(null);
-  const [reason, setReason] = useState('');
-
-  const serviceName = (id) => services.find((s) => s.id === id)?.service_template?.name_tr;
-
-  const onFile = async (e) => {
-    const file = e.target.files?.[0];
-    e.target.value = '';
-    if (!file) return;
-    setUploading(true);
-    setError('');
-    const { error: err } = await uploadDocument({ memberId, file, clientServiceId: serviceId || null });
-    setUploading(false);
-    if (err) setError({ too_big: 'Dosya 10 MB sınırını aşıyor.', no_session: 'Oturum bulunamadı.', save_failed: 'Dosya kaydedilemedi.' }[err] || 'Yükleme başarısız. PDF, JPG, PNG veya DOCX (en fazla 10 MB) yükleyin.');
-    else onChanged();
+function DocumentsSection({ memberId, services }) {
+  const [note, setNote] = useState('');
+  const [sent, setSent] = useState(false);
+  const requestDoc = async () => {
+    if (!note.trim()) return;
+    await notifyMember({ userId: memberId, type: 'document_request', ...TEXT.documentRequested(note.trim()) });
+    setNote('');
+    setSent(true);
+    setTimeout(() => setSent(false), 3000);
   };
-
-  const review = async (doc, status, rejectionReason) => {
-    const { data: { user } } = await supabase.auth.getUser();
-    await supabase
-      .from('documents')
-      .update({
-        status,
-        rejection_reason: status === 'rejected' ? rejectionReason || null : null,
-        reviewed_by: user?.id,
-        reviewed_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      })
-      .eq('id', doc.id);
-    await notifyMember({
-      userId: memberId,
-      type: status === 'approved' ? 'document_approved' : 'document_rejected',
-      ...TEXT.document(status === 'approved', doc.file_name, rejectionReason),
-      clientServiceId: doc.client_service_id,
-    });
-    setRejecting(null);
-    setReason('');
-    onChanged();
-  };
-
   return (
-    <section className="rounded-xl p-5" style={card}>
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-        <h2 className="flex items-center gap-2 text-base font-semibold text-white">
-          <FileText className="w-4 h-4 text-[#C9A84C]" />
-          Dosyalar <span className="text-xs font-normal text-[#9A9AAA]">({docs.length})</span>
-        </h2>
-        <div className="flex items-center gap-2">
-          <select
-            aria-label="Dosyanın hizmeti"
-            value={serviceId}
-            onChange={(e) => setServiceId(e.target.value)}
-            className="text-xs rounded-lg px-2 py-2 text-white outline-none max-w-[11rem]"
-            style={inner}
-          >
-            <option value="">Hizmetten bağımsız</option>
-            {services.map((s) => (
-              <option key={s.id} value={s.id}>
-                {s.service_template?.name_tr}
-              </option>
-            ))}
-          </select>
-          <label
-            className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium cursor-pointer"
-            style={{ background: 'rgba(201,168,76,0.15)', color: '#C9A84C' }}
-          >
-            <Upload className="w-4 h-4" />
-            {uploading ? 'Yükleniyor…' : 'Üye adına yükle'}
-            <input type="file" accept={DOC_ACCEPT} className="hidden" disabled={uploading} onChange={onFile} />
-          </label>
-        </div>
+    <section className="rounded-xl p-5 space-y-4" style={card}>
+      <h2 className="flex items-center gap-2 text-base font-semibold text-white">
+        <FileText className="w-4 h-4 text-[#C9A84C]" />
+        Dosyalar
+      </h2>
+      <div className="rounded-lg px-4 py-3 flex flex-wrap items-center gap-2" style={inner}>
+        <input
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
+          placeholder="Üyeden istenen belge (örn. Pasaport kopyası)"
+          className="flex-1 min-w-[12rem] px-3 py-2 rounded-lg bg-[#0E0E18] border border-[#2A2A3C] text-white text-sm focus:outline-none focus:border-[#C9A84C]"
+        />
+        <button onClick={requestDoc} disabled={!note.trim()} className="px-3 py-2 rounded-lg text-sm font-medium disabled:opacity-40" style={{ background: 'rgba(201,168,76,0.15)', color: '#C9A84C' }}>
+          Belge iste
+        </button>
+        {sent && <span className="text-xs text-green-400">Üyeye bildirim ve e-posta gönderildi.</span>}
       </div>
-      {error && <p className="text-sm text-red-400 mb-3">{error}</p>}
-
-      {docs.length === 0 ? (
-        <p className="text-sm text-[#9A9AAA]">Bu üyenin yüklediği dosya yok.</p>
-      ) : (
-        <ul className="space-y-2">
-          {docs.map((d) => {
-            const sc = DOC_STATUS[d.status] || DOC_STATUS.uploaded;
-            return (
-              <li key={d.id} className="rounded-lg px-4 py-3" style={inner}>
-                <div className="flex flex-wrap items-center gap-3">
-                  <FileText className="w-4 h-4 text-[#9A9AAA] shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm text-white truncate">{d.file_name}</p>
-                    <p className="text-[11px] text-[#6A6A7A]">
-                      {fmtDate(d.created_at)}
-                      {serviceName(d.client_service_id) ? ` • ${serviceName(d.client_service_id)}` : ''}
-                    </p>
-                    {d.status === 'rejected' && d.rejection_reason && (
-                      <p className="text-xs text-red-400 mt-0.5">{d.rejection_reason}</p>
-                    )}
-                  </div>
-                  <Pill color={sc.color}>{sc.label}</Pill>
-                  <button
-                    onClick={() => openDocument(d.storage_path)}
-                    aria-label="Dosyayı aç"
-                    className="p-2 rounded-lg text-[#9A9AAA] hover:text-white hover:bg-white/10"
-                  >
-                    <Download className="w-4 h-4" />
-                  </button>
-                  {d.status !== 'approved' && (
-                    <button
-                      onClick={() => review(d, 'approved')}
-                      aria-label="Onayla"
-                      className="p-2 rounded-lg text-green-400 hover:bg-green-500/10"
-                    >
-                      <Check className="w-4 h-4" />
-                    </button>
-                  )}
-                  {d.status !== 'rejected' && (
-                    <button
-                      onClick={() => {
-                        setRejecting(d.id);
-                        setReason('');
-                      }}
-                      aria-label="Reddet"
-                      className="p-2 rounded-lg text-red-400 hover:bg-red-500/10"
-                    >
-                      <X className="w-4 h-4" />
-                    </button>
-                  )}
-                </div>
-                {rejecting === d.id && (
-                  <div className="flex gap-2 mt-3">
-                    <input
-                      value={reason}
-                      onChange={(e) => setReason(e.target.value)}
-                      placeholder="Red nedeni (üyeye gösterilir)"
-                      className="flex-1 rounded-lg px-3 py-2 text-sm text-white outline-none placeholder:text-[#6A6A7A]"
-                      style={{ background: '#151521', border: '1px solid #1E1E2E' }}
-                    />
-                    <button
-                      onClick={() => review(d, 'rejected', reason.trim())}
-                      className="px-3 py-2 rounded-lg text-sm font-medium text-white"
-                      style={{ background: '#DC1C2E' }}
-                    >
-                      Reddet
-                    </button>
-                  </div>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-      )}
+      <DocumentManager memberId={memberId} isAdmin lang="tr" services={services.map((s) => ({ id: s.id, name: s.service_template?.name_tr }))} />
     </section>
   );
 }
@@ -661,7 +539,7 @@ function MemberDetail() {
         <AssignBox memberId={memberId} templates={templates} onAssigned={load} />
       </section>
 
-      <DocumentsSection memberId={memberId} docs={docs} services={services} onChanged={load} />
+      <DocumentsSection memberId={memberId} services={services} />
 
       <section className="rounded-xl p-5" style={card}>
         <h2 className="flex items-center gap-2 text-base font-semibold text-white mb-4">
