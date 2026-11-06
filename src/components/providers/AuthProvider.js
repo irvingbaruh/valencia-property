@@ -72,13 +72,13 @@ export function AuthProvider({ children }) {
     return ['tr', 'es', 'en', 'de'].includes(seg) ? seg : 'en';
   };
 
-  const signUp = async (email, password, fullName) => {
+  const signUp = async (email, password, fullName, extra = {}) => {
     const lang = currentLang();
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        data: { full_name: fullName, lang },
+        data: { full_name: fullName, lang, ...extra },
         emailRedirectTo: typeof window !== 'undefined' ? `${window.location.origin}${localePath(lang, 'panel')}` : undefined,
       },
     });

@@ -1,14 +1,74 @@
 import { supabase } from '@/lib/supabase';
 
+const LANGS = ['tr', 'es', 'en', 'de'];
+
+// text may be a plain Turkish string or { tr, es, en, de }
+const loc = (text) => (typeof text === 'string' ? { tr: text } : text || {});
+
 export async function notifyMember({ userId, type, title, body, clientServiceId }) {
-  await supabase.from('notifications').insert({
-    user_id: userId,
-    type,
-    title_tr: title,
-    body_tr: body || null,
-    client_service_id: clientServiceId || null,
+  const ti = loc(title);
+  const bo = loc(body);
+  const row = { user_id: userId, type, client_service_id: clientServiceId || null };
+  LANGS.forEach((l) => {
+    row[`title_${l}`] = ti[l] || (l === 'tr' ? '' : null);
+    row[`body_${l}`] = bo[l] || null;
   });
+  await supabase.from('notifications').insert(row);
 }
+
+// { tr, es, en, de } from a row with name_xx columns
+export const names = (row, prefix = 'name_') =>
+  Object.fromEntries(LANGS.map((l) => [l, row?.[`${prefix}${l}`] || row?.[`${prefix}tr`] || '']));
+
+const per = (fn) => Object.fromEntries(LANGS.map((l) => [l, fn(l)]));
+
+export const TEXT = {
+  assigned: (template) => ({
+    title: {
+      tr: 'Yeni hizmet atandı',
+      es: 'Nuevo servicio asignado',
+      en: 'New service assigned',
+      de: 'Neue Leistung zugewiesen',
+    },
+    body: per((l) => {
+      const n = names(template)[l];
+      return {
+        tr: `${n} hizmeti hesabınıza eklendi. Hizmetlerim sekmesinden süreci takip edebilirsiniz.`,
+        es: `El servicio «${n}» se ha añadido a su cuenta. Siga el proceso en la pestaña Mis servicios.`,
+        en: `The service "${n}" has been added to your account. Follow its progress in the My services tab.`,
+        de: `Die Leistung „${n}“ wurde Ihrem Konto hinzugefügt. Den Fortschritt sehen Sie unter Meine Leistungen.`,
+      }[l];
+    }),
+  }),
+  stage: (service, stage, newStatus) => {
+    const verb = {
+      completed: { tr: 'tamamlandı', es: 'completada', en: 'completed', de: 'abgeschlossen' },
+      in_progress: { tr: 'başladı', es: 'iniciada', en: 'started', de: 'gestartet' },
+    }[newStatus] || { tr: 'güncellendi', es: 'actualizada', en: 'updated', de: 'aktualisiert' };
+    const sn = names(service?.service_template);
+    const word = { tr: 'aşama', es: 'fase', en: 'stage', de: 'Schritt' };
+    return {
+      title: per((l) => `${sn[l] || { tr: 'Hizmet', es: 'Servicio', en: 'Service', de: 'Leistung' }[l]}: ${word[l]} ${verb[l]}`),
+      body: names(stage?.stage_template),
+    };
+  },
+  serviceStatus: (service, status) => {
+    const lab = {
+      active: { tr: 'aktif', es: 'activo', en: 'active', de: 'aktiv' },
+      paused: { tr: 'durduruldu', es: 'en pausa', en: 'on hold', de: 'pausiert' },
+      completed: { tr: 'tamamlandı', es: 'completado', en: 'completed', de: 'abgeschlossen' },
+      cancelled: { tr: 'iptal edildi', es: 'cancelado', en: 'cancelled', de: 'storniert' },
+    }[status] || { tr: 'güncellendi', es: 'actualizado', en: 'updated', de: 'aktualisiert' };
+    const sn = names(service?.service_template);
+    return { title: per((l) => `${sn[l]}: ${lab[l]}`) };
+  },
+  document: (approved, fileName, reason) => ({
+    title: approved
+      ? { tr: 'Belgeniz onaylandı', es: 'Su documento ha sido aprobado', en: 'Your document was approved', de: 'Ihr Dokument wurde genehmigt' }
+      : { tr: 'Belgeniz reddedildi', es: 'Su documento ha sido rechazado', en: 'Your document was rejected', de: 'Ihr Dokument wurde abgelehnt' },
+    body: approved ? fileName : `${fileName}${reason ? `: ${reason}` : ''}`,
+  }),
+};
 
 // Creates the client_service, its stages (first one in progress), logs it and notifies the member.
 export async function assignService({ memberId, template, notes }) {
@@ -54,13 +114,7 @@ export async function assignService({ memberId, template, notes }) {
     performed_by: user?.id,
     details: { service_name: template.name_tr, notes },
   });
-  await notifyMember({
-    userId: memberId,
-    type: 'service_assigned',
-    title: 'Yeni hizmet atandı',
-    body: `${template.name_tr} hizmeti hesabınıza eklendi. Hizmetlerim sekmesinden süreci takip edebilirsiniz.`,
-    clientServiceId: cs.id,
-  });
+  await notifyMember({ userId: memberId, type: 'service_assigned', ...TEXT.assigned(template), clientServiceId: cs.id });
   return { data: cs };
 }
 
@@ -97,14 +151,7 @@ export async function setStageStatus({ service, memberId, stages, stageId, newSt
   }
 
   const changed = stages.find((s) => s.id === stageId);
-  const label = newStatus === 'completed' ? 'tamamlandı' : newStatus === 'in_progress' ? 'başladı' : 'güncellendi';
-  await notifyMember({
-    userId: memberId,
-    type: 'stage_update',
-    title: `${service.service_template?.name_tr || 'Hizmet'}: aşama ${label}`,
-    body: changed?.stage_template?.name_tr || '',
-    clientServiceId: service.id,
-  });
+  await notifyMember({ userId: memberId, type: 'stage_update', ...TEXT.stage(service, changed, newStatus), clientServiceId: service.id });
   return {};
 }
 
@@ -114,12 +161,6 @@ export async function setServiceStatus({ service, memberId, status }) {
   if (status === 'completed') updates.completed_at = now;
   const { error } = await supabase.from('client_services').update(updates).eq('id', service.id);
   if (error) return { error };
-  const labels = { active: 'aktif', paused: 'durduruldu', completed: 'tamamlandı', cancelled: 'iptal edildi' };
-  await notifyMember({
-    userId: memberId,
-    type: 'stage_update',
-    title: `${service.service_template?.name_tr || 'Hizmet'}: ${labels[status] || 'güncellendi'}`,
-    clientServiceId: service.id,
-  });
+  await notifyMember({ userId: memberId, type: 'stage_update', ...TEXT.serviceStatus(service, status), clientServiceId: service.id });
   return {};
 }

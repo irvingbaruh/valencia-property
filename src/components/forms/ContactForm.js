@@ -1,18 +1,22 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import { supabase } from '@/lib/supabase';
 import { Check, Send } from 'lucide-react';
 
 export default function ContactForm() {
   const t = useTranslations('iletisimPage');
+  const locale = useLocale();
+  const [sending, setSending] = useState(false);
+  const [failed, setFailed] = useState(false);
   const [values, setValues] = useState({ name: '', email: '', phone: '', message: '' });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (field) => (e) => setValues((p) => ({ ...p, [field]: e.target.value }));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = {};
     if (!values.name.trim()) errs.name = true;
@@ -20,7 +24,18 @@ export default function ContactForm() {
     if (!values.message.trim()) errs.message = true;
     setErrors(errs);
     if (Object.keys(errs).length > 0) return;
-    setSubmitted(true);
+    setSending(true);
+    setFailed(false);
+    const { error } = await supabase.from('contact_messages').insert({
+      name: values.name.trim(),
+      email: values.email.trim(),
+      phone: values.phone.trim() || null,
+      message: values.message.trim(),
+      lang: locale,
+    });
+    setSending(false);
+    if (error) setFailed(true);
+    else setSubmitted(true);
   };
 
   if (submitted) {
@@ -75,9 +90,11 @@ export default function ContactForm() {
           className={`w-full px-4 py-3 bg-soft border rounded-lg text-dark focus:outline-none focus:ring-2 focus:ring-gold/40 resize-none ${errors.message ? 'border-red-400' : 'border-border'}`}
         />
       </div>
+      {failed && <p className="text-sm text-red-500" role="alert">{t('submitError')}</p>}
       <button
         type="submit"
-        className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gold text-dark font-semibold rounded-xl hover:bg-gold-hover transition-colors duration-200"
+        disabled={sending}
+        className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gold text-dark font-semibold rounded-xl hover:bg-gold-hover transition-colors duration-200 disabled:opacity-60"
       >
         {t('submitButton')}
         <Send size={16} />

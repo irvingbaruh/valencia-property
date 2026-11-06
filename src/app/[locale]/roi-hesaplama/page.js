@@ -6,9 +6,9 @@ import LiveExchangeRates from '@/components/sections/LiveExchangeRates';
 import { localePath } from '@/lib/routes';
 
 const newsLinks = [
-  { name: 'Idealista News', url: 'https://www.idealista.com/news/', desc: 'İspanya emlak piyasası haberleri ve fiyat analizleri' },
-  { name: 'Spanish Property Insight', url: 'https://www.spanishpropertyinsight.com', desc: 'Yabancı yatırımcılar için İspanya emlak piyasası analizleri' },
-  { name: 'Banco de España', url: 'https://www.bde.es', desc: 'Resmi konut fiyat istatistikleri ve ekonomik göstergeler' },
+  { name: 'Idealista News', url: 'https://www.idealista.com/news/', descKey: 'src1' },
+  { name: 'Spanish Property Insight', url: 'https://www.spanishpropertyinsight.com', descKey: 'src2' },
+  { name: 'Banco de España', url: 'https://www.bde.es', descKey: 'src3' },
 ];
 
 export default async function ROIPage({ params }) {
@@ -63,7 +63,7 @@ export default async function ROIPage({ params }) {
                       </div>
                       <div>
                         <p className="text-sm font-semibold text-dark group-hover:text-gold transition-colors">{link.name}</p>
-                        <p className="text-xs text-text-muted leading-relaxed">{link.desc}</p>
+                        <p className="text-xs text-text-muted leading-relaxed">{t(link.descKey)}</p>
                       </div>
                     </a>
                   ))}

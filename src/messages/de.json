@@ -338,7 +338,10 @@
     "newsNote": "Vorerst direkte Links zu aktuellen, verlässlichen Quellen; ein Live-Newsfeed folgt in Kürze.",
     "ctaTitle": "Möchten Sie Mehr Erfahren?",
     "ctaSubtitle": "Sprechen Sie mit uns für einen individuellen Investitionsplan, der zu Ihrem Budget passt.",
-    "ctaButton": "Beratung Anfordern"
+    "ctaButton": "Beratung Anfordern",
+    "src1": "Nachrichten zum spanischen Immobilienmarkt und Preisanalysen",
+    "src2": "Analysen des spanischen Immobilienmarkts für ausländische Investoren",
+    "src3": "Offizielle Wohnungspreisstatistiken und Wirtschaftsindikatoren"
   },
   "iletisimPage": {
     "title": "Kontakt",
@@ -355,7 +358,8 @@
     "phoneDetail": "Telefon",
     "emailDetail": "E-Mail",
     "whatsappButton": "Über WhatsApp Schreiben",
-    "officeNote": "Telefon-, E-Mail- und WhatsApp-Angaben sind Platzhalter — sie werden mit Ihren echten Daten aktualisiert."
+    "officeNote": "Telefon-, E-Mail- und WhatsApp-Angaben sind Platzhalter — sie werden mit Ihren echten Daten aktualisiert.",
+    "submitError": "Die Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie uns per WhatsApp."
   },
   "blog": {
     "title": "Ratgeber",
@@ -533,6 +537,194 @@
     "save": "Speichern",
     "saved": "Gespeichert",
     "phone": "Telefon",
-    "language": "Bevorzugte Sprache"
+    "language": "Bevorzugte Sprache",
+    "tabServices": "Meine Leistungen",
+    "tabDocuments": "Meine Dokumente",
+    "tabNotifications": "Mitteilungen",
+    "noServices": "Sie haben noch keine aktiven Leistungen",
+    "noServicesDesc": "Sobald Ihnen eine Leistung zugewiesen wird, sehen Sie sie hier",
+    "progress": "Fortschritt",
+    "stagesDone": "{done}/{total} Schritte • {pct} %",
+    "days": "~{n} Tage",
+    "svc_pending": "Ausstehend",
+    "svc_active": "Aktiv",
+    "svc_completed": "Abgeschlossen",
+    "svc_on_hold": "Pausiert",
+    "svc_paused": "Pausiert",
+    "svc_cancelled": "Storniert",
+    "stage_pending": "Ausstehend",
+    "stage_in_progress": "In Bearbeitung",
+    "stage_completed": "Abgeschlossen",
+    "stage_skipped": "Übersprungen",
+    "noNotifications": "Keine Mitteilungen",
+    "noNotificationsDesc": "Hier sehen Sie, wenn Ihnen eine Leistung zugewiesen oder ein Schritt aktualisiert wird.",
+    "newBadge": "Neu",
+    "docUpload": "Dokument hochladen",
+    "docFormats": "PDF, JPG, PNG oder DOCX · max. 10 MB",
+    "docForService": "Zugehörige Leistung",
+    "docNoService": "Ohne Leistung",
+    "docChoose": "Datei wählen",
+    "docUploading": "Wird hochgeladen…",
+    "noDocs": "Noch keine Dokumente",
+    "noDocsDesc": "Hier erscheinen Ihre hochgeladenen Dokumente und deren Status.",
+    "doc_uploaded": "Hochgeladen",
+    "doc_reviewing": "In Prüfung",
+    "doc_approved": "Genehmigt",
+    "doc_rejected": "Abgelehnt",
+    "docErr_too_big": "Die Datei überschreitet das Limit von 10 MB.",
+    "docErr_no_session": "Sitzung nicht gefunden.",
+    "docErr_upload_failed": "Hochladen fehlgeschlagen. Verwenden Sie PDF, JPG, PNG oder DOCX (max. 10 MB).",
+    "docErr_save_failed": "Die Datei konnte nicht gespeichert werden.",
+    "country": "Land",
+    "countryPh": "Türkei",
+    "citizenship": "Staatsangehörigkeit",
+    "citizenshipPh": "Türkisch",
+    "residence": "Aufenthaltserlaubnis",
+    "residencePh": "Ja / Nein / In Bearbeitung",
+    "settingsSoon": "Einstellungen werden bald hinzugefügt.",
+    "myRequest": "Meine Beratungsanfrage"
+  },
+  "consult": {
+    "step": "Schritt",
+    "of": "von",
+    "back": "Zurück",
+    "next": "Weiter",
+    "submit": "Konto erstellen und senden",
+    "submitLoggedIn": "Anfrage senden",
+    "sending": "Wird gesendet…",
+    "multiHint": "Mehrfachauswahl möglich.",
+    "q": {
+      "propertyType": {
+        "title": "Welche Art von Immobilie suchen Sie?"
+      },
+      "investmentStrategy": {
+        "title": "Wie lautet Ihre Anlagestrategie?"
+      },
+      "landPlan": {
+        "title": "Was haben Sie mit dem Grundstück vor?"
+      },
+      "condition": {
+        "title": "Wie wichtig ist Ihnen der Zustand der Immobilie?"
+      },
+      "region": {
+        "title": "Welche Gegend bevorzugen Sie?"
+      },
+      "budget": {
+        "title": "Wie hoch ist Ihr Budget?"
+      },
+      "timeline": {
+        "title": "Wie sieht Ihr Zeitplan aus?"
+      },
+      "services": {
+        "title": "Welche Leistungen interessieren Sie?",
+        "subtitle": "Wir fügen die gewählten Leistungen Ihrem Konto hinzu; Sie können sie jederzeit ändern."
+      },
+      "location": {
+        "title": "Wo leben Sie derzeit?"
+      },
+      "contact": {
+        "title": "Ihre Kontaktdaten"
+      },
+      "account": {
+        "title": "Erstellen Sie Ihr Konto",
+        "subtitle": "Ihre Antworten werden in Ihrem Konto gespeichert; dort verfolgen Sie Ihre Leistungen und Ihren Fortschritt."
+      }
+    },
+    "o": {
+      "propertyType": {
+        "home": "Wohnung zum Selbstbewohnen",
+        "investment": "Anlageimmobilie",
+        "land": "Grundstück",
+        "unsure": "Noch nicht entschieden"
+      },
+      "investmentStrategy": {
+        "airbnb": "Kurzzeitvermietung (Airbnb)",
+        "longterm": "Langzeitvermietung",
+        "flip": "Kaufen und verkaufen (Wertsteigerung)",
+        "unsure": "Noch nicht entschieden"
+      },
+      "landPlan": {
+        "build": "Eigenes Haus bauen",
+        "project": "Investitions- / Bauprojekt",
+        "unsure": "Noch nicht entschieden"
+      },
+      "condition": {
+        "ready": "Bezugsfertig",
+        "light": "Kleine Renovierungen sind in Ordnung",
+        "renovation": "Ich suche ein Renovierungsprojekt (Schnäppchenpreis)",
+        "any": "Egal"
+      },
+      "region": {
+        "valencia-centro": "Valencia Zentrum",
+        "el-carmen": "El Carmen",
+        "benimaclet": "Benimaclet",
+        "ciutat-vella": "Ciutat Vella",
+        "poblats-maritims": "Poblats Marítims",
+        "alicante": "Raum Alicante",
+        "any": "Egal / ich möchte Vorschläge"
+      },
+      "budget": {
+        "under150": "Unter 150.000 €",
+        "150-300": "150.000 € – 300.000 €",
+        "300-500": "300.000 € – 500.000 €",
+        "500plus": "Ab 500.000 €"
+      },
+      "timeline": {
+        "now": "Sofort",
+        "3-6": "In 3-6 Monaten",
+        "6-12": "In 6-12 Monaten",
+        "researching": "Ich informiere mich nur"
+      },
+      "services": {
+        "emlak": "Immobiliensuche & Beratung",
+        "legal": "Rechtsdienstleistungen (NIE, Aufenthalt, Verträge)",
+        "renovasyon": "Renovierung / Reform",
+        "staging": "Home Staging & Innenarchitektur",
+        "management": "Verwaltung Langzeitvermietung",
+        "airbnb": "Airbnb-Verwaltung",
+        "insaat": "Bauleitung"
+      },
+      "location": {
+        "turkey": "Türkei",
+        "europe-tr": "Türke mit Wohnsitz in Europa",
+        "spain": "Ich lebe in Spanien",
+        "other": "Andere"
+      }
+    },
+    "nameLabel": "Vor- und Nachname",
+    "namePh": "Ihr vollständiger Name",
+    "emailLabel": "E-Mail",
+    "phoneLabel": "Telefon / WhatsApp",
+    "langLabel": "Bevorzugte Sprache",
+    "noteLabel": "Zusätzliche Anmerkung (optional)",
+    "notePh": "Möchten Sie noch etwas ergänzen?",
+    "passwordLabel": "Passwort",
+    "passwordHint": "Mindestens 8 Zeichen.",
+    "consent": "Ich stimme der Kontoerstellung zu und dass meine Angaben zu Beratungszwecken gespeichert werden.",
+    "haveAccount": "Bereits Mitglied?",
+    "loginLink": "Anmelden",
+    "loggedInAs": "Sie sind angemeldet; Ihre Antworten werden in Ihrem Konto gespeichert.",
+    "errRequired": "Bitte füllen Sie die markierten Felder aus.",
+    "errPassword": "Das Passwort muss mindestens 8 Zeichen lang sein.",
+    "errConsent": "Bitte setzen Sie das Häkchen, um fortzufahren.",
+    "errTaken": "Mit dieser E-Mail existiert bereits ein Konto. Melden Sie sich an und senden Sie das Formular erneut.",
+    "errGeneric": "Senden fehlgeschlagen. Bitte versuchen Sie es in einigen Minuten erneut.",
+    "thanksTitle": "Vielen Dank",
+    "thanksCheckEmail": "Ihr Konto wurde erstellt und Ihre Antworten gespeichert. Klicken Sie auf den Link in unserer E-Mail, um es zu aktivieren.",
+    "thanksSaved": "Ihre Anfrage wurde in Ihrem Konto gespeichert. Unser Team meldet sich in Kürze bei Ihnen.",
+    "goPanel": "Zum Mitgliederbereich"
+  },
+  "propertyType": {
+    "apartment": "Wohnung",
+    "penthouse": "Penthouse",
+    "beachHouse": "Strandhaus",
+    "house": "Haus",
+    "residence": "Residenz",
+    "seaApartment": "Apartment am Meer",
+    "studio": "Studiowohnung",
+    "familyHome": "Familienhaus"
+  },
+  "common": {
+    "viewAll": "Alle Angebote"
   }
 }

@@ -10,18 +10,19 @@ import { uploadDocument, openDocument, DOC_ACCEPT } from '@/lib/documents';
 import { User, Heart, Settings, LogOut, Trash2, MapPin, BedDouble, Maximize2, Phone, Globe, Save, Check, Flag, FileCheck, MessageCircle, Shield, Briefcase, Clock, CheckCircle2, ArrowRight, ChevronRight, Bell, FileText } from 'lucide-react';
 import Link from 'next/link';
 import { localePath } from '@/lib/routes';
+import { propertyTitle } from '@/lib/propertyText';
 
 // Same static property data used across the site
 const allProperties = [
-  { id: '1', title: 'Eixample Dairesi', location: 'Eixample, Valencia', price: '€185.000', rooms: 3, sqm: 95, image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80&auto=format' },
-  { id: '2', title: 'Ruzafa Çatı Katı', location: 'Ruzafa, Valencia', price: '€320.000', rooms: 4, sqm: 140, image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80&auto=format' },
-  { id: '3', title: 'Cabanyal Sahil Evi', location: 'Cabanyal, Valencia', price: '€245.000', rooms: 2, sqm: 80, image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80&auto=format' },
-  { id: '4', title: 'El Carmen Dairesi', location: 'El Carmen, Valencia', price: '€185.000', rooms: 2, sqm: 78, image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80&auto=format' },
-  { id: '5', title: 'Benimaclet Evi', location: 'Benimaclet, Valencia', price: '€145.000', rooms: 3, sqm: 92, image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80&auto=format' },
-  { id: '6', title: 'Ciutat Vella Rezidansı', location: 'Ciutat Vella, Valencia', price: '€265.000', rooms: 3, sqm: 110, image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80&auto=format' },
-  { id: '7', title: 'Poblats Marítims Sahil Dairesi', location: 'Poblats Marítims, Valencia', price: '€198.000', rooms: 2, sqm: 85, image: 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=600&q=80&auto=format' },
-  { id: '8', title: 'Patraix Stüdyo Daire', location: 'Patraix, Valencia', price: '€155.000', rooms: 2, sqm: 70, image: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80&auto=format' },
-  { id: '9', title: 'Extramurs Aile Evi', location: 'Extramurs, Valencia', price: '€220.000', rooms: 4, sqm: 125, image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&q=80&auto=format' },
+  { id: '1', hood: 'Eixample', type: 'apartment', location: 'Eixample, Valencia', price: '€185.000', rooms: 3, sqm: 95, image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80&auto=format' },
+  { id: '2', hood: 'Ruzafa', type: 'penthouse', location: 'Ruzafa, Valencia', price: '€320.000', rooms: 4, sqm: 140, image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80&auto=format' },
+  { id: '3', hood: 'Cabanyal', type: 'beachHouse', location: 'Cabanyal, Valencia', price: '€245.000', rooms: 2, sqm: 80, image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80&auto=format' },
+  { id: '4', hood: 'El Carmen', type: 'apartment', location: 'El Carmen, Valencia', price: '€185.000', rooms: 2, sqm: 78, image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80&auto=format' },
+  { id: '5', hood: 'Benimaclet', type: 'house', location: 'Benimaclet, Valencia', price: '€145.000', rooms: 3, sqm: 92, image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80&auto=format' },
+  { id: '6', hood: 'Ciutat Vella', type: 'residence', location: 'Ciutat Vella, Valencia', price: '€265.000', rooms: 3, sqm: 110, image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80&auto=format' },
+  { id: '7', hood: 'Poblats Marítims', type: 'seaApartment', location: 'Poblats Marítims, Valencia', price: '€198.000', rooms: 2, sqm: 85, image: 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=600&q=80&auto=format' },
+  { id: '8', hood: 'Patraix', type: 'studio', location: 'Patraix, Valencia', price: '€155.000', rooms: 2, sqm: 70, image: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80&auto=format' },
+  { id: '9', hood: 'Extramurs', type: 'familyHome', location: 'Extramurs, Valencia', price: '€220.000', rooms: 4, sqm: 125, image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&q=80&auto=format' },
 ];
 
 function ProfileField({ icon: Icon, label, value, editMode, inputProps }) {
@@ -43,12 +44,18 @@ function ProfileField({ icon: Icon, label, value, editMode, inputProps }) {
 }
 
 const SERVICE_STATUS = {
-  pending: { label: 'Beklemede', color: '#F59E0B', icon: Clock },
-  active: { label: 'Aktif', color: '#22C55E', icon: ArrowRight },
-  completed: { label: 'Tamamlandı', color: '#C9A84C', icon: CheckCircle2 },
-  on_hold: { label: 'Durduruldu', color: '#F59E0B', icon: Clock },
-  cancelled: { label: 'İptal', color: '#DC1C2E', icon: Clock },
+  pending: { color: '#F59E0B', icon: Clock },
+  active: { color: '#22C55E', icon: ArrowRight },
+  completed: { color: '#C9A84C', icon: CheckCircle2 },
+  on_hold: { color: '#F59E0B', icon: Clock },
+  paused: { color: '#F59E0B', icon: Clock },
+  cancelled: { color: '#DC1C2E', icon: Clock },
 };
+
+// name_xx columns exist for tr/es/en/de; fall back to Turkish
+const pickName = (row, locale) => row?.[`name_${locale}`] || row?.name_tr || '';
+
+const LOCALE_TAGS = { tr: 'tr-TR', es: 'es-ES', en: 'en-GB', de: 'de-DE' };
 
 const STAGE_STATUS_COLORS = {
   pending: '#9CA3AF',
@@ -58,6 +65,8 @@ const STAGE_STATUS_COLORS = {
 };
 
 function MyServicesTab({ userId }) {
+  const t = useTranslations('panel');
+  const locale = useLocale();
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [expandedService, setExpandedService] = useState(null);
@@ -69,7 +78,7 @@ function MyServicesTab({ userId }) {
         .from('client_services')
         .select(`
           id, status, notes, started_at, completed_at, created_at,
-          service_template:service_template_id (id, name_tr, name_en, icon, description_tr)
+          service_template:service_template_id (id, name_tr, name_es, name_en, name_de, icon)
         `)
         .eq('user_id', userId)
         .order('created_at', { ascending: false });
@@ -88,7 +97,7 @@ function MyServicesTab({ userId }) {
       .from('client_service_stages')
       .select(`
         id, status, started_at, completed_at, sort_order,
-        stage_template:stage_template_id (name_tr, description_tr, estimated_days)
+        stage_template:stage_template_id (name_tr, name_es, name_en, name_de, estimated_days)
       `)
       .eq('client_service_id', serviceId)
       .order('sort_order');
@@ -108,9 +117,9 @@ function MyServicesTab({ userId }) {
     return (
       <div className="bg-white rounded-2xl shadow-sm p-12 text-center">
         <Briefcase className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-        <h3 className="text-lg font-serif text-[var(--color-dark)] mb-2">Henüz aktif hizmetiniz yok</h3>
+        <h3 className="text-lg font-serif text-[var(--color-dark)] mb-2">{t('noServices')}</h3>
         <p className="text-[var(--color-charcoal)]">
-          Hizmet atandığında burada görüntüleyebilirsiniz
+          {t('noServicesDesc')}
         </p>
       </div>
     );
@@ -141,10 +150,10 @@ function MyServicesTab({ userId }) {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="font-serif text-[var(--color-dark)] font-medium">
-                  {svc.service_template?.name_tr}
+                  {pickName(svc.service_template, locale)}
                 </p>
                 <p className="text-xs text-[var(--color-charcoal)] mt-0.5">
-                  {new Date(svc.created_at).toLocaleDateString('tr-TR', {
+                  {new Date(svc.created_at).toLocaleDateString(LOCALE_TAGS[locale], {
                     day: 'numeric',
                     month: 'long',
                     year: 'numeric',
@@ -155,7 +164,7 @@ function MyServicesTab({ userId }) {
                 className="text-xs font-medium px-2.5 py-1 rounded-full shrink-0"
                 style={{ background: `${conf.color}15`, color: conf.color }}
               >
-                {conf.label}
+                {t(`svc_${svc.status in SERVICE_STATUS ? svc.status : 'pending'}`)}
               </span>
               <ChevronRight
                 className={`w-4 h-4 text-gray-400 transition-transform ${isExpanded ? 'rotate-90' : ''}`}
@@ -169,8 +178,8 @@ function MyServicesTab({ userId }) {
                 {svcStages.length > 0 && (
                   <div className="pt-4 pb-3">
                     <div className="flex justify-between text-xs text-[var(--color-charcoal)] mb-1.5">
-                      <span>İlerleme</span>
-                      <span>{completedCount}/{svcStages.length} aşama • %{progress}</span>
+                      <span>{t('progress')}</span>
+                      <span>{t('stagesDone', { done: completedCount, total: svcStages.length, pct: progress })}</span>
                     </div>
                     <div className="h-2 rounded-full bg-gray-100 overflow-hidden">
                       <div
@@ -204,10 +213,10 @@ function MyServicesTab({ userId }) {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className={`text-sm ${stage.status === 'completed' ? 'text-gray-400 line-through' : 'text-[var(--color-dark)]'}`}>
-                          {stage.stage_template?.name_tr}
+                          {pickName(stage.stage_template, locale)}
                         </p>
                         {stage.stage_template?.estimated_days && stage.status !== 'completed' && (
-                          <p className="text-[10px] text-gray-400">~{stage.stage_template.estimated_days} gün</p>
+                          <p className="text-[10px] text-gray-400">{t('days', { n: stage.stage_template.estimated_days })}</p>
                         )}
                       </div>
                       <span
@@ -217,7 +226,7 @@ function MyServicesTab({ userId }) {
                           color: STAGE_STATUS_COLORS[stage.status],
                         }}
                       >
-                        {stage.status === 'pending' ? 'Beklemede' : stage.status === 'in_progress' ? 'Devam Ediyor' : stage.status === 'completed' ? 'Tamamlandı' : 'Atlandı'}
+                        {t(`stage_${stage.status}`)}
                       </span>
                     </div>
                   ))}
@@ -239,6 +248,8 @@ function MyServicesTab({ userId }) {
 }
 
 function NotificationsTab({ userId, onUnreadChange }) {
+  const t = useTranslations('panel');
+  const locale = useLocale();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -246,7 +257,7 @@ function NotificationsTab({ userId, onUnreadChange }) {
     const load = async () => {
       const { data } = await supabase
         .from('notifications')
-        .select('id, type, title_tr, body_tr, is_read, created_at')
+        .select('id, type, title_tr, title_es, title_en, title_de, body_tr, body_es, body_en, body_de, is_read, created_at')
         .eq('user_id', userId)
         .order('created_at', { ascending: false })
         .limit(50);
@@ -280,8 +291,8 @@ function NotificationsTab({ userId, onUnreadChange }) {
     return (
       <div className="bg-white rounded-2xl shadow-sm p-12 text-center">
         <Bell className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-        <h3 className="text-lg font-serif text-[var(--color-dark)] mb-2">Bildiriminiz yok</h3>
-        <p className="text-[var(--color-charcoal)]">Yeni hizmet atandığında veya bir aşama güncellendiğinde burada görürsünüz.</p>
+        <h3 className="text-lg font-serif text-[var(--color-dark)] mb-2">{t('noNotifications')}</h3>
+        <p className="text-[var(--color-charcoal)]">{t('noNotificationsDesc')}</p>
       </div>
     );
   }
@@ -296,13 +307,13 @@ function NotificationsTab({ userId, onUnreadChange }) {
         >
           <Bell className="w-5 h-5 mt-0.5 shrink-0 text-[var(--color-gold)]" />
           <div className="flex-1 min-w-0">
-            <p className="font-medium text-[var(--color-dark)]">{n.title_tr}</p>
-            {n.body_tr && <p className="text-sm text-[var(--color-charcoal)] mt-0.5">{n.body_tr}</p>}
+            <p className="font-medium text-[var(--color-dark)]">{n[`title_${locale}`] || n.title_tr}</p>
+            {(n[`body_${locale}`] || n.body_tr) && <p className="text-sm text-[var(--color-charcoal)] mt-0.5">{n[`body_${locale}`] || n.body_tr}</p>}
             <p className="text-xs text-gray-400 mt-1">
-              {new Date(n.created_at).toLocaleString('tr-TR', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' })}
+              {new Date(n.created_at).toLocaleString(LOCALE_TAGS[locale], { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' })}
             </p>
           </div>
-          {!n.is_read && <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-[var(--color-gold)] text-white shrink-0">Yeni</span>}
+          {!n.is_read && <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-[var(--color-gold)] text-white shrink-0">{t('newBadge')}</span>}
         </button>
       ))}
     </div>
@@ -310,13 +321,15 @@ function NotificationsTab({ userId, onUnreadChange }) {
 }
 
 const DOC_STATUS = {
-  uploaded: { label: 'Yüklendi', color: '#3B82F6' },
-  reviewing: { label: 'İnceleniyor', color: '#F59E0B' },
-  approved: { label: 'Onaylandı', color: '#22C55E' },
-  rejected: { label: 'Reddedildi', color: '#DC1C2E' },
+  uploaded: { color: '#3B82F6' },
+  reviewing: { color: '#F59E0B' },
+  approved: { color: '#22C55E' },
+  rejected: { color: '#DC1C2E' },
 };
 
 function DocumentsTab({ userId }) {
+  const t = useTranslations('panel');
+  const locale = useLocale();
   const [docs, setDocs] = useState([]);
   const [services, setServices] = useState([]);
   const [serviceId, setServiceId] = useState('');
@@ -333,7 +346,7 @@ function DocumentsTab({ userId }) {
         .order('created_at', { ascending: false }),
       supabase
         .from('client_services')
-        .select('id, service_template:service_template_id (name_tr)')
+        .select('id, service_template:service_template_id (name_tr, name_es, name_en, name_de)')
         .eq('user_id', userId),
     ]);
     setDocs(d.data || []);
@@ -352,9 +365,9 @@ function DocumentsTab({ userId }) {
     if (!file) return;
     setUploading(true);
     setError('');
-    const { error: err } = await uploadDocument({ memberId: userId, file, clientServiceId: serviceId || null });
+    const { error: err, code } = await uploadDocument({ memberId: userId, file, clientServiceId: serviceId || null });
     setUploading(false);
-    if (err) setError(err);
+    if (err) setError(t(`docErr_${code || 'upload_failed'}`));
     else load();
   };
 
@@ -366,33 +379,33 @@ function DocumentsTab({ userId }) {
     );
   }
 
-  const serviceName = (id) => services.find((s) => s.id === id)?.service_template?.name_tr;
+  const serviceName = (id) => pickName(services.find((s) => s.id === id)?.service_template, locale);
 
   return (
     <div className="space-y-4">
       <div className="bg-white rounded-2xl shadow-sm px-6 py-4 flex flex-wrap items-center gap-3">
         <div className="flex-1 min-w-[12rem]">
-          <p className="font-medium text-[var(--color-dark)]">Belge yükle</p>
-          <p className="text-xs text-[var(--color-charcoal)]">PDF, JPG, PNG veya DOCX · en fazla 10 MB</p>
+          <p className="font-medium text-[var(--color-dark)]">{t('docUpload')}</p>
+          <p className="text-xs text-[var(--color-charcoal)]">{t('docFormats')}</p>
         </div>
         {services.length > 0 && (
           <select
-            aria-label="Belgenin ait olduğu hizmet"
+            aria-label={t('docForService')}
             value={serviceId}
             onChange={(e) => setServiceId(e.target.value)}
             className="text-sm border border-gray-200 rounded-lg px-3 py-2 bg-white"
           >
-            <option value="">Hizmet seçmeden</option>
+            <option value="">{t('docNoService')}</option>
             {services.map((s) => (
               <option key={s.id} value={s.id}>
-                {s.service_template?.name_tr}
+                {pickName(s.service_template, locale)}
               </option>
             ))}
           </select>
         )}
         <label className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-white bg-[var(--color-gold)] cursor-pointer">
           <FileText className="w-4 h-4" />
-          {uploading ? 'Yükleniyor…' : 'Dosya seç'}
+          {uploading ? t('docUploading') : t('docChoose')}
           <input type="file" accept={DOC_ACCEPT} className="hidden" disabled={uploading} onChange={onFile} />
         </label>
       </div>
@@ -401,8 +414,8 @@ function DocumentsTab({ userId }) {
       {docs.length === 0 ? (
         <div className="bg-white rounded-2xl shadow-sm p-12 text-center">
           <FileText className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-          <h3 className="text-lg font-serif text-[var(--color-dark)] mb-2">Henüz belge yok</h3>
-          <p className="text-[var(--color-charcoal)]">Yüklediğiniz belgeler ve onay durumları burada görünür.</p>
+          <h3 className="text-lg font-serif text-[var(--color-dark)] mb-2">{t('noDocs')}</h3>
+          <p className="text-[var(--color-charcoal)]">{t('noDocsDesc')}</p>
         </div>
       ) : (
         <div className="space-y-3">
@@ -426,7 +439,7 @@ function DocumentsTab({ userId }) {
                   )}
                 </div>
                 <span className="text-xs font-medium px-2.5 py-1 rounded-full shrink-0" style={{ background: `${s.color}15`, color: s.color }}>
-                  {s.label}
+                  {t(`doc_${DOC_STATUS[d.status] ? d.status : 'uploaded'}`)}
                 </span>
               </div>
             );
@@ -439,6 +452,7 @@ function DocumentsTab({ userId }) {
 
 export default function PanelContent() {
   const t = useTranslations('panel');
+  const tType = useTranslations('propertyType');
   const tAuth = useTranslations('auth');
   const locale = useLocale();
   const router = useRouter();
@@ -536,9 +550,9 @@ export default function PanelContent() {
 
   const tabs = [
     { id: 'favorites', label: t('favorites'), icon: Heart },
-    { id: 'services', label: 'Hizmetlerim', icon: Briefcase },
-    { id: 'documents', label: 'Dosyalarım', icon: FileText },
-    { id: 'notifications', label: 'Bildirimler', icon: Bell, badge: unreadCount },
+    { id: 'services', label: t('tabServices'), icon: Briefcase },
+    { id: 'documents', label: t('tabDocuments'), icon: FileText },
+    { id: 'notifications', label: t('tabNotifications'), icon: Bell, badge: unreadCount },
     { id: 'profile', label: t('profile'), icon: User },
     { id: 'settings', label: t('settings'), icon: Settings },
   ];
@@ -612,7 +626,7 @@ export default function PanelContent() {
                     <div className="relative h-48">
                       <img
                         src={property.image}
-                        alt={property.title}
+                        alt={propertyTitle(property, tType, locale)}
                         className="w-full h-full object-cover"
                       />
                       <button
@@ -623,7 +637,7 @@ export default function PanelContent() {
                       </button>
                     </div>
                     <div className="p-5">
-                      <h3 className="font-serif text-lg text-[var(--color-dark)] mb-1">{property.title}</h3>
+                      <h3 className="font-serif text-lg text-[var(--color-dark)] mb-1">{propertyTitle(property, tType, locale)}</h3>
                       <p className="flex items-center gap-1 text-sm text-[var(--color-charcoal)] mb-3">
                         <MapPin className="w-3.5 h-3.5" /> {property.location}
                       </p>
@@ -722,26 +736,26 @@ export default function PanelContent() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <ProfileField
                   icon={Flag}
-                  label={locale === 'tr' ? 'Ülke' : locale === 'es' ? 'País' : locale === 'de' ? 'Land' : 'Country'}
+                  label={t('country')}
                   value={profile?.country}
                   editMode={editMode}
                   inputProps={{
                     type: 'text',
                     value: formData.country,
                     onChange: (e) => setFormData({ ...formData, country: e.target.value }),
-                    placeholder: locale === 'tr' ? 'Türkiye' : 'Turkey',
+                    placeholder: t('countryPh'),
                   }}
                 />
                 <ProfileField
                   icon={Shield}
-                  label={locale === 'tr' ? 'Vatandaşlık' : locale === 'es' ? 'Ciudadanía' : locale === 'de' ? 'Staatsangehörigkeit' : 'Citizenship'}
+                  label={t('citizenship')}
                   value={profile?.citizenship}
                   editMode={editMode}
                   inputProps={{
                     type: 'text',
                     value: formData.citizenship,
                     onChange: (e) => setFormData({ ...formData, citizenship: e.target.value }),
-                    placeholder: 'TC',
+                    placeholder: t('citizenshipPh'),
                   }}
                 />
               </div>
@@ -749,14 +763,14 @@ export default function PanelContent() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <ProfileField
                   icon={FileCheck}
-                  label={locale === 'tr' ? 'Oturma İzni' : locale === 'es' ? 'Permiso de Residencia' : locale === 'de' ? 'Aufenthaltserlaubnis' : 'Residence Permit'}
+                  label={t('residence')}
                   value={profile?.has_residence_permit}
                   editMode={editMode}
                   inputProps={{
                     type: 'text',
                     value: formData.has_residence_permit,
                     onChange: (e) => setFormData({ ...formData, has_residence_permit: e.target.value }),
-                    placeholder: locale === 'tr' ? 'Var / Yok / Başvuru sürecinde' : 'Yes / No / In process',
+                    placeholder: t('residencePh'),
                   }}
                 />
                 <div>
@@ -809,10 +823,7 @@ export default function PanelContent() {
           <div className="bg-white rounded-2xl shadow-sm p-8 max-w-lg">
             <h2 className="text-xl font-serif text-[var(--color-dark)] mb-4">{t('settings')}</h2>
             <p className="text-[var(--color-charcoal)]">
-              {locale === 'tr' ? 'Ayarlar yakında eklenecek.' :
-               locale === 'es' ? 'Las configuraciones se añadirán pronto.' :
-               locale === 'de' ? 'Einstellungen werden bald hinzugefügt.' :
-               'Settings coming soon.'}
+              {t('settingsSoon')}
             </p>
           </div>
         )}

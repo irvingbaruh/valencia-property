@@ -1,5 +1,6 @@
 'use client';
 
+import { BLOG_CATEGORIES } from '@/lib/blogCategories';
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
 import AdminLayout from '@/components/admin/AdminLayout';
@@ -28,16 +29,7 @@ const LANG_TABS = [
   { code: 'de', label: 'Deutsch' },
 ];
 
-const CATEGORIES = [
-  'Yatırım Rehberi',
-  'Valencia Yaşam',
-  'Emlak Piyasası',
-  'Hukuki Süreçler',
-  'Renovasyon',
-  'Oturma İzni',
-  'Vergi & Finans',
-  'Mahalle Rehberi',
-];
+const CATEGORIES = BLOG_CATEGORIES.map((c) => c.tr);
 
 // ============ BLOG EDITOR MODAL ============
 function BlogEditorModal({ post, onClose, onSaved }) {

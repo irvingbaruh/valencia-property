@@ -209,7 +209,7 @@ export default function NewListings() {
                 <ArrowRight size={24} className="text-gold group-hover:text-white transition-colors duration-300" />
               </div>
               <span className="text-dark font-medium group-hover:text-gold transition-colors duration-300">
-                {t('viewAll') || 'Tüm İlanlar'}
+                {t('viewAll')}
               </span>
             </a>
           </motion.div>

@@ -338,7 +338,10 @@
     "newsNote": "For now, direct links to current, reliable sources; a live news feed will be added soon.",
     "ctaTitle": "Want More Information?",
     "ctaSubtitle": "Talk to us for an investment plan tailored to your budget.",
-    "ctaButton": "Get a Consultation"
+    "ctaButton": "Get a Consultation",
+    "src1": "Spanish property market news and price analysis",
+    "src2": "Spanish property market analysis for foreign investors",
+    "src3": "Official housing price statistics and economic indicators"
   },
   "iletisimPage": {
     "title": "Contact",
@@ -355,7 +358,8 @@
     "phoneDetail": "Phone",
     "emailDetail": "Email",
     "whatsappButton": "Message on WhatsApp",
-    "officeNote": "The phone, email and WhatsApp details are placeholders — they'll be updated with your real information."
+    "officeNote": "The phone, email and WhatsApp details are placeholders — they'll be updated with your real information.",
+    "submitError": "The message could not be sent. Please try again or write to us on WhatsApp."
   },
   "blog": {
     "title": "Guide",
@@ -533,6 +537,194 @@
     "save": "Save",
     "saved": "Saved",
     "phone": "Phone",
-    "language": "Preferred Language"
+    "language": "Preferred Language",
+    "tabServices": "My services",
+    "tabDocuments": "My documents",
+    "tabNotifications": "Notifications",
+    "noServices": "You have no active services yet",
+    "noServicesDesc": "Once a service is assigned, you will see it here",
+    "progress": "Progress",
+    "stagesDone": "{done}/{total} stages • {pct}%",
+    "days": "~{n} days",
+    "svc_pending": "Pending",
+    "svc_active": "Active",
+    "svc_completed": "Completed",
+    "svc_on_hold": "On hold",
+    "svc_paused": "On hold",
+    "svc_cancelled": "Cancelled",
+    "stage_pending": "Pending",
+    "stage_in_progress": "In progress",
+    "stage_completed": "Completed",
+    "stage_skipped": "Skipped",
+    "noNotifications": "No notifications",
+    "noNotificationsDesc": "You will see updates here when a service is assigned or a stage changes.",
+    "newBadge": "New",
+    "docUpload": "Upload a document",
+    "docFormats": "PDF, JPG, PNG or DOCX · max 10 MB",
+    "docForService": "Service this document belongs to",
+    "docNoService": "No service selected",
+    "docChoose": "Choose file",
+    "docUploading": "Uploading…",
+    "noDocs": "No documents yet",
+    "noDocsDesc": "Documents you upload and their approval status appear here.",
+    "doc_uploaded": "Uploaded",
+    "doc_reviewing": "Under review",
+    "doc_approved": "Approved",
+    "doc_rejected": "Rejected",
+    "docErr_too_big": "The file exceeds the 10 MB limit.",
+    "docErr_no_session": "Session not found.",
+    "docErr_upload_failed": "Upload failed. Use a PDF, JPG, PNG or DOCX (max 10 MB).",
+    "docErr_save_failed": "The file could not be saved.",
+    "country": "Country",
+    "countryPh": "Turkey",
+    "citizenship": "Citizenship",
+    "citizenshipPh": "Turkish",
+    "residence": "Residence permit",
+    "residencePh": "Yes / No / In process",
+    "settingsSoon": "Settings coming soon.",
+    "myRequest": "My consultation request"
+  },
+  "consult": {
+    "step": "Step",
+    "of": "of",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Create account and send",
+    "submitLoggedIn": "Send request",
+    "sending": "Sending…",
+    "multiHint": "You can select more than one option.",
+    "q": {
+      "propertyType": {
+        "title": "What kind of property are you looking for?"
+      },
+      "investmentStrategy": {
+        "title": "What is your investment strategy?"
+      },
+      "landPlan": {
+        "title": "What are your plans for the land?"
+      },
+      "condition": {
+        "title": "How important is the condition of the property?"
+      },
+      "region": {
+        "title": "Which area do you prefer?"
+      },
+      "budget": {
+        "title": "What is your budget range?"
+      },
+      "timeline": {
+        "title": "What is your timeline?"
+      },
+      "services": {
+        "title": "Which services are you interested in?",
+        "subtitle": "We will add the services you choose to your account; you can change them any time."
+      },
+      "location": {
+        "title": "Where do you live right now?"
+      },
+      "contact": {
+        "title": "Your contact details"
+      },
+      "account": {
+        "title": "Create your account",
+        "subtitle": "Your answers are saved in your account, where you can follow your services and progress."
+      }
+    },
+    "o": {
+      "propertyType": {
+        "home": "A home to live in",
+        "investment": "Investment property",
+        "land": "Land",
+        "unsure": "Not decided yet"
+      },
+      "investmentStrategy": {
+        "airbnb": "Short-term rental (Airbnb)",
+        "longterm": "Long-term rental",
+        "flip": "Buy and sell (capital gain)",
+        "unsure": "Not decided yet"
+      },
+      "landPlan": {
+        "build": "Build my own home",
+        "project": "Investment / construction project",
+        "unsure": "Not decided yet"
+      },
+      "condition": {
+        "ready": "Fully ready, move-in condition",
+        "light": "Open to minor renovations",
+        "renovation": "I want a renovation project (bargain price)",
+        "any": "No preference"
+      },
+      "region": {
+        "valencia-centro": "Central Valencia",
+        "el-carmen": "El Carmen",
+        "benimaclet": "Benimaclet",
+        "ciutat-vella": "Ciutat Vella",
+        "poblats-maritims": "Poblats Marítims",
+        "alicante": "Alicante area",
+        "any": "No preference / I want suggestions"
+      },
+      "budget": {
+        "under150": "Under €150,000",
+        "150-300": "€150,000 – €300,000",
+        "300-500": "€300,000 – €500,000",
+        "500plus": "€500,000 and above"
+      },
+      "timeline": {
+        "now": "Right away",
+        "3-6": "Within 3-6 months",
+        "6-12": "Within 6-12 months",
+        "researching": "Just researching"
+      },
+      "services": {
+        "emlak": "Property search & advisory",
+        "legal": "Legal services (NIE, residency, contracts)",
+        "renovasyon": "Renovation / reform",
+        "staging": "Home staging & interior design",
+        "management": "Long-term rental management",
+        "airbnb": "Airbnb management",
+        "insaat": "Construction management"
+      },
+      "location": {
+        "turkey": "Turkey",
+        "europe-tr": "Turkish, living in Europe",
+        "spain": "I live in Spain",
+        "other": "Other"
+      }
+    },
+    "nameLabel": "Full name",
+    "namePh": "Your full name",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone / WhatsApp",
+    "langLabel": "Preferred language",
+    "noteLabel": "Additional note (optional)",
+    "notePh": "Anything you would like to add?",
+    "passwordLabel": "Password",
+    "passwordHint": "At least 8 characters.",
+    "consent": "I agree to the creation of my account and to my details being stored for advisory purposes.",
+    "haveAccount": "Already a member?",
+    "loginLink": "Log in",
+    "loggedInAs": "You are logged in; your answers will be saved to your account.",
+    "errRequired": "Please fill in the highlighted fields.",
+    "errPassword": "The password must be at least 8 characters.",
+    "errConsent": "Tick the box to continue.",
+    "errTaken": "An account with this email already exists. Log in, then send the form again.",
+    "errGeneric": "Could not send. Please try again in a few minutes.",
+    "thanksTitle": "Thank you",
+    "thanksCheckEmail": "Your account has been created and your answers saved. Click the link we emailed you to activate it.",
+    "thanksSaved": "Your request has been saved to your account. Our team will contact you shortly.",
+    "goPanel": "Go to my account"
+  },
+  "propertyType": {
+    "apartment": "Apartment",
+    "penthouse": "Penthouse",
+    "beachHouse": "Beach house",
+    "house": "House",
+    "residence": "Residence",
+    "seaApartment": "Seafront apartment",
+    "studio": "Studio apartment",
+    "familyHome": "Family home"
+  },
+  "common": {
+    "viewAll": "All listings"
   }
 }

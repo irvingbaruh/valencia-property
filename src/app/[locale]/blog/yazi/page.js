@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from 'react';
 import { useLocale } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
+import { categoryLabel } from '@/lib/blogCategories';
 import { ChevronRight, Calendar, Tag, ArrowLeft } from 'lucide-react';
 
 function BlogDetailContent() {
@@ -136,7 +137,7 @@ function BlogDetailContent() {
           {post.category && (
             <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-gold/10 text-gold text-xs font-medium rounded-full">
               <Tag size={12} />
-              {post.category}
+              {categoryLabel(post.category, locale)}
             </span>
           )}
           <span className="flex items-center gap-1.5 text-text-muted text-sm">

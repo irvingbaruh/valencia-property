@@ -5,14 +5,14 @@ const MAX_BYTES = 10 * 1024 * 1024;
 
 // Uploads to the private "documents" bucket under <memberId>/ and records it in the documents table.
 export async function uploadDocument({ memberId, file, clientServiceId = null }) {
-  if (file.size > MAX_BYTES) return { error: 'Dosya 10 MB sınırını aşıyor.' };
+  if (file.size > MAX_BYTES) return { error: 'too_big', code: 'too_big' };
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return { error: 'Oturum bulunamadı.' };
+  if (!user) return { error: 'no_session', code: 'no_session' };
 
   const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
   const path = `${memberId}/${Date.now()}-${safeName}`;
   const { error: upErr } = await supabase.storage.from('documents').upload(path, file, { contentType: file.type });
-  if (upErr) return { error: 'Yükleme başarısız. PDF, JPG, PNG veya DOCX (en fazla 10 MB) yükleyin.' };
+  if (upErr) return { error: 'upload_failed', code: 'upload_failed' };
 
   const { error: dbErr } = await supabase.from('documents').insert({
     user_id: memberId,
@@ -25,7 +25,7 @@ export async function uploadDocument({ memberId, file, clientServiceId = null })
   });
   if (dbErr) {
     await supabase.storage.from('documents').remove([path]);
-    return { error: 'Dosya kaydedilemedi.' };
+    return { error: 'save_failed', code: 'save_failed' };
   }
   return {};
 }

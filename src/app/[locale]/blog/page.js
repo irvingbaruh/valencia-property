@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { supabase } from '@/lib/supabase';
+import { categoryLabel } from '@/lib/blogCategories';
 import { ArrowRight, Calendar, Search, Tag } from 'lucide-react';
 
 export default function BlogPage() {
@@ -111,7 +112,7 @@ export default function BlogPage() {
                       : 'bg-white text-text-muted border-border hover:border-gold/50'
                   }`}
                 >
-                  {cat}
+                  {categoryLabel(cat, locale)}
                 </button>
               ))}
             </div>
@@ -152,7 +153,7 @@ export default function BlogPage() {
                   {post.category && (
                     <div className="absolute top-3 left-3">
                       <span className="px-2.5 py-1 bg-white/90 backdrop-blur-sm text-dark text-xs font-semibold rounded-full">
-                        {post.category}
+                        {categoryLabel(post.category, locale)}
                       </span>
                     </div>
                   )}

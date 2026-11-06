@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
 import AdminLayout from '@/components/admin/AdminLayout';
+import { notifyMember, TEXT } from '@/lib/adminServices';
 import {
   Search,
   Plus,
@@ -85,7 +86,7 @@ function AssignServiceModal({ onClose, onAssigned, serviceTemplates }) {
       // 2) Get stage templates for this service
       const { data: stages } = await supabase
         .from('stage_templates')
-        .select('id, sort_order, name_tr')
+        .select('id, sort_order')
         .eq('service_template_id', selectedTemplate.id)
         .order('sort_order');
 
@@ -133,13 +134,7 @@ function AssignServiceModal({ onClose, onAssigned, serviceTemplates }) {
       });
 
       // 6) Notify the member
-      await supabase.from('notifications').insert({
-        user_id: selectedMember.id,
-        type: 'service_assigned',
-        title_tr: 'Yeni hizmet atandı',
-        body_tr: `${selectedTemplate.name_tr} hizmeti hesabınıza eklendi. Hizmetlerim sekmesinden süreci takip edebilirsiniz.`,
-        client_service_id: cs.id,
-      });
+      await notifyMember({ userId: selectedMember.id, type: 'service_assigned', ...TEXT.assigned(selectedTemplate), clientServiceId: cs.id });
 
       onAssigned();
       onClose();
@@ -369,7 +364,7 @@ function ServiceDetailModal({ service, onClose, onUpdate }) {
         .from('client_service_stages')
         .select(`
           id, status, started_at, completed_at, notes, sort_order,
-          stage_template:stage_template_id (id, name_tr, name_en, description_tr, estimated_days)
+          stage_template:stage_template_id (id, name_tr, name_es, name_en, name_de, description_tr, estimated_days)
         `)
         .eq('client_service_id', service.id)
         .order('sort_order');
@@ -432,14 +427,7 @@ function ServiceDetailModal({ service, onClose, onUpdate }) {
       const changed = stages.find((s) => s.id === stageId);
       const memberId = service.user_id || service.profile?.id;
       if (memberId && changed) {
-        const label = newStatus === 'completed' ? 'tamamlandı' : newStatus === 'in_progress' ? 'başladı' : 'güncellendi';
-        await supabase.from('notifications').insert({
-          user_id: memberId,
-          type: 'stage_update',
-          title_tr: `${service.service_template?.name_tr || 'Hizmet'}: aşama ${label}`,
-          body_tr: changed.stage_template?.name_tr || '',
-          client_service_id: service.id,
-        });
+        await notifyMember({ userId: memberId, type: 'stage_update', ...TEXT.stage(service, changed, newStatus), clientServiceId: service.id });
       }
 
       // Refresh stages
@@ -447,7 +435,7 @@ function ServiceDetailModal({ service, onClose, onUpdate }) {
         .from('client_service_stages')
         .select(`
           id, status, started_at, completed_at, notes, sort_order,
-          stage_template:stage_template_id (id, name_tr, name_en, description_tr, estimated_days)
+          stage_template:stage_template_id (id, name_tr, name_es, name_en, name_de, description_tr, estimated_days)
         `)
         .eq('client_service_id', service.id)
         .order('sort_order');
@@ -643,7 +631,7 @@ export default function AdminServicesPage() {
         .from('client_services')
         .select(`
           id, user_id, status, notes, started_at, completed_at, created_at, updated_at, current_stage_id,
-          service_template:service_template_id (id, name_tr, name_en, icon, slug),
+          service_template:service_template_id (id, name_tr, name_es, name_en, name_de, icon, slug),
           profile:user_id (id, full_name, phone)
         `)
         .order('created_at', { ascending: false });

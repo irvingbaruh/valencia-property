@@ -14,8 +14,8 @@ export default function CTASection() {
       {/* Background image */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1599946347371-68eb71b16afc?w=1920&q=80&auto=format"
-          alt="Valencia architecture"
+          src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1920&q=80&auto=format"
+          alt="Modern home with pool"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-dark/90" />

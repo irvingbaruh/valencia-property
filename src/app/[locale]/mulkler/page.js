@@ -3,17 +3,18 @@ import { MapPin, BedDouble, Maximize2, ArrowRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import FavoriteButton from '@/components/ui/FavoriteButton';
 import { localePath } from '@/lib/routes';
+import { propertyTitle } from '@/lib/propertyText';
 
 const properties = [
-  { id: 1, title: 'Eixample Dairesi', location: 'Eixample, Valencia', price: '€185.000', rooms: 3, sqm: 95, badge: 'new', image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80&auto=format' },
-  { id: 2, title: 'Ruzafa Çatı Katı', location: 'Ruzafa, Valencia', price: '€320.000', rooms: 4, sqm: 140, badge: 'premium', image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80&auto=format' },
-  { id: 3, title: 'Cabanyal Sahil Evi', location: 'Cabanyal, Valencia', price: '€245.000', rooms: 2, sqm: 80, badge: 'new', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80&auto=format' },
-  { id: 4, title: 'El Carmen Dairesi', location: 'El Carmen, Valencia', price: '€185.000', rooms: 2, sqm: 78, badge: 'new', image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80&auto=format' },
-  { id: 5, title: 'Benimaclet Evi', location: 'Benimaclet, Valencia', price: '€145.000', rooms: 3, sqm: 92, badge: 'new', image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80&auto=format' },
-  { id: 6, title: 'Ciutat Vella Rezidansı', location: 'Ciutat Vella, Valencia', price: '€265.000', rooms: 3, sqm: 110, badge: 'premium', image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80&auto=format' },
-  { id: 7, title: 'Poblats Marítims Sahil Dairesi', location: 'Poblats Marítims, Valencia', price: '€198.000', rooms: 2, sqm: 85, badge: 'premium', image: 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=1200&q=80&auto=format' },
-  { id: 8, title: 'Patraix Stüdyo Daire', location: 'Patraix, Valencia', price: '€155.000', rooms: 2, sqm: 70, badge: 'new', image: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1200&q=80&auto=format' },
-  { id: 9, title: 'Extramurs Aile Evi', location: 'Extramurs, Valencia', price: '€220.000', rooms: 4, sqm: 125, badge: 'new', image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80&auto=format' },
+  { id: 1, hood: 'Eixample', type: 'apartment', location: 'Eixample, Valencia', price: '€185.000', rooms: 3, sqm: 95, badge: 'new', image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80&auto=format' },
+  { id: 2, hood: 'Ruzafa', type: 'penthouse', location: 'Ruzafa, Valencia', price: '€320.000', rooms: 4, sqm: 140, badge: 'premium', image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80&auto=format' },
+  { id: 3, hood: 'Cabanyal', type: 'beachHouse', location: 'Cabanyal, Valencia', price: '€245.000', rooms: 2, sqm: 80, badge: 'new', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80&auto=format' },
+  { id: 4, hood: 'El Carmen', type: 'apartment', location: 'El Carmen, Valencia', price: '€185.000', rooms: 2, sqm: 78, badge: 'new', image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80&auto=format' },
+  { id: 5, hood: 'Benimaclet', type: 'house', location: 'Benimaclet, Valencia', price: '€145.000', rooms: 3, sqm: 92, badge: 'new', image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80&auto=format' },
+  { id: 6, hood: 'Ciutat Vella', type: 'residence', location: 'Ciutat Vella, Valencia', price: '€265.000', rooms: 3, sqm: 110, badge: 'premium', image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80&auto=format' },
+  { id: 7, hood: 'Poblats Marítims', type: 'seaApartment', location: 'Poblats Marítims, Valencia', price: '€198.000', rooms: 2, sqm: 85, badge: 'premium', image: 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=1200&q=80&auto=format' },
+  { id: 8, hood: 'Patraix', type: 'studio', location: 'Patraix, Valencia', price: '€155.000', rooms: 2, sqm: 70, badge: 'new', image: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1200&q=80&auto=format' },
+  { id: 9, hood: 'Extramurs', type: 'familyHome', location: 'Extramurs, Valencia', price: '€220.000', rooms: 4, sqm: 125, badge: 'new', image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80&auto=format' },
 ];
 
 export default async function MulklerPage({ params }) {
@@ -21,6 +22,7 @@ export default async function MulklerPage({ params }) {
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'properties' });
   const m = await getTranslations({ locale, namespace: 'mulklerPage' });
+  const tType = await getTranslations({ locale, namespace: 'propertyType' });
 
   return (
     <div className="bg-soft">
@@ -47,7 +49,7 @@ export default async function MulklerPage({ params }) {
                 <div className="relative h-72 sm:h-80 overflow-hidden">
                   <img
                     src={property.image}
-                    alt={property.title}
+                    alt={propertyTitle(property, tType, locale)}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-dark/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -60,7 +62,7 @@ export default async function MulklerPage({ params }) {
                 {/* Content */}
                 <div className="p-6 flex-1 flex flex-col">
                   <h2 className="font-serif text-xl text-dark mb-2 group-hover:text-gold transition-colors duration-300">
-                    {property.title}
+                    {propertyTitle(property, tType, locale)}
                   </h2>
                   <div className="flex items-center gap-1.5 text-text-muted text-sm mb-4">
                     <MapPin size={14} className="text-gold" />

@@ -5,8 +5,9 @@ import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 import AdminLayout, { ADMIN_BASE } from '@/components/admin/AdminLayout';
-import { assignService, setStageStatus, setServiceStatus, notifyMember } from '@/lib/adminServices';
+import { assignService, setStageStatus, setServiceStatus, notifyMember, TEXT } from '@/lib/adminServices';
 import { uploadDocument, openDocument, DOC_ACCEPT } from '@/lib/documents';
+import trMessages from '@/messages/tr.json';
 import {
   ArrowLeft,
   Mail,
@@ -280,7 +281,7 @@ function DocumentsSection({ memberId, docs, services, onChanged }) {
     setError('');
     const { error: err } = await uploadDocument({ memberId, file, clientServiceId: serviceId || null });
     setUploading(false);
-    if (err) setError(err);
+    if (err) setError({ too_big: 'Dosya 10 MB sınırını aşıyor.', no_session: 'Oturum bulunamadı.', save_failed: 'Dosya kaydedilemedi.' }[err] || 'Yükleme başarısız. PDF, JPG, PNG veya DOCX (en fazla 10 MB) yükleyin.');
     else onChanged();
   };
 
@@ -299,8 +300,7 @@ function DocumentsSection({ memberId, docs, services, onChanged }) {
     await notifyMember({
       userId: memberId,
       type: status === 'approved' ? 'document_approved' : 'document_rejected',
-      title: status === 'approved' ? 'Belgeniz onaylandı' : 'Belgeniz reddedildi',
-      body: status === 'approved' ? doc.file_name : `${doc.file_name}${rejectionReason ? `: ${rejectionReason}` : ''}`,
+      ...TEXT.document(status === 'approved', doc.file_name, rejectionReason),
       clientServiceId: doc.client_service_id,
     });
     setRejecting(null);
@@ -419,6 +419,80 @@ function DocumentsSection({ memberId, docs, services, onChanged }) {
   );
 }
 
+const lab = (k, v) => trMessages.consult.o[k]?.[v] || v;
+
+// The answers the member gave in the consultation form (stored with the account at sign-up)
+function IntakeCard({ intake, services, templates, memberId, onChanged }) {
+  const [busy, setBusy] = useState('');
+  const a = intake.answers || {};
+  const assigned = new Set(services.map((s) => s.service_template?.slug));
+  const requested = (intake.selected_services || [])
+    .map((slug) => templates.find((tpl) => tpl.slug === slug))
+    .filter(Boolean);
+
+  const rows = [
+    ['Mülk türü', a.propertyType && lab('propertyType', a.propertyType)],
+    ['Yatırım stratejisi', a.investmentStrategy && lab('investmentStrategy', a.investmentStrategy)],
+    ['Arsa planı', a.landPlan && lab('landPlan', a.landPlan)],
+    ['Mülk durumu', a.condition && lab('condition', a.condition)],
+    ['Bölgeler', (a.region || []).map((v) => lab('region', v)).join(', ')],
+    ['Bütçe', a.budget && lab('budget', a.budget)],
+    ['Zaman çizelgesi', a.timeline && lab('timeline', a.timeline)],
+    ['Yaşadığı yer', a.location && lab('location', a.location)],
+    ['Not', a.note],
+  ].filter(([, v]) => v);
+
+  const assign = async (tpl) => {
+    setBusy(tpl.id);
+    await assignService({ memberId, template: tpl });
+    setBusy('');
+    onChanged();
+  };
+
+  return (
+    <section className="rounded-xl p-5 space-y-4" style={card}>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h2 className="flex items-center gap-2 text-base font-semibold text-white">
+          <FileText className="w-4 h-4 text-[#C9A84C]" />
+          Danışmanlık talebi
+        </h2>
+        <span className="text-xs text-[#9A9AAA]">{fmtDate(intake.submitted_at || intake.created_at)}</span>
+      </div>
+      <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-3">
+        {rows.map(([k, v]) => (
+          <div key={k}>
+            <dt className="text-xs text-[#9A9AAA]">{k}</dt>
+            <dd className="text-sm text-white">{v}</dd>
+          </div>
+        ))}
+      </dl>
+      {requested.length > 0 && (
+        <div>
+          <p className="text-xs text-[#9A9AAA] mb-2">İstenen hizmetler</p>
+          <div className="flex flex-wrap gap-2">
+            {requested.map((tpl) =>
+              assigned.has(tpl.slug) ? (
+                <span key={tpl.id} className="text-xs px-3 py-1.5 rounded-full bg-[#22C55E]/15 text-[#22C55E]">
+                  {tpl.name_tr} ✓
+                </span>
+              ) : (
+                <button
+                  key={tpl.id}
+                  onClick={() => assign(tpl)}
+                  disabled={busy === tpl.id}
+                  className="text-xs px-3 py-1.5 rounded-full border border-[#C9A84C]/50 text-[#C9A84C] hover:bg-[#C9A84C]/10 disabled:opacity-50"
+                >
+                  {busy === tpl.id ? '…' : `${tpl.name_tr} — ata`}
+                </button>
+              )
+            )}
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
 function MemberDetail() {
   const params = useSearchParams();
   const memberId = params.get('id');
@@ -429,6 +503,7 @@ function MemberDetail() {
   const [docs, setDocs] = useState([]);
   const [templates, setTemplates] = useState([]);
   const [activity, setActivity] = useState([]);
+  const [intake, setIntake] = useState(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
@@ -438,11 +513,11 @@ function MemberDetail() {
       setLoading(false);
       return;
     }
-    const [m, svc, d, t, a] = await Promise.all([
+    const [m, svc, d, t, a, ik] = await Promise.all([
       supabase.from('profiles_with_email').select('*').eq('id', memberId).maybeSingle(),
       supabase
         .from('client_services')
-        .select('id, user_id, status, notes, created_at, completed_at, service_template:service_template_id (id, name_tr)')
+        .select('id, user_id, status, notes, created_at, completed_at, service_template:service_template_id (id, name_tr, name_es, name_en, name_de, slug)')
         .eq('user_id', memberId)
         .order('created_at', { ascending: false }),
       supabase
@@ -450,13 +525,19 @@ function MemberDetail() {
         .select('id, file_name, status, rejection_reason, storage_path, client_service_id, created_at')
         .eq('user_id', memberId)
         .order('created_at', { ascending: false }),
-      supabase.from('service_templates').select('id, name_tr').eq('is_active', true).order('sort_order'),
+      supabase.from('service_templates').select('id, name_tr, name_es, name_en, name_de, slug').eq('is_active', true).order('sort_order'),
       supabase
         .from('activity_log')
         .select('id, action, details, created_at')
         .eq('user_id', memberId)
         .order('created_at', { ascending: false })
         .limit(10),
+      supabase
+        .from('client_intake')
+        .select('*')
+        .eq('user_id', memberId)
+        .order('created_at', { ascending: false })
+        .limit(1),
     ]);
 
     if (!m.data) {
@@ -469,12 +550,13 @@ function MemberDetail() {
     setDocs(d.data || []);
     setTemplates(t.data || []);
     setActivity(a.data || []);
+    setIntake((ik.data || [])[0] || null);
 
     const ids = (svc.data || []).map((s) => s.id);
     if (ids.length) {
       const { data: st } = await supabase
         .from('client_service_stages')
-        .select('id, client_service_id, status, completed_at, sort_order, stage_template:stage_template_id (name_tr)')
+        .select('id, client_service_id, status, completed_at, sort_order, stage_template:stage_template_id (name_tr, name_es, name_en, name_de)')
         .in('client_service_id', ids)
         .order('sort_order');
       const grouped = {};
@@ -549,6 +631,8 @@ function MemberDetail() {
         <Fact icon={Calendar} label="Kayıt tarihi" value={fmtDate(member.created_at)} />
         <Fact icon={Globe} label="Dil" value={(member.preferred_language || '').toUpperCase()} />
       </section>
+
+      {intake && <IntakeCard intake={intake} services={services} templates={templates} memberId={memberId} onChanged={load} />}
 
       <section className="rounded-xl p-5 space-y-4" style={card}>
         <div className="flex flex-wrap items-center justify-between gap-3">

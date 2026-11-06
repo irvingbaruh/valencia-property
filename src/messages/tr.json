@@ -338,7 +338,10 @@
     "newsNote": "Şimdilik güncel ve güvenilir kaynaklara doğrudan bağlantılar; canlı haber akışı yakında eklenecek.",
     "ctaTitle": "Daha Fazla Bilgi mi İstiyorsunuz?",
     "ctaSubtitle": "Bütçenize özel, kişiselleştirilmiş bir yatırım planı için bizimle görüşün.",
-    "ctaButton": "Danışmanlık Al"
+    "ctaButton": "Danışmanlık Al",
+    "src1": "İspanya emlak piyasası haberleri ve fiyat analizleri",
+    "src2": "Yabancı yatırımcılar için İspanya emlak piyasası analizleri",
+    "src3": "Resmi konut fiyat istatistikleri ve ekonomik göstergeler"
   },
   "iletisimPage": {
     "title": "İletişim",
@@ -355,7 +358,8 @@
     "phoneDetail": "Telefon",
     "emailDetail": "E-posta",
     "whatsappButton": "WhatsApp'tan Yazın",
-    "officeNote": "Telefon, e-posta ve WhatsApp bilgileri yer tutucudur — gerçek bilgilerinizi paylaşınca güncellenecek."
+    "officeNote": "Telefon, e-posta ve WhatsApp bilgileri yer tutucudur — gerçek bilgilerinizi paylaşınca güncellenecek.",
+    "submitError": "Mesaj gönderilemedi. Lütfen tekrar deneyin veya WhatsApp üzerinden yazın."
   },
   "blog": {
     "title": "Rehber",
@@ -533,6 +537,194 @@
     "save": "Kaydet",
     "saved": "Kaydedildi",
     "phone": "Telefon",
-    "language": "Tercih Edilen Dil"
+    "language": "Tercih Edilen Dil",
+    "tabServices": "Hizmetlerim",
+    "tabDocuments": "Dosyalarım",
+    "tabNotifications": "Bildirimler",
+    "noServices": "Henüz aktif hizmetiniz yok",
+    "noServicesDesc": "Hizmet atandığında burada görüntüleyebilirsiniz",
+    "progress": "İlerleme",
+    "stagesDone": "{done}/{total} aşama • %{pct}",
+    "days": "~{n} gün",
+    "svc_pending": "Beklemede",
+    "svc_active": "Aktif",
+    "svc_completed": "Tamamlandı",
+    "svc_on_hold": "Durduruldu",
+    "svc_paused": "Durduruldu",
+    "svc_cancelled": "İptal",
+    "stage_pending": "Beklemede",
+    "stage_in_progress": "Devam Ediyor",
+    "stage_completed": "Tamamlandı",
+    "stage_skipped": "Atlandı",
+    "noNotifications": "Bildiriminiz yok",
+    "noNotificationsDesc": "Yeni hizmet atandığında veya bir aşama güncellendiğinde burada görürsünüz.",
+    "newBadge": "Yeni",
+    "docUpload": "Belge yükle",
+    "docFormats": "PDF, JPG, PNG veya DOCX · en fazla 10 MB",
+    "docForService": "Belgenin ait olduğu hizmet",
+    "docNoService": "Hizmet seçmeden",
+    "docChoose": "Dosya seç",
+    "docUploading": "Yükleniyor…",
+    "noDocs": "Henüz belge yok",
+    "noDocsDesc": "Yüklediğiniz belgeler ve onay durumları burada görünür.",
+    "doc_uploaded": "Yüklendi",
+    "doc_reviewing": "İnceleniyor",
+    "doc_approved": "Onaylandı",
+    "doc_rejected": "Reddedildi",
+    "docErr_too_big": "Dosya 10 MB sınırını aşıyor.",
+    "docErr_no_session": "Oturum bulunamadı.",
+    "docErr_upload_failed": "Yükleme başarısız. PDF, JPG, PNG veya DOCX (en fazla 10 MB) yükleyin.",
+    "docErr_save_failed": "Dosya kaydedilemedi.",
+    "country": "Ülke",
+    "countryPh": "Türkiye",
+    "citizenship": "Vatandaşlık",
+    "citizenshipPh": "TC",
+    "residence": "Oturma İzni",
+    "residencePh": "Var / Yok / Başvuru sürecinde",
+    "settingsSoon": "Ayarlar yakında eklenecek.",
+    "myRequest": "Danışmanlık Talebim"
+  },
+  "consult": {
+    "step": "Adım",
+    "of": "/",
+    "back": "Geri",
+    "next": "İleri",
+    "submit": "Üyelik Oluştur ve Gönder",
+    "submitLoggedIn": "Talebi Gönder",
+    "sending": "Gönderiliyor…",
+    "multiHint": "Birden fazla seçenek işaretleyebilirsiniz.",
+    "q": {
+      "propertyType": {
+        "title": "Ne tür bir mülk arıyorsunuz?"
+      },
+      "investmentStrategy": {
+        "title": "Yatırım stratejiniz nedir?"
+      },
+      "landPlan": {
+        "title": "Arsa ile ilgili planınız nedir?"
+      },
+      "condition": {
+        "title": "Mülkün durumu sizin için önemli mi?"
+      },
+      "region": {
+        "title": "Bölge tercihiniz nedir?"
+      },
+      "budget": {
+        "title": "Bütçe aralığınız nedir?"
+      },
+      "timeline": {
+        "title": "Zaman çizelgeniz nedir?"
+      },
+      "services": {
+        "title": "Hangi hizmetlerle ilgileniyorsunuz?",
+        "subtitle": "Seçtiğiniz hizmetleri hesabınıza ekleyeceğiz; istediğiniz zaman değiştirebilirsiniz."
+      },
+      "location": {
+        "title": "Şu anda nerede yaşıyorsunuz?"
+      },
+      "contact": {
+        "title": "İletişim Bilgileriniz"
+      },
+      "account": {
+        "title": "Üyeliğinizi oluşturun",
+        "subtitle": "Yanıtlarınız üye hesabınızda saklanır; hizmetlerinizi ve sürecinizi buradan takip edersiniz."
+      }
+    },
+    "o": {
+      "propertyType": {
+        "home": "Oturmak İçin Ev",
+        "investment": "Yatırım Amaçlı Mülk",
+        "land": "Arsa",
+        "unsure": "Henüz Karar Vermedim"
+      },
+      "investmentStrategy": {
+        "airbnb": "Kısa Dönem Kiralama (Airbnb)",
+        "longterm": "Uzun Dönem Kiralama",
+        "flip": "Al-Sat (Değer Artışı)",
+        "unsure": "Henüz Karar Vermedim"
+      },
+      "landPlan": {
+        "build": "Kendi Evimi İnşa Etmek",
+        "project": "Yatırım / İnşaat Projesi",
+        "unsure": "Henüz Karar Vermedim"
+      },
+      "condition": {
+        "ready": "Tamamen Hazır, Taşınmaya Hazır Olmalı",
+        "light": "Küçük Yenilemelere Açığım",
+        "renovation": "Renovasyon Projesi Arıyorum (Fırsat Fiyatına)",
+        "any": "Fark Etmez"
+      },
+      "region": {
+        "valencia-centro": "Valencia Merkez",
+        "el-carmen": "El Carmen",
+        "benimaclet": "Benimaclet",
+        "ciutat-vella": "Ciutat Vella",
+        "poblats-maritims": "Poblats Marítims",
+        "alicante": "Alicante Bölgesi",
+        "any": "Fark Etmez / Öneri İsterim"
+      },
+      "budget": {
+        "under150": "150.000€'nun Altı",
+        "150-300": "150.000€ – 300.000€",
+        "300-500": "300.000€ – 500.000€",
+        "500plus": "500.000€ ve Üzeri"
+      },
+      "timeline": {
+        "now": "Hemen",
+        "3-6": "3-6 Ay İçinde",
+        "6-12": "6-12 Ay İçinde",
+        "researching": "Sadece Araştırıyorum"
+      },
+      "services": {
+        "emlak": "Emlak Arama & Danışmanlık",
+        "legal": "Hukuki Hizmetler (NIE, oturma izni, sözleşme)",
+        "renovasyon": "Renovasyon / Reform",
+        "staging": "Home Staging & İç Tasarım",
+        "management": "Kiracı Yönetimi (Uzun Dönem)",
+        "airbnb": "Airbnb Yönetimi",
+        "insaat": "İnşaat Yönetimi"
+      },
+      "location": {
+        "turkey": "Türkiye",
+        "europe-tr": "Avrupa'da Yaşayan Türküm",
+        "spain": "İspanya'da Yaşıyorum",
+        "other": "Diğer"
+      }
+    },
+    "nameLabel": "Ad Soyad",
+    "namePh": "Adınız Soyadınız",
+    "emailLabel": "E-posta",
+    "phoneLabel": "Telefon / WhatsApp",
+    "langLabel": "Tercih Edilen Dil",
+    "noteLabel": "Ek Not (opsiyonel)",
+    "notePh": "Eklemek istediğiniz bir şey var mı?",
+    "passwordLabel": "Şifre",
+    "passwordHint": "En az 8 karakter.",
+    "consent": "Üyelik oluşturulmasını ve bilgilerimin danışmanlık amacıyla saklanmasını kabul ediyorum.",
+    "haveAccount": "Zaten üye misiniz?",
+    "loginLink": "Giriş yapın",
+    "loggedInAs": "Giriş yaptınız; yanıtlarınız hesabınıza kaydedilecek.",
+    "errRequired": "Lütfen işaretli alanları doldurun.",
+    "errPassword": "Şifre en az 8 karakter olmalı.",
+    "errConsent": "Devam etmek için onay kutusunu işaretleyin.",
+    "errTaken": "Bu e-posta ile zaten bir üyelik var. Giriş yapın; sonra formu tekrar gönderebilirsiniz.",
+    "errGeneric": "Gönderilemedi. Lütfen biraz sonra tekrar deneyin.",
+    "thanksTitle": "Teşekkürler",
+    "thanksCheckEmail": "Üyeliğiniz oluşturuldu ve yanıtlarınız kaydedildi. Hesabınızı etkinleştirmek için e-postanıza gönderdiğimiz bağlantıya tıklayın.",
+    "thanksSaved": "Talebiniz hesabınıza kaydedildi. Ekibimiz en kısa sürede sizinle iletişime geçecek.",
+    "goPanel": "Üye Paneline Git"
+  },
+  "propertyType": {
+    "apartment": "Dairesi",
+    "penthouse": "Çatı Katı",
+    "beachHouse": "Sahil Evi",
+    "house": "Evi",
+    "residence": "Rezidansı",
+    "seaApartment": "Sahil Dairesi",
+    "studio": "Stüdyo Daire",
+    "familyHome": "Aile Evi"
+  },
+  "common": {
+    "viewAll": "Tüm İlanlar"
   }
 }
