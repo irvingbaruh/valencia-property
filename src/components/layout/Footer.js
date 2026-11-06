@@ -5,11 +5,13 @@ import { usePathname } from 'next/navigation';
 import Logo from '@/components/brand/Logo';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import { localePath } from '@/lib/routes';
+import { useContactSettings, telHref } from '@/lib/siteSettings';
 
 export default function Footer() {
   const t = useTranslations('footer');
   const locale = useLocale();
   const pathname = usePathname();
+  const contact = useContactSettings();
 
   const columns = [
     {
@@ -51,14 +53,14 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <Phone size={15} className="text-gold shrink-0" />
-                <a href="tel:+34656738556" className="hover:text-gold transition-colors">
-                  +34 656 738 556
+                <a href={telHref(contact.phone)} className="hover:text-gold transition-colors">
+                  {contact.phone}
                 </a>
               </div>
               <div className="flex items-center gap-2">
                 <Mail size={15} className="text-gold shrink-0" />
-                <a href="mailto:info@lockandloft.com" className="hover:text-gold transition-colors">
-                  info@lockandloft.com
+                <a href={`mailto:${contact.email}`} className="hover:text-gold transition-colors">
+                  {contact.email}
                 </a>
               </div>
             </div>

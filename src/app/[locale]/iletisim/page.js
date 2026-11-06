@@ -1,13 +1,8 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { Phone, Mail, MessageCircle } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import ContactForm from '@/components/forms/ContactForm';
+import ContactDetailsCard from '@/components/forms/ContactDetailsCard';
 
-// NOTE: placeholder contact details — swap in the real phone/email/WhatsApp
-// number once provided.
-const PLACEHOLDER_PHONE = '+34 656 738 556';
-const PLACEHOLDER_EMAIL = 'info@lockandloft.com';
-const PLACEHOLDER_WHATSAPP = '34656738556'; // wa.me format, no "+" or spaces
 
 export default async function IletisimPage({ params }) {
   const { locale } = await params;
@@ -39,47 +34,15 @@ export default async function IletisimPage({ params }) {
 
           {/* Details */}
           <ScrollReveal from="right" delay={0.05}>
-            <div className="bg-dark rounded-2xl p-8 text-white h-full flex flex-col">
-              <h2 className="text-2xl font-serif mb-6">{t('detailsTitle')}</h2>
-
-              <div className="space-y-5 mb-8">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gold/20 flex items-center justify-center shrink-0">
-                    <Phone size={18} className="text-gold" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-white/50">{t('phoneDetail')}</p>
-                    <a href={`tel:${PLACEHOLDER_PHONE.replace(/\s/g, '')}`} className="text-white hover:text-gold transition-colors">
-                      {PLACEHOLDER_PHONE}
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gold/20 flex items-center justify-center shrink-0">
-                    <Mail size={18} className="text-gold" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-white/50">{t('emailDetail')}</p>
-                    <a href={`mailto:${PLACEHOLDER_EMAIL}`} className="text-white hover:text-gold transition-colors">
-                      {PLACEHOLDER_EMAIL}
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <a
-                href={`https://wa.me/${PLACEHOLDER_WHATSAPP}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#25D366] text-white font-semibold rounded-xl hover:brightness-110 transition-all duration-200 mt-auto"
-              >
-                <MessageCircle size={18} />
-                {t('whatsappButton')}
-              </a>
-
-              <p className="text-xs text-white/30 mt-6 leading-relaxed">{t('officeNote')}</p>
-            </div>
+            <ContactDetailsCard
+              labels={{
+                title: t('detailsTitle'),
+                phone: t('phoneDetail'),
+                email: t('emailDetail'),
+                whatsapp: t('whatsappButton'),
+                office: t('officeNote'),
+              }}
+            />
           </ScrollReveal>
         </div>
       </div>

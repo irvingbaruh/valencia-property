@@ -19,7 +19,6 @@ import {
   ChevronRight,
   Home,
   PenSquare,
-  ShieldCheck,
   Calculator,
   Mail,
 } from 'lucide-react';
@@ -35,8 +34,7 @@ const navItems = [
   { id: 'dosyalar', href: '/dosyalar', icon: FileText, label: 'Dosyalar' },
   { id: 'bildirimler', href: '/bildirimler', icon: Bell, label: 'Bildirimler' },
   { id: 'roi', href: '/roi', icon: Calculator, label: 'ROI Ayarları' },
-  { id: 'guvenlik', href: '/guvenlik', icon: ShieldCheck, label: 'Güvenlik' },
-  { id: 'ayarlar', href: '/ayarlar', icon: Settings, label: 'Ayarlar', disabled: true },
+  { id: 'ayarlar', href: '/ayarlar', icon: Settings, label: 'Ayarlar' },
 ];
 
 export default function AdminLayout({ children, activeSection = 'dashboard' }) {

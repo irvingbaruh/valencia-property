@@ -4,10 +4,12 @@ import { useTranslations, useLocale } from 'next-intl';
 import { ArrowRight, Phone } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import { localePath } from '@/lib/routes';
+import { useContactSettings, telHref } from '@/lib/siteSettings';
 
 export default function CTASection() {
   const t = useTranslations('cta_section');
   const locale = useLocale();
+  const contact = useContactSettings();
 
   return (
     <section id="contact" className="relative overflow-hidden">
@@ -46,7 +48,7 @@ export default function CTASection() {
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-200" />
             </a>
             <a
-              href="tel:+34656738556"
+              href={telHref(contact.phone)}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white rounded-xl hover:bg-white/10 hover:border-white/30 transition-all duration-200 text-lg"
             >
               <Phone size={18} />
