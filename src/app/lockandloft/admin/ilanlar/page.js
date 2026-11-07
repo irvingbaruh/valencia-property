@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { supabase } from '@/lib/supabase';
 import AdminLayout from '@/components/admin/AdminLayout';
 import {
-  Search, Plus, Edit3, Trash2, Star, Eye, EyeOff, X, Save, ImagePlus, ChevronLeft, ChevronRight, ExternalLink, Loader2,
+  Search, Plus, Edit3, Trash2, Star, Eye, EyeOff, X, Save, ImagePlus, ChevronLeft, ChevronRight, ExternalLink, Loader2, Download,
 } from 'lucide-react';
 
 const LANGS = [
@@ -58,6 +58,10 @@ function Editor({ row, onClose, onSaved }) {
   const [busy, setBusy] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [err, setErr] = useState('');
+  const [importing, setImporting] = useState(false);
+  const [note, setNote] = useState('');
+  const [meta, setMeta] = useState(null); // extra fields from an import (external_id, coordinates, features)
+  const [publish, setPublish] = useState(false);
   const set = (k, v) => setF((p) => ({ ...p, [k]: v }));
 
   const addPhotos = async (files) => {
@@ -74,6 +78,38 @@ function Editor({ row, onClose, onSaved }) {
       set('images', [...f.images, ...urls]);
     } catch (e) { setErr('Fotoğraf yüklenemedi: ' + e.message); }
     setUploading(false);
+  };
+  const importFromUrl = async () => {
+    const url = f.external_url.trim();
+    if (!url) { setErr('Önce RE/MAX ilan linkini yapıştırın.'); return; }
+    if (f.images.length || f.title_tr.trim()) {
+      if (!confirm('Formdaki mevcut bilgilerin üzerine yazılacak. Devam edilsin mi?')) return;
+    }
+    setImporting(true); setErr(''); setNote('');
+    try {
+      const { data, error } = await supabase.functions.invoke('listing-import', { body: { url, id } });
+      if (error || !data?.ok) {
+        const code = data?.error || error?.message || '';
+        throw new Error(code === 'unsupported_url' ? 'Yalnızca remax.com ilan linkleri desteklenir (…/residential/property/…).' : code === 'parse_failed' ? 'Sayfadan ilan bilgisi okunamadı.' : code === 'fetch_failed' ? 'RE/MAX sayfasına ulaşılamadı.' : 'İçe aktarma başarısız: ' + code);
+      }
+      const x = data.fields;
+      setF((p) => ({
+        ...p,
+        external_url: x.external_url || p.external_url, property_type: x.property_type || p.property_type,
+        price: x.price ?? '', bedrooms: x.bedrooms ?? '', bathrooms: x.bathrooms ?? '', area_sqm: x.area_sqm ?? '', land_sqm: x.land_sqm ?? '',
+        city: x.city || '', region: x.region || '', images: x.images || [],
+        title_tr: x.title_tr || '', title_es: x.title_es || '', title_en: x.title_en || '', title_de: x.title_de || '',
+        description_tr: x.description_tr || '', description_es: x.description_es || '', description_en: x.description_en || '', description_de: x.description_de || '',
+      }));
+      setMeta({ external_id: x.external_id, latitude: x.latitude, longitude: x.longitude, features: x.features });
+      setPublish(!data.duplicate);
+      const msgs = [`${(x.images || []).length} fotoğraf aktarıldı`];
+      if (!data.ai) msgs.push('Metinler otomatik çevrilemedi; İngilizce kaynak metin ve başlık taslağı dolduruldu, diğer dilleri kendiniz doldurun');
+      if (data.available === false) msgs.push('Dikkat: RE/MAX bu ilanı satılmış/yayında değil olarak gösteriyor');
+      if (data.duplicate) msgs.push(`Bu ilan zaten sitede var ("${data.duplicate.title_tr}"). Yine de kaydederseniz kopyası oluşur`);
+      setNote(msgs.join('. ') + '. Kaydetmeden önce metinleri ve rakamları kontrol edin.');
+    } catch (e) { setErr(e.message); }
+    setImporting(false);
   };
   const move = (i, d) => {
     const a = [...f.images]; const j = i + d;
@@ -114,12 +150,19 @@ function Editor({ row, onClose, onSaved }) {
           <button onClick={onClose} className="text-[#9A9AAA] hover:text-white"><X size={20} /></button>
         </div>
         <div className="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
-          <Field label="RE/MAX ilan linki (kaynak)">
+          <Field label="RE/MAX ilan linki (isteğe bağlı)">
             <div className="flex gap-2">
               <input className={inputCls} value={f.external_url} onChange={(e) => set('external_url', e.target.value)} placeholder="https://www.remax.com/esp/en/residential/property/..." />
+              {isNew && (
+                <button type="button" onClick={importFromUrl} disabled={importing || uploading || !f.external_url.trim()} className="inline-flex items-center gap-2 px-3 py-2 bg-[#C9A84C] text-black rounded-lg text-sm font-semibold whitespace-nowrap disabled:opacity-50">
+                  {importing ? <Loader2 size={15} className="animate-spin" /> : <Download size={15} />} {importing ? 'Çekiliyor…' : 'Linkten çek'}
+                </button>
+              )}
               {f.external_url ? <a href={f.external_url} target="_blank" rel="noreferrer" className="px-3 py-2 bg-[#1E1E2E] border border-[#2A2A3A] rounded-lg text-[#9A9AAA] hover:text-white"><ExternalLink size={16} /></a> : null}
             </div>
-            <p className="text-[11px] text-[#6A6A7A] mt-1">Sadece sizin için not; sitede gösterilmez.</p>
+            <p className="text-[11px] text-[#6A6A7A] mt-1">{isNew ? 'RE/MAX ilanıysa linki yapıştırıp "Linkten çek"e basın; fotoğraflar, bilgiler ve 4 dilde metin otomatik dolar. Kendi bulduğunuz bir evse bu alanı boş bırakıp aşağıyı elle doldurun.' : 'Sadece sizin için not; sitede gösterilmez.'}</p>
+            {importing && <p className="text-[11px] text-[#C9A84C] mt-1">Fotoğraflar kopyalanıyor ve metinler hazırlanıyor, yarım dakika kadar sürebilir.</p>}
+            {note && <p className="text-[11px] text-green-400 mt-1">{note}</p>}
           </Field>
 
           {/* Photos */}
@@ -183,11 +226,16 @@ function Editor({ row, onClose, onSaved }) {
             <Field label="Şehir"><input className={inputCls} value={f.city} onChange={(e) => set('city', e.target.value)} /></Field>
             <Field label="Bölge (il)"><input className={inputCls} value={f.region} onChange={(e) => set('region', e.target.value)} placeholder="Valencia / Alicante" /></Field>
           </div>
+          {isNew && (
+            <label className="flex items-center gap-2 text-sm text-[#C8C8D4] cursor-pointer">
+              <input type="checkbox" checked={publish} onChange={(e) => setPublish(e.target.checked)} /> Kaydedince sitede yayınla
+            </label>
+          )}
           {err && <p className="text-sm text-[#DC1C2E]">{err}</p>}
         </div>
         <div className="flex justify-end gap-3 p-5 border-t border-[#2A2A3A]">
           <button onClick={onClose} className="px-4 py-2 text-sm text-[#9A9AAA] hover:text-white">İptal</button>
-          <button onClick={save} disabled={busy || uploading} className="inline-flex items-center gap-2 px-5 py-2 bg-[#C9A84C] text-black rounded-lg text-sm font-semibold disabled:opacity-50">
+          <button onClick={save} disabled={busy || uploading || importing} className="inline-flex items-center gap-2 px-5 py-2 bg-[#C9A84C] text-black rounded-lg text-sm font-semibold disabled:opacity-50">
             {busy ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />} Kaydet
           </button>
         </div>
