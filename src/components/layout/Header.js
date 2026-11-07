@@ -117,10 +117,10 @@ export default function Header() {
       {/* Subtle top gradient for contrast before scroll (header is transparent) */}
       <div
         aria-hidden="true"
-        className={`absolute inset-x-0 top-0 h-44 pointer-events-none transition-opacity duration-500 -z-10 ${
+        className={`absolute inset-x-0 top-0 h-40 pointer-events-none transition-opacity duration-500 -z-10 ${
           scrolled ? 'opacity-0' : 'opacity-100'
         }`}
-        style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.7) 45%, rgba(0,0,0,0.35) 75%, rgba(0,0,0,0) 100%)' }}
+        style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.74) 0%, rgba(0,0,0,0.62) 45%, rgba(0,0,0,0.3) 75%, rgba(0,0,0,0) 100%)' }}
       />
       <RateTicker scrolled={scrolled} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
