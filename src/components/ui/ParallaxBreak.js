@@ -1,7 +1,7 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 
 /*
  * ParallaxBreak — Cinematic full-width image interstitial
@@ -17,6 +17,10 @@ import { motion, useScroll, useTransform } from 'framer-motion';
  *   line2    — bottom text line (slides from right)
  *   height   — container height (default '70vh')
  *   overlay  — overlay darkness 0–1 (default 0.4)
+ *   video    — optional mp4 path. When it loads, it replaces the image and is
+ *              scrubbed by scroll (down = forward, up = backward). The image
+ *              stays as the poster/fallback if the file is missing or the
+ *              visitor prefers reduced motion.
  */
 
 export default function ParallaxBreak({
@@ -26,8 +30,12 @@ export default function ParallaxBreak({
   line2 = '',
   height = '70vh',
   overlay = 0.4,
+  video = '',
 }) {
   const ref = useRef(null);
+  const videoRef = useRef(null);
+  const rafRef = useRef(0);
+  const [videoReady, setVideoReady] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -41,6 +49,37 @@ export default function ParallaxBreak({
   const line2X = useTransform(scrollYProgress, [0.1, 0.5], ['8%', '0%']);
   // Text fades in
   const textOpacity = useTransform(scrollYProgress, [0.15, 0.35], [0, 1]);
+
+  // Scroll-scrubbed video: map section progress to playback time.
+  useMotionValueEvent(scrollYProgress, 'change', (p) => {
+    const v = videoRef.current;
+    if (!v || !videoReady || !v.duration) return;
+    const t = Math.min(1, Math.max(0, (p - 0.05) / 0.9)) * v.duration;
+    cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => {
+      if (Math.abs(v.currentTime - t) > 0.03) v.currentTime = t;
+    });
+  });
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v || !video) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const onReady = () => {
+      // iOS only allows seeking after the first play(); pause right away.
+      const pr = v.play();
+      if (pr && pr.then) pr.then(() => v.pause()).catch(() => {});
+      else v.pause();
+      v.currentTime = 0;
+      setVideoReady(true);
+    };
+    if (v.readyState >= 2) onReady();
+    else v.addEventListener('loadeddata', onReady, { once: true });
+    return () => {
+      v.removeEventListener('loadeddata', onReady);
+      cancelAnimationFrame(rafRef.current);
+    };
+  }, [video]);
 
   return (
     <section
@@ -58,6 +97,18 @@ export default function ParallaxBreak({
           alt={alt}
           className="w-full h-full object-cover"
         />
+        {video && (
+          <video
+            ref={videoRef}
+            src={video}
+            muted
+            playsInline
+            preload="auto"
+            aria-hidden="true"
+            tabIndex={-1}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+          />
+        )}
       </motion.div>
 
       {/* Overlay */}

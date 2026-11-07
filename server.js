@@ -46,6 +46,8 @@ const MIME_TYPES = {
   '.woff2': 'font/woff2',
   '.ttf': 'font/ttf',
   '.webp': 'image/webp',
+  '.mp4': 'video/mp4',
+  '.webm': 'video/webm',
 };
 
 
@@ -362,6 +364,23 @@ const server = http.createServer((req, res) => {
   if (filePath) {
     if (filePath.endsWith('.html') && urlPath !== '/404.html') {
       serveHtml(req, res, filePath, urlPath).catch(() => { res.writeHead(500); res.end('error'); });
+      return;
+    }
+    // Video needs Range support (Safari/iOS refuse to play or seek without it).
+    if (/\.(mp4|webm)$/i.test(filePath)) {
+      const size = fs.statSync(filePath).size;
+      const m = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range || '');
+      const base = { 'Content-Type': getMime(filePath), 'Accept-Ranges': 'bytes', 'Cache-Control': 'public, max-age=86400' };
+      if (m && (m[1] || m[2])) {
+        let start = m[1] ? parseInt(m[1], 10) : Math.max(0, size - parseInt(m[2], 10));
+        let end = m[1] && m[2] ? Math.min(parseInt(m[2], 10), size - 1) : size - 1;
+        if (start >= size || start > end) { res.writeHead(416, { 'Content-Range': `bytes */${size}` }); res.end(); return; }
+        res.writeHead(206, { ...base, 'Content-Range': `bytes ${start}-${end}/${size}`, 'Content-Length': end - start + 1 });
+        fs.createReadStream(filePath, { start, end }).pipe(res);
+      } else {
+        res.writeHead(200, { ...base, 'Content-Length': size });
+        fs.createReadStream(filePath).pipe(res);
+      }
       return;
     }
     const content = fs.readFileSync(filePath);

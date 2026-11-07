@@ -28,6 +28,7 @@ export default async function HomePage({ params }) {
         image="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80&auto=format"
         alt="Mediterranean coastline"
         translationKey="interstitial1"
+        video="/videos/akdeniz.mp4"
       />
       <Services />
       <Process />
@@ -35,6 +36,7 @@ export default async function HomePage({ params }) {
         image="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1920&q=80&auto=format"
         alt="Modern Mediterranean villa"
         translationKey="interstitial2"
+        video="/videos/gelecek.mp4"
       />
       <ROICalculator />
       <NewListings />
