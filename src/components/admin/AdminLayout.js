@@ -24,6 +24,7 @@ import {
   Building2,
   Newspaper,
   MessageSquare,
+  MailCheck,
 } from 'lucide-react';
 
 export const ADMIN_BASE = '/lockandloft/admin';
@@ -37,6 +38,7 @@ const navItems = [
   { id: 'hizmetler', href: '/hizmetler', icon: Briefcase, label: 'Hizmetler' },
   { id: 'blog', href: '/blog', icon: PenSquare, label: 'Blog' },
   { id: 'mailing', href: '/mailing', icon: Mail, label: 'Mailing' },
+  { id: 'otomatik-mailler', href: '/otomatik-mailler', icon: MailCheck, label: 'Otomatik Mailler' },
   { id: 'dosyalar', href: '/dosyalar', icon: FileText, label: 'Dosyalar' },
   { id: 'bildirimler', href: '/bildirimler', icon: Bell, label: 'Bildirimler' },
   { id: 'roi', href: '/roi', icon: Calculator, label: 'ROI Ayarları' },
