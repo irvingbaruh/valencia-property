@@ -1022,5 +1022,256 @@
     "formPrivacy": "Your details are only used to contact you and are not sent to the AI model.",
     "openingLine": "I'd like to talk to an adviser.",
     "disclaimer": "This is an AI assistant and can make mistakes; it is not legal or financial advice. Do not share passwords, ID or payment details. Messages are processed by an AI service to generate replies."
+  },
+  "aboutPage": {
+    "title": "About us",
+    "subtitle": "From property advice to renovation, legal support and rental management in Valencia and Alicante, we run your whole property journey in one place.",
+    "storyH": "Who we are",
+    "story": [
+      "Lock & Loft is a property services brand for people who want to buy, renovate, enhance or manage a home in the Valencia and Alicante area. Our real estate advisors work under the RE/MAX umbrella, which gives us access to a wide portfolio of listings and lets us run the process under a well-known international brand.",
+      "Buying a home is often only the beginning. Instead of knocking on separate doors for the deed, taxes, renovation, furnishing, finding tenants and management, we coordinate all of it through one contact, in your language. We care that clients investing remotely from Türkiye or Europe can see every stage of the process clearly."
+    ],
+    "offerH": "What we do",
+    "offer": [
+      {
+        "k": "mulk-arama",
+        "h": "Property advice",
+        "p": "We find properties that fit your needs, budget and purpose, and stay by your side through viewings, offers and the purchase."
+      },
+      {
+        "k": "hukuki-destek",
+        "h": "Legal and tax support",
+        "p": "For your NIE, bank account, deed formalities, contract review and tax matters, we work with specialist partners and coordinate the process for you."
+      },
+      {
+        "k": "renovasyon",
+        "h": "Renovation",
+        "p": "From the first survey to handover, we manage the renovation with quotes, follow-up and regular reports."
+      },
+      {
+        "k": "home-staging",
+        "h": "Home staging",
+        "p": "Before a sale or rental, we organise the preparation and professional photography so your property is presented at its best."
+      },
+      {
+        "k": "dekorasyon-mobilya",
+        "h": "Decor and furniture",
+        "p": "We furnish your property for rental or your own use, handling sourcing and installation on your behalf."
+      },
+      {
+        "k": "kira-yonetimi",
+        "h": "Rental and property management",
+        "p": "Tenant search, contracts, rent collection, maintenance and regular reporting, so you can manage your investment property from a distance."
+      }
+    ],
+    "howH": "How we work",
+    "how": [
+      {
+        "h": "One point of contact",
+        "p": "Legal, tax, renovation or management: whichever step you are at, the person who answers you is the same."
+      },
+      {
+        "h": "A transparent process",
+        "p": "You follow the stages of your services and your documents from your member account."
+      },
+      {
+        "h": "In your language",
+        "p": "We communicate in Turkish, Spanish, English and German, and present the site and listings in those languages."
+      },
+      {
+        "h": "Remote investing",
+        "p": "With video calls, power of attorney and a digital document flow, you can run the process without being in Spain."
+      }
+    ],
+    "partnersH": "Our partners",
+    "partnersP": "For work that needs specialist expertise, such as legal, tax and renovation, we work with independent partners we trust. We tell you upfront who provides which service, and we coordinate the process on your behalf.",
+    "note": "Information on this site is general and is not legal, tax or investment advice. RE/MAX is a registered trademark of RE/MAX, LLC; each RE/MAX office is independently owned and operated.",
+    "ctaH": "Let's talk about your plan",
+    "ctaP": "Tell us what you want to do and we will work out the right steps together.",
+    "ctaBtn": "Get in touch",
+    "ctaBtn2": "View services"
+  },
+  "remaxPage": {
+    "title": "RE/MAX partnership",
+    "subtitle": "Our real estate advisors work under RE/MAX. Lock & Loft brings everything before and after the purchase together for you.",
+    "sections": [
+      {
+        "h": "How the partnership works",
+        "p": [
+          "Our real estate advisors work under RE/MAX. This gives us access to RE/MAX listings in the Valencia and Alicante area, and lets us run viewings, offers and the purchase under a well-known international brand."
+        ]
+      },
+      {
+        "h": "What Lock & Loft adds",
+        "p": [
+          "Buying is often only the first step. Lock & Loft brings together legal and tax coordination, renovation, home staging, decor and rental management through one contact, in your language.",
+          "That way you do not have to knock on separate doors for lawyers, contractors and tenant management."
+        ]
+      },
+      {
+        "h": "Listings on this site",
+        "p": [
+          "Our listings come from two sources: properties in the RE/MAX portfolio and private properties found directly by our team. Prices and availability can change; we confirm the current details of any property you are interested in with our advisor."
+        ]
+      },
+      {
+        "h": "Who does what",
+        "p": [
+          "The real estate brokerage itself is handled through the relevant RE/MAX office. Other services such as legal, tax and renovation are provided under separate scopes by our independent partners. Before work starts, we confirm in writing who provides which service and what it covers."
+        ]
+      }
+    ],
+    "legal": "RE/MAX is a registered trademark of RE/MAX, LLC. Each RE/MAX office is independently owned and operated.",
+    "ctaBtn": "Browse properties",
+    "ctaBtn2": "Write to an advisor"
+  },
+  "faqPage": {
+    "title": "Frequently asked questions",
+    "subtitle": "The questions people ask most when they want to buy in Valencia and Alicante from Türkiye or abroad.",
+    "items": [
+      {
+        "q": "Can Turkish citizens buy property in Spain?",
+        "a": "Yes. There is no general restriction on foreigners buying homes; there are limited exceptions such as military and strategic zones. You need an NIE, the Spanish tax ID number, and we coordinate that process with our legal partners."
+      },
+      {
+        "q": "Can I buy without coming to Spain?",
+        "a": "In most cases, yes. You can view properties by video call and authorise the steps with a power of attorney (poder), which can be signed at a Spanish consulate or before a notary. We still recommend seeing the property in person before signing."
+      },
+      {
+        "q": "What costs come on top of the price?",
+        "a": "Taxes, notary, land registry and gestoría fees usually add about 10-15% of the price, plus a valuation if you take a mortgage. Resale homes pay ITP; new homes pay VAT (IVA) and AJD. The rates are set by each region and change from time to time. At offer stage we prepare an exact calculation for the specific property."
+      },
+      {
+        "q": "How long does buying take?",
+        "a": "It depends on the property and the paperwork. Once your NIE, bank account and reservation contract (arras) are ready, a resale purchase usually takes one to three months from accepted offer to deed."
+      },
+      {
+        "q": "Does buying a home give me residency?",
+        "a": "No. Spain's property-based Golden Visa programme ended on 3 April 2025, so buying a home alone no longer grants residency. Other residency routes exist; our legal partners assess which one fits your situation."
+      },
+      {
+        "q": "Can I get a mortgage?",
+        "a": "Spanish banks can lend to foreigners, but for non-residents the financed share is usually lower and the conditions stricter. The outcome depends on the bank and your income. We recommend getting preliminary information before you decide."
+      },
+      {
+        "q": "What taxes do I pay if I rent it out?",
+        "a": "Non-residents pay Non-Resident Income Tax (IRNR) on rental income. The rate is 19% for residents of EU/EEA countries and 24% for residents of other countries, and whether expenses can be deducted depends on that group. Annual property tax (IBI) also applies. For your own case we recommend speaking to our tax partner."
+      },
+      {
+        "q": "How do renovation and home staging work?",
+        "a": "We inspect the property with you, define the needs, collect written quotes from independent contractors and start with your approval. We share photo progress reports throughout and check the result with you at handover."
+      },
+      {
+        "q": "Can you manage my property after I buy?",
+        "a": "Yes. We can handle tenant search, the rental contract, rent collection, maintenance and regular reporting. Short-term (tourist) rentals have licence requirements that depend on the area and the building's rules; we check these with you from the start."
+      },
+      {
+        "q": "How much do your services cost?",
+        "a": "It depends on the scope and type of work. Before any service starts, we confirm in writing what it covers and what it costs."
+      },
+      {
+        "q": "Which languages do you speak?",
+        "a": "Turkish, Spanish, English and German."
+      }
+    ],
+    "note": "Information on this page is general and is not legal, tax or investment advice. Rules and rates can change; confirm the current position with our advisors before you decide.",
+    "ctaH": "Can't find your question?",
+    "ctaBtn": "Write to us"
+  },
+  "glossaryPage": {
+    "title": "Glossary",
+    "subtitle": "The key terms you will meet when buying in Spain, and what they mean.",
+    "note": "Explanations are general; for exact rules and rates, ask our advisors.",
+    "ctaBtn": "Get advice",
+    "terms": [
+      [
+        "NIE",
+        "Número de Identidad de Extranjero. The Spanish tax ID number for foreigners. You need it to buy property, open a bank account and pay taxes."
+      ],
+      [
+        "TIE",
+        "Tarjeta de Identidad de Extranjero. The identity card of foreigners who hold a residence permit in Spain."
+      ],
+      [
+        "Arras",
+        "Reservation contract and deposit, signed once price and terms are agreed. In the most common type, the buyer loses the deposit if they withdraw and the seller returns double if they withdraw; it can vary with the type written in the contract."
+      ],
+      [
+        "Escritura",
+        "The public deed of sale signed before a notary. Ownership passes with this signature."
+      ],
+      [
+        "Notario",
+        "The Spanish notary. Checks that the sale is lawful and prepares the escritura."
+      ],
+      [
+        "Registro de la Propiedad",
+        "The land registry. Ownership and charges such as mortgages are recorded here; after the escritura the property is registered in the buyer's name."
+      ],
+      [
+        "Nota simple",
+        "A short extract from the land registry showing the owner and charges such as mortgages or seizures. It should always be checked before buying."
+      ],
+      [
+        "ITP",
+        "Impuesto de Transmisiones Patrimoniales. The tax a buyer pays on a resale home; the rate depends on the region."
+      ],
+      [
+        "IVA and AJD",
+        "VAT (generally 10% on homes) and Actos Jurídicos Documentados stamp duty, paid when buying a new (first-sale) home. The AJD rate depends on the region."
+      ],
+      [
+        "IBI",
+        "Impuesto sobre Bienes Inmuebles. The annual property tax the municipality charges the owner."
+      ],
+      [
+        "Plusvalía municipal",
+        "A municipal tax paid by the seller, based on the increase in the value of the land while it was owned."
+      ],
+      [
+        "IRNR / Modelo 210",
+        "The tax non-residents pay on Spanish income such as rent or a property sale. The return is filed on Modelo 210."
+      ],
+      [
+        "Catastro",
+        "The land cadastre. The cadastral value is the official value used to calculate taxes and can differ from the market price."
+      ],
+      [
+        "Empadronamiento",
+        "Registration of your residence at the town hall. Sometimes required as proof of address for official procedures."
+      ],
+      [
+        "Cédula de habitabilidad",
+        "A document showing the home is fit to live in. In the Valencian Community it can be required for steps such as utility contracts and rentals."
+      ],
+      [
+        "Certificado energético",
+        "A certificate rating the home's energy efficiency from A to G. Mandatory for sale and rental."
+      ],
+      [
+        "Comunidad de propietarios",
+        "The homeowners' association of a building or complex. Shared costs (community fees) and decisions are set here; any debts are checked before buying."
+      ],
+      [
+        "Gestoría",
+        "An administrative consultancy that handles official paperwork and tax filings."
+      ],
+      [
+        "Poder notarial",
+        "A notarised power of attorney. It lets you complete steps without being in Spain."
+      ],
+      [
+        "Apostille",
+        "A certification under the Hague Convention that makes a foreign document valid in Spain. Often needed for documents brought from Türkiye."
+      ],
+      [
+        "Licencia de obra",
+        "A building or renovation permit from the town hall. Depending on the work, a minor (menor) or major (mayor) licence is needed."
+      ],
+      [
+        "Home staging",
+        "Preparing a property for sale or rental by arranging, furnishing if needed, and photographing it so it looks its best."
+      ]
+    ]
   }
 }

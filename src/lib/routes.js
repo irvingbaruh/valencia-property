@@ -10,6 +10,10 @@ export const ROUTES = {
   giris: { tr: 'giris', es: 'acceder', en: 'login', de: 'anmelden' },
   panel: { tr: 'panel', es: 'mi-cuenta', en: 'account', de: 'mein-konto' },
   gizlilik: { tr: 'gizlilik', es: 'privacidad', en: 'privacy', de: 'datenschutz' },
+  hakkimizda: { tr: 'hakkimizda', es: 'nosotros', en: 'about', de: 'ueber-uns' },
+  remax: { tr: 'remax', es: 'remax', en: 'remax', de: 'remax' },
+  sss: { tr: 'sss', es: 'preguntas-frecuentes', en: 'faq', de: 'haeufige-fragen' },
+  sozluk: { tr: 'sozluk', es: 'glosario', en: 'glossary', de: 'glossar' },
   'sifre-yenile': { tr: 'sifre-yenile', es: 'restablecer-contrasena', en: 'reset-password', de: 'passwort-zuruecksetzen' },
 };
 

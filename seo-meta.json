@@ -143,6 +143,78 @@
     "t": "Datenschutzerklärung | Lock & Loft",
     "d": "Wie wir Ihre personenbezogenen Daten erheben, nutzen und schützen."
    }
+  },
+  "hakkimizda": {
+   "tr": {
+    "t": "Hakkımızda | Lock & Loft",
+    "d": "Valencia ve Alicante'de ev danışmanlığından reformaya, hukuki desteğe ve kira yönetimine kadar mülk sürecinizin tamamını tek yerden yürütüyoruz."
+   },
+   "es": {
+    "t": "Sobre nosotros | Lock & Loft",
+    "d": "Desde el asesoramiento inmobiliario hasta la reforma, el apoyo legal y la gestión de alquileres en Valencia y Alicante, llevamos todo su proceso inmobiliario…"
+   },
+   "en": {
+    "t": "About us | Lock & Loft",
+    "d": "From property advice to renovation, legal support and rental management in Valencia and Alicante, we run your whole property journey in one place."
+   },
+   "de": {
+    "t": "Über uns | Lock & Loft",
+    "d": "Von der Immobilienberatung über Renovierung und rechtliche Unterstützung bis zur Vermietungsverwaltung in Valencia und Alicante: Wir führen Ihren gesamten…"
+   }
+  },
+  "remax": {
+   "tr": {
+    "t": "RE/MAX İşbirliği | Lock & Loft",
+    "d": "Emlak danışmanlarımız RE/MAX bünyesinde çalışır. Lock & Loft ise satın almanın öncesini ve sonrasını sizin için tek çatı altında toplar."
+   },
+   "es": {
+    "t": "Colaboración con RE/MAX | Lock & Loft",
+    "d": "Nuestros asesores inmobiliarios trabajan bajo RE/MAX. Lock & Loft reúne para usted todo lo que ocurre antes y después de la compra."
+   },
+   "en": {
+    "t": "RE/MAX partnership | Lock & Loft",
+    "d": "Our real estate advisors work under RE/MAX. Lock & Loft brings everything before and after the purchase together for you."
+   },
+   "de": {
+    "t": "Partnerschaft mit RE/MAX | Lock & Loft",
+    "d": "Unsere Immobilienberater arbeiten unter RE/MAX. Lock & Loft bündelt für Sie alles vor und nach dem Kauf."
+   }
+  },
+  "sss": {
+   "tr": {
+    "t": "Sıkça Sorulan Sorular | Lock & Loft",
+    "d": "Türkiye'den veya yurt dışından Valencia ve Alicante'de ev almak isteyenlerin en çok sorduğu sorular."
+   },
+   "es": {
+    "t": "Preguntas frecuentes | Lock & Loft",
+    "d": "Las preguntas más habituales de quienes quieren comprar en Valencia y Alicante desde Turquía o el extranjero."
+   },
+   "en": {
+    "t": "Frequently asked questions | Lock & Loft",
+    "d": "The questions people ask most when they want to buy in Valencia and Alicante from Türkiye or abroad."
+   },
+   "de": {
+    "t": "Häufige Fragen | Lock & Loft",
+    "d": "Die Fragen, die am häufigsten gestellt werden, wenn man aus der Türkei oder dem Ausland in Valencia und Alicante kaufen möchte."
+   }
+  },
+  "sozluk": {
+   "tr": {
+    "t": "Sözlük | Lock & Loft",
+    "d": "İspanya'da ev alırken karşınıza çıkacak temel terimler ve ne anlama geldikleri."
+   },
+   "es": {
+    "t": "Glosario | Lock & Loft",
+    "d": "Los términos clave que encontrará al comprar en España y lo que significan."
+   },
+   "en": {
+    "t": "Glossary | Lock & Loft",
+    "d": "The key terms you will meet when buying in Spain, and what they mean."
+   },
+   "de": {
+    "t": "Glossar | Lock & Loft",
+    "d": "Die wichtigsten Begriffe beim Immobilienkauf in Spanien und was sie bedeuten."
+   }
   }
  },
  "services": {

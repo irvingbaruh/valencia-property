@@ -1022,5 +1022,256 @@
     "formPrivacy": "Ihre Angaben dienen nur der Kontaktaufnahme und werden nicht an das KI-Modell gesendet.",
     "openingLine": "Ich möchte mit einem Berater sprechen.",
     "disclaimer": "Dies ist ein KI-Assistent und kann Fehler machen; keine Rechts- oder Finanzberatung. Teilen Sie keine Passwörter, Ausweis- oder Zahlungsdaten. Nachrichten werden zur Antwortgenerierung von einem KI-Dienst verarbeitet."
+  },
+  "aboutPage": {
+    "title": "Über uns",
+    "subtitle": "Von der Immobilienberatung über Renovierung und rechtliche Unterstützung bis zur Vermietungsverwaltung in Valencia und Alicante: Wir führen Ihren gesamten Immobilienprozess an einer Stelle.",
+    "storyH": "Wer wir sind",
+    "story": [
+      "Lock & Loft ist eine Marke für Immobiliendienstleistungen für alle, die in der Region Valencia und Alicante eine Immobilie kaufen, renovieren, aufwerten oder verwalten möchten. Unsere Immobilienberater arbeiten unter dem Dach von RE/MAX. So haben wir Zugang zu einem großen Angebot und führen den Prozess unter einer bekannten internationalen Marke.",
+      "Der Kauf ist oft erst der Anfang. Statt für Kaufvertrag, Steuern, Renovierung, Einrichtung, Mietersuche und Verwaltung an verschiedene Türen zu klopfen, koordinieren wir alles über einen Ansprechpartner und in Ihrer Sprache. Uns ist wichtig, dass Kunden, die aus der Türkei oder Europa aus der Ferne investieren, jede Phase klar nachvollziehen können."
+    ],
+    "offerH": "Was wir tun",
+    "offer": [
+      {
+        "k": "mulk-arama",
+        "h": "Immobilienberatung",
+        "p": "Wir finden Objekte, die zu Ihrem Bedarf, Budget und Zweck passen, und begleiten Sie bei Besichtigungen, Angebot und Kauf."
+      },
+      {
+        "k": "hukuki-destek",
+        "h": "Rechts- und Steuerberatung",
+        "p": "Für NIE, Bankkonto, Notartermin, Vertragsprüfung und Steuerfragen arbeiten wir mit spezialisierten Partnern und koordinieren den Ablauf für Sie."
+      },
+      {
+        "k": "renovasyon",
+        "h": "Renovierung",
+        "p": "Von der ersten Besichtigung bis zur Übergabe steuern wir die Renovierung mit Angeboten, Nachverfolgung und regelmäßigen Berichten."
+      },
+      {
+        "k": "home-staging",
+        "h": "Home Staging",
+        "p": "Vor einem Verkauf oder einer Vermietung organisieren wir die Vorbereitung und professionelle Fotos, damit Ihre Immobilie bestmöglich wirkt."
+      },
+      {
+        "k": "dekorasyon-mobilya",
+        "h": "Einrichtung und Möbel",
+        "p": "Wir möblieren Ihre Immobilie für die Vermietung oder die Eigennutzung und übernehmen Beschaffung und Aufbau."
+      },
+      {
+        "k": "kira-yonetimi",
+        "h": "Vermietungs- und Immobilienverwaltung",
+        "p": "Mietersuche, Verträge, Mieteinzug, Instandhaltung und regelmäßige Berichte: So verwalten Sie Ihre Anlageimmobilie bequem aus der Ferne."
+      }
+    ],
+    "howH": "Wie wir arbeiten",
+    "how": [
+      {
+        "h": "Ein Ansprechpartner",
+        "p": "Recht, Steuern, Renovierung oder Verwaltung: In jeder Phase antwortet Ihnen dieselbe Person."
+      },
+      {
+        "h": "Transparenter Ablauf",
+        "p": "Phasen Ihrer Leistungen und Ihre Dokumente verfolgen Sie in Ihrem Mitgliedskonto."
+      },
+      {
+        "h": "In Ihrer Sprache",
+        "p": "Wir kommunizieren auf Türkisch, Spanisch, Englisch und Deutsch und stellen Website und Inserate in diesen Sprachen bereit."
+      },
+      {
+        "h": "Investieren aus der Ferne",
+        "p": "Mit Videogesprächen, Vollmacht und digitalem Dokumentenfluss können Sie den Prozess führen, ohne in Spanien zu sein."
+      }
+    ],
+    "partnersH": "Unsere Partner",
+    "partnersP": "Für Aufgaben, die Fachwissen erfordern, etwa Recht, Steuern und Renovierung, arbeiten wir mit unabhängigen Partnern, denen wir vertrauen. Wir sagen Ihnen von Anfang an, wer welche Leistung erbringt, und koordinieren den Ablauf in Ihrem Namen.",
+    "note": "Die Informationen auf dieser Website sind allgemein und stellen keine Rechts-, Steuer- oder Anlageberatung dar. RE/MAX ist eine eingetragene Marke von RE/MAX, LLC; jedes RE/MAX-Büro ist unabhängig im Besitz und wird unabhängig geführt.",
+    "ctaH": "Sprechen wir über Ihren Plan",
+    "ctaP": "Erzählen Sie uns, was Sie vorhaben, und wir klären gemeinsam die passenden Schritte.",
+    "ctaBtn": "Kontakt aufnehmen",
+    "ctaBtn2": "Leistungen ansehen"
+  },
+  "remaxPage": {
+    "title": "Partnerschaft mit RE/MAX",
+    "subtitle": "Unsere Immobilienberater arbeiten unter RE/MAX. Lock & Loft bündelt für Sie alles vor und nach dem Kauf.",
+    "sections": [
+      {
+        "h": "So funktioniert die Partnerschaft",
+        "p": [
+          "Unsere Immobilienberater arbeiten unter RE/MAX. So haben wir Zugang zum RE/MAX-Angebot in der Region Valencia und Alicante und führen Besichtigungen, Angebot und Kauf unter einer bekannten internationalen Marke."
+        ]
+      },
+      {
+        "h": "Was Lock & Loft ergänzt",
+        "p": [
+          "Der Kauf ist oft nur der erste Schritt. Lock & Loft bündelt rechtliche und steuerliche Koordination, Renovierung, Home Staging, Einrichtung und Vermietungsverwaltung über einen Ansprechpartner und in Ihrer Sprache.",
+          "So müssen Sie nicht für Anwälte, Handwerksbetriebe und Mieterverwaltung an verschiedene Türen klopfen."
+        ]
+      },
+      {
+        "h": "Inserate auf dieser Website",
+        "p": [
+          "Unsere Inserate stammen aus zwei Quellen: Objekte aus dem RE/MAX-Angebot und private Objekte, die unser Team direkt findet. Preise und Verfügbarkeit können sich ändern; die aktuellen Angaben zu einem Objekt, das Sie interessiert, bestätigen wir mit unserem Berater."
+        ]
+      },
+      {
+        "h": "Wer macht was",
+        "p": [
+          "Die Immobilienvermittlung selbst läuft über das zuständige RE/MAX-Büro. Weitere Leistungen wie Recht, Steuern und Renovierung werden in getrennten Leistungsumfängen von unseren unabhängigen Partnern erbracht. Bevor die Arbeit beginnt, bestätigen wir schriftlich, wer welche Leistung erbringt und was sie umfasst."
+        ]
+      }
+    ],
+    "legal": "RE/MAX ist eine eingetragene Marke von RE/MAX, LLC. Jedes RE/MAX-Büro ist unabhängig im Besitz und wird unabhängig geführt.",
+    "ctaBtn": "Immobilien ansehen",
+    "ctaBtn2": "Berater schreiben"
+  },
+  "faqPage": {
+    "title": "Häufige Fragen",
+    "subtitle": "Die Fragen, die am häufigsten gestellt werden, wenn man aus der Türkei oder dem Ausland in Valencia und Alicante kaufen möchte.",
+    "items": [
+      {
+        "q": "Können türkische Staatsbürger in Spanien eine Immobilie kaufen?",
+        "a": "Ja. Für den Wohnungskauf durch Ausländer gibt es keine allgemeine Beschränkung; es bestehen begrenzte Ausnahmen wie militärische und strategische Zonen. Sie benötigen eine NIE, die spanische Steuernummer, und wir koordinieren diesen Vorgang mit unseren Rechtspartnern."
+      },
+      {
+        "q": "Kann ich kaufen, ohne nach Spanien zu reisen?",
+        "a": "In den meisten Fällen ja. Sie können Objekte per Videogespräch ansehen und die Schritte per Vollmacht (poder) bevollmächtigen, die bei einem spanischen Konsulat oder vor einem Notar unterzeichnet werden kann. Wir empfehlen dennoch, die Immobilie vor der Unterschrift persönlich zu sehen."
+      },
+      {
+        "q": "Welche Kosten kommen zum Preis hinzu?",
+        "a": "Steuern, Notar, Grundbuch und Gestoría machen zusammen meist etwa 10-15 % des Preises aus, bei einer Finanzierung kommt eine Bewertung hinzu. Bei Bestandsimmobilien fällt ITP an, bei Neubauten MwSt. (IVA) und AJD. Die Sätze legt jede Region fest, und sie ändern sich gelegentlich. In der Angebotsphase erstellen wir Ihnen eine genaue Berechnung für das konkrete Objekt."
+      },
+      {
+        "q": "Wie lange dauert der Kauf?",
+        "a": "Das hängt vom Objekt und von den Unterlagen ab. Sobald NIE, Bankkonto und Reservierungsvertrag (arras) bereit sind, dauert ein Kauf aus dem Bestand meist ein bis drei Monate vom angenommenen Angebot bis zur Beurkundung."
+      },
+      {
+        "q": "Verschafft mir der Hauskauf ein Aufenthaltsrecht?",
+        "a": "Nein. Spaniens an Immobilieninvestitionen geknüpftes Golden-Visa-Programm endete am 3. April 2025, sodass der Kauf allein kein Aufenthaltsrecht mehr gewährt. Es gibt andere Aufenthaltswege; unsere Rechtspartner prüfen, welcher zu Ihrer Situation passt."
+      },
+      {
+        "q": "Kann ich eine Finanzierung bekommen?",
+        "a": "Spanische Banken können auch an Ausländer verleihen, doch bei Nichtansässigen ist der finanzierte Anteil meist niedriger und die Bedingungen strenger. Das Ergebnis hängt von der Bank und Ihrem Einkommen ab. Wir empfehlen, sich vor der Entscheidung vorab zu informieren."
+      },
+      {
+        "q": "Welche Steuern zahle ich bei Vermietung?",
+        "a": "Nichtansässige zahlen auf Mieteinnahmen die Einkommensteuer für Nichtansässige (IRNR). Der Satz beträgt 19 % für Personen mit Wohnsitz in EU/EWR-Ländern und 24 % für Personen mit Wohnsitz in anderen Ländern; ob Ausgaben abgezogen werden können, hängt von dieser Gruppe ab. Hinzu kommt die jährliche Grundsteuer (IBI). Für Ihren Fall empfehlen wir ein Gespräch mit unserem Steuerpartner."
+      },
+      {
+        "q": "Wie laufen Renovierung und Home Staging ab?",
+        "a": "Wir sehen uns die Immobilie gemeinsam mit Ihnen an, klären den Bedarf, holen schriftliche Angebote unabhängiger Handwerksbetriebe ein und beginnen mit Ihrer Freigabe. Wir senden Fortschrittsberichte mit Fotos und prüfen das Ergebnis bei der Übergabe gemeinsam."
+      },
+      {
+        "q": "Können Sie meine Immobilie nach dem Kauf verwalten?",
+        "a": "Ja. Wir können Mietersuche, Mietvertrag, Mieteinzug, Instandhaltung und regelmäßige Berichte übernehmen. Für Kurzzeitvermietung (Ferienvermietung) gelten Lizenzanforderungen, die von der Gegend und den Regeln des Gebäudes abhängen; das prüfen wir von Anfang an gemeinsam."
+      },
+      {
+        "q": "Was kosten Ihre Leistungen?",
+        "a": "Das hängt vom Umfang und von der Art der Arbeit ab. Bevor eine Leistung beginnt, bestätigen wir schriftlich, was sie umfasst und was sie kostet."
+      },
+      {
+        "q": "In welchen Sprachen kommunizieren Sie?",
+        "a": "Türkisch, Spanisch, Englisch und Deutsch."
+      }
+    ],
+    "note": "Die Informationen auf dieser Seite sind allgemein und stellen keine Rechts-, Steuer- oder Anlageberatung dar. Regeln und Sätze können sich ändern; bestätigen Sie den aktuellen Stand vor Ihrer Entscheidung mit unseren Beratern.",
+    "ctaH": "Ihre Frage ist nicht dabei?",
+    "ctaBtn": "Schreiben Sie uns"
+  },
+  "glossaryPage": {
+    "title": "Glossar",
+    "subtitle": "Die wichtigsten Begriffe beim Immobilienkauf in Spanien und was sie bedeuten.",
+    "note": "Die Erklärungen sind allgemein; für genaue Regeln und Sätze fragen Sie unsere Berater.",
+    "ctaBtn": "Beratung anfragen",
+    "terms": [
+      [
+        "NIE",
+        "Número de Identidad de Extranjero. Die spanische Steuernummer für Ausländer. Sie wird für den Immobilienkauf, die Kontoeröffnung und die Steuerzahlung benötigt."
+      ],
+      [
+        "TIE",
+        "Tarjeta de Identidad de Extranjero. Der Ausweis von Ausländern mit Aufenthaltserlaubnis in Spanien."
+      ],
+      [
+        "Arras",
+        "Reservierungsvertrag und Anzahlung, unterzeichnet, sobald Preis und Bedingungen feststehen. Bei der häufigsten Art verliert der Käufer die Anzahlung, wenn er zurücktritt, und der Verkäufer zahlt das Doppelte zurück, wenn er zurücktritt; je nach vereinbarter Art kann das abweichen."
+      ],
+      [
+        "Escritura",
+        "Die öffentliche Kaufurkunde, vor einem Notar unterzeichnet. Mit dieser Unterschrift geht das Eigentum über."
+      ],
+      [
+        "Notario",
+        "Der spanische Notar. Prüft die Rechtmäßigkeit des Verkaufs und erstellt die escritura."
+      ],
+      [
+        "Registro de la Propiedad",
+        "Das Grundbuch. Eigentum und Belastungen wie Hypotheken sind hier eingetragen; nach der escritura wird die Immobilie auf den Käufer eingetragen."
+      ],
+      [
+        "Nota simple",
+        "Ein kurzer Grundbuchauszug mit Eigentümer und Belastungen wie Hypotheken oder Pfändungen. Er sollte vor dem Kauf immer geprüft werden."
+      ],
+      [
+        "ITP",
+        "Impuesto de Transmisiones Patrimoniales. Die Steuer, die der Käufer beim Kauf einer Bestandsimmobilie zahlt; der Satz hängt von der Region ab."
+      ],
+      [
+        "IVA und AJD",
+        "Mehrwertsteuer (bei Wohnungen in der Regel 10 %) und Stempelsteuer Actos Jurídicos Documentados beim Kauf einer neuen Immobilie (Erstverkauf). Der AJD-Satz hängt von der Region ab."
+      ],
+      [
+        "IBI",
+        "Impuesto sobre Bienes Inmuebles. Die jährliche Grundsteuer, die die Gemeinde vom Eigentümer erhebt."
+      ],
+      [
+        "Plusvalía municipal",
+        "Eine kommunale Steuer des Verkäufers, die auf der Wertsteigerung des Grundstücks während der Besitzzeit beruht."
+      ],
+      [
+        "IRNR / Modelo 210",
+        "Die Steuer, die Nichtansässige auf Einkünfte in Spanien zahlen, etwa Miete oder Immobilienverkauf. Die Erklärung erfolgt mit dem Modelo 210."
+      ],
+      [
+        "Catastro",
+        "Das Kataster. Der Katasterwert ist der offizielle Wert für die Steuerberechnung und kann vom Marktpreis abweichen."
+      ],
+      [
+        "Empadronamiento",
+        "Anmeldung Ihres Wohnsitzes bei der Gemeinde. Wird bei manchen Behördengängen als Wohnsitznachweis verlangt."
+      ],
+      [
+        "Cédula de habitabilidad",
+        "Ein Dokument, das die Bewohnbarkeit bestätigt. In der Valencianischen Gemeinschaft kann es etwa für Versorgungsverträge und Vermietungen verlangt werden."
+      ],
+      [
+        "Certificado energético",
+        "Ein Zertifikat, das die Energieeffizienz der Immobilie von A bis G bewertet. Beim Verkauf und bei der Vermietung Pflicht."
+      ],
+      [
+        "Comunidad de propietarios",
+        "Die Eigentümergemeinschaft eines Gebäudes oder einer Anlage. Hier werden die gemeinsamen Kosten (Hausgeld) und Beschlüsse festgelegt; vor dem Kauf werden offene Schulden geprüft."
+      ],
+      [
+        "Gestoría",
+        "Ein Verwaltungsbüro, das amtliche Formalitäten und Steuererklärungen erledigt."
+      ],
+      [
+        "Poder notarial",
+        "Eine notarielle Vollmacht. Sie erlaubt es, Schritte ohne Anwesenheit in Spanien zu erledigen."
+      ],
+      [
+        "Apostille",
+        "Eine Beglaubigung nach dem Haager Übereinkommen, die ein ausländisches Dokument in Spanien gültig macht. Oft nötig für Dokumente aus der Türkei."
+      ],
+      [
+        "Licencia de obra",
+        "Eine Bau- oder Renovierungsgenehmigung der Gemeinde. Je nach Arbeit ist eine kleine (menor) oder große (mayor) Genehmigung nötig."
+      ],
+      [
+        "Home Staging",
+        "Eine Immobilie für Verkauf oder Vermietung herrichten, bei Bedarf möblieren und fotografieren, damit sie bestmöglich wirkt."
+      ]
+    ]
   }
 }

@@ -84,6 +84,9 @@ const ROUTES = {
   giris: { es: 'acceder', en: 'login', de: 'anmelden' },
   panel: { es: 'mi-cuenta', en: 'account', de: 'mein-konto' },
   gizlilik: { es: 'privacidad', en: 'privacy', de: 'datenschutz' },
+  hakkimizda: { es: 'nosotros', en: 'about', de: 'ueber-uns' },
+  sss: { es: 'preguntas-frecuentes', en: 'faq', de: 'haeufige-fragen' },
+  sozluk: { es: 'glosario', en: 'glossary', de: 'glossar' },
   'sifre-yenile': { es: 'restablecer-contrasena', en: 'reset-password', de: 'passwort-zuruecksetzen' },
 };
 const SLUG_TO_CANONICAL = {};
@@ -127,7 +130,7 @@ const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 let SEO = { home: {}, pages: {}, services: {} };
 try { SEO = JSON.parse(fs.readFileSync(path.join(__dirname, 'seo-meta.json'), 'utf8')); } catch (e) { console.error('seo-meta.json missing'); }
 
-const PAGE_KEYS = ['iletisim', 'hizmetler', 'mulkler', 'roi-hesaplama', 'piyasa', 'blog', 'gizlilik'];
+const PAGE_KEYS = ['iletisim', 'hizmetler', 'mulkler', 'roi-hesaplama', 'piyasa', 'blog', 'gizlilik', 'hakkimizda', 'remax', 'sss', 'sozluk'];
 const SERVICE_KEYS = ['mulk-arama', 'hukuki-destek', 'dekorasyon-mobilya', 'renovasyon', 'kira-yonetimi', 'home-staging'];
 const NOINDEX_KEYS = ['giris', 'panel', 'sifre-yenile'];
 

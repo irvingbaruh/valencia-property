@@ -1022,5 +1022,256 @@
     "formPrivacy": "Bilgileriniz yalnızca size dönmek için kullanılır ve yapay zekâ modeline gönderilmez.",
     "openingLine": "Bir danışmanla görüşmek istiyorum.",
     "disclaimer": "Yapay zekâ asistanıdır, hata yapabilir; hukuki veya mali tavsiye değildir. Şifre, kimlik veya ödeme bilgisi paylaşmayın. Mesajlar yanıt üretmek için bir yapay zekâ hizmetinde işlenir."
+  },
+  "aboutPage": {
+    "title": "Hakkımızda",
+    "subtitle": "Valencia ve Alicante'de ev danışmanlığından reformaya, hukuki desteğe ve kira yönetimine kadar mülk sürecinizin tamamını tek yerden yürütüyoruz.",
+    "storyH": "Biz Kimiz",
+    "story": [
+      "Lock & Loft, Valencia ve Alicante bölgesinde ev almak, yenilemek, değerlendirmek veya yönetmek isteyenler için kurulmuş bir mülk hizmetleri markasıdır. Emlak danışmanlarımız RE/MAX bünyesinde çalışır; böylece geniş bir ilan portföyüne erişir ve süreci tanınmış bir uluslararası markanın çatısı altında yürütürüz.",
+      "Ev almak çoğu zaman işin yalnızca başlangıcıdır. Tapu, vergi, reform, dekorasyon, kiracı bulma ve yönetim için ayrı ayrı kapı çalmak yerine, bunların hepsini tek muhatapla ve sizin dilinizde koordine ediyoruz. Türkiye'den veya Avrupa'dan uzaktan yatırım yapan müşterilerimizin sürecin her aşamasını net görebilmesini önemsiyoruz."
+    ],
+    "offerH": "Neler Yapıyoruz",
+    "offer": [
+      {
+        "k": "mulk-arama",
+        "h": "Emlak Danışmanlığı",
+        "p": "İhtiyacınıza, bütçenize ve kullanım amacınıza uygun mülkleri bulur; gezi, teklif ve satın alma sürecinde yanınızda oluruz."
+      },
+      {
+        "k": "hukuki-destek",
+        "h": "Hukuki ve Vergi Desteği",
+        "p": "NIE, banka hesabı, tapu işlemleri, sözleşme kontrolü ve vergi konularında uzman iş ortaklarımızla çalışır, süreci sizin için koordine ederiz."
+      },
+      {
+        "k": "renovasyon",
+        "h": "Renovasyon",
+        "p": "Keşiften teslimata kadar reform sürecini teklif toplama, takip ve düzenli raporlarla yönetiriz."
+      },
+      {
+        "k": "home-staging",
+        "h": "Home Staging",
+        "p": "Satış veya kiralama öncesi mülkünüzün daha çekici sunulması için düzenleme ve profesyonel fotoğraf çekimini organize ederiz."
+      },
+      {
+        "k": "dekorasyon-mobilya",
+        "h": "Dekorasyon & Mobilya",
+        "p": "Mülkünüzü kiralık veya kendi kullanımınız için döşer, tedarik ve kurulumu sizin adınıza yürütürüz."
+      },
+      {
+        "k": "kira-yonetimi",
+        "h": "Kira ve Mülk Yönetimi",
+        "p": "Kiracı bulma, sözleşme, kira tahsilatı, bakım ve düzenli raporlamayla yatırım mülkünüzü uzaktan rahatça yönetmenizi sağlarız."
+      }
+    ],
+    "howH": "Nasıl Çalışıyoruz",
+    "how": [
+      {
+        "h": "Tek muhatap",
+        "p": "Hukuk, vergi, reform ya da yönetim; hangi adımda olursanız olun size dönen kişi aynıdır."
+      },
+      {
+        "h": "Şeffaf süreç",
+        "p": "Hizmetlerinizin aşamalarını ve belgelerinizi üyelik panelinizden takip edersiniz."
+      },
+      {
+        "h": "Kendi dilinizde",
+        "p": "Türkçe, İspanyolca, İngilizce ve Almanca iletişim kurar, site ve ilan bilgilerini bu dillerde sunarız."
+      },
+      {
+        "h": "Uzaktan yatırım",
+        "p": "Görüntülü görüşme, vekaletname ve dijital belge akışıyla İspanya'da bulunmadan da süreci yürütebilirsiniz."
+      }
+    ],
+    "partnersH": "İş Ortaklarımız",
+    "partnersP": "Hukuk, vergi, reform gibi uzmanlık gerektiren işlerde bağımsız, güvendiğimiz iş ortaklarıyla çalışırız. Hangi hizmeti kimin verdiğini baştan açıkça bildirir, süreci sizin adınıza koordine ederiz.",
+    "note": "Bu sitedeki bilgiler genel bilgilendirme amaçlıdır; hukuki, vergi veya yatırım tavsiyesi değildir. RE/MAX, RE/MAX, LLC'nin tescilli markasıdır; her RE/MAX ofisi bağımsız olarak sahiplenilir ve işletilir.",
+    "ctaH": "Planınızı Konuşalım",
+    "ctaP": "Ne yapmak istediğinizi anlatın, size uygun adımları birlikte netleştirelim.",
+    "ctaBtn": "İletişime Geç",
+    "ctaBtn2": "Hizmetleri İncele"
+  },
+  "remaxPage": {
+    "title": "RE/MAX İşbirliği",
+    "subtitle": "Emlak danışmanlarımız RE/MAX bünyesinde çalışır. Lock & Loft ise satın almanın öncesini ve sonrasını sizin için tek çatı altında toplar.",
+    "sections": [
+      {
+        "h": "Ortaklık nasıl işliyor?",
+        "p": [
+          "Emlak danışmanlarımız RE/MAX bünyesinde çalışır. Bu sayede RE/MAX'in Valencia ve Alicante bölgesindeki ilan portföyüne erişir; mülk gezileri, teklif ve satın alma sürecini tanınmış bir uluslararası markanın çatısı altında yürütürüz."
+        ]
+      },
+      {
+        "h": "Lock & Loft ne ekler?",
+        "p": [
+          "Satın alma çoğu zaman yalnızca ilk adımdır. Lock & Loft; hukuki ve vergi süreçlerinin koordinasyonu, renovasyon, home staging, dekorasyon ve kira yönetimi gibi adımları tek muhatapla ve sizin dilinizde bir araya getirir.",
+          "Böylece avukat, müteahhit ve kiracı yönetimi için ayrı ayrı kapı çalmak zorunda kalmazsınız."
+        ]
+      },
+      {
+        "h": "Sitedeki ilanlar",
+        "p": [
+          "İlanlarımız iki kaynaktan gelir: RE/MAX portföyündeki mülkler ve ekibimizin doğrudan bulduğu özel mülkler. Fiyat ve müsaitlik durumu değişebilir; ilgilendiğiniz mülkün güncel bilgisini danışmanımızdan teyit ederiz."
+        ]
+      },
+      {
+        "h": "Kim hangi işi yapıyor?",
+        "p": [
+          "Emlak aracılık işlemi ilgili RE/MAX ofisi aracılığıyla yürür. Hukuk, vergi, reform gibi diğer hizmetler ayrı kapsamlarla ve bağımsız iş ortaklarımızla verilir. Hangi hizmeti kimin verdiğini ve kapsamını işe başlamadan önce yazılı olarak netleştiririz."
+        ]
+      }
+    ],
+    "legal": "RE/MAX, RE/MAX, LLC'nin tescilli markasıdır. Her RE/MAX ofisi bağımsız olarak sahiplenilir ve işletilir.",
+    "ctaBtn": "İlanlara Göz At",
+    "ctaBtn2": "Danışmana Yaz"
+  },
+  "faqPage": {
+    "title": "Sıkça Sorulan Sorular",
+    "subtitle": "Türkiye'den veya yurt dışından Valencia ve Alicante'de ev almak isteyenlerin en çok sorduğu sorular.",
+    "items": [
+      {
+        "q": "Türk vatandaşları İspanya'da ev alabilir mi?",
+        "a": "Evet. Yabancıların konut satın almasına genel bir kısıtlama yoktur; askeri ve stratejik bölgeler gibi sınırlı istisnalar vardır. Satın alma için İspanya vergi kimlik numarası olan NIE gerekir; bu süreci hukuki iş ortaklarımızla koordine ederiz."
+      },
+      {
+        "q": "İspanya'ya gelmeden satın alabilir miyim?",
+        "a": "Çoğu zaman evet. Mülkleri görüntülü görüşmeyle inceleyebilir, işlemleri vekaletname (poder) ile yetkilendirebilirsiniz. Vekaletname İspanya konsolosluğunda veya noterde düzenlenebilir. Yine de imzadan önce mülkü yerinde görmenizi öneririz."
+      },
+      {
+        "q": "Satın alırken fiyatın dışında ne kadar masraf çıkar?",
+        "a": "Vergiler, noter, tapu sicili ve gestoría giderleri toplamında genellikle fiyatın yüzde 10-15'i kadar ek maliyet oluşur; kredi alırsanız değerleme de eklenir. İkinci el konutta ITP, yeni konutta KDV (IVA) ve AJD uygulanır. Oranları bölgeler belirler ve zaman zaman değişir. Teklif aşamasında size mülke özel net bir hesap çıkarırız."
+      },
+      {
+        "q": "Satın alma süreci ne kadar sürer?",
+        "a": "Süre mülke ve belgelere göre değişir. NIE, banka hesabı ve ön sözleşme (arras) hazır olduğunda, ikinci el konutlarda teklifin kabulünden tapuya genellikle bir ila üç ay gerekir."
+      },
+      {
+        "q": "Ev almak oturma izni sağlar mı?",
+        "a": "Hayır. İspanya'nın mülk yatırımına bağlı Golden Visa programı 3 Nisan 2025'te sona erdi; yalnızca konut satın almak artık oturma izni vermez. Başka oturum yolları vardır; hangisinin durumunuza uygun olduğunu hukuki iş ortaklarımız değerlendirir."
+      },
+      {
+        "q": "Konut kredisi kullanabilir miyim?",
+        "a": "İspanyol bankaları yabancılara da konut kredisi verebilir; ancak oturma izni olmayanlar için finansman oranı genellikle daha düşük ve koşullar daha sıkıdır. Sonuç bankaya ve gelir durumunuza göre değişir. Karar vermeden önce ön bilgi almanızı öneririz."
+      },
+      {
+        "q": "Kiraya verirsem hangi vergileri öderim?",
+        "a": "İspanya'da yerleşik olmayanlar kira gelirinden Yerleşik Olmayanlar Gelir Vergisi (IRNR) öder. Oran, AB/AEA ülkelerinde yaşayanlar için yüzde 19, diğer ülkelerde yaşayanlar için yüzde 24'tür; giderlerin düşülüp düşülemeyeceği de bu gruba göre değişir. Ayrıca yıllık emlak vergisi (IBI) ödenir. Kendi durumunuz için vergi danışmanı iş ortağımızla görüşmenizi öneririz."
+      },
+      {
+        "q": "Reform ve home staging nasıl ilerliyor?",
+        "a": "Mülkünüzü birlikte inceler, ihtiyaçları belirler, bağımsız yüklenicilerden yazılı teklif toplar ve onayınızla işe başlarız. Süreç boyunca fotoğraflı ilerleme raporları paylaşır, teslimde birlikte kontrol ederiz."
+      },
+      {
+        "q": "Satın aldıktan sonra mülkümü siz yönetebilir misiniz?",
+        "a": "Evet. Kiracı bulma, kira sözleşmesi, kira tahsilatı, bakım ve düzenli raporlama gibi işleri yönetebiliriz. Kısa dönem (turistik) kiralama için bölgeye ve binanın kurallarına bağlı lisans şartları vardır; bunları baştan birlikte kontrol ederiz."
+      },
+      {
+        "q": "Hizmetlerin bedeli nedir?",
+        "a": "Kapsam ve işlem türüne göre değişir. Bir hizmete başlamadan önce neyi kapsadığını ve bedelini yazılı olarak netleştiririz."
+      },
+      {
+        "q": "Hangi dillerde iletişim kuruyorsunuz?",
+        "a": "Türkçe, İspanyolca, İngilizce ve Almanca."
+      }
+    ],
+    "note": "Bu sayfadaki bilgiler genel bilgilendirme amaçlıdır; hukuki, vergi veya yatırım tavsiyesi değildir. Kurallar ve oranlar değişebilir; kararınızdan önce güncel durumu danışmanlarımızla teyit edin.",
+    "ctaH": "Cevabını bulamadığınız bir soru mu var?",
+    "ctaBtn": "Bize yazın"
+  },
+  "glossaryPage": {
+    "title": "Sözlük",
+    "subtitle": "İspanya'da ev alırken karşınıza çıkacak temel terimler ve ne anlama geldikleri.",
+    "note": "Açıklamalar genel bilgi içindir; kesin kurallar ve oranlar için danışmanlarımıza başvurun.",
+    "ctaBtn": "Danışmanlık Al",
+    "terms": [
+      [
+        "NIE",
+        "Número de Identidad de Extranjero. Yabancılara verilen İspanya vergi kimlik numarası. Ev almak, banka hesabı açmak ve vergi ödemek için gerekir."
+      ],
+      [
+        "TIE",
+        "Tarjeta de Identidad de Extranjero. İspanya'da oturma izni olan yabancıların kimlik kartı."
+      ],
+      [
+        "Arras",
+        "Ön sözleşme ve kapora. Fiyat ve koşullar üzerinde anlaşıldığında imzalanır. En yaygın türde alıcı vazgeçerse kaporayı kaybeder, satıcı vazgeçerse kaporanın iki katını öder; sözleşmedeki türe göre değişebilir."
+      ],
+      [
+        "Escritura",
+        "Noter huzurunda imzalanan resmi tapu senedi. Mülkiyet bu imzayla devredilir."
+      ],
+      [
+        "Notario",
+        "İspanya'da noter. Satışın hukuka uygunluğunu denetler ve escritura'yı düzenler."
+      ],
+      [
+        "Registro de la Propiedad",
+        "Tapu sicili. Mülkiyet ve ipotek gibi yükler burada kayıtlıdır; escritura sonrası mülk alıcı adına tescil edilir."
+      ],
+      [
+        "Nota simple",
+        "Tapu sicilinden alınan kısa özet belge. Mülkün sahibini ve ipotek, haciz gibi yükleri gösterir; satın almadan önce mutlaka kontrol edilir."
+      ],
+      [
+        "ITP",
+        "Impuesto de Transmisiones Patrimoniales. İkinci el konut alımında alıcının ödediği, oranı bölgeye göre değişen vergi."
+      ],
+      [
+        "IVA ve AJD",
+        "Yeni (ilk el) konut alımında ödenen KDV (konutlarda genellikle yüzde 10) ve Actos Jurídicos Documentados damga vergisi. AJD oranı bölgeye göre değişir."
+      ],
+      [
+        "IBI",
+        "Impuesto sobre Bienes Inmuebles. Belediyenin her yıl mülk sahibinden aldığı emlak vergisi."
+      ],
+      [
+        "Plusvalía municipal",
+        "Mülkü satan kişinin ödediği belediye vergisi; arsanın elde tutulduğu sürede kazandığı değer artışına dayanır."
+      ],
+      [
+        "IRNR / Modelo 210",
+        "İspanya'da yerleşik olmayanların İspanya'daki gelirlerinden (kira, mülk satışı vb.) ödediği vergi. Beyan formu Modelo 210'dur."
+      ],
+      [
+        "Catastro",
+        "Kadastro. Kadastral değer, vergilerin hesabında kullanılan resmi değerdir ve piyasa fiyatından farklı olabilir."
+      ],
+      [
+        "Empadronamiento",
+        "Belediyede ikamet kaydı. Bazı resmi işlemlerde ikamet kanıtı olarak istenir."
+      ],
+      [
+        "Cédula de habitabilidad",
+        "Konutun oturulabilir olduğunu gösteren belge. Valencia Topluluğu'nda abonelik ve kiralama gibi bazı işlemlerde istenebilir."
+      ],
+      [
+        "Certificado energético",
+        "Konutun enerji verimliliğini A'dan G'ye gösteren belge. Satış ve kiralamada zorunludur."
+      ],
+      [
+        "Comunidad de propietarios",
+        "Apartman veya site yönetimi. Ortak giderler (aidat) ve kararlar burada belirlenir; satın almadan önce borç durumu kontrol edilir."
+      ],
+      [
+        "Gestoría",
+        "Resmi evrak ve vergi işlemlerini takip eden idari danışmanlık bürosu."
+      ],
+      [
+        "Poder notarial",
+        "Noter onaylı vekaletname. İspanya'da bulunmadan işlem yapmanıza imkan verir."
+      ],
+      [
+        "Apostille",
+        "Yabancı ülkede düzenlenen belgelerin İspanya'da geçerli olması için Lahey Sözleşmesi uyarınca yapılan onay. Türkiye'den getirilen belgelerde sık gerekir."
+      ],
+      [
+        "Licencia de obra",
+        "Belediyeden alınan inşaat veya reform izni. İşin kapsamına göre küçük (menor) ya da büyük (mayor) türü gerekir."
+      ],
+      [
+        "Home staging",
+        "Satış veya kiralama öncesi mülkü düzenleyerek, gerekirse döşeyerek ve fotoğraflayarak daha çekici sunma işi."
+      ]
+    ]
   }
 }

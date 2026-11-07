@@ -1022,5 +1022,256 @@
     "formPrivacy": "Tus datos solo se usan para contactarte y no se envían al modelo de IA.",
     "openingLine": "Quiero hablar con un asesor.",
     "disclaimer": "Es un asistente de IA y puede equivocarse; no es asesoramiento legal ni financiero. No compartas contraseñas, documentos de identidad ni datos de pago. Los mensajes se procesan en un servicio de IA para generar la respuesta."
+  },
+  "aboutPage": {
+    "title": "Sobre nosotros",
+    "subtitle": "Desde el asesoramiento inmobiliario hasta la reforma, el apoyo legal y la gestión de alquileres en Valencia y Alicante, llevamos todo su proceso inmobiliario en un solo lugar.",
+    "storyH": "Quiénes somos",
+    "story": [
+      "Lock & Loft es una marca de servicios inmobiliarios para quienes quieren comprar, reformar, poner en valor o gestionar una vivienda en la zona de Valencia y Alicante. Nuestros asesores inmobiliarios trabajan bajo el paraguas de RE/MAX, lo que nos da acceso a una amplia cartera de inmuebles y nos permite llevar el proceso bajo una marca internacional reconocida.",
+      "Comprar una vivienda suele ser solo el principio. En lugar de llamar a puertas distintas para la escritura, los impuestos, la reforma, el amueblado, la búsqueda de inquilinos y la gestión, lo coordinamos todo con un único interlocutor y en su idioma. Nos importa que quienes invierten a distancia desde Turquía o Europa vean con claridad cada fase del proceso."
+    ],
+    "offerH": "Qué hacemos",
+    "offer": [
+      {
+        "k": "mulk-arama",
+        "h": "Asesoramiento inmobiliario",
+        "p": "Encontramos inmuebles acordes con sus necesidades, presupuesto y objetivo, y le acompañamos en las visitas, la oferta y la compra."
+      },
+      {
+        "k": "hukuki-destek",
+        "h": "Apoyo legal y fiscal",
+        "p": "Para el NIE, la cuenta bancaria, los trámites de escritura, la revisión de contratos y los impuestos, trabajamos con socios especializados y coordinamos el proceso por usted."
+      },
+      {
+        "k": "renovasyon",
+        "h": "Reformas",
+        "p": "Desde la primera visita técnica hasta la entrega, gestionamos la reforma con presupuestos, seguimiento e informes periódicos."
+      },
+      {
+        "k": "home-staging",
+        "h": "Home staging",
+        "p": "Antes de vender o alquilar, organizamos la preparación y la fotografía profesional para presentar su inmueble de la mejor manera."
+      },
+      {
+        "k": "dekorasyon-mobilya",
+        "h": "Decoración y mobiliario",
+        "p": "Amueblamos su inmueble para alquilarlo o para su uso propio, y nos encargamos del suministro y la instalación."
+      },
+      {
+        "k": "kira-yonetimi",
+        "h": "Gestión de alquileres e inmuebles",
+        "p": "Búsqueda de inquilinos, contratos, cobro de rentas, mantenimiento e informes periódicos, para que gestione su inversión a distancia con tranquilidad."
+      }
+    ],
+    "howH": "Cómo trabajamos",
+    "how": [
+      {
+        "h": "Un único interlocutor",
+        "p": "Legal, fiscal, reforma o gestión: en la fase que esté, la persona que le atiende es la misma."
+      },
+      {
+        "h": "Proceso transparente",
+        "p": "Sigue las fases de sus servicios y sus documentos desde su cuenta de miembro."
+      },
+      {
+        "h": "En su idioma",
+        "p": "Nos comunicamos en turco, español, inglés y alemán, y presentamos la web y los anuncios en esos idiomas."
+      },
+      {
+        "h": "Inversión a distancia",
+        "p": "Con videollamadas, poder notarial y un flujo digital de documentos, puede llevar el proceso sin estar en España."
+      }
+    ],
+    "partnersH": "Nuestros socios",
+    "partnersP": "Para los trabajos que requieren especialistas, como los legales, fiscales o de reforma, trabajamos con socios independientes de confianza. Le indicamos desde el principio quién presta cada servicio y coordinamos el proceso en su nombre.",
+    "note": "La información de este sitio es de carácter general y no constituye asesoramiento legal, fiscal ni de inversión. RE/MAX es una marca registrada de RE/MAX, LLC; cada oficina RE/MAX es de propiedad y gestión independientes.",
+    "ctaH": "Hablemos de su plan",
+    "ctaP": "Cuéntenos qué quiere hacer y definiremos juntos los pasos adecuados.",
+    "ctaBtn": "Contactar",
+    "ctaBtn2": "Ver servicios"
+  },
+  "remaxPage": {
+    "title": "Colaboración con RE/MAX",
+    "subtitle": "Nuestros asesores inmobiliarios trabajan bajo RE/MAX. Lock & Loft reúne para usted todo lo que ocurre antes y después de la compra.",
+    "sections": [
+      {
+        "h": "Cómo funciona la colaboración",
+        "p": [
+          "Nuestros asesores inmobiliarios trabajan bajo RE/MAX. Eso nos da acceso a la cartera de RE/MAX en la zona de Valencia y Alicante, y nos permite llevar las visitas, la oferta y la compra bajo una marca internacional reconocida."
+        ]
+      },
+      {
+        "h": "Qué aporta Lock & Loft",
+        "p": [
+          "Comprar suele ser solo el primer paso. Lock & Loft reúne la coordinación legal y fiscal, la reforma, el home staging, la decoración y la gestión de alquileres con un único interlocutor y en su idioma.",
+          "Así no tiene que llamar a puertas distintas para abogados, constructores y gestión de inquilinos."
+        ]
+      },
+      {
+        "h": "Anuncios de este sitio",
+        "p": [
+          "Nuestros anuncios proceden de dos fuentes: inmuebles de la cartera de RE/MAX e inmuebles privados que encuentra directamente nuestro equipo. Los precios y la disponibilidad pueden cambiar; confirmamos con nuestro asesor los datos actuales del inmueble que le interese."
+        ]
+      },
+      {
+        "h": "Quién hace qué",
+        "p": [
+          "La intermediación inmobiliaria se realiza a través de la oficina RE/MAX correspondiente. Otros servicios, como los legales, fiscales o de reforma, se prestan con alcances distintos por nuestros socios independientes. Antes de empezar, confirmamos por escrito quién presta cada servicio y qué incluye."
+        ]
+      }
+    ],
+    "legal": "RE/MAX es una marca registrada de RE/MAX, LLC. Cada oficina RE/MAX es de propiedad y gestión independientes.",
+    "ctaBtn": "Ver propiedades",
+    "ctaBtn2": "Escribir a un asesor"
+  },
+  "faqPage": {
+    "title": "Preguntas frecuentes",
+    "subtitle": "Las preguntas más habituales de quienes quieren comprar en Valencia y Alicante desde Turquía o el extranjero.",
+    "items": [
+      {
+        "q": "¿Pueden los ciudadanos turcos comprar vivienda en España?",
+        "a": "Sí. No hay una restricción general para que los extranjeros compren vivienda; existen excepciones limitadas, como las zonas militares y estratégicas. Se necesita el NIE, el número de identificación fiscal en España, y coordinamos ese trámite con nuestros socios legales."
+      },
+      {
+        "q": "¿Puedo comprar sin viajar a España?",
+        "a": "En la mayoría de los casos, sí. Puede ver los inmuebles por videollamada y autorizar los trámites mediante un poder, que se puede firmar en un consulado español o ante notario. Aun así, recomendamos ver el inmueble en persona antes de firmar."
+      },
+      {
+        "q": "¿Qué gastos hay además del precio?",
+        "a": "Los impuestos, la notaría, el registro de la propiedad y la gestoría suelen sumar alrededor del 10-15 % del precio, más la tasación si pide hipoteca. La vivienda de segunda mano paga ITP; la nueva paga IVA y AJD. Los tipos los fija cada comunidad y cambian de vez en cuando. En la fase de oferta le preparamos un cálculo exacto para el inmueble concreto."
+      },
+      {
+        "q": "¿Cuánto tarda la compra?",
+        "a": "Depende del inmueble y de la documentación. Cuando el NIE, la cuenta bancaria y el contrato de arras están listos, una compra de segunda mano suele tardar entre uno y tres meses desde la aceptación de la oferta hasta la escritura."
+      },
+      {
+        "q": "¿Comprar una vivienda da derecho a residencia?",
+        "a": "No. El programa de Golden Visa vinculado a la inversión inmobiliaria terminó el 3 de abril de 2025, así que comprar una vivienda ya no concede por sí solo la residencia. Existen otras vías de residencia; nuestros socios legales valoran cuál encaja en su situación."
+      },
+      {
+        "q": "¿Puedo conseguir una hipoteca?",
+        "a": "Los bancos españoles pueden prestar a extranjeros, pero para no residentes la parte financiada suele ser menor y las condiciones más estrictas. El resultado depende del banco y de sus ingresos. Recomendamos informarse antes de decidir."
+      },
+      {
+        "q": "¿Qué impuestos pago si lo alquilo?",
+        "a": "Los no residentes pagan el Impuesto sobre la Renta de No Residentes (IRNR) por los alquileres. El tipo es del 19 % para residentes en países de la UE/EEE y del 24 % para residentes en otros países, y la posibilidad de deducir gastos depende de ese grupo. Además se paga el IBI anual. Para su caso concreto, recomendamos hablar con nuestro socio fiscal."
+      },
+      {
+        "q": "¿Cómo funcionan la reforma y el home staging?",
+        "a": "Revisamos el inmueble con usted, definimos las necesidades, recogemos presupuestos por escrito de constructores independientes y empezamos con su aprobación. Compartimos informes de avance con fotos y revisamos el resultado juntos en la entrega."
+      },
+      {
+        "q": "¿Pueden gestionar mi inmueble después de comprar?",
+        "a": "Sí. Podemos encargarnos de la búsqueda de inquilinos, el contrato de alquiler, el cobro de rentas, el mantenimiento y los informes periódicos. El alquiler de corta duración (turístico) exige licencias que dependen de la zona y de las normas del edificio; lo revisamos juntos desde el principio."
+      },
+      {
+        "q": "¿Cuánto cuestan sus servicios?",
+        "a": "Depende del alcance y del tipo de trabajo. Antes de empezar cualquier servicio, confirmamos por escrito qué incluye y cuánto cuesta."
+      },
+      {
+        "q": "¿En qué idiomas se comunican?",
+        "a": "Turco, español, inglés y alemán."
+      }
+    ],
+    "note": "La información de esta página es de carácter general y no constituye asesoramiento legal, fiscal ni de inversión. Las normas y los tipos pueden cambiar; confirme la situación actual con nuestros asesores antes de decidir.",
+    "ctaH": "¿No encuentra su pregunta?",
+    "ctaBtn": "Escríbanos"
+  },
+  "glossaryPage": {
+    "title": "Glosario",
+    "subtitle": "Los términos clave que encontrará al comprar en España y lo que significan.",
+    "note": "Las explicaciones son generales; para conocer las normas y los tipos exactos, consulte con nuestros asesores.",
+    "ctaBtn": "Pedir asesoramiento",
+    "terms": [
+      [
+        "NIE",
+        "Número de Identidad de Extranjero. El número de identificación fiscal en España para extranjeros. Es necesario para comprar una vivienda, abrir una cuenta bancaria y pagar impuestos."
+      ],
+      [
+        "TIE",
+        "Tarjeta de Identidad de Extranjero. La tarjeta de identidad de los extranjeros con permiso de residencia en España."
+      ],
+      [
+        "Arras",
+        "Contrato de reserva y señal, que se firma al acordar precio y condiciones. En el tipo más habitual, el comprador pierde la señal si se echa atrás y el vendedor devuelve el doble si se echa atrás; puede variar según el tipo pactado en el contrato."
+      ],
+      [
+        "Escritura",
+        "La escritura pública de compraventa firmada ante notario. La propiedad se transmite con esta firma."
+      ],
+      [
+        "Notario",
+        "Comprueba que la venta se ajusta a la ley y redacta la escritura."
+      ],
+      [
+        "Registro de la Propiedad",
+        "Aquí constan la titularidad y las cargas, como las hipotecas; tras la escritura, el inmueble se inscribe a nombre del comprador."
+      ],
+      [
+        "Nota simple",
+        "Extracto breve del Registro de la Propiedad que muestra el titular y las cargas, como hipotecas o embargos. Conviene comprobarla siempre antes de comprar."
+      ],
+      [
+        "ITP",
+        "Impuesto de Transmisiones Patrimoniales. Lo paga el comprador en una vivienda de segunda mano; el tipo depende de la comunidad autónoma."
+      ],
+      [
+        "IVA y AJD",
+        "El IVA (generalmente el 10 % en vivienda) y el impuesto de Actos Jurídicos Documentados, que se pagan al comprar una vivienda nueva (primera transmisión). El tipo del AJD depende de la comunidad autónoma."
+      ],
+      [
+        "IBI",
+        "Impuesto sobre Bienes Inmuebles. El impuesto anual que el ayuntamiento cobra al propietario."
+      ],
+      [
+        "Plusvalía municipal",
+        "Impuesto municipal que paga el vendedor, basado en el aumento de valor del suelo durante el tiempo de tenencia."
+      ],
+      [
+        "IRNR / Modelo 210",
+        "El impuesto que pagan los no residentes por sus rentas en España, como alquileres o la venta de un inmueble. Se declara en el Modelo 210."
+      ],
+      [
+        "Catastro",
+        "El valor catastral es el valor oficial que se usa para calcular impuestos y puede diferir del precio de mercado."
+      ],
+      [
+        "Empadronamiento",
+        "Inscripción de su residencia en el ayuntamiento. A veces se exige como prueba de domicilio en trámites oficiales."
+      ],
+      [
+        "Cédula de habitabilidad",
+        "Documento que acredita que la vivienda es habitable. En la Comunitat Valenciana puede exigirse en trámites como los contratos de suministros y los alquileres."
+      ],
+      [
+        "Certificado energético",
+        "Certificado que califica la eficiencia energética de la vivienda de la A a la G. Obligatorio para vender o alquilar."
+      ],
+      [
+        "Comunidad de propietarios",
+        "Órgano de gobierno del edificio o urbanización. Aquí se fijan los gastos comunes (cuotas) y las decisiones; antes de comprar se comprueban las deudas."
+      ],
+      [
+        "Gestoría",
+        "Despacho administrativo que se encarga de los trámites oficiales y de las declaraciones de impuestos."
+      ],
+      [
+        "Poder notarial",
+        "Poder otorgado ante notario. Permite realizar trámites sin estar en España."
+      ],
+      [
+        "Apostilla",
+        "Certificación del Convenio de La Haya que da validez en España a un documento extranjero. Suele ser necesaria para documentos procedentes de Turquía."
+      ],
+      [
+        "Licencia de obra",
+        "Permiso del ayuntamiento para construir o reformar. Según la obra, hace falta licencia menor o mayor."
+      ],
+      [
+        "Home staging",
+        "Preparar un inmueble para vender o alquilar ordenándolo, amueblándolo si hace falta y fotografiándolo para presentarlo de la mejor manera."
+      ]
+    ]
   }
 }
