@@ -65,18 +65,36 @@ export default function ParallaxBreak({
     const v = videoRef.current;
     if (!v || !video) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const onReady = () => {
-      // iOS only allows seeking after the first play(); pause right away.
-      const pr = v.play();
-      if (pr && pr.then) pr.then(() => v.pause()).catch(() => {});
-      else v.pause();
-      v.currentTime = 0;
+    v.muted = true; // React renders the muted attribute unreliably; iOS needs the property
+    v.setAttribute('webkit-playsinline', '');
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      try { v.pause(); v.currentTime = 0; } catch (e) {}
       setVideoReady(true);
     };
-    if (v.readyState >= 2) onReady();
-    else v.addEventListener('loadeddata', onReady, { once: true });
+    // Mobile browsers (iOS, data saver) often skip preloading and never fire
+    // 'loadeddata' until play() is called, and iOS only allows seeking after
+    // a first play. So: force load, start a muted play, pause on first frame.
+    const kick = () => {
+      if (done) return;
+      const pr = v.play();
+      if (pr && pr.then) pr.then(() => { if (v.readyState >= 2) finish(); }).catch(() => {});
+    };
+    v.addEventListener('playing', finish, { once: true });
+    v.addEventListener('loadeddata', kick, { once: true });
+    v.load();
+    kick();
+    // Low-power / blocked autoplay: retry on the first touch or scroll.
+    const retry = () => kick();
+    window.addEventListener('touchstart', retry, { once: true, passive: true });
+    window.addEventListener('scroll', retry, { once: true, passive: true });
     return () => {
-      v.removeEventListener('loadeddata', onReady);
+      v.removeEventListener('playing', finish);
+      v.removeEventListener('loadeddata', kick);
+      window.removeEventListener('touchstart', retry);
+      window.removeEventListener('scroll', retry);
       cancelAnimationFrame(rafRef.current);
     };
   }, [video]);
