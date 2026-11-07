@@ -908,6 +908,13 @@
         ]
       },
       {
+        "h": "AI chat assistant",
+        "p": [
+          "Messages you type into the site's chat assistant are sent to DeepSeek's AI service to generate a reply. This provider's servers may be located outside the European Economic Area, including in China. Please do not share passwords, ID or passport numbers, payment details or other sensitive information in the chat.",
+          "The name, email and phone number you leave in the chat's contact form are not sent to the AI model; they reach only us so we can get back to you. Conversations are stored in our system so we can follow up and improve the service; you can ask for deletion at info@lockandloft.com. The assistant can make mistakes and does not give legal or financial advice."
+        ]
+      },
+      {
         "h": "Who processes your data",
         "p": [
           "We do not sell your data. To run the site we use these providers: Supabase for the database and accounts, and Resend for sending email. They process data only on our behalf and under our instructions. If a transfer outside the European Economic Area is needed, legal safeguards such as standard contractual clauses apply.",
@@ -984,5 +991,36 @@
   },
   "partnerStrip": {
     "text": "In partnership with"
+  },
+  "chat": {
+    "launcher": "Chat",
+    "open": "Open chat",
+    "close": "Close",
+    "title": "Lock & Loft Assistant",
+    "subtitle": "Questions about investing in Valencia",
+    "greeting": "Hi! I can answer questions about properties in Valencia, the buying process and our services.",
+    "s1": "Which properties are available?",
+    "s2": "What do I need to buy as a foreigner?",
+    "s3": "What services do you offer?",
+    "placeholder": "Type your message…",
+    "send": "Send",
+    "typing": "Typing…",
+    "limit": "Too many messages were sent. Please try again later or write to us:",
+    "unavailable": "I can't answer right now. You can contact us directly:",
+    "contactLink": "Contact page",
+    "talkToHuman": "I'd like to talk to an adviser",
+    "formTitle": "We'll get back to you",
+    "name": "Your name",
+    "email": "Email",
+    "phone": "Phone / WhatsApp",
+    "note": "Note (optional)",
+    "formSend": "Send",
+    "formMissing": "Please enter your name and an email or phone number.",
+    "formEmail": "That email address looks invalid.",
+    "formError": "Could not send, please try again.",
+    "formDone": "Thank you! We have your details and an adviser will contact you shortly.",
+    "formPrivacy": "Your details are only used to contact you and are not sent to the AI model.",
+    "openingLine": "I'd like to talk to an adviser.",
+    "disclaimer": "This is an AI assistant and can make mistakes; it is not legal or financial advice. Do not share passwords, ID or payment details. Messages are processed by an AI service to generate replies."
   }
 }

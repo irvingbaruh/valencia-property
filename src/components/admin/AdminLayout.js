@@ -23,6 +23,7 @@ import {
   Mail,
   Building2,
   Newspaper,
+  MessageSquare,
 } from 'lucide-react';
 
 export const ADMIN_BASE = '/lockandloft/admin';
@@ -32,6 +33,7 @@ const navItems = [
   { id: 'uyeler', href: '/uyeler', icon: Users, label: 'Üyeler' },
   { id: 'ilanlar', href: '/ilanlar', icon: Building2, label: 'İlanlar' },
   { id: 'piyasa', href: '/piyasa', icon: Newspaper, label: 'Piyasa Notları' },
+  { id: 'sohbetler', href: '/sohbetler', icon: MessageSquare, label: 'Sohbetler' },
   { id: 'hizmetler', href: '/hizmetler', icon: Briefcase, label: 'Hizmetler' },
   { id: 'blog', href: '/blog', icon: PenSquare, label: 'Blog' },
   { id: 'mailing', href: '/mailing', icon: Mail, label: 'Mailing' },

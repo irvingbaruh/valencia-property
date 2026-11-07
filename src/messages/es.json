@@ -908,6 +908,13 @@
         ]
       },
       {
+        "h": "Asistente de chat con IA",
+        "p": [
+          "Los mensajes que escribes en el asistente del sitio se envían al servicio de IA de DeepSeek para generar la respuesta. Los servidores de este proveedor pueden estar fuera del Espacio Económico Europeo, incluida China. Por ello te pedimos que no compartas en el chat contraseñas, números de identidad o pasaporte, datos de pago ni otra información sensible.",
+          "El nombre, correo y teléfono que dejas en el formulario de contacto del chat no se envían al modelo de IA; solo nos llegan a nosotros para contactarte. Las conversaciones se guardan en nuestro sistema para poder responderte y mejorar el servicio; puedes pedir su eliminación en info@lockandloft.com. El asistente puede equivocarse y no ofrece asesoramiento legal ni financiero."
+        ]
+      },
+      {
         "h": "Quién trata los datos",
         "p": [
           "No vendemos sus datos. Para el funcionamiento del sitio utilizamos estos proveedores: Supabase para la base de datos y las cuentas, y Resend para el envío de correos. Tratan los datos únicamente por cuenta nuestra y según nuestras instrucciones. Si hiciera falta una transferencia fuera del Espacio Económico Europeo, se aplican garantías legales (como cláusulas contractuales tipo).",
@@ -984,5 +991,36 @@
   },
   "partnerStrip": {
     "text": "En colaboración con"
+  },
+  "chat": {
+    "launcher": "Chat",
+    "open": "Abrir chat",
+    "close": "Cerrar",
+    "title": "Asistente Lock & Loft",
+    "subtitle": "Dudas sobre inversión en Valencia",
+    "greeting": "¡Hola! Puedo responder a tus preguntas sobre propiedades en Valencia, el proceso de compra y nuestros servicios.",
+    "s1": "¿Qué propiedades hay?",
+    "s2": "¿Qué necesito para comprar siendo extranjero?",
+    "s3": "¿Qué servicios ofrecéis?",
+    "placeholder": "Escribe tu mensaje…",
+    "send": "Enviar",
+    "typing": "Escribiendo…",
+    "limit": "Se han enviado demasiados mensajes. Inténtalo más tarde o escríbenos:",
+    "unavailable": "Ahora mismo no puedo responder. Puedes escribirnos directamente:",
+    "contactLink": "Página de contacto",
+    "talkToHuman": "Quiero hablar con un asesor",
+    "formTitle": "Te llamamos",
+    "name": "Tu nombre",
+    "email": "Correo electrónico",
+    "phone": "Teléfono / WhatsApp",
+    "note": "Nota (opcional)",
+    "formSend": "Enviar",
+    "formMissing": "Indica tu nombre y un correo o teléfono.",
+    "formEmail": "El correo no es válido.",
+    "formError": "No se pudo enviar, inténtalo de nuevo.",
+    "formDone": "¡Gracias! Hemos recibido tus datos y un asesor te contactará lo antes posible.",
+    "formPrivacy": "Tus datos solo se usan para contactarte y no se envían al modelo de IA.",
+    "openingLine": "Quiero hablar con un asesor.",
+    "disclaimer": "Es un asistente de IA y puede equivocarse; no es asesoramiento legal ni financiero. No compartas contraseñas, documentos de identidad ni datos de pago. Los mensajes se procesan en un servicio de IA para generar la respuesta."
   }
 }

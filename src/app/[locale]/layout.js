@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import ChatWidget from '@/components/chat/ChatWidget';
 import { AuthProvider } from '@/components/providers/AuthProvider';
 
 export function generateStaticParams() {
@@ -36,6 +37,7 @@ export default async function LocaleLayout({ children, params }) {
         <Header />
         <main>{children}</main>
         <Footer />
+        <ChatWidget />
       </AuthProvider>
     </NextIntlClientProvider>
   );

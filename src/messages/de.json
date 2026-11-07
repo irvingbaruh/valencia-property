@@ -908,6 +908,13 @@
         ]
       },
       {
+        "h": "KI-Chat-Assistent",
+        "p": [
+          "Nachrichten, die Sie im Chat-Assistenten der Website eingeben, werden zur Erstellung einer Antwort an den KI-Dienst von DeepSeek gesendet. Die Server dieses Anbieters können sich außerhalb des Europäischen Wirtschaftsraums befinden, auch in China. Bitte teilen Sie im Chat keine Passwörter, Ausweis- oder Passnummern, Zahlungsdaten oder andere sensible Informationen mit.",
+          "Name, E-Mail und Telefonnummer, die Sie im Kontaktformular des Chats hinterlassen, werden nicht an das KI-Modell gesendet; sie erreichen nur uns, damit wir uns bei Ihnen melden können. Gespräche werden in unserem System gespeichert, um nachzufassen und den Dienst zu verbessern; Sie können die Löschung unter info@lockandloft.com verlangen. Der Assistent kann Fehler machen und gibt keine Rechts- oder Finanzberatung."
+        ]
+      },
+      {
         "h": "Wer Ihre Daten verarbeitet",
         "p": [
           "Wir verkaufen Ihre Daten nicht. Für den Betrieb der Website nutzen wir diese Dienstleister: Supabase für Datenbank und Konten, Resend für den E-Mail-Versand. Sie verarbeiten Daten nur in unserem Auftrag und nach unseren Weisungen. Ist eine Übermittlung außerhalb des Europäischen Wirtschaftsraums nötig, gelten rechtliche Garantien wie Standardvertragsklauseln.",
@@ -984,5 +991,36 @@
   },
   "partnerStrip": {
     "text": "In Partnerschaft mit"
+  },
+  "chat": {
+    "launcher": "Chat",
+    "open": "Chat öffnen",
+    "close": "Schließen",
+    "title": "Lock & Loft Assistent",
+    "subtitle": "Fragen zur Investition in Valencia",
+    "greeting": "Hallo! Ich beantworte Ihre Fragen zu Immobilien in Valencia, zum Kaufprozess und zu unseren Leistungen.",
+    "s1": "Welche Immobilien gibt es?",
+    "s2": "Was brauche ich als Ausländer zum Kauf?",
+    "s3": "Welche Leistungen bieten Sie an?",
+    "placeholder": "Nachricht eingeben…",
+    "send": "Senden",
+    "typing": "Schreibt…",
+    "limit": "Es wurden zu viele Nachrichten gesendet. Bitte versuchen Sie es später erneut oder schreiben Sie uns:",
+    "unavailable": "Ich kann gerade nicht antworten. Sie können uns direkt kontaktieren:",
+    "contactLink": "Kontaktseite",
+    "talkToHuman": "Ich möchte mit einem Berater sprechen",
+    "formTitle": "Wir melden uns bei Ihnen",
+    "name": "Ihr Name",
+    "email": "E-Mail",
+    "phone": "Telefon / WhatsApp",
+    "note": "Notiz (optional)",
+    "formSend": "Senden",
+    "formMissing": "Bitte Namen und E-Mail oder Telefonnummer angeben.",
+    "formEmail": "Die E-Mail-Adresse ist ungültig.",
+    "formError": "Senden fehlgeschlagen, bitte erneut versuchen.",
+    "formDone": "Vielen Dank! Wir haben Ihre Angaben und ein Berater meldet sich in Kürze.",
+    "formPrivacy": "Ihre Angaben dienen nur der Kontaktaufnahme und werden nicht an das KI-Modell gesendet.",
+    "openingLine": "Ich möchte mit einem Berater sprechen.",
+    "disclaimer": "Dies ist ein KI-Assistent und kann Fehler machen; keine Rechts- oder Finanzberatung. Teilen Sie keine Passwörter, Ausweis- oder Zahlungsdaten. Nachrichten werden zur Antwortgenerierung von einem KI-Dienst verarbeitet."
   }
 }

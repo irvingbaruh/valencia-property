@@ -908,6 +908,13 @@
         ]
       },
       {
+        "h": "Yapay zekâ sohbet asistanı",
+        "p": [
+          "Sitedeki sohbet asistanına yazdığınız mesajlar, yanıt üretmek için DeepSeek'in yapay zekâ hizmetine gönderilir. Bu sağlayıcının sunucuları Avrupa Ekonomik Alanı dışında, Çin dahil, bulunabilir. Bu nedenle sohbette şifre, kimlik/pasaport numarası, ödeme bilgisi veya başka hassas bilgi paylaşmamanızı rica ederiz.",
+          "İletişim formunda bıraktığınız ad, e-posta ve telefon yapay zekâ modeline gönderilmez; yalnızca size dönmek için bize iletilir. Konuşmalar, size dönebilmemiz ve hizmeti geliştirebilmemiz için sistemimizde saklanır; silinmesini info@lockandloft.com adresinden isteyebilirsiniz. Asistan hata yapabilir ve hukuki ya da mali tavsiye vermez."
+        ]
+      },
+      {
         "h": "Verileri kimler işliyor",
         "p": [
           "Verilerinizi satmayız. Siteyi çalıştırmak için şu hizmet sağlayıcılardan yararlanırız: veritabanı ve üyelik altyapısı için Supabase, e-posta gönderimi için Resend. Bu sağlayıcılar verileri yalnızca bizim adımıza ve talimatlarımıza göre işler. Avrupa Ekonomik Alanı dışına aktarım gerekirse yasal güvenceler (standart sözleşme maddeleri gibi) kullanılır.",
@@ -984,5 +991,36 @@
   },
   "partnerStrip": {
     "text": "Resmi iş ortağımız"
+  },
+  "chat": {
+    "launcher": "Sohbet",
+    "open": "Sohbeti aç",
+    "close": "Kapat",
+    "title": "Lock & Loft Asistan",
+    "subtitle": "Valencia mülk yatırımı için sorularınız",
+    "greeting": "Merhaba! Valencia'daki mülkler, satın alma süreci ve hizmetlerimiz hakkında sorularınızı yanıtlayabilirim.",
+    "s1": "Hangi mülkler var?",
+    "s2": "Yabancı olarak mülk almak için ne gerekir?",
+    "s3": "Hizmetleriniz neler?",
+    "placeholder": "Mesajınızı yazın…",
+    "send": "Gönder",
+    "typing": "Yazıyor…",
+    "limit": "Çok fazla mesaj gönderildi. Lütfen daha sonra tekrar deneyin ya da bize yazın:",
+    "unavailable": "Şu anda yanıt veremiyorum. Bize doğrudan yazabilirsiniz:",
+    "contactLink": "İletişim sayfası",
+    "talkToHuman": "Bir danışmanla görüşmek istiyorum",
+    "formTitle": "Size dönelim",
+    "name": "Adınız",
+    "email": "E-posta",
+    "phone": "Telefon / WhatsApp",
+    "note": "Not (isteğe bağlı)",
+    "formSend": "Gönder",
+    "formMissing": "Adınızı ve e-posta ya da telefonunuzu yazın.",
+    "formEmail": "E-posta adresi geçersiz.",
+    "formError": "Gönderilemedi, lütfen tekrar deneyin.",
+    "formDone": "Teşekkürler! Bilgilerinizi aldık, bir danışmanımız en kısa sürede size dönecek.",
+    "formPrivacy": "Bilgileriniz yalnızca size dönmek için kullanılır ve yapay zekâ modeline gönderilmez.",
+    "openingLine": "Bir danışmanla görüşmek istiyorum.",
+    "disclaimer": "Yapay zekâ asistanıdır, hata yapabilir; hukuki veya mali tavsiye değildir. Şifre, kimlik veya ödeme bilgisi paylaşmayın. Mesajlar yanıt üretmek için bir yapay zekâ hizmetinde işlenir."
   }
 }
