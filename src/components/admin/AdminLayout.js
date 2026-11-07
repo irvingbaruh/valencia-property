@@ -91,13 +91,13 @@ export default function AdminLayout({ children, activeSection = 'dashboard' }) {
     <div className="min-h-screen flex" style={{ background: '#0B0B11', color: '#F5F0E8' }}>
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 transform transition-transform duration-200 lg:relative lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-64 flex flex-col transform transition-transform duration-200 lg:relative lg:translate-x-0 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
         style={{ background: '#151521', borderRight: '1px solid #1E1E2E' }}
       >
         {/* Logo */}
-        <div className="h-16 flex items-center justify-between px-5" style={{ borderBottom: '1px solid #1E1E2E' }}>
+        <div className="h-16 shrink-0 flex items-center justify-between px-5" style={{ borderBottom: '1px solid #1E1E2E' }}>
           <Link href={`${ADMIN_BASE}/dashboard/`} className="flex items-center gap-2">
             <Logo icon variant="dark" className="h-9 w-auto" />
             <span className="font-semibold text-sm tracking-wide text-white">ADMIN PANEL</span>
@@ -108,7 +108,7 @@ export default function AdminLayout({ children, activeSection = 'dashboard' }) {
         </div>
 
         {/* Nav */}
-        <nav className="mt-4 px-3 space-y-1">
+        <nav className="mt-4 px-3 space-y-1 flex-1 overflow-y-auto min-h-0">
           {navItems.map(({ id, href, icon: Icon, label, disabled }) => {
             const isActive = activeSection === id;
             return (
@@ -139,7 +139,7 @@ export default function AdminLayout({ children, activeSection = 'dashboard' }) {
         </nav>
 
         {/* Bottom section */}
-        <div className="absolute bottom-0 left-0 right-0 p-4" style={{ borderTop: '1px solid #1E1E2E' }}>
+        <div className="shrink-0 p-4" style={{ borderTop: '1px solid #1E1E2E' }}>
           <Link
             href="/tr/"
             className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-[#9A9AAA] hover:text-white hover:bg-white/5 transition-colors"
