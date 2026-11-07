@@ -16,7 +16,7 @@ export default async function RemaxPage({ params }) {
   return (
     <div className="bg-soft">
       <div className="bg-white border-b border-border">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-16">
           <span className="inline-block bg-white border border-border rounded-lg px-3 py-2 mb-6">
             <img src="/brand/remax-logo.png" alt="RE/MAX" width={110} height={30} className="h-7 w-auto" />
           </span>

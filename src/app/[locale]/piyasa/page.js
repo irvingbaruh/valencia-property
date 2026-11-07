@@ -8,7 +8,7 @@ export default async function PiyasaPage({ params }) {
   return (
     <div className="bg-soft">
       <div className="bg-white border-b border-border">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-16 text-center">
           <h1 className="text-4xl sm:text-5xl font-serif text-dark mb-4">{t('title')}</h1>
           <p className="text-lg text-text-muted max-w-2xl mx-auto">{t('subtitle')}</p>
         </div>
