@@ -51,24 +51,6 @@ export default function Footer() {
             <span className="inline-block bg-white rounded-lg px-3 py-2 mb-6">
               <img src="/brand/remax-logo.png" alt="RE/MAX" width={96} height={26} className="h-6 w-auto" loading="lazy" />
             </span>
-            <div className="space-y-3 text-sm text-white/60">
-              <div className="flex items-center gap-2">
-                <MapPin size={15} className="text-gold shrink-0" />
-                <span>{t('address')}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone size={15} className="text-gold shrink-0" />
-                <a href={telHref(contact.phone)} className="hover:text-gold transition-colors">
-                  {contact.phone}
-                </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail size={15} className="text-gold shrink-0" />
-                <a href={`mailto:${contact.email}`} className="hover:text-gold transition-colors">
-                  {contact.email}
-                </a>
-              </div>
-            </div>
           </div>
 
           {/* Link Columns */}
@@ -97,6 +79,24 @@ export default function Footer() {
             <h3 className="text-sm font-semibold text-white mb-4 tracking-wide">
               {t('contact')}
             </h3>
+            <div className="space-y-3 text-sm mb-6 text-white/60">
+              <div className="flex items-center gap-2">
+                <MapPin size={15} className="text-gold shrink-0" />
+                <span>{t('address')}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone size={15} className="text-gold shrink-0" />
+                <a href={telHref(contact.phone)} className="hover:text-gold transition-colors">
+                  {contact.phone}
+                </a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail size={15} className="text-gold shrink-0" />
+                <a href={`mailto:${contact.email}`} className="hover:text-gold transition-colors">
+                  {contact.email}
+                </a>
+              </div>
+            </div>
             <div className="flex gap-3 mb-6 empty:hidden">
               {SOCIAL.instagram && (
               <a
