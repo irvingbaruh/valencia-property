@@ -1308,5 +1308,28 @@
         "Eine Immobilie für Verkauf oder Vermietung herrichten, bei Bedarf möblieren und fotografieren, damit sie bestmöglich wirkt."
       ]
     ]
+  },
+  "listingFilters": {
+    "title": "Finden Sie Ihre Wunschimmobilie",
+    "type": "Objektart",
+    "all": "Alle",
+    "rooms": "Schlafzimmer",
+    "any": "Egal",
+    "priceMin": "Mindestpreis (€)",
+    "priceMax": "Höchstpreis (€)",
+    "sqmMin": "Mind. m²",
+    "sqmMax": "Max. m²",
+    "place": "Gebiet",
+    "allPlaces": "Alle Gebiete",
+    "sort": "Sortieren",
+    "sortNew": "Neueste",
+    "sortPriceAsc": "Preis: aufsteigend",
+    "sortPriceDesc": "Preis: absteigend",
+    "sortSqm": "Größe: absteigend",
+    "reset": "Filter zurücksetzen",
+    "results": "Immobilien gefunden",
+    "none": "Keine Immobilien für diese Kriterien. Versuchen Sie, die Filter zu erweitern.",
+    "ctaNone": "Finden Sie nichts Passendes, senden Sie uns Ihre Kriterien – wir suchen in unserem Portfolio und Netzwerk für Sie.",
+    "filters": "Filter"
   }
 }

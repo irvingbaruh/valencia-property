@@ -1308,5 +1308,28 @@
         "Satış veya kiralama öncesi konutu düzenleyerek, gerekirse döşeyerek ve fotoğraflayarak daha çekici sunma işi."
       ]
     ]
+  },
+  "listingFilters": {
+    "title": "Aradığınız konutu bulun",
+    "type": "Konut tipi",
+    "all": "Tümü",
+    "rooms": "Oda sayısı",
+    "any": "Farketmez",
+    "priceMin": "En düşük fiyat (€)",
+    "priceMax": "En yüksek fiyat (€)",
+    "sqmMin": "En az m²",
+    "sqmMax": "En çok m²",
+    "place": "Bölge",
+    "allPlaces": "Tüm bölgeler",
+    "sort": "Sıralama",
+    "sortNew": "En yeni",
+    "sortPriceAsc": "Fiyat: düşükten yükseğe",
+    "sortPriceDesc": "Fiyat: yüksekten düşüğe",
+    "sortSqm": "Alan: büyükten küçüğe",
+    "reset": "Filtreleri temizle",
+    "results": "konut bulundu",
+    "none": "Bu kriterlere uyan konut yok. Filtreleri genişletmeyi deneyin.",
+    "ctaNone": "Aradığınızı bulamadıysanız bize kriterlerinizi iletin; portföyümüzde ve ağımızda sizin için arayalım.",
+    "filters": "Filtreler"
   }
 }

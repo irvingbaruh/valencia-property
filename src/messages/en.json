@@ -1308,5 +1308,28 @@
         "Preparing a property for sale or rental by arranging, furnishing if needed, and photographing it so it looks its best."
       ]
     ]
+  },
+  "listingFilters": {
+    "title": "Find the home you are looking for",
+    "type": "Property type",
+    "all": "All",
+    "rooms": "Bedrooms",
+    "any": "Any",
+    "priceMin": "Min price (€)",
+    "priceMax": "Max price (€)",
+    "sqmMin": "Min m²",
+    "sqmMax": "Max m²",
+    "place": "Area",
+    "allPlaces": "All areas",
+    "sort": "Sort by",
+    "sortNew": "Newest",
+    "sortPriceAsc": "Price: low to high",
+    "sortPriceDesc": "Price: high to low",
+    "sortSqm": "Size: large to small",
+    "reset": "Clear filters",
+    "results": "properties found",
+    "none": "No properties match these criteria. Try widening the filters.",
+    "ctaNone": "If you cannot find what you need, send us your criteria and we will search our portfolio and network for you.",
+    "filters": "Filters"
   }
 }

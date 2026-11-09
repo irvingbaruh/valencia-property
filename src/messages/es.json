@@ -1308,5 +1308,28 @@
         "Preparar un inmueble para vender o alquilar ordenándolo, amueblándolo si hace falta y fotografiándolo para presentarlo de la mejor manera."
       ]
     ]
+  },
+  "listingFilters": {
+    "title": "Encuentre la vivienda que busca",
+    "type": "Tipo de inmueble",
+    "all": "Todos",
+    "rooms": "Habitaciones",
+    "any": "Indiferente",
+    "priceMin": "Precio mínimo (€)",
+    "priceMax": "Precio máximo (€)",
+    "sqmMin": "m² mínimos",
+    "sqmMax": "m² máximos",
+    "place": "Zona",
+    "allPlaces": "Todas las zonas",
+    "sort": "Ordenar",
+    "sortNew": "Más recientes",
+    "sortPriceAsc": "Precio: de menor a mayor",
+    "sortPriceDesc": "Precio: de mayor a menor",
+    "sortSqm": "Superficie: de mayor a menor",
+    "reset": "Borrar filtros",
+    "results": "inmuebles encontrados",
+    "none": "No hay inmuebles con estos criterios. Pruebe a ampliar los filtros.",
+    "ctaNone": "Si no encuentra lo que busca, cuéntenos sus criterios y lo buscaremos en nuestra cartera y red.",
+    "filters": "Filtros"
   }
 }
