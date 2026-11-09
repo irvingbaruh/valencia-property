@@ -19,6 +19,7 @@ import {
   X,
   Check,
   UserCircle,
+  Trash2,
 } from 'lucide-react';
 
 const ROLES = [
@@ -172,6 +173,28 @@ export default function AdminMembersPage() {
   const [sortField, setSortField] = useState('created_at');
   const [sortDir, setSortDir] = useState('desc');
   const [selectedMember, setSelectedMember] = useState(null);
+  const [toDelete, setToDelete] = useState(null);
+  const [deleting, setDeleting] = useState(false);
+  const [delError, setDelError] = useState('');
+
+  const confirmDelete = async () => {
+    if (!toDelete) return;
+    setDeleting(true);
+    setDelError('');
+    const { data, error } = await supabase.functions.invoke('admin-delete-member', { body: { id: toDelete.id } });
+    setDeleting(false);
+    if (error || !data?.ok) {
+      const code = data?.error || '';
+      setDelError(
+        code === 'cannot_delete_admin' ? 'Admin üyeler silinemez. Önce rolünü "Üye" yapın.'
+        : code === 'cannot_delete_self' ? 'Kendi hesabınızı silemezsiniz.'
+        : 'Silinemedi. Lütfen tekrar deneyin.'
+      );
+      return;
+    }
+    setMembers((prev) => prev.filter((m) => m.id !== toDelete.id));
+    setToDelete(null);
+  };
 
   const fetchMembers = useCallback(async () => {
     setLoading(true);
@@ -283,7 +306,7 @@ export default function AdminMembersPage() {
         <div className="rounded-xl overflow-hidden" style={{ background: '#151521', border: '1px solid #1E1E2E' }}>
           {/* Table Header */}
           <div
-            className="hidden md:grid grid-cols-[1fr_1.5fr_100px_100px_80px] gap-4 px-5 py-3 text-xs font-medium text-[#9A9AAA] uppercase tracking-wider"
+            className="hidden md:grid grid-cols-[1fr_1.5fr_100px_100px_90px] gap-4 px-5 py-3 text-xs font-medium text-[#9A9AAA] uppercase tracking-wider"
             style={{ borderBottom: '1px solid #1E1E2E' }}
           >
             <button onClick={() => handleSort('full_name')} className="text-left hover:text-white transition-colors">
@@ -318,7 +341,7 @@ export default function AdminMembersPage() {
               {members.map((member) => (
                 <div
                   key={member.id}
-                  className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr_100px_100px_80px] gap-2 md:gap-4 px-5 py-3.5 hover:bg-white/5 transition-colors cursor-pointer"
+                  className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr_100px_100px_90px] gap-2 md:gap-4 px-5 py-3.5 hover:bg-white/5 transition-colors cursor-pointer"
                   style={{ borderBottom: '1px solid #1E1E2E' }}
                   onClick={() => router.push(`${ADMIN_BASE}/uyeler/detay/?id=${member.id}`)}
                 >
@@ -365,7 +388,21 @@ export default function AdminMembersPage() {
                   </div>
 
                   {/* Action */}
-                  <div className="flex items-center justify-end">
+                  <div className="flex items-center justify-end gap-1">
+                    {member.role !== 'admin' && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setDelError('');
+                          setToDelete(member);
+                        }}
+                        title="Üyeyi sil"
+                        aria-label="Üyeyi sil"
+                        className="p-1.5 rounded-lg text-[#9A9AAA] hover:text-red-400 hover:bg-red-500/10 transition-colors"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    )}
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
@@ -389,6 +426,40 @@ export default function AdminMembersPage() {
           )}
         </div>
       </div>
+
+      {/* Delete confirmation */}
+      {toDelete && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/70" onClick={() => !deleting && setToDelete(null)} />
+          <div className="relative w-full max-w-md rounded-2xl p-6" style={{ background: '#151521', border: '1px solid #1E1E2E' }}>
+            <h2 className="text-lg font-bold text-white mb-2">Üyeyi sil</h2>
+            <p className="text-sm text-[#9A9AAA] mb-1">
+              <span className="text-white font-medium">{toDelete.full_name || toDelete.email}</span> ({toDelete.email}) kalıcı olarak silinecek.
+            </p>
+            <p className="text-sm text-[#9A9AAA] mb-5">
+              Üyenin hesabı, hizmetleri, dosyaları, notları ve favorileri de silinir. Bu işlem geri alınamaz.
+            </p>
+            {delError && <p className="text-sm text-red-400 mb-4">{delError}</p>}
+            <div className="flex gap-3">
+              <button
+                onClick={() => setToDelete(null)}
+                disabled={deleting}
+                className="flex-1 py-2.5 rounded-lg text-sm font-medium text-white hover:bg-white/5"
+                style={{ border: '1px solid #1E1E2E' }}
+              >
+                Vazgeç
+              </button>
+              <button
+                onClick={confirmDelete}
+                disabled={deleting}
+                className="flex-1 py-2.5 rounded-lg text-sm font-medium text-white bg-red-600 hover:bg-red-700 flex items-center justify-center gap-2 disabled:opacity-60"
+              >
+                {deleting ? <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" /> : <><Trash2 className="w-4 h-4" />Kalıcı olarak sil</>}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Member Detail Modal */}
       {selectedMember && (
