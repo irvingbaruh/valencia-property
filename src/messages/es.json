@@ -80,12 +80,12 @@
       "d4": "Permisos municipales y gestión de proyectos"
     },
     "rental": {
-      "title": "Alquiler y Airbnb",
-      "desc": "Alquiler de larga duración y Airbnb: búsqueda de inquilinos y gestión mensual",
-      "d1": "Estrategia de alquiler Airbnb y largo plazo",
-      "d2": "Selección de inquilinos y preparación de contratos",
-      "d3": "Cobro mensual de alquiler e informes",
-      "d4": "Coordinación de mantenimiento y emergencias"
+      "title": "Gestión Posventa",
+      "desc": "Gestión de alquiler y Airbnb, facturas, mantenimiento y seguimiento periódico",
+      "d1": "Estrategia de alquiler largo y Airbnb",
+      "d2": "Búsqueda de inquilinos, contrato y cobro mensual",
+      "d3": "Seguimiento de facturas, comunidad e impuestos",
+      "d4": "Mantenimiento, visitas de control y coordinación de urgencias"
     },
     "staging": {
       "title": "Home Staging",
@@ -94,14 +94,6 @@
       "d2": "Puesta en escena para aumentar el valor",
       "d3": "Tour virtual y visualización 360°",
       "d4": "Optimización de anuncios y marketing"
-    },
-    "aftersales": {
-      "title": "Gestión Posventa",
-      "desc": "Facturas, impuestos, mantenimiento y seguimiento de su vivienda",
-      "d1": "Cambio de titularidad y seguimiento de suministros e internet",
-      "d2": "Pago de la comunidad y del IBI anual",
-      "d3": "Visitas de control periódicas y coordinación de mantenimiento",
-      "d4": "Seguimiento de seguros y trámites oficiales"
     }
   },
   "servicePages": {
@@ -254,28 +246,28 @@
       ]
     },
     "rental": {
-      "title": "Alquiler y Airbnb",
-      "intro": "Gestionamos su propiedad en Valencia mientras usted está en el extranjero.",
-      "overview": "Desde encontrar inquilinos hasta el contrato, desde el cobro mensual hasta la coordinación del mantenimiento, nos ocupamos de todo el proceso.",
+      "title": "Gestión Posventa",
+      "intro": "Gestionamos su vivienda de principio a fin en Valencia mientras usted está lejos.",
+      "overview": "Nos ocupamos de todo el proceso posterior a la compra: del alquiler (larga duración o Airbnb) al seguimiento de facturas, impuestos y mantenimiento.",
       "steps": [
         {
           "title": "Evaluación",
-          "desc": "Se define la estrategia de alquiler (larga estancia o Airbnb)."
+          "desc": "Se define la estrategia de alquiler (larga duración / Airbnb)."
         },
         {
           "title": "Preparación",
-          "desc": "Si es necesario, se prepara la propiedad con home staging."
+          "desc": "Si hace falta, se prepara la vivienda con home staging."
         },
         {
-          "title": "Búsqueda de Inquilino",
-          "desc": "Anuncio, entrevistas y verificación de referencias."
+          "title": "Búsqueda de inquilinos / huéspedes",
+          "desc": "Anuncio, entrevistas y comprobación de referencias."
         },
         {
-          "title": "Gestión Mensual",
-          "desc": "Cobro, mantenimiento y reportes continuos."
+          "title": "Gestión mensual",
+          "desc": "Cobros, facturas, mantenimiento e informes."
         }
       ],
-      "who": "Trabajamos con equipos de mantenimiento locales y una red de inquilinos de confianza.",
+      "who": "Trabajamos con equipos locales de mantenimiento y una red de inquilinos de confianza.",
       "faqs": [
         {
           "q": "¿Cuál es la comisión?",
@@ -320,31 +312,6 @@
           "a": "Del tamaño de la propiedad y el alcance del proyecto."
         }
       ]
-    },
-    "aftersales": {
-      "title": "Gestión Posventa",
-      "intro": "Cuando la compra termina, nos ocupamos del día a día de su vivienda.",
-      "overview": "Coordinamos en su nombre las gestiones posteriores a la compra: suministros, facturas e impuestos, cuota de comunidad, seguros y revisiones periódicas.",
-      "steps": [
-        {
-          "title": "Entrega y traspaso",
-          "desc": "Entrega de llaves y cambio de titularidad de suministros y contadores."
-        },
-        {
-          "title": "Orden de pagos",
-          "desc": "Se organiza el flujo de pago de facturas, comunidad e impuestos."
-        },
-        {
-          "title": "Control periódico",
-          "desc": "La vivienda se visita a intervalos regulares."
-        },
-        {
-          "title": "Informes",
-          "desc": "Se comparten informes de gastos y del estado de la vivienda."
-        }
-      ],
-      "who": "Trabajamos con nuestro equipo local y proveedores autorizados.",
-      "faqs": []
     }
   },
   "mulklerPage": {

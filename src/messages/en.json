@@ -80,12 +80,12 @@
       "d4": "Municipal permits and project management"
     },
     "rental": {
-      "title": "Airbnb & Rental Management",
-      "desc": "Long-term and Airbnb rentals: tenant search and monthly management",
-      "d1": "Airbnb and long-term rental strategy",
-      "d2": "Tenant screening and contract preparation",
-      "d3": "Monthly rent collection and reporting",
-      "d4": "Maintenance and emergency coordination"
+      "title": "After-Sales Management",
+      "desc": "Rental and Airbnb management, bills, maintenance and regular follow-up",
+      "d1": "Long-term and Airbnb rental strategy",
+      "d2": "Tenant search, contract and monthly rent collection",
+      "d3": "Bills, community fees and property tax follow-up",
+      "d4": "Maintenance, regular checks and emergency coordination"
     },
     "staging": {
       "title": "Home Staging",
@@ -94,14 +94,6 @@
       "d2": "Value-boosting staging design",
       "d3": "Virtual tour and 360° viewing",
       "d4": "Listing optimization and marketing"
-    },
-    "aftersales": {
-      "title": "After-Sales Management",
-      "desc": "Bills, taxes, maintenance and regular follow-up of your property",
-      "d1": "Transfer and follow-up of electricity, water and internet contracts",
-      "d2": "Community fees and annual property tax payments",
-      "d3": "Regular check visits and maintenance coordination",
-      "d4": "Insurance and official paperwork follow-up"
     }
   },
   "servicePages": {
@@ -254,28 +246,28 @@
       ]
     },
     "rental": {
-      "title": "Airbnb & Rental Management",
-      "intro": "We manage your property in Valencia while you're abroad.",
-      "overview": "From finding tenants to the contract, from monthly collection to maintenance coordination, we handle the entire process.",
+      "title": "After-Sales Management",
+      "intro": "We run your property end to end in Valencia while you are away.",
+      "overview": "We take care of the whole post-purchase process: from renting (long-term or Airbnb) to bills, taxes and maintenance follow-up.",
       "steps": [
         {
           "title": "Assessment",
-          "desc": "Rental strategy (long-term or Airbnb) is defined."
+          "desc": "The rental strategy (long-term / Airbnb) is defined."
         },
         {
           "title": "Preparation",
-          "desc": "The property is prepared with home staging if needed."
+          "desc": "If needed, the property is prepared with home staging."
         },
         {
-          "title": "Finding Tenants",
+          "title": "Finding Tenants / Guests",
           "desc": "Listing, interviews and reference checks."
         },
         {
           "title": "Monthly Management",
-          "desc": "Collection, maintenance and ongoing reporting."
+          "desc": "Collections, bills, maintenance and reporting."
         }
       ],
-      "who": "We work with local maintenance teams and a trusted tenant network.",
+      "who": "We work with local maintenance teams and a trusted network of tenants.",
       "faqs": [
         {
           "q": "What's the commission rate?",
@@ -320,31 +312,6 @@
           "a": "Property size and project scope, set on a per-project basis."
         }
       ]
-    },
-    "aftersales": {
-      "title": "After-Sales Management",
-      "intro": "Once the purchase is complete, we look after the day-to-day running of your property.",
-      "overview": "We coordinate the after-sales tasks on your behalf: utilities, bills and tax payments, community fees, insurance and periodic inspections.",
-      "steps": [
-        {
-          "title": "Handover and Transfer",
-          "desc": "Key handover plus transfer of utility contracts and meters."
-        },
-        {
-          "title": "Payment Set-up",
-          "desc": "A regular payment flow is set up for bills, fees and taxes."
-        },
-        {
-          "title": "Regular Checks",
-          "desc": "The property is visited at regular intervals."
-        },
-        {
-          "title": "Reporting",
-          "desc": "Reports on expenses and the condition of the property are shared."
-        }
-      ],
-      "who": "We work with our local team and authorised service providers.",
-      "faqs": []
     }
   },
   "mulklerPage": {

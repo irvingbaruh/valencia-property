@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Scale, Paintbrush, Hammer, KeyRound, Home, ClipboardCheck, ChevronRight, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Search, Scale, Paintbrush, Hammer, KeyRound, Home, ChevronRight, CheckCircle2, ArrowRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import { localePath } from '@/lib/routes';
 
@@ -45,12 +45,6 @@ const services = [
     icon: Home,
     image: 'https://images.unsplash.com/photo-1746517757473-7c88850e539b?w=800&q=80&auto=format',
     secondaryCta: { labelKey: 'stagingCta', url: 'https://www.decorpetit.com/pages/home-staging?view=home-staging' },
-  },
-  {
-    key: 'aftersales',
-    slug: 'satis-sonrasi-yonetim',
-    icon: ClipboardCheck,
-    image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80&auto=format',
   },
 ];
 

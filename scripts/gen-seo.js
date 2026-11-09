@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const LOCALES = ['tr', 'es', 'en', 'de'];
 const PAGES = { iletisim: 'iletisimPage', hizmetler: 'hizmetlerPage', mulkler: 'mulklerPage', 'roi-hesaplama': 'roiPage', piyasa: 'market', blog: 'blog', gizlilik: 'privacy', hakkimizda: 'aboutPage', remax: 'remaxPage', sss: 'faqPage', sozluk: 'glossaryPage' };
-const SERVICES = { search: 'mulk-arama', legal: 'hukuki-destek', decor: 'dekorasyon-mobilya', renovation: 'renovasyon', rental: 'kira-yonetimi', staging: 'home-staging', aftersales: 'satis-sonrasi-yonetim' };
+const SERVICES = { search: 'mulk-arama', legal: 'hukuki-destek', decor: 'dekorasyon-mobilya', renovation: 'renovasyon', rental: 'kira-yonetimi', staging: 'home-staging' };
 const clip = (s, n = 158) => (s.length > n ? s.slice(0, n).replace(/\s+\S*$/, '') + '…' : s);
 const out = { home: {}, pages: {}, services: {} };
 for (const l of LOCALES) {

@@ -1,5 +1,5 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { Search, Scale, Paintbrush, Hammer, KeyRound, Home, ClipboardCheck, ArrowRight } from 'lucide-react';
+import { Search, Scale, Paintbrush, Hammer, KeyRound, Home, ArrowRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import ConsultationForm from '@/components/forms/ConsultationForm';
 import { localePath } from '@/lib/routes';
@@ -11,7 +11,6 @@ const services = [
   { key: 'decor', image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80&auto=format', slug: 'dekorasyon-mobilya', icon: Paintbrush },
   { key: 'rental', image: 'https://images.unsplash.com/photo-1733244766159-f58f4184fd38?w=800&q=80&auto=format', slug: 'kira-yonetimi', icon: KeyRound },
   { key: 'staging', image: 'https://images.unsplash.com/photo-1746517757473-7c88850e539b?w=800&q=80&auto=format', slug: 'home-staging', icon: Home },
-  { key: 'aftersales', image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80&auto=format', slug: 'satis-sonrasi-yonetim', icon: ClipboardCheck },
 ];
 
 export default async function HizmetlerPage({ params }) {

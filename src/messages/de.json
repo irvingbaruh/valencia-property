@@ -80,12 +80,12 @@
       "d4": "Baugenehmigungen und Projektmanagement"
     },
     "rental": {
-      "title": "Airbnb & Vermietungsverwaltung",
-      "desc": "Langzeitmiete und Airbnb: Mietersuche und laufende Verwaltung",
-      "d1": "Airbnb- und Langzeitmietstrategie",
-      "d2": "Mieterprüfung und Vertragsgestaltung",
-      "d3": "Monatliche Mieteinzüge und Berichte",
-      "d4": "Wartungs- und Notfallkoordination"
+      "title": "After-Sales-Management",
+      "desc": "Vermietung und Airbnb, Rechnungen, Instandhaltung und regelmäßige Betreuung",
+      "d1": "Strategie für Langzeitmiete und Airbnb",
+      "d2": "Mietersuche, Vertrag und monatlicher Mieteinzug",
+      "d3": "Betreuung von Rechnungen, Hausgeld und Grundsteuer",
+      "d4": "Instandhaltung, regelmäßige Kontrollen und Notfallkoordination"
     },
     "staging": {
       "title": "Home Staging",
@@ -94,14 +94,6 @@
       "d2": "Wertsteigerndes Staging-Design",
       "d3": "Virtuelle Tour und 360°-Ansicht",
       "d4": "Anzeigenoptimierung und Marketing"
-    },
-    "aftersales": {
-      "title": "After-Sales-Management",
-      "desc": "Rechnungen, Steuern, Instandhaltung und regelmäßige Betreuung Ihrer Immobilie",
-      "d1": "Übernahme und Betreuung von Strom-, Wasser- und Internetverträgen",
-      "d2": "Zahlung von Hausgeld (Comunidad) und jährlicher Grundsteuer",
-      "d3": "Regelmäßige Kontrollbesuche und Koordination der Instandhaltung",
-      "d4": "Betreuung von Versicherungen und amtlichen Unterlagen"
     }
   },
   "servicePages": {
@@ -254,28 +246,28 @@
       ]
     },
     "rental": {
-      "title": "Airbnb & Vermietungsverwaltung",
-      "intro": "Wir verwalten Ihre Immobilie in Valencia, während Sie im Ausland sind.",
-      "overview": "Von der Mietersuche bis zum Vertrag, von der monatlichen Mietabrechnung bis zur Koordination der Instandhaltung übernehmen wir den gesamten Prozess.",
+      "title": "After-Sales-Management",
+      "intro": "Wir verwalten Ihre Immobilie in Valencia von A bis Z, während Sie nicht vor Ort sind.",
+      "overview": "Wir übernehmen den gesamten Prozess nach dem Kauf: von der Vermietung (Langzeit oder Airbnb) bis zur Betreuung von Rechnungen, Steuern und Instandhaltung.",
       "steps": [
         {
           "title": "Bewertung",
-          "desc": "Die Mietstrategie (Langzeit oder Airbnb) wird festgelegt."
+          "desc": "Die Vermietungsstrategie (Langzeit / Airbnb) wird festgelegt."
         },
         {
           "title": "Vorbereitung",
           "desc": "Bei Bedarf wird die Immobilie mit Home Staging vorbereitet."
         },
         {
-          "title": "Mietersuche",
+          "title": "Mieter- / Gästesuche",
           "desc": "Inserat, Gespräche und Referenzprüfung."
         },
         {
-          "title": "Monatliche Verwaltung",
-          "desc": "Mieteinzug, Instandhaltung und laufende Berichte."
+          "title": "Laufende Verwaltung",
+          "desc": "Einzug, Rechnungen, Instandhaltung und Berichte."
         }
       ],
-      "who": "Wir arbeiten mit lokalen Instandhaltungsteams und einem vertrauenswürdigen Mieternetzwerk.",
+      "who": "Wir arbeiten mit lokalen Wartungsteams und einem vertrauenswürdigen Mieternetzwerk.",
       "faqs": [
         {
           "q": "Wie hoch ist die Provision?",
@@ -320,31 +312,6 @@
           "a": "Von der Größe der Immobilie und dem Projektumfang, individuell festgelegt."
         }
       ]
-    },
-    "aftersales": {
-      "title": "After-Sales-Management",
-      "intro": "Nach dem Kauf kümmern wir uns um den Alltag Ihrer Immobilie.",
-      "overview": "Wir koordinieren die Aufgaben nach dem Kauf in Ihrem Namen: Versorger, Rechnungen und Steuern, Hausgeld, Versicherungen und regelmäßige Kontrollen.",
-      "steps": [
-        {
-          "title": "Übergabe und Ummeldung",
-          "desc": "Schlüsselübergabe sowie Ummeldung von Versorgerverträgen und Zählern."
-        },
-        {
-          "title": "Zahlungsablauf",
-          "desc": "Ein fester Zahlungsablauf für Rechnungen, Gebühren und Steuern wird eingerichtet."
-        },
-        {
-          "title": "Regelmäßige Kontrolle",
-          "desc": "Die Immobilie wird in festen Abständen besucht."
-        },
-        {
-          "title": "Berichte",
-          "desc": "Berichte zu Ausgaben und zum Zustand der Immobilie werden geteilt."
-        }
-      ],
-      "who": "Wir arbeiten mit unserem lokalen Team und zugelassenen Dienstleistern.",
-      "faqs": []
     }
   },
   "mulklerPage": {

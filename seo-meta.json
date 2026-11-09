@@ -292,20 +292,20 @@
   },
   "kira-yonetimi": {
    "tr": {
-    "t": "Airbnb & Kira Yönetimi | Lock & Loft",
+    "t": "Satış Sonrası Yönetim | Lock & Loft",
     "d": "Konutunuzu siz uzaktayken biz Valencia'da uçtan uca yönetiyoruz."
    },
    "es": {
-    "t": "Alquiler y Airbnb | Lock & Loft",
-    "d": "Gestionamos su propiedad en Valencia mientras usted está en el extranjero."
+    "t": "Gestión Posventa | Lock & Loft",
+    "d": "Gestionamos su vivienda de principio a fin en Valencia mientras usted está lejos."
    },
    "en": {
-    "t": "Airbnb & Rental Management | Lock & Loft",
-    "d": "We manage your property in Valencia while you're abroad."
+    "t": "After-Sales Management | Lock & Loft",
+    "d": "We run your property end to end in Valencia while you are away."
    },
    "de": {
-    "t": "Airbnb & Vermietungsverwaltung | Lock & Loft",
-    "d": "Wir verwalten Ihre Immobilie in Valencia, während Sie im Ausland sind."
+    "t": "After-Sales-Management | Lock & Loft",
+    "d": "Wir verwalten Ihre Immobilie in Valencia von A bis Z, während Sie nicht vor Ort sind."
    }
   },
   "home-staging": {
@@ -324,24 +324,6 @@
    "de": {
     "t": "Home Staging | Lock & Loft",
     "d": "Wir bringen Ihre Immobilie vor dem Verkauf oder der Vermietung in ihre beste Form."
-   }
-  },
-  "satis-sonrasi-yonetim": {
-   "tr": {
-    "t": "Satış Sonrası Yönetim | Lock & Loft",
-    "d": "Satın alma tamamlandıktan sonra konutunuzun gündelik işlerini biz takip ediyoruz."
-   },
-   "es": {
-    "t": "Gestión Posventa | Lock & Loft",
-    "d": "Cuando la compra termina, nos ocupamos del día a día de su vivienda."
-   },
-   "en": {
-    "t": "After-Sales Management | Lock & Loft",
-    "d": "Once the purchase is complete, we look after the day-to-day running of your property."
-   },
-   "de": {
-    "t": "After-Sales-Management | Lock & Loft",
-    "d": "Nach dem Kauf kümmern wir uns um den Alltag Ihrer Immobilie."
    }
   }
  }
