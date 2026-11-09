@@ -212,3 +212,6 @@ h1, h2, h3, h4, .font-serif { font-variant-numeric: lining-nums; font-feature-se
 .dark-card [class*="bg-white/9"], .dark-card [class*="bg-white/8"] { color: #0B0B11; background-color: rgba(255,255,255,0.92); }
 .dark-card .fav-btn, .fav-btn { background-color: #fff; color: #0B0B11; }
 .dark-card .fav-btn.fav-on, .fav-btn.fav-on { background-color: #fff; color: #EF4444; }
+
+/* Yatay kayma / yan boşluk olmasın (Geri tuşu sonrası dahil) */
+html, body { overflow-x: clip; max-width: 100%; }

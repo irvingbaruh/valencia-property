@@ -1,7 +1,7 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useScroll, useTransform, useMotionValue } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 
 /**
  * Scroll-progress-driven reveal component.
@@ -36,19 +36,27 @@ export default function ScrollReveal({
   const start = 0.02 + delay;
   const end = 0.1 + delay;
 
-  const opacity = useTransform(scrollYProgress, [start, end], [0, 1]);
+  // Safety latch: if the scroll position is restored (browser Back) or the layout shifted after the
+  // offsets were measured, scroll progress can be stale and leave a visible element faded or shifted
+  // sideways. Once the element has really entered the screen we lock it to its final state.
+  const seen = useMotionValue(0);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === 'undefined') { seen.set(1); return undefined; }
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { seen.set(1); io.disconnect(); }
+    }, { rootMargin: '0px 0px -22% 0px', threshold: 0 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [seen]);
 
-  const y = useTransform(
-    scrollYProgress,
-    [start, end],
-    [from === 'bottom' ? distance : 0, 0]
-  );
+  const opacityScrub = useTransform(scrollYProgress, [start, end], [0, 1]);
+  const yScrub = useTransform(scrollYProgress, [start, end], [from === 'bottom' ? distance : 0, 0]);
+  const xScrub = useTransform(scrollYProgress, [start, end], [from === 'right' ? distance : from === 'left' ? -distance : 0, 0]);
 
-  const x = useTransform(
-    scrollYProgress,
-    [start, end],
-    [from === 'right' ? distance : from === 'left' ? -distance : 0, 0]
-  );
+  const opacity = useTransform([opacityScrub, seen], ([o, v]) => (v ? 1 : o));
+  const y = useTransform([yScrub, seen], ([o, v]) => (v ? 0 : o));
+  const x = useTransform([xScrub, seen], ([o, v]) => (v ? 0 : o));
 
   return (
     <motion.div
