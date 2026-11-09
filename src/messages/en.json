@@ -1281,7 +1281,7 @@
     "title": "Find the home you are looking for",
     "type": "Property type",
     "all": "All",
-    "rooms": "Bedrooms",
+    "rooms": "Bedrooms (min)",
     "any": "Any",
     "priceMin": "Min price (€)",
     "priceMax": "Max price (€)",
@@ -1298,6 +1298,14 @@
     "results": "properties found",
     "none": "No properties match these criteria. Try widening the filters.",
     "ctaNone": "If you cannot find what you need, send us your criteria and we will search our portfolio and network for you.",
-    "filters": "Filters"
+    "filters": "Filters",
+    "keyword": "Keyword: area, neighbourhood, title…",
+    "province": "Province",
+    "allProvinces": "Valencia and Alicante",
+    "baths": "Bathrooms (min)",
+    "plotMin": "Min plot m²",
+    "newBuild": "New builds only (2024 onwards)",
+    "sortSqmPrice": "Price per m²: low to high",
+    "otherPlaces": "Other places"
   }
 }

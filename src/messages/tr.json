@@ -1281,7 +1281,7 @@
     "title": "Aradığınız konutu bulun",
     "type": "Konut tipi",
     "all": "Tümü",
-    "rooms": "Oda sayısı",
+    "rooms": "Oda (en az)",
     "any": "Farketmez",
     "priceMin": "En düşük fiyat (€)",
     "priceMax": "En yüksek fiyat (€)",
@@ -1298,6 +1298,14 @@
     "results": "konut bulundu",
     "none": "Bu kriterlere uyan konut yok. Filtreleri genişletmeyi deneyin.",
     "ctaNone": "Aradığınızı bulamadıysanız bize kriterlerinizi iletin; portföyümüzde ve ağımızda sizin için arayalım.",
-    "filters": "Filtreler"
+    "filters": "Filtreler",
+    "keyword": "Anahtar kelime: bölge, mahalle, ilan başlığı…",
+    "province": "İl",
+    "allProvinces": "Valencia ve Alicante",
+    "baths": "Banyo (en az)",
+    "plotMin": "Arsa en az m²",
+    "newBuild": "Sadece yeni yapı (2024 ve sonrası)",
+    "sortSqmPrice": "m² fiyatı: düşükten yükseğe",
+    "otherPlaces": "Diğer yerler"
   }
 }

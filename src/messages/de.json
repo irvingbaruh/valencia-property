@@ -1281,7 +1281,7 @@
     "title": "Finden Sie Ihre Wunschimmobilie",
     "type": "Objektart",
     "all": "Alle",
-    "rooms": "Schlafzimmer",
+    "rooms": "Schlafzimmer (mind.)",
     "any": "Egal",
     "priceMin": "Mindestpreis (€)",
     "priceMax": "Höchstpreis (€)",
@@ -1298,6 +1298,14 @@
     "results": "Immobilien gefunden",
     "none": "Keine Immobilien für diese Kriterien. Versuchen Sie, die Filter zu erweitern.",
     "ctaNone": "Finden Sie nichts Passendes, senden Sie uns Ihre Kriterien – wir suchen in unserem Portfolio und Netzwerk für Sie.",
-    "filters": "Filter"
+    "filters": "Filter",
+    "keyword": "Stichwort: Gebiet, Viertel, Titel…",
+    "province": "Provinz",
+    "allProvinces": "Valencia und Alicante",
+    "baths": "Badezimmer (mind.)",
+    "plotMin": "Mind. Grundstück m²",
+    "newBuild": "Nur Neubau (ab 2024)",
+    "sortSqmPrice": "Preis pro m²: aufsteigend",
+    "otherPlaces": "Weitere Orte"
   }
 }

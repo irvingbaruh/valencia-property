@@ -1281,7 +1281,7 @@
     "title": "Encuentre la vivienda que busca",
     "type": "Tipo de inmueble",
     "all": "Todos",
-    "rooms": "Habitaciones",
+    "rooms": "Habitaciones (mínimo)",
     "any": "Indiferente",
     "priceMin": "Precio mínimo (€)",
     "priceMax": "Precio máximo (€)",
@@ -1298,6 +1298,14 @@
     "results": "inmuebles encontrados",
     "none": "No hay inmuebles con estos criterios. Pruebe a ampliar los filtros.",
     "ctaNone": "Si no encuentra lo que busca, cuéntenos sus criterios y lo buscaremos en nuestra cartera y red.",
-    "filters": "Filtros"
+    "filters": "Filtros",
+    "keyword": "Palabra clave: zona, barrio, título…",
+    "province": "Provincia",
+    "allProvinces": "Valencia y Alicante",
+    "baths": "Baños (mínimo)",
+    "plotMin": "Parcela mínima m²",
+    "newBuild": "Solo obra nueva (2024 o posterior)",
+    "sortSqmPrice": "Precio por m²: de menor a mayor",
+    "otherPlaces": "Otras localidades"
   }
 }
