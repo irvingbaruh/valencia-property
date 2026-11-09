@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useScroll, useTransform, useMotionValue } from 'framer-motion';
+import { motion, useTransform, useMotionValue } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 
 /**
@@ -8,10 +8,38 @@ import { useEffect, useRef } from 'react';
  * Animation is tied to scroll position, so scrolling up literally
  * rewinds the entrance animation (elements slide back out the way they came).
  *
+ * Progress is computed from the element's LIVE position on every scroll frame (not from cached offsets),
+ * so it cannot go stale after a browser Back/restored scroll position or a layout shift, and an element
+ * that is on screen always ends up fully visible.
+ *
  * @param {string} from - 'bottom' | 'left' | 'right' — direction element enters from
  * @param {number} delay - 0–0.15, shifts animation range for staggering children
  * @param {number} distance - pixels to travel (default 40)
  */
+
+// One shared scroll listener for every ScrollReveal on the page.
+const active = new Set();
+let queued = false;
+let bound = false;
+function flush() {
+  queued = false;
+  active.forEach((fn) => fn());
+}
+function schedule() {
+  if (queued) return;
+  queued = true;
+  requestAnimationFrame(flush);
+}
+function bind() {
+  if (bound || typeof window === 'undefined') return;
+  bound = true;
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule);
+  window.addEventListener('pageshow', schedule);
+  window.addEventListener('load', schedule);
+  window.addEventListener('orientationchange', schedule);
+}
+
 export default function ScrollReveal({
   children,
   className,
@@ -22,41 +50,54 @@ export default function ScrollReveal({
   ...props
 }) {
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  });
+  const progress = useMotionValue(0);
 
   // Animation happens in the first ~10% of the element's scroll range
-  // (when it first enters the viewport from the bottom), so it finishes
-  // almost immediately after the element becomes visible rather than
-  // staying visibly mid-fade (washed out / low-opacity) for a long
-  // stretch of scrolling.
-  // Scrolling back up rewinds through this exact same range.
+  // (when it first enters the viewport from the bottom).
   const start = 0.02 + delay;
   const end = 0.1 + delay;
 
-  // Safety latch: if the scroll position is restored (browser Back) or the layout shifted after the
-  // offsets were measured, scroll progress can be stale and leave a visible element faded or shifted
-  // sideways. Once the element has really entered the screen we lock it to its final state.
-  const seen = useMotionValue(0);
+  const opacity = useTransform(progress, [start, end], [0, 1]);
+  const y = useTransform(progress, [start, end], [from === 'bottom' ? distance : 0, 0]);
+  const x = useTransform(progress, [start, end], [from === 'right' ? distance : from === 'left' ? -distance : 0, 0]);
+
   useEffect(() => {
     const el = ref.current;
-    if (!el || typeof IntersectionObserver === 'undefined') { seen.set(1); return undefined; }
-    const io = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) { seen.set(1); io.disconnect(); }
-    }, { rootMargin: '0px 0px -22% 0px', threshold: 0 });
-    io.observe(el);
-    return () => io.disconnect();
-  }, [seen]);
+    if (!el) return undefined;
+    bind();
 
-  const opacityScrub = useTransform(scrollYProgress, [start, end], [0, 1]);
-  const yScrub = useTransform(scrollYProgress, [start, end], [from === 'bottom' ? distance : 0, 0]);
-  const xScrub = useTransform(scrollYProgress, [start, end], [from === 'right' ? distance : from === 'left' ? -distance : 0, 0]);
+    const update = () => {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const r = el.getBoundingClientRect();
+      // position without our own transform, so the animation cannot feed back into the measurement
+      const top = r.top - (Number(y.get()) || 0);
+      const p = (vh - top) / (vh + r.height);
+      progress.set(Math.min(1, Math.max(0, p)));
+    };
+    update();
 
-  const opacity = useTransform([opacityScrub, seen], ([o, v]) => (v ? 1 : o));
-  const y = useTransform([yScrub, seen], ([o, v]) => (v ? 0 : o));
-  const x = useTransform([xScrub, seen], ([o, v]) => (v ? 0 : o));
+    let io;
+    if (typeof IntersectionObserver !== 'undefined') {
+      io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) active.add(update);
+          else { active.delete(update); update(); } // settle at 0 (below screen) or 1 (above screen)
+        });
+      }, { rootMargin: '60% 0px 60% 0px', threshold: 0 });
+      io.observe(el);
+    } else {
+      active.add(update);
+    }
+    // late layout shifts (images, fonts, async content)
+    const t1 = setTimeout(update, 400);
+    const t2 = setTimeout(update, 1500);
+    return () => {
+      active.delete(update);
+      if (io) io.disconnect();
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [progress, y]);
 
   return (
     <motion.div
