@@ -80,8 +80,8 @@
       "d4": "Municipal permits and project management"
     },
     "rental": {
-      "title": "After-Sales Management",
-      "desc": "Tenant search, rent collection, maintenance and after-sales follow-up",
+      "title": "Airbnb & Rental Management",
+      "desc": "Long-term and Airbnb rentals: tenant search and monthly management",
       "d1": "Airbnb and long-term rental strategy",
       "d2": "Tenant screening and contract preparation",
       "d3": "Monthly rent collection and reporting",
@@ -94,6 +94,14 @@
       "d2": "Value-boosting staging design",
       "d3": "Virtual tour and 360° viewing",
       "d4": "Listing optimization and marketing"
+    },
+    "aftersales": {
+      "title": "After-Sales Management",
+      "desc": "Bills, taxes, maintenance and regular follow-up of your property",
+      "d1": "Transfer and follow-up of electricity, water and internet contracts",
+      "d2": "Community fees and annual property tax payments",
+      "d3": "Regular check visits and maintenance coordination",
+      "d4": "Insurance and official paperwork follow-up"
     }
   },
   "servicePages": {
@@ -246,7 +254,7 @@
       ]
     },
     "rental": {
-      "title": "After-Sales Management",
+      "title": "Airbnb & Rental Management",
       "intro": "We manage your property in Valencia while you're abroad.",
       "overview": "From finding tenants to the contract, from monthly collection to maintenance coordination, we handle the entire process.",
       "steps": [
@@ -312,6 +320,31 @@
           "a": "Property size and project scope, set on a per-project basis."
         }
       ]
+    },
+    "aftersales": {
+      "title": "After-Sales Management",
+      "intro": "Once the purchase is complete, we look after the day-to-day running of your property.",
+      "overview": "We coordinate the after-sales tasks on your behalf: utilities, bills and tax payments, community fees, insurance and periodic inspections.",
+      "steps": [
+        {
+          "title": "Handover and Transfer",
+          "desc": "Key handover plus transfer of utility contracts and meters."
+        },
+        {
+          "title": "Payment Set-up",
+          "desc": "A regular payment flow is set up for bills, fees and taxes."
+        },
+        {
+          "title": "Regular Checks",
+          "desc": "The property is visited at regular intervals."
+        },
+        {
+          "title": "Reporting",
+          "desc": "Reports on expenses and the condition of the property are shared."
+        }
+      ],
+      "who": "We work with our local team and authorised service providers.",
+      "faqs": []
     }
   },
   "mulklerPage": {

@@ -101,6 +101,7 @@ const SERVICE_SLUGS = {
   'hukuki-destek': { es: 'asesoria-legal', en: 'legal-support', de: 'rechtsberatung' },
   'dekorasyon-mobilya': { es: 'decoracion-mobiliario', en: 'decor-furniture', de: 'einrichtung-moebel' },
   renovasyon: { es: 'reformas', en: 'renovation', de: 'renovierung' },
+  'satis-sonrasi-yonetim': { es: 'gestion-posventa', en: 'after-sales-management', de: 'after-sales-management' },
   'kira-yonetimi': { es: 'gestion-alquileres', en: 'rental-management', de: 'vermietungsverwaltung' },
 };
 const SERVICE_TO_CANONICAL = {};
@@ -133,7 +134,7 @@ let SEO = { home: {}, pages: {}, services: {} };
 try { SEO = JSON.parse(fs.readFileSync(path.join(__dirname, 'seo-meta.json'), 'utf8')); } catch (e) { console.error('seo-meta.json missing'); }
 
 const PAGE_KEYS = ['iletisim', 'hizmetler', 'mulkler', 'roi-hesaplama', 'piyasa', 'blog', 'gizlilik', 'hakkimizda', 'remax', 'sss', 'sozluk'];
-const SERVICE_KEYS = ['mulk-arama', 'hukuki-destek', 'dekorasyon-mobilya', 'renovasyon', 'kira-yonetimi', 'home-staging'];
+const SERVICE_KEYS = ['mulk-arama', 'hukuki-destek', 'dekorasyon-mobilya', 'renovasyon', 'kira-yonetimi', 'home-staging', 'satis-sonrasi-yonetim'];
 const NOINDEX_KEYS = ['giris', 'panel', 'sifre-yenile'];
 
 const pageSlug = (loc, key) => (loc === 'tr' ? key : (ROUTES[key] && ROUTES[key][loc]) || key);

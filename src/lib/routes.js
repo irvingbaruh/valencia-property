@@ -23,6 +23,7 @@ export const SERVICE_SLUGS = {
   'hukuki-destek': { tr: 'hukuki-destek', es: 'asesoria-legal', en: 'legal-support', de: 'rechtsberatung' },
   'dekorasyon-mobilya': { tr: 'dekorasyon-mobilya', es: 'decoracion-mobiliario', en: 'decor-furniture', de: 'einrichtung-moebel' },
   renovasyon: { tr: 'renovasyon', es: 'reformas', en: 'renovation', de: 'renovierung' },
+  'satis-sonrasi-yonetim': { tr: 'satis-sonrasi-yonetim', es: 'gestion-posventa', en: 'after-sales-management', de: 'after-sales-management' },
   'kira-yonetimi': { tr: 'kira-yonetimi', es: 'gestion-alquileres', en: 'rental-management', de: 'vermietungsverwaltung' },
   'home-staging': { tr: 'home-staging', es: 'home-staging', en: 'home-staging', de: 'home-staging' },
 };

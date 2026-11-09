@@ -1,7 +1,7 @@
 {
  "home": {
   "tr": {
-   "t": "Lock & Loft — İspanya'da Mülk Yatırımı",
+   "t": "Lock & Loft — İspanya'da Gayrimenkul Yatırımı",
    "d": "Valencia'da gayrimenkul yatırımı, dekorasyon, renovasyon ve kira yönetimi hizmetleri"
   },
   "es": {
@@ -39,7 +39,7 @@
   "hizmetler": {
    "tr": {
     "t": "Hizmetlerimiz | Lock & Loft",
-    "d": "Mülk aramadan anahtar teslime kadar, İspanya'da gayrimenkul yolculuğunuzun her adımında yanınızdayız."
+    "d": "Konut aramadan anahtar teslime kadar, İspanya'da gayrimenkul yolculuğunuzun her adımında yanınızdayız."
    },
    "es": {
     "t": "Nuestros Servicios | Lock & Loft",
@@ -56,8 +56,8 @@
   },
   "mulkler": {
    "tr": {
-    "t": "Tüm Mülkler | Lock & Loft",
-    "d": "Valencia ve çevresindeki seçkin mülk portföyümüzü keşfedin."
+    "t": "Tüm Konutlar | Lock & Loft",
+    "d": "Valencia ve çevresindeki seçkin konut portföyümüzü keşfedin."
    },
    "es": {
     "t": "Todas las Propiedades | Lock & Loft",
@@ -110,7 +110,7 @@
   },
   "blog": {
    "tr": {
-    "t": "Rehber | Lock & Loft",
+    "t": "Blog | Lock & Loft",
     "d": "İspanya'da gayrimenkul yatırımı ve yaşamı hakkında bilmeniz gerekenler"
    },
    "es": {
@@ -147,7 +147,7 @@
   "hakkimizda": {
    "tr": {
     "t": "Hakkımızda | Lock & Loft",
-    "d": "Valencia ve Alicante'de ev danışmanlığından reformaya, hukuki desteğe ve kira yönetimine kadar mülk sürecinizin tamamını tek yerden yürütüyoruz."
+    "d": "Valencia ve Alicante'de ev danışmanlığından reformaya, hukuki desteğe ve kira yönetimine kadar konut sürecinizin tamamını tek yerden yürütüyoruz."
    },
    "es": {
     "t": "Sobre nosotros | Lock & Loft",
@@ -220,7 +220,7 @@
  "services": {
   "mulk-arama": {
    "tr": {
-    "t": "Mülk Arama | Lock & Loft",
+    "t": "Konut Arama | Lock & Loft",
     "d": "Valencia ve çevresindeki en uygun yatırım ve yaşam fırsatlarını tek yerden keşfedin."
    },
    "es": {
@@ -239,7 +239,7 @@
   "hukuki-destek": {
    "tr": {
     "t": "Hukuki Destek | Lock & Loft",
-    "d": "İspanya'da mülk alım sürecinin her hukuki adımında güvenilir ortak avukatlarla yanınızdayız."
+    "d": "İspanya'da konut alım sürecinin her hukuki adımında güvenilir ortak avukatlarla yanınızdayız."
    },
    "es": {
     "t": "Apoyo Legal | Lock & Loft",
@@ -257,7 +257,7 @@
   "dekorasyon-mobilya": {
    "tr": {
     "t": "Dekorasyon & Mobilya | Lock & Loft",
-    "d": "Mülkünüzü konsept tasarımdan kuruluma kadar anahtar teslim döşüyoruz."
+    "d": "Konutunuzu konsept tasarımdan kuruluma kadar anahtar teslim döşüyoruz."
    },
    "es": {
     "t": "Decoración y Mobiliario | Lock & Loft",
@@ -275,7 +275,7 @@
   "renovasyon": {
    "tr": {
     "t": "Renovasyon | Lock & Loft",
-    "d": "Yenileme gerektiren mülkleri değer kazanan yaşam alanlarına dönüştürüyoruz."
+    "d": "Yenileme gerektiren konutları değer kazanan yaşam alanlarına dönüştürüyoruz."
    },
    "es": {
     "t": "Renovación | Lock & Loft",
@@ -292,26 +292,26 @@
   },
   "kira-yonetimi": {
    "tr": {
-    "t": "Kira Yönetimi | Lock & Loft",
-    "d": "Mülkünüzü siz uzaktayken biz Valencia'da uçtan uca yönetiyoruz."
+    "t": "Airbnb & Kira Yönetimi | Lock & Loft",
+    "d": "Konutunuzu siz uzaktayken biz Valencia'da uçtan uca yönetiyoruz."
    },
    "es": {
-    "t": "Gestión de Alquileres | Lock & Loft",
+    "t": "Alquiler y Airbnb | Lock & Loft",
     "d": "Gestionamos su propiedad en Valencia mientras usted está en el extranjero."
    },
    "en": {
-    "t": "Rental Management | Lock & Loft",
+    "t": "Airbnb & Rental Management | Lock & Loft",
     "d": "We manage your property in Valencia while you're abroad."
    },
    "de": {
-    "t": "Mietverwaltung | Lock & Loft",
+    "t": "Airbnb & Vermietungsverwaltung | Lock & Loft",
     "d": "Wir verwalten Ihre Immobilie in Valencia, während Sie im Ausland sind."
    }
   },
   "home-staging": {
    "tr": {
     "t": "Home Staging | Lock & Loft",
-    "d": "Mülkünüzü satış veya kiralama öncesi en değerli haline getiriyoruz."
+    "d": "Konutunuzu satış veya kiralama öncesi en değerli haline getiriyoruz."
    },
    "es": {
     "t": "Home Staging | Lock & Loft",
@@ -324,6 +324,24 @@
    "de": {
     "t": "Home Staging | Lock & Loft",
     "d": "Wir bringen Ihre Immobilie vor dem Verkauf oder der Vermietung in ihre beste Form."
+   }
+  },
+  "satis-sonrasi-yonetim": {
+   "tr": {
+    "t": "Satış Sonrası Yönetim | Lock & Loft",
+    "d": "Satın alma tamamlandıktan sonra konutunuzun gündelik işlerini biz takip ediyoruz."
+   },
+   "es": {
+    "t": "Gestión Posventa | Lock & Loft",
+    "d": "Cuando la compra termina, nos ocupamos del día a día de su vivienda."
+   },
+   "en": {
+    "t": "After-Sales Management | Lock & Loft",
+    "d": "Once the purchase is complete, we look after the day-to-day running of your property."
+   },
+   "de": {
+    "t": "After-Sales-Management | Lock & Loft",
+    "d": "Nach dem Kauf kümmern wir uns um den Alltag Ihrer Immobilie."
    }
   }
  }

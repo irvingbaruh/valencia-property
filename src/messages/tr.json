@@ -80,8 +80,8 @@
       "d4": "Belediye izinleri ve proje yönetimi"
     },
     "rental": {
-      "title": "Satış Sonrası Yönetim",
-      "desc": "Kiracı bulma, kira tahsilatı, bakım ve satış sonrası takip",
+      "title": "Airbnb & Kira Yönetimi",
+      "desc": "Airbnb ve uzun dönem kiralama; kiracı bulma ve aylık yönetim",
       "d1": "Airbnb ve uzun dönem kiralama stratejisi",
       "d2": "Kiracı tarama ve sözleşme hazırlama",
       "d3": "Aylık kira tahsilatı ve raporlama",
@@ -94,6 +94,14 @@
       "d2": "Satış değerini artıran sahneleme",
       "d3": "Sanal tur ve 360° görüntüleme",
       "d4": "İlan optimizasyonu ve pazarlama"
+    },
+    "aftersales": {
+      "title": "Satış Sonrası Yönetim",
+      "desc": "Fatura, vergi, bakım ve konutunuzun düzenli takibi",
+      "d1": "Elektrik, su ve internet aboneliklerinin devri ve takibi",
+      "d2": "Topluluk aidatı (comunidad) ve yıllık emlak vergisi ödemeleri",
+      "d3": "Düzenli kontrol ziyaretleri ve bakım koordinasyonu",
+      "d4": "Sigorta ve resmi evrak takibi"
     }
   },
   "servicePages": {
@@ -246,7 +254,7 @@
       ]
     },
     "rental": {
-      "title": "Satış Sonrası Yönetim",
+      "title": "Airbnb & Kira Yönetimi",
       "intro": "Konutunuzu siz uzaktayken biz Valencia'da uçtan uca yönetiyoruz.",
       "overview": "Kiracı bulmadan sözleşmeye, aylık tahsilattan bakım koordinasyonuna kadar tüm süreci üstleniyoruz.",
       "steps": [
@@ -312,6 +320,31 @@
           "a": "Konut büyüklüğü ve kapsam proje bazında belirlenir."
         }
       ]
+    },
+    "aftersales": {
+      "title": "Satış Sonrası Yönetim",
+      "intro": "Satın alma tamamlandıktan sonra konutunuzun gündelik işlerini biz takip ediyoruz.",
+      "overview": "Abonelikler, fatura ve vergi ödemeleri, topluluk aidatı, sigorta ve periyodik kontroller gibi satış sonrası işleri sizin adınıza koordine ediyoruz.",
+      "steps": [
+        {
+          "title": "Teslim ve Devir",
+          "desc": "Anahtar teslimi, abonelik ve sayaç devirleri yapılır."
+        },
+        {
+          "title": "Ödeme Düzeni",
+          "desc": "Fatura, aidat ve vergiler için düzenli ödeme akışı kurulur."
+        },
+        {
+          "title": "Düzenli Kontrol",
+          "desc": "Konut belirli aralıklarla ziyaret edilir."
+        },
+        {
+          "title": "Raporlama",
+          "desc": "Giderler ve konutun durumu hakkında rapor paylaşılır."
+        }
+      ],
+      "who": "Yerel ekibimiz ve yetkili hizmet sağlayıcılarla çalışıyoruz.",
+      "faqs": []
     }
   },
   "mulklerPage": {
