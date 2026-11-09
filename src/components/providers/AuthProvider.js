@@ -114,7 +114,8 @@ export function AuthProvider({ children }) {
   };
 
   const signOut = async () => {
-    const { error } = await supabase.auth.signOut();
+    // local: signing out here must not end the same account's sessions on other devices (the admin phone app)
+    const { error } = await supabase.auth.signOut({ scope: 'local' });
     if (!error) {
       setUser(null);
       setProfile(null);

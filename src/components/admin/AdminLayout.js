@@ -54,11 +54,29 @@ export default function AdminLayout({ children, activeSection = 'dashboard' }) {
   const [aalOk, setAalOk] = useState(false);
   const [openMsgs, setOpenMsgs] = useState(0);
 
+  // Before sending anyone to the login page, make one more attempt to renew the session
+  // (a phone that was asleep comes back with an expired access token).
   useEffect(() => {
-    if (!loading && (!user || !isAdmin)) {
+    if (loading || (user && isAdmin)) return;
+    let cancelled = false;
+    (async () => {
+      if (!user) {
+        const { data } = await supabase.auth.refreshSession();
+        if (cancelled || data?.session) return;
+      }
       router.replace(`${ADMIN_BASE}/giris/`);
-    }
+    })();
+    return () => {
+      cancelled = true;
+    };
   }, [user, loading, isAdmin, router]);
+
+  // Waking the app up renews the session right away
+  useEffect(() => {
+    const onShow = () => document.visibilityState === 'visible' && supabase.auth.getSession();
+    document.addEventListener('visibilitychange', onShow);
+    return () => document.removeEventListener('visibilitychange', onShow);
+  }, []);
 
   // If an authenticator is enrolled, the session must have passed the code check
   useEffect(() => {

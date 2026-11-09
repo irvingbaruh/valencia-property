@@ -38,7 +38,7 @@ export default function AuthForm() {
         if (!signInError && signInData?.user) {
           const { data: prof } = await supabase.from('profiles').select('role').eq('id', signInData.user.id).maybeSingle();
           if (prof?.role === 'admin') {
-            await supabase.auth.signOut();
+            await supabase.auth.signOut({ scope: 'local' });
             setError(t('errorAdminAccount'));
             setLoading(false);
             return;
