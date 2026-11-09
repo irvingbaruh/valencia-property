@@ -93,9 +93,9 @@ function Daily({ days }) {
       {days.length === 0 ? (
         <p className="text-sm text-[#9A9AAA]">Bu aralıkta veri yok.</p>
       ) : (
-        <div className="flex items-end gap-1 h-36 overflow-x-auto">
+        <div className="flex items-end gap-1.5 h-36 overflow-x-auto">
           {days.map((d) => (
-            <div key={d.day} className="flex-1 min-w-[10px] flex flex-col items-center justify-end h-full group relative">
+            <div key={d.day} className="flex-1 min-w-[10px] max-w-[44px] flex flex-col items-center justify-end h-full group relative">
               <div className="w-full rounded-t" style={{ height: `${Math.max(3, (d.views / max) * 100)}%`, background: '#C9A84C' }} title={`${d.day}: ${d.views} görüntüleme, ${d.visitors} ziyaretçi, ${d.clicks} tıklama`} />
             </div>
           ))}
