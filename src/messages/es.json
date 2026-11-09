@@ -526,7 +526,8 @@
     "passwordUpdated": "Su contraseña se ha actualizado. Le llevamos a su cuenta.",
     "linkInvalid": "El enlace no es válido o ha caducado. Inicie de nuevo el restablecimiento.",
     "passwordTooShort": "La contraseña debe tener al menos 8 caracteres.",
-    "marketing": "Quiero recibir por correo novedades de propiedades, mercado e inversión (opcional). En los correos se registran estadísticas de apertura y clics."
+    "marketing": "Quiero recibir por correo novedades de propiedades, mercado e inversión (opcional). En los correos se registran estadísticas de apertura y clics.",
+    "errorAdminAccount": "Esta cuenta no se puede usar en el acceso de miembros."
   },
   "panel": {
     "title": "Panel de Miembro",

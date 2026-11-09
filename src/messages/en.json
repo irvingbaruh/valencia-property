@@ -526,7 +526,8 @@
     "passwordUpdated": "Your password has been updated. Taking you to your account.",
     "linkInvalid": "This link is invalid or has expired. Start the password reset again.",
     "passwordTooShort": "Password must be at least 8 characters.",
-    "marketing": "I would like to receive property, market and investment news by email (optional). Email open and click statistics are recorded."
+    "marketing": "I would like to receive property, market and investment news by email (optional). Email open and click statistics are recorded.",
+    "errorAdminAccount": "This account cannot be used for member login."
   },
   "panel": {
     "title": "Member Panel",

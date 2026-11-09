@@ -1,5 +1,6 @@
 'use client';
 
+import { supabase } from '@/lib/supabase';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
@@ -33,7 +34,16 @@ export default function AuthForm() {
         if (resetError) setError(t('errorGeneric'));
         else setMode('resetSent');
       } else if (mode === 'login') {
-        const { error: signInError } = await signIn(email, password);
+        const { data: signInData, error: signInError } = await signIn(email, password);
+        if (!signInError && signInData?.user) {
+          const { data: prof } = await supabase.from('profiles').select('role').eq('id', signInData.user.id).maybeSingle();
+          if (prof?.role === 'admin') {
+            await supabase.auth.signOut();
+            setError(t('errorAdminAccount'));
+            setLoading(false);
+            return;
+          }
+        }
         if (signInError) {
           if (signInError.message?.includes('Invalid login credentials')) {
             setError(t('errorInvalidCredentials'));

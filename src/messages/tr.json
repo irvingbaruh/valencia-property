@@ -526,7 +526,8 @@
     "passwordUpdated": "Şifreniz güncellendi. Panelinize yönlendiriliyorsunuz.",
     "linkInvalid": "Bağlantı geçersiz veya süresi dolmuş. Şifre sıfırlamayı yeniden başlatın.",
     "passwordTooShort": "Şifre en az 8 karakter olmalı.",
-    "marketing": "Yeni konut, piyasa ve yatırım haberlerini e-posta ile almak istiyorum (isteğe bağlı). E-postalarda açılma ve tıklama istatistikleri tutulur."
+    "marketing": "Yeni konut, piyasa ve yatırım haberlerini e-posta ile almak istiyorum (isteğe bağlı). E-postalarda açılma ve tıklama istatistikleri tutulur.",
+    "errorAdminAccount": "Bu hesap üye girişiyle kullanılamaz."
   },
   "panel": {
     "title": "Üye Paneli",

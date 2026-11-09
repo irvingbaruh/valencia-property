@@ -186,7 +186,7 @@ export default function AdminMembersPage() {
     if (error || !data?.ok) {
       const code = data?.error || '';
       setDelError(
-        code === 'cannot_delete_admin' ? 'Admin üyeler silinemez. Önce rolünü "Üye" yapın.'
+        code === 'cannot_delete_admin' ? 'Admin hesapları silinemez.'
         : code === 'cannot_delete_self' ? 'Kendi hesabınızı silemezsiniz.'
         : 'Silinemedi. Lütfen tekrar deneyin.'
       );
