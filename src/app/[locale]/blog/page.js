@@ -66,8 +66,8 @@ export default function BlogPage() {
   return (
     <div className="bg-soft min-h-screen">
       {/* Hero */}
-      <div className="bg-white border-b border-white/10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-16 text-center">
+      <div className="bg-band border-b border-border">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-48 pb-16 text-center">
           <div className="inline-flex items-center gap-3 mb-6">
             <span className="h-px w-8 bg-gold/60" />
             <span className="text-gold text-xs font-sans tracking-[0.2em] uppercase">{t.guide}</span>

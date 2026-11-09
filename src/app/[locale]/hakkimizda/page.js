@@ -17,8 +17,8 @@ export default async function AboutPage({ params }) {
 
   return (
     <div className="bg-soft">
-      <div className="bg-white border-b border-white/10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-16">
+      <div className="bg-band border-b border-border">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-48 pb-16">
           <h1 className="text-4xl sm:text-5xl font-serif text-dark mb-4">{t('title')}</h1>
           <p className="text-lg text-text-muted max-w-2xl">{t('subtitle')}</p>
         </div>
@@ -70,7 +70,7 @@ export default async function AboutPage({ params }) {
 
         <section className="bg-dark text-white rounded-xl p-8 sm:p-10 text-center">
           <h2 className="text-2xl font-serif mb-2">{t('ctaH')}</h2>
-          <p className="text-white/70 mb-6">{t('ctaP')}</p>
+          <p className="text-white mb-6">{t('ctaP')}</p>
           <div className="flex flex-wrap justify-center gap-3">
             <a href={localePath(locale, 'iletisim')} className="bg-gold text-dark font-medium px-6 py-3 rounded-lg hover:opacity-90 transition-opacity">
               {t('ctaBtn')}

@@ -23,7 +23,7 @@ export default function Process() {
           <h2 className="text-3xl md:text-4xl font-serif text-white mb-3">
             {t('title')}
           </h2>
-          <p className="text-white/60 max-w-xl mx-auto">
+          <p className="text-white max-w-xl mx-auto">
             {t('subtitle')}
           </p>
         </ScrollReveal>
@@ -51,7 +51,7 @@ export default function Process() {
               <h3 className="font-serif text-lg text-white mb-2 group-hover:text-gold transition-colors duration-200">
                 {t(`${step.key}.title`)}
               </h3>
-              <p className="text-sm text-white/50 leading-relaxed max-w-xs mx-auto">
+              <p className="text-sm text-white leading-relaxed max-w-xs mx-auto">
                 {t(`${step.key}.desc`)}
               </p>
             </ScrollReveal>

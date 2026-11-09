@@ -15,8 +15,8 @@ export default async function GlossaryPage({ params }) {
 
   return (
     <div className="bg-soft">
-      <div className="bg-white border-b border-white/10">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-16">
+      <div className="bg-band border-b border-border">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-48 pb-16">
           <h1 className="text-4xl sm:text-5xl font-serif text-dark mb-4">{t('title')}</h1>
           <p className="text-lg text-text-muted">{t('subtitle')}</p>
         </div>

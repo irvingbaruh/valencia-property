@@ -53,7 +53,7 @@ export default function Testimonials() {
           <h2 className="text-3xl md:text-4xl font-serif text-white mb-3">
             {t('title')}
           </h2>
-          <p className="text-white/70 max-w-xl mx-auto">
+          <p className="text-white max-w-xl mx-auto">
             {t('subtitle')}
           </p>
         </ScrollReveal>
@@ -83,7 +83,7 @@ function TestimonialCard({ item, index }) {
         <div className="absolute -top-20 -right-20 w-40 h-40 bg-gold/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
         <Quote size={24} className="text-gold/30 mb-4 relative" />
-        <p className="text-white/75 text-sm leading-relaxed mb-5 relative">
+        <p className="text-white text-sm leading-relaxed mb-5 relative">
           &ldquo;{text}&rdquo;
         </p>
         <div className="flex items-center gap-3 pt-4 border-t border-white/10 relative">
@@ -94,7 +94,7 @@ function TestimonialCard({ item, index }) {
           </div>
           <div>
             <p className="text-sm font-medium text-white">{item.name}</p>
-            <p className="text-xs text-white/50">{item.location}</p>
+            <p className="text-xs text-white">{item.location}</p>
           </div>
           <div className="ml-auto flex gap-0.5">
             {[...Array(5)].map((_, j) => (

@@ -62,7 +62,7 @@ export default function Stats() {
                   <AnimatedNumber value={stat.value} suffix={stat.suffix} duration={1.5 + i * 0.2} />
                 )}
               </p>
-              <p className="text-sm text-white/55">{t(stat.key)}</p>
+              <p className="text-sm text-white">{t(stat.key)}</p>
             </ScrollReveal>
           ))}
         </div>

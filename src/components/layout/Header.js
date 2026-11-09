@@ -139,7 +139,7 @@ export default function Header() {
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                  'text-white/80 hover:text-gold hover:bg-white/5'
+                  'text-white hover:text-gold hover:bg-white/5'
                 }`}
               >
                 {link.label}
@@ -154,7 +154,7 @@ export default function Header() {
               <button
                 onClick={() => setLangOpen(!langOpen)}
                 className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-sm transition-colors ${
-                  'text-white/80 hover:text-gold hover:bg-white/5'
+                  'text-white hover:text-gold hover:bg-white/5'
                 }`}
               >
                 <Globe size={16} />
@@ -176,7 +176,7 @@ export default function Header() {
                         className={`w-full flex items-center gap-2.5 px-3 py-2 text-sm transition-colors ${
                           code === locale
                             ? 'bg-gold/10 text-gold font-medium'
-                            : 'text-white/75 hover:bg-white/5 hover:text-gold'
+                            : 'text-white hover:bg-white/5 hover:text-gold'
                         }`}
                       >
                         <span>{localeFlags[code]}</span>
@@ -193,7 +193,7 @@ export default function Header() {
               <a
                 href={user ? localePath(locale, 'panel') : localePath(locale, 'giris')}
                 className={`hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
-                  'text-white/80 hover:text-gold hover:bg-white/5'
+                  'text-white hover:text-gold hover:bg-white/5'
                 }`}
               >
                 <UserCircle size={18} />
@@ -231,7 +231,7 @@ export default function Header() {
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="block px-3 py-2.5 text-white/80 hover:text-gold hover:bg-white/5 rounded-md text-sm font-medium transition-colors"
+                className="block px-3 py-2.5 text-white hover:text-gold hover:bg-white/5 rounded-md text-sm font-medium transition-colors"
               >
                 {link.label}
               </a>
@@ -240,7 +240,7 @@ export default function Header() {
             {!authLoading && (
               <a
                 href={user ? localePath(locale, 'panel') : localePath(locale, 'giris')}
-                className="flex items-center gap-2 px-3 py-2.5 text-white/80 hover:text-gold hover:bg-white/5 rounded-md text-sm font-medium transition-colors"
+                className="flex items-center gap-2 px-3 py-2.5 text-white hover:text-gold hover:bg-white/5 rounded-md text-sm font-medium transition-colors"
               >
                 <UserCircle size={18} />
                 {user ? t('panel') : t('login')}

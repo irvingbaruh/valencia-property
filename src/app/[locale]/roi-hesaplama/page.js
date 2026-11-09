@@ -19,8 +19,8 @@ export default async function ROIPage({ params }) {
   return (
     <div className="bg-soft">
       {/* Hero */}
-      <div className="bg-white border-b border-white/10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-16 text-center">
+      <div className="bg-band border-b border-border">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-48 pb-16 text-center">
           <div className="inline-flex items-center gap-3 mb-6">
             <span className="h-px w-8 bg-gold/60" />
             <span className="text-gold text-xs font-sans tracking-[0.2em] uppercase">ROI</span>
@@ -77,7 +77,7 @@ export default async function ROIPage({ params }) {
         {/* CTA */}
         <ScrollReveal className="bg-dark rounded-2xl p-8 sm:p-10 text-center">
           <h2 className="text-2xl font-serif text-white mb-2">{t('ctaTitle')}</h2>
-          <p className="text-white/70 mb-7 max-w-md mx-auto">{t('ctaSubtitle')}</p>
+          <p className="text-white mb-7 max-w-md mx-auto">{t('ctaSubtitle')}</p>
           <a
             href={`${localePath(locale, 'hizmetler', `#consultation-form`)}`}
             className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gold text-dark font-semibold rounded-xl hover:bg-gold-hover active:scale-[0.98] transition-all duration-200 shadow-gold group"

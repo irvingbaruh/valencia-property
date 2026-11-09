@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { ChevronRight, ArrowRight } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import ParallaxBreak from '@/components/ui/ParallaxBreak';
+import { localePath } from '@/lib/routes';
 
 /**
  * Shared template for all /hizmetler/<slug> service detail pages.
@@ -16,13 +17,12 @@ export default async function ServiceDetailTemplate({ locale, serviceKey, image,
   const servicesT = await getTranslations({ locale, namespace: 'services' });
 
   const steps = t.raw('steps') || [];
-  const faqs = t.raw('faqs') || [];
 
   return (
     <div className="bg-soft">
       {/* Breadcrumb */}
-      <div className="bg-white border-b border-white/10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center gap-2 text-sm text-text-muted">
+      <div className="bg-band border-b border-border">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-44 pb-4 flex items-center gap-2 text-sm text-text-muted">
           <a href={`/${locale}/`} className="hover:text-gold transition-colors">{c('breadcrumbHome')}</a>
           <ChevronRight size={14} />
           <a href={`/${locale}/#services`} className="hover:text-gold transition-colors">{c('breadcrumbServices')}</a>
@@ -78,29 +78,21 @@ export default async function ServiceDetailTemplate({ locale, serviceKey, image,
           </div>
         </ScrollReveal>
 
-        {/* FAQ */}
-        {faqs.length > 0 && (
-          <section>
-            <ScrollReveal>
-              <h2 className="text-2xl font-serif text-dark mb-6">{c('faqTitle')}</h2>
-            </ScrollReveal>
-            <div className="space-y-5">
-              {faqs.map((faq, i) => (
-                <ScrollReveal key={i} delay={i * 0.04}>
-                  <div className="border-b border-white/10 pb-5 last:border-0">
-                    <p className="font-semibold text-dark mb-2">{faq.q}</p>
-                    <p className="text-text-muted leading-relaxed">{faq.a}</p>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </section>
-        )}
+        {/* FAQ link */}
+        <ScrollReveal className="text-center">
+          <a
+            href={localePath(locale, 'sss')}
+            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-dark text-white font-semibold rounded-xl hover:bg-charcoal transition-colors duration-200"
+          >
+            {c('faqCta')}
+            <ArrowRight size={16} />
+          </a>
+        </ScrollReveal>
 
         {/* CTA box */}
         <ScrollReveal className="bg-dark rounded-2xl p-8 sm:p-10 text-center">
           <h2 className="text-2xl font-serif text-white mb-2">{c('ctaBoxTitle')}</h2>
-          <p className="text-white/70 mb-7 max-w-md mx-auto">{c('ctaBoxSubtitle')}</p>
+          <p className="text-white mb-7 max-w-md mx-auto">{c('ctaBoxSubtitle')}</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
               href={`/${locale}/#contact`}

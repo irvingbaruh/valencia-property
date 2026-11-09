@@ -35,7 +35,7 @@ export default function CTASection() {
           <h2 className="text-3xl md:text-5xl font-serif text-white mb-4">
             {t('title')}
           </h2>
-          <p className="text-lg text-white/60 mb-10 max-w-xl mx-auto">
+          <p className="text-lg text-white mb-10 max-w-xl mx-auto">
             {t('subtitle')}
           </p>
 

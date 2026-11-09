@@ -80,8 +80,8 @@
       "d4": "Municipal permits and project management"
     },
     "rental": {
-      "title": "Rental Management",
-      "desc": "Tenant finding, contracts and monthly management",
+      "title": "After-Sales Management",
+      "desc": "Tenant search, rent collection, maintenance and after-sales follow-up",
       "d1": "Airbnb and long-term rental strategy",
       "d2": "Tenant screening and contract preparation",
       "d3": "Monthly rent collection and reporting",
@@ -106,7 +106,8 @@
       "faqTitle": "Frequently Asked Questions",
       "ctaBoxTitle": "Interested in This Service?",
       "ctaBoxSubtitle": "Let's assess your needs and put together a plan for you.",
-      "ctaPrimary": "Get a Consultation"
+      "ctaPrimary": "Get a Consultation",
+      "faqCta": "Go to Frequently Asked Questions"
     },
     "search": {
       "title": "Property Search",
@@ -245,7 +246,7 @@
       ]
     },
     "rental": {
-      "title": "Rental Management",
+      "title": "After-Sales Management",
       "intro": "We manage your property in Valencia while you're abroad.",
       "overview": "From finding tenants to the contract, from monthly collection to maintenance coordination, we handle the entire process.",
       "steps": [

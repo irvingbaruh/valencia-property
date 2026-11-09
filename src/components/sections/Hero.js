@@ -85,17 +85,6 @@ export default function Hero() {
 
         {/* Content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 bg-dark/40 backdrop-blur-md border border-white/15 rounded-full mb-6"
-          >
-            <div className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-            <span className="text-gold text-[10px] font-medium tracking-widest uppercase">
-              RE/MAX Partner — Valencia
-            </span>
-          </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
@@ -110,7 +99,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-base text-white/85 max-w-sm mx-auto mb-8 drop-shadow-lg text-center"
+            className="text-base text-white max-w-sm mx-auto mb-8 drop-shadow-lg text-center"
           >
             {t('subtitle')}
           </motion.p>
@@ -143,7 +132,7 @@ export default function Hero() {
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
         >
-          <span className="text-white/40 text-[10px] tracking-widest uppercase">Scroll</span>
+          <span className="text-white text-[10px] tracking-widest uppercase">Scroll</span>
           <div className="w-5 h-8 border-2 border-white/25 rounded-full flex justify-center pt-1.5">
             <div className="w-1 h-1.5 bg-gold rounded-full" />
           </div>
@@ -274,17 +263,6 @@ export default function Hero() {
           className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
         >
           <div className="text-center px-4 pointer-events-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="inline-flex items-center gap-2 px-5 py-2 bg-dark/40 backdrop-blur-md border border-white/15 rounded-full mb-8"
-            >
-              <div className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-              <span className="text-gold text-xs font-medium tracking-widest uppercase">
-                RE/MAX Partner — Valencia, Spain
-              </span>
-            </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
@@ -299,7 +277,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="text-lg sm:text-xl text-white/85 max-w-xl mx-auto mb-10 drop-shadow-lg"
+              className="text-lg sm:text-xl text-white max-w-xl mx-auto mb-10 drop-shadow-lg"
             >
               {t('subtitle')}
             </motion.p>
@@ -337,7 +315,7 @@ export default function Hero() {
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             className="flex flex-col items-center gap-3"
           >
-            <span className="text-white/50 text-xs tracking-widest uppercase">Scroll</span>
+            <span className="text-white text-xs tracking-widest uppercase">Scroll</span>
             <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
               <div className="w-1 h-2 bg-gold rounded-full" />
             </div>

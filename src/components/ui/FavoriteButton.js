@@ -52,8 +52,8 @@ export default function FavoriteButton({ propertyId, className = '' }) {
       aria-label={favorited ? 'Remove from favorites' : 'Add to favorites'}
       className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 ${
         favorited
-          ? 'bg-red-50 text-red-500 border border-dark hover:bg-red-100'
-          : 'bg-white text-dark border border-dark hover:text-red-500'
+          ? 'fav-btn fav-on border border-dark'
+          : 'fav-btn border border-dark'
       } ${animating ? 'scale-125' : 'scale-100'} ${className}`}
     >
       <Heart

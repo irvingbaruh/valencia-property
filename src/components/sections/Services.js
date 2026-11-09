@@ -144,7 +144,7 @@ function ServiceCard({ service, index, isExpanded, onToggle, t, locale }) {
                 animate={{ rotate: isExpanded ? 90 : 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <ChevronRight size={18} className={`transition-colors duration-300 ${isExpanded ? 'text-gold' : 'text-white/50 group-hover:text-gold'}`} />
+                <ChevronRight size={18} className={`transition-colors duration-300 ${isExpanded ? 'text-gold' : 'text-white group-hover:text-gold'}`} />
               </motion.div>
             </motion.div>
           </motion.div>

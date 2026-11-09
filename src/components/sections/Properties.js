@@ -115,12 +115,12 @@ function PropertyCard({ property, index, t }) {
           {property.title}
         </h3>
 
-        <div className="flex items-center gap-1.5 text-white/50 text-sm mb-6">
+        <div className="flex items-center gap-1.5 text-white text-sm mb-6">
           <MapPin size={14} />
           <span>{property.location}</span>
         </div>
 
-        <div className="flex items-center gap-6 text-sm text-white/60 mb-8">
+        <div className="flex items-center gap-6 text-sm text-white mb-8">
           {property.rooms ? (
             <span className="flex items-center gap-2">
               <BedDouble size={16} className="text-gold/70" />
@@ -190,7 +190,7 @@ export default function Properties() {
             <h2 className="text-3xl md:text-5xl font-serif text-white mb-4">
               {t('title')}
             </h2>
-            <p className="text-white/70 max-w-xl mx-auto text-lg">
+            <p className="text-white max-w-xl mx-auto text-lg">
               {t('subtitle')}
             </p>
           </motion.div>

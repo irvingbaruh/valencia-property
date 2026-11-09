@@ -47,7 +47,7 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Logo variant="dark" className="h-12 w-auto mb-5" />
-            <p className="text-sm text-white/60 leading-relaxed mb-6 max-w-xs">
+            <p className="text-sm text-white leading-relaxed mb-6 max-w-xs">
               {t('remax_note')}
             </p>
             <span className="inline-block bg-white rounded-lg px-3 py-2 mb-6">
@@ -66,7 +66,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-white/60 hover:text-gold transition-colors"
+                      className="text-sm text-white hover:text-gold transition-colors"
                     >
                       {link.label}
                     </a>
@@ -81,7 +81,7 @@ export default function Footer() {
             <h3 className="text-sm font-semibold text-white mb-4 tracking-wide">
               {t('contact')}
             </h3>
-            <div className="space-y-3 text-sm mb-6 text-white/60">
+            <div className="space-y-3 text-sm mb-6 text-white">
               <div className="flex items-center gap-2">
                 <MapPin size={15} className="text-gold shrink-0" />
                 <span>{t('address')}</span>
@@ -135,10 +135,10 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-xs text-white/40">
+          <p className="text-xs text-white">
             {t('copyright')}
           </p>
-          <a href={localePath(locale, 'gizlilik')} className="text-xs text-white/40 hover:text-gold transition-colors">
+          <a href={localePath(locale, 'gizlilik')} className="text-xs text-white hover:text-gold transition-colors">
             {t('privacy')}
           </a>
         </div>

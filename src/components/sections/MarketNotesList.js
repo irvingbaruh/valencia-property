@@ -19,7 +19,7 @@ export default function MarketNotesList() {
       <div className="flex flex-wrap gap-2 mb-8">
         {['all', ...TOPICS].map((k) => (
           <button key={k} onClick={() => setTopic(k)}
-            className={`px-4 py-2 rounded-full text-sm border transition-colors ${topic === k ? 'bg-gold text-dark border-gold' : 'bg-dark-mid text-white/60 border-white/10 hover:border-gold'}`}>
+            className={`px-4 py-2 rounded-full text-sm border transition-colors ${topic === k ? 'bg-gold text-dark border-gold' : 'bg-dark-mid text-white border-white/10 hover:border-gold'}`}>
             {k === 'all' ? t('all') : t(`topics.${k}`)}
           </button>
         ))}

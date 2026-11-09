@@ -29,7 +29,7 @@ function Choice({ options, value, onChange }) {
 
 function Row({ label, value, strong, muted }) {
   return (
-    <div className={`flex justify-between gap-4 text-sm ${strong ? 'text-white font-medium' : muted ? 'text-white/40' : 'text-white/70'}`}>
+    <div className={`flex justify-between gap-4 text-sm ${strong ? 'text-white font-medium' : muted ? 'text-white' : 'text-white'}`}>
       <span>{label}</span>
       <span className="tabular-nums">{value}</span>
     </div>
@@ -246,10 +246,10 @@ export default function DetailedROICalculator() {
           <div className="bg-charcoal rounded-xl p-5">
             <div className="flex items-center gap-2 mb-2">
               <TrendingUp size={16} className="text-gold" />
-              <span className="text-sm text-white/60">{tx.netYield}</span>
+              <span className="text-sm text-white">{tx.netYield}</span>
             </div>
             <p className="text-3xl font-serif text-gold">{pct(r.netYield)}</p>
-            <p className="text-xs text-white/40 mt-1">
+            <p className="text-xs text-white mt-1">
               {tx.grossYield}: {pct(r.grossYield)} · {tx.netYieldHint}
             </p>
           </div>
@@ -257,10 +257,10 @@ export default function DetailedROICalculator() {
           <div className="bg-charcoal rounded-xl p-5">
             <div className="flex items-center gap-2 mb-2">
               <Wallet size={16} className="text-gold" />
-              <span className="text-sm text-white/60">{tx.monthlyCash}</span>
+              <span className="text-sm text-white">{tx.monthlyCash}</span>
             </div>
             <p className="text-3xl font-serif text-gold">{eur(r.monthlyCashFlow)}</p>
-            <p className="text-xs text-white/40 mt-1">
+            <p className="text-xs text-white mt-1">
               {tx.yearlyCash}: {eur(r.cashFlow)}
               {r.mortgage ? ` · ${tx.payment}: ${eur(r.monthlyPayment)}` : ''}
             </p>
@@ -270,17 +270,17 @@ export default function DetailedROICalculator() {
           <div className="bg-charcoal rounded-xl p-5">
             <div className="flex items-center gap-2 mb-2">
               <CalendarRange size={16} className="text-gold" />
-              <span className="text-sm text-white/60">{tx.equity}</span>
+              <span className="text-sm text-white">{tx.equity}</span>
             </div>
             <p className="text-3xl font-serif text-gold">{eur(r.equity)}</p>
-            <p className="text-xs text-white/40 mt-1">
+            <p className="text-xs text-white mt-1">
               {tx.equityHint} · {tx.cashOnCash}: {pct(r.cashOnCash)}
             </p>
           </div>
         </div>
 
         <div className="mt-6 space-y-2">
-          <p className="text-xs uppercase tracking-wider text-white/40 mb-2">{tx.breakdown}</p>
+          <p className="text-xs uppercase tracking-wider text-white mb-2">{tx.breakdown}</p>
           <Row label={`${tx.rent} (${strategy === 'long' ? tx.vacancyNote : tx.short})`} value={eur(r.gross)} strong />
           {r.breakdown.mgmt > 0 && <Row label={tx.mgmt} value={`− ${eur(r.breakdown.mgmt)}`} />}
           {r.breakdown.strCost > 0 && <Row label={tx.strCost} value={`− ${eur(r.breakdown.strCost)}`} />}
@@ -295,7 +295,7 @@ export default function DetailedROICalculator() {
         </div>
 
         <div className="mt-6 space-y-2">
-          <p className="text-xs uppercase tracking-wider text-white/40 mb-2">{tx.fiveYear}</p>
+          <p className="text-xs uppercase tracking-wider text-white mb-2">{tx.fiveYear}</p>
           <Row label={tx.fiveCash} value={eur(r.fiveYear.cumulativeCashFlow)} />
           {r.mortgage && <Row label={tx.fivePrincipal} value={eur(r.fiveYear.principal)} />}
           <Row label={tx.fiveGain} value={eur(r.fiveYear.valueGain)} />
@@ -303,12 +303,12 @@ export default function DetailedROICalculator() {
           <Row label={tx.fiveTotal} value={`${eur(r.fiveYear.total)} (${pct(r.fiveYear.onEquity)} ${tx.fiveEquity})`} strong />
         </div>
 
-        <p className="text-xs text-white/40 mt-6 leading-relaxed">
+        <p className="text-xs text-white mt-6 leading-relaxed">
           {tx.dataSource}
           {updated ? ` ${tx.dataDate}: ${updated}.` : ''}
           {ready && data.fromFallback ? ` ${tx.fallback}` : ''}
         </p>
-        <p className="text-xs text-white/30 mt-2 leading-relaxed">{tx.disclaimer}</p>
+        <p className="text-xs text-white mt-2 leading-relaxed">{tx.disclaimer}</p>
       </div>
     </div>
   );

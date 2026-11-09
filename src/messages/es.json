@@ -80,8 +80,8 @@
       "d4": "Permisos municipales y gestión de proyectos"
     },
     "rental": {
-      "title": "Gestión de Alquileres",
-      "desc": "Búsqueda de inquilinos, contratos y gestión mensual",
+      "title": "Gestión Posventa",
+      "desc": "Búsqueda de inquilinos, cobro de alquileres, mantenimiento y seguimiento posventa",
       "d1": "Estrategia de alquiler Airbnb y largo plazo",
       "d2": "Selección de inquilinos y preparación de contratos",
       "d3": "Cobro mensual de alquiler e informes",
@@ -106,7 +106,8 @@
       "faqTitle": "Preguntas Frecuentes",
       "ctaBoxTitle": "¿Le Interesa Este Servicio?",
       "ctaBoxSubtitle": "Evaluemos sus necesidades y le propongamos un plan a medida.",
-      "ctaPrimary": "Solicitar Consulta"
+      "ctaPrimary": "Solicitar Consulta",
+      "faqCta": "Ver preguntas frecuentes"
     },
     "search": {
       "title": "Búsqueda de Propiedades",
@@ -245,7 +246,7 @@
       ]
     },
     "rental": {
-      "title": "Gestión de Alquileres",
+      "title": "Gestión Posventa",
       "intro": "Gestionamos su propiedad en Valencia mientras usted está en el extranjero.",
       "overview": "Desde encontrar inquilinos hasta el contrato, desde el cobro mensual hasta la coordinación del mantenimiento, nos ocupamos de todo el proceso.",
       "steps": [

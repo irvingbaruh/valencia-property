@@ -245,7 +245,7 @@ export default function ConsultationForm() {
         <h3 className="text-2xl font-serif text-white mb-3">
           {t('thanksTitle')}, {val('name').split(' ')[0]}!
         </h3>
-        <p className="text-white/60 max-w-md mx-auto leading-relaxed">
+        <p className="text-white max-w-md mx-auto leading-relaxed">
           {done === 'checkEmail' ? t('thanksCheckEmail') : t('thanksSaved')}
         </p>
         {done === 'saved' && (
@@ -264,7 +264,7 @@ export default function ConsultationForm() {
   return (
     <div className="bg-dark rounded-2xl p-6 sm:p-10">
       <div className="flex items-center justify-between mb-2">
-        <span className="text-xs text-white/40 uppercase tracking-wider">
+        <span className="text-xs text-white uppercase tracking-wider">
           {t('step')} {stepIndex + 1} {t('of')} {steps.length}
         </span>
       </div>
@@ -286,7 +286,7 @@ export default function ConsultationForm() {
         >
           <h3 className="text-xl sm:text-2xl font-serif text-white mb-1.5">{t(`q.${current.type === 'account' || current.type === 'contact' ? current.key : 's_' + current.key}.title`)}</h3>
           {current.subtitle ? (
-            <p className="text-sm text-white/50 mb-6">{t(`q.${current.key}.subtitle`)}</p>
+            <p className="text-sm text-white mb-6">{t(`q.${current.key}.subtitle`)}</p>
           ) : (
             <div className="mb-6" />
           )}
@@ -298,7 +298,7 @@ export default function ConsultationForm() {
                   <p className="text-sm sm:text-base text-white mb-3 leading-snug">
                     {t(`q.${q.key}.title`)}
                     {q.type !== 'single' && !q.required && (
-                      <span className="text-white/40"> ({t('optional')})</span>
+                      <span className="text-white"> ({t('optional')})</span>
                     )}
                   </p>
                   {q.type === 'single' && (
@@ -311,7 +311,7 @@ export default function ConsultationForm() {
                           className={`text-left px-4 py-2.5 rounded-xl border text-sm transition-all duration-200 ${
                             answers[q.key] === value
                               ? 'bg-gold border-gold text-dark font-semibold'
-                              : 'bg-white/5 border-white/10 text-white/80 hover:border-gold/40 hover:bg-white/10'
+                              : 'bg-white/5 border-white/10 text-white hover:border-gold/40 hover:bg-white/10'
                           }`}
                         >
                           {t(`o.${q.key}.${value}`)}
@@ -345,7 +345,7 @@ export default function ConsultationForm() {
           {current.type === 'contact' && (
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="sm:col-span-2">
-                <label className="block text-xs text-white/50 mb-1.5">{t('nameLabel')} *</label>
+                <label className="block text-xs text-white mb-1.5">{t('nameLabel')} *</label>
                 <input
                   type="text"
                   autoComplete="name"
@@ -356,7 +356,7 @@ export default function ConsultationForm() {
                 />
               </div>
               <div>
-                <label className="block text-xs text-white/50 mb-1.5">{t('emailLabel')} *</label>
+                <label className="block text-xs text-white mb-1.5">{t('emailLabel')} *</label>
                 <input
                   type="email"
                   autoComplete="email"
@@ -368,7 +368,7 @@ export default function ConsultationForm() {
                 />
               </div>
               <div>
-                <label className="block text-xs text-white/50 mb-1.5">{t('phoneLabel')} *</label>
+                <label className="block text-xs text-white mb-1.5">{t('phoneLabel')} *</label>
                 <input
                   type="tel"
                   autoComplete="tel"
@@ -380,7 +380,7 @@ export default function ConsultationForm() {
               </div>
               {loggedIn && <p className="sm:col-span-2 text-xs text-gold">{t('loggedInAs')}</p>}
               {loggedIn && !profile?.marketing_opt_in && (
-                <label className="sm:col-span-2 flex items-start gap-3 text-sm cursor-pointer text-white/70">
+                <label className="sm:col-span-2 flex items-start gap-3 text-sm cursor-pointer text-white">
                   <input
                     type="checkbox"
                     checked={Boolean(answers.marketing)}
@@ -396,11 +396,11 @@ export default function ConsultationForm() {
           {current.type === 'account' && (
             <div className="space-y-4">
               <div>
-                <label className="block text-xs text-white/50 mb-1.5">{t('emailLabel')}</label>
-                <p className="px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white/70">{val('email')}</p>
+                <label className="block text-xs text-white mb-1.5">{t('emailLabel')}</label>
+                <p className="px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white">{val('email')}</p>
               </div>
               <div>
-                <label className="block text-xs text-white/50 mb-1.5">{t('passwordLabel')} *</label>
+                <label className="block text-xs text-white mb-1.5">{t('passwordLabel')} *</label>
                 <input
                   type="password"
                   autoComplete="new-password"
@@ -408,9 +408,9 @@ export default function ConsultationForm() {
                   onChange={(e) => set('password', e.target.value)}
                   className={inputCls(errors.password)}
                 />
-                <p className="text-xs text-white/40 mt-1.5">{t('passwordHint')}</p>
+                <p className="text-xs text-white mt-1.5">{t('passwordHint')}</p>
               </div>
-              <label className={`flex items-start gap-3 text-sm cursor-pointer ${errors.consent ? 'text-red-300' : 'text-white/70'}`}>
+              <label className={`flex items-start gap-3 text-sm cursor-pointer ${errors.consent ? 'text-red-300' : 'text-white'}`}>
                 <input
                   type="checkbox"
                   checked={Boolean(answers.consent)}
@@ -424,7 +424,7 @@ export default function ConsultationForm() {
                   </a>
                 </span>
               </label>
-              <label className="flex items-start gap-3 text-sm cursor-pointer text-white/70">
+              <label className="flex items-start gap-3 text-sm cursor-pointer text-white">
                 <input
                   type="checkbox"
                   checked={Boolean(answers.marketing)}
@@ -433,7 +433,7 @@ export default function ConsultationForm() {
                 />
                 <span>{t('marketing')}</span>
               </label>
-              <p className="text-sm text-white/50">
+              <p className="text-sm text-white">
                 {t('haveAccount')}{' '}
                 <a href={localePath(locale, 'giris')} className="text-gold hover:underline">
                   {t('loginLink')}
@@ -460,7 +460,7 @@ export default function ConsultationForm() {
           type="button"
           onClick={goBack}
           disabled={stepIndex === 0 || sending}
-          className="inline-flex items-center gap-1.5 px-4 py-2.5 text-sm text-white/60 hover:text-white disabled:opacity-0 disabled:pointer-events-none transition-colors"
+          className="inline-flex items-center gap-1.5 px-4 py-2.5 text-sm text-white hover:text-white disabled:opacity-0 disabled:pointer-events-none transition-colors"
         >
           <ArrowLeft size={16} />
           {t('back')}

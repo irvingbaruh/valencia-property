@@ -80,8 +80,8 @@
       "d4": "Baugenehmigungen und Projektmanagement"
     },
     "rental": {
-      "title": "Mietverwaltung",
-      "desc": "Mietersuche, Verträge und monatliche Verwaltung",
+      "title": "After-Sales-Management",
+      "desc": "Mietersuche, Mieteinzug, Instandhaltung und Betreuung nach dem Kauf",
       "d1": "Airbnb- und Langzeitmietstrategie",
       "d2": "Mieterprüfung und Vertragsgestaltung",
       "d3": "Monatliche Mieteinzüge und Berichte",
@@ -106,7 +106,8 @@
       "faqTitle": "Häufige Fragen",
       "ctaBoxTitle": "Interesse an Diesem Service?",
       "ctaBoxSubtitle": "Lassen Sie uns Ihre Bedürfnisse besprechen und einen passenden Plan erstellen.",
-      "ctaPrimary": "Beratung Anfordern"
+      "ctaPrimary": "Beratung Anfordern",
+      "faqCta": "Zu den häufig gestellten Fragen"
     },
     "search": {
       "title": "Immobiliensuche",
@@ -245,7 +246,7 @@
       ]
     },
     "rental": {
-      "title": "Mietverwaltung",
+      "title": "After-Sales-Management",
       "intro": "Wir verwalten Ihre Immobilie in Valencia, während Sie im Ausland sind.",
       "overview": "Von der Mietersuche bis zum Vertrag, von der monatlichen Mietabrechnung bis zur Koordination der Instandhaltung übernehmen wir den gesamten Prozess.",
       "steps": [

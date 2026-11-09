@@ -15,7 +15,7 @@ export default function ContactDetailsCard({ labels }) {
             <Phone size={18} className="text-gold" />
           </div>
           <div>
-            <p className="text-xs text-white/50">{labels.phone}</p>
+            <p className="text-xs text-white">{labels.phone}</p>
             <a
               href={telHref(contact.phone)}
               className="text-white hover:text-gold transition-colors"
@@ -30,7 +30,7 @@ export default function ContactDetailsCard({ labels }) {
             <Mail size={18} className="text-gold" />
           </div>
           <div>
-            <p className="text-xs text-white/50">{labels.email}</p>
+            <p className="text-xs text-white">{labels.email}</p>
             <a
               href={`mailto:${contact.email}`}
               className="text-white hover:text-gold transition-colors"
@@ -51,7 +51,7 @@ export default function ContactDetailsCard({ labels }) {
         {labels.whatsapp}
       </a>
 
-      <p className="text-xs text-white/30 mt-6 leading-relaxed">
+      <p className="text-xs text-white mt-6 leading-relaxed">
         {labels.office}
       </p>
     </div>

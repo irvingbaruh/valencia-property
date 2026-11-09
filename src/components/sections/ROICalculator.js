@@ -80,22 +80,22 @@ export default function ROICalculator() {
                 <div className="bg-charcoal rounded-xl p-5">
                   <div className="flex items-center gap-2 mb-2">
                     <TrendingUp size={16} className="text-gold" />
-                    <span className="text-sm text-white/60">{tx.annualNet}</span>
+                    <span className="text-sm text-white">{tx.annualNet}</span>
                   </div>
                   <p className="text-3xl font-serif text-gold">{formatCurrency(annualReturn)}</p>
-                  <p className="text-xs text-white/40 mt-1">{(r.netYield * 100).toFixed(1)}% · {tx.grossYield}: {(r.grossYield * 100).toFixed(1)}%</p>
+                  <p className="text-xs text-white mt-1">{(r.netYield * 100).toFixed(1)}% · {tx.grossYield}: {(r.grossYield * 100).toFixed(1)}%</p>
                 </div>
 
                 <div className="bg-charcoal rounded-xl p-5">
                   <div className="flex items-center gap-2 mb-2">
                     <Wallet size={16} className="text-gold" />
-                    <span className="text-sm text-white/60">{tx.monthlyNet}</span>
+                    <span className="text-sm text-white">{tx.monthlyNet}</span>
                   </div>
                   <p className="text-3xl font-serif text-gold">{formatCurrency(monthlyIncome)}</p>
                 </div>
               </div>
 
-              <p className="text-xs text-white/30 mt-6 leading-relaxed">
+              <p className="text-xs text-white mt-6 leading-relaxed">
                 {tx.disclaimer}
               </p>
 

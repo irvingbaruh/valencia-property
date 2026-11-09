@@ -80,8 +80,8 @@
       "d4": "Belediye izinleri ve proje yönetimi"
     },
     "rental": {
-      "title": "Kira Yönetimi",
-      "desc": "Kiracı bulma, sözleşme ve aylık yönetim",
+      "title": "Satış Sonrası Yönetim",
+      "desc": "Kiracı bulma, kira tahsilatı, bakım ve satış sonrası takip",
       "d1": "Airbnb ve uzun dönem kiralama stratejisi",
       "d2": "Kiracı tarama ve sözleşme hazırlama",
       "d3": "Aylık kira tahsilatı ve raporlama",
@@ -106,7 +106,8 @@
       "faqTitle": "Sıkça Sorulan Sorular",
       "ctaBoxTitle": "Bu Hizmetle İlgileniyor musunuz?",
       "ctaBoxSubtitle": "İhtiyaçlarınızı değerlendirelim ve size özel bir plan sunalım.",
-      "ctaPrimary": "Danışmanlık Al"
+      "ctaPrimary": "Danışmanlık Al",
+      "faqCta": "Sıkça Sorulan Sorular sayfasına git"
     },
     "search": {
       "title": "Konut Arama",
@@ -245,7 +246,7 @@
       ]
     },
     "rental": {
-      "title": "Kira Yönetimi",
+      "title": "Satış Sonrası Yönetim",
       "intro": "Konutunuzu siz uzaktayken biz Valencia'da uçtan uca yönetiyoruz.",
       "overview": "Kiracı bulmadan sözleşmeye, aylık tahsilattan bakım koordinasyonuna kadar tüm süreci üstleniyoruz.",
       "steps": [

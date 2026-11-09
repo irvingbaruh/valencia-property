@@ -139,7 +139,7 @@ export default function ParallaxBreak({
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4">
         <motion.p
           style={{ x: line1X, opacity: textOpacity }}
-          className="font-serif text-4xl sm:text-5xl lg:text-7xl text-white/90 leading-tight text-center"
+          className="font-serif text-4xl sm:text-5xl lg:text-7xl text-white leading-tight text-center"
         >
           {line1}
         </motion.p>
