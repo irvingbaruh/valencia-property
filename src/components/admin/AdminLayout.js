@@ -25,6 +25,7 @@ import {
   Newspaper,
   MessageSquare,
   MailCheck,
+  BarChart3,
 } from 'lucide-react';
 
 export const ADMIN_BASE = '/lockandloft/admin';
@@ -34,6 +35,7 @@ const navItems = [
   { id: 'uyeler', href: '/uyeler', icon: Users, label: 'Üyeler' },
   { id: 'ilanlar', href: '/ilanlar', icon: Building2, label: 'İlanlar' },
   { id: 'piyasa', href: '/piyasa', icon: Newspaper, label: 'Piyasa Notları' },
+  { id: 'trafik', href: '/trafik', icon: BarChart3, label: 'Trafik' },
   { id: 'sohbetler', href: '/sohbetler', icon: MessageSquare, label: 'Sohbetler' },
   { id: 'hizmetler', href: '/hizmetler', icon: Briefcase, label: 'Hizmetler' },
   { id: 'blog', href: '/blog', icon: PenSquare, label: 'Blog' },
@@ -50,6 +52,7 @@ export default function AdminLayout({ children, activeSection = 'dashboard' }) {
   const { user, profile, loading, isAdmin, signOut } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [aalOk, setAalOk] = useState(false);
+  const [openMsgs, setOpenMsgs] = useState(0);
 
   useEffect(() => {
     if (!loading && (!user || !isAdmin)) {
@@ -74,6 +77,22 @@ export default function AdminLayout({ children, activeSection = 'dashboard' }) {
     };
   }, [loading, user, isAdmin, router]);
 
+  // an admin's own visits are not counted in the site statistics
+  useEffect(() => {
+    if (isAdmin) {
+      try { localStorage.setItem('ll_notrack', '1'); } catch {}
+    }
+  }, [isAdmin]);
+
+  useEffect(() => {
+    if (!isAdmin) return;
+    supabase
+      .from('contact_messages')
+      .select('id', { count: 'exact', head: true })
+      .eq('is_handled', false)
+      .then(({ count }) => setOpenMsgs(count || 0));
+  }, [isAdmin, activeSection]);
+
   const handleSignOut = async () => {
     await signOut();
     router.replace(`${ADMIN_BASE}/giris/`);
@@ -94,7 +113,7 @@ export default function AdminLayout({ children, activeSection = 'dashboard' }) {
         className={`fixed inset-y-0 left-0 z-50 w-64 flex flex-col transform transition-transform duration-200 lg:relative lg:translate-x-0 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
-        style={{ background: '#151521', borderRight: '1px solid #1E1E2E' }}
+        style={{ background: '#151521', borderRight: '1px solid #1E1E2E', paddingTop: 'env(safe-area-inset-top)', paddingBottom: 'env(safe-area-inset-bottom)' }}
       >
         {/* Logo */}
         <div className="h-16 shrink-0 flex items-center justify-between px-5" style={{ borderBottom: '1px solid #1E1E2E' }}>
@@ -169,8 +188,8 @@ export default function AdminLayout({ children, activeSection = 'dashboard' }) {
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top bar */}
         <header
-          className="h-16 flex items-center justify-between px-4 lg:px-8 sticky top-0 z-30"
-          style={{ background: '#0B0B11', borderBottom: '1px solid #1E1E2E' }}
+          className="h-16 flex items-center justify-between px-4 lg:px-8 sticky top-0 z-30 box-content"
+          style={{ background: '#0B0B11', borderBottom: '1px solid #1E1E2E', paddingTop: 'env(safe-area-inset-top)' }}
         >
           <button
             onClick={() => setSidebarOpen(true)}
@@ -196,10 +215,40 @@ export default function AdminLayout({ children, activeSection = 'dashboard' }) {
         </header>
 
         {/* Content */}
-        <main className="flex-1 p-4 lg:p-8 overflow-auto">
+        <main className="flex-1 p-4 lg:p-8 overflow-auto pb-28 lg:pb-8">
           {children}
         </main>
       </div>
+
+      {/* Phone tab bar */}
+      <nav
+        className="lg:hidden fixed bottom-0 inset-x-0 z-40 grid grid-cols-5"
+        style={{ background: '#151521', borderTop: '1px solid #1E1E2E', paddingBottom: 'env(safe-area-inset-bottom)' }}
+      >
+        {[
+          ['dashboard', '/dashboard', LayoutDashboard, 'Özet'],
+          ['bildirimler', '/bildirimler', Bell, 'Bildirimler'],
+          ['sohbetler', '/sohbetler', MessageSquare, 'Sohbetler'],
+          ['trafik', '/trafik', BarChart3, 'Trafik'],
+        ].map(([id, href, Icon, label]) => (
+          <Link
+            key={id}
+            href={`${ADMIN_BASE}${href}/`}
+            className="relative flex flex-col items-center justify-center gap-0.5 py-2.5 text-[11px]"
+            style={{ color: activeSection === id ? '#C9A84C' : '#9A9AAA' }}
+          >
+            <Icon className="w-6 h-6" />
+            {label}
+            {id === 'bildirimler' && openMsgs > 0 && (
+              <span className="absolute top-1.5 left-1/2 ml-2 min-w-[18px] h-[18px] px-1 rounded-full bg-[#DC1C2E] text-white text-[10px] leading-[18px] text-center">{openMsgs}</span>
+            )}
+          </Link>
+        ))}
+        <button onClick={() => setSidebarOpen(true)} className="flex flex-col items-center justify-center gap-0.5 py-2.5 text-[11px] text-[#9A9AAA]">
+          <Menu className="w-6 h-6" />
+          Menü
+        </button>
+      </nav>
     </div>
   );
 }

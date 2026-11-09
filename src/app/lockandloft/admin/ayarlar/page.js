@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/components/providers/AuthProvider';
 import AdminLayout from '@/components/admin/AdminLayout';
+import PushSettings from '@/components/admin/PushSettings';
 import { PasswordSection, MfaSection } from '@/components/admin/SecuritySections';
 import { CONTACT_DEFAULTS, waDigits } from '@/lib/siteSettings';
 
@@ -13,6 +14,7 @@ const inputCls =
 const TABS = [
   ['site', 'Site bilgileri'],
   ['alerts', 'E-posta bildirimleri'],
+  ['phone', 'Telefon uygulaması'],
   ['account', 'Hesabım'],
 ];
 const NOTIFY_DEFAULTS = { emails: [], contact_message: true, intake: true, member: false, document_upload: true, doc_delete_request: true };
@@ -244,6 +246,7 @@ function Settings() {
       </div>
       {tab === 'site' && <SiteSection />}
       {tab === 'alerts' && <AlertsSection />}
+      {tab === 'phone' && <PushSettings />}
       {tab === 'account' && <AccountSection />}
     </div>
   );

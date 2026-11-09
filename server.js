@@ -46,6 +46,7 @@ const MIME_TYPES = {
   '.woff2': 'font/woff2',
   '.ttf': 'font/ttf',
   '.webp': 'image/webp',
+  '.webmanifest': 'application/manifest+json',
   '.mp4': 'video/mp4',
   '.webm': 'video/webm',
 };
@@ -384,7 +385,9 @@ const server = http.createServer((req, res) => {
       return;
     }
     const content = fs.readFileSync(filePath);
-    res.writeHead(200, { 'Content-Type': getMime(filePath) });
+    const hdr = { 'Content-Type': getMime(filePath) };
+    if (/\/sw\.js$/.test(filePath) || /\.webmanifest$/.test(filePath)) { hdr['Cache-Control'] = 'no-cache'; hdr['Service-Worker-Allowed'] = '/lockandloft/admin/'; }
+    res.writeHead(200, hdr);
     res.end(content);
   } else {
     // 404 - try to serve a custom 404 page

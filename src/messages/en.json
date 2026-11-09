@@ -897,6 +897,12 @@
         ]
       },
       {
+        "h": "Visit statistics",
+        "p": [
+          "To understand which pages and links on the site are used, we keep anonymous, cookie-free statistics: the page opened, the button or link clicked, the properties shown, language, country and device type (phone/computer). Your IP address and browser details are not stored; only an irreversible daily hash is used so that you are not counted twice on the same day, and it becomes a different value the next day. This data does not identify you, is not shared with third parties and is kept for at most 400 days."
+        ]
+      },
+      {
         "h": "Why we use your data",
         "p": [
           "To assess your consultation request, prepare suitable properties and services for you, manage your account and reply to your messages. The legal basis is handling your request (pre-contractual steps) and the consent you give when creating your account.",

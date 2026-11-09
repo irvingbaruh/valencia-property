@@ -897,6 +897,12 @@
         ]
       },
       {
+        "h": "Ziyaret istatistikleri",
+        "p": [
+          "Sitenin hangi sayfalarının ve bağlantılarının kullanıldığını anlamak için çerezsiz, anonim bir istatistik tutarız: açılan sayfa, tıklanan düğme veya bağlantı, görüntülenen konutlar, dil, ülke ve cihaz türü (telefon/bilgisayar). IP adresiniz ve tarayıcı bilgileriniz saklanmaz; yalnızca aynı gün içinde sizi tekrar saymamak için geri döndürülemeyen günlük bir özet değeri kullanılır ve ertesi gün başka bir değere dönüşür. Bu veriler sizi tanımlamaz, üçüncü taraflarla paylaşılmaz ve en fazla 400 gün saklanır."
+        ]
+      },
+      {
         "h": "Verileri neden kullanıyoruz",
         "p": [
           "Danışmanlık talebinizi değerlendirmek, size uygun konut ve hizmetleri hazırlamak, üyelik hesabınızı yönetmek ve mesajlarınızı yanıtlamak için. Hukuki dayanağımız talebinizi yerine getirmek (sözleşme öncesi işlemler) ve üyelik oluştururken verdiğiniz onaydır.",
