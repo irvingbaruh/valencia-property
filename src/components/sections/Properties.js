@@ -1,5 +1,6 @@
 'use client';
 
+import FillImage from '@/components/ui/FillImage';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin, BedDouble, Maximize2, ArrowRight } from 'lucide-react';
@@ -73,7 +74,7 @@ function PropertyCard({ property, index, t }) {
         {isReversed && (
           <div className="absolute inset-0 overflow-hidden rounded-2xl lg:rounded-none lg:rounded-r-2xl">
             <motion.div style={{ y: imageY }} className="absolute inset-0 -top-[16%] -bottom-[16%]">
-              <img
+              <FillImage
                 src={property.image}
                 alt={property.title}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -84,7 +85,7 @@ function PropertyCard({ property, index, t }) {
         {!isReversed && (
           <div className="absolute inset-0 overflow-hidden rounded-2xl lg:rounded-none lg:rounded-l-2xl">
             <motion.div style={{ y: imageY }} className="absolute inset-0 -top-[16%] -bottom-[16%]">
-              <img
+              <FillImage
                 src={property.image}
                 alt={property.title}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

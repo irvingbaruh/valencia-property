@@ -1,5 +1,6 @@
 'use client';
 
+import FillImage from '@/components/ui/FillImage';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
@@ -77,11 +78,10 @@ function ListingCard({ listing, t }) {
       <div className="dark-card rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-shadow duration-500 border border-white/10">
         {/* Image */}
         <div className="relative h-96 md:h-[432px] overflow-hidden">
-          <img
+          <FillImage
             src={listing.image}
             alt={listing.location}
-            className="w-full h-full object-cover origin-bottom-right scale-[1.25] group-hover:scale-[1.3] transition-transform duration-700 ease-out"
-            loading="lazy"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-dark/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 

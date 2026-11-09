@@ -1,5 +1,6 @@
 'use client';
 
+import FillImage from '@/components/ui/FillImage';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { MapPin, BedDouble, Maximize2, ArrowRight, SlidersHorizontal } from 'lucide-react';
@@ -171,11 +172,10 @@ export default function PropertiesGrid({ samples }) {
             >
               <div className="relative h-72 sm:h-80 overflow-hidden bg-soft">
                 {property.image ? (
-                  <img
+                  <FillImage
                     src={property.image}
                     alt={property.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover origin-bottom-right scale-[1.25] group-hover:scale-[1.3] transition-transform duration-700 ease-out"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                 ) : null}
                 <div className="absolute inset-0 bg-gradient-to-t from-dark/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
