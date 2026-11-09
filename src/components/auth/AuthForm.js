@@ -75,7 +75,7 @@ export default function AuthForm() {
   if (mode === 'checkEmail') {
     return (
       <div className="min-h-screen flex items-center justify-center px-4 bg-[var(--color-soft)]">
-        <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8 text-center">
+        <div className="w-full max-w-md dark-card rounded-2xl shadow-lg p-8 text-center">
           <div className="w-16 h-16 rounded-full bg-[var(--color-gold)]/10 flex items-center justify-center mx-auto mb-6">
             <Mail className="w-8 h-8 text-[var(--color-gold)]" />
           </div>
@@ -93,7 +93,7 @@ export default function AuthForm() {
   if (mode === 'resetSent') {
     return (
       <div className="min-h-screen flex items-center justify-center px-4 bg-[var(--color-soft)]">
-        <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8 text-center">
+        <div className="w-full max-w-md dark-card rounded-2xl shadow-lg p-8 text-center">
           <div className="w-16 h-16 rounded-full bg-[var(--color-gold)]/10 flex items-center justify-center mx-auto mb-6">
             <Mail className="w-8 h-8 text-[var(--color-gold)]" />
           </div>
@@ -115,7 +115,7 @@ export default function AuthForm() {
             <h1 className="text-3xl font-serif text-[var(--color-dark)] mb-2">{t('resetTitle')}</h1>
             <p className="text-[var(--color-charcoal)]">{t('resetSubtitle')}</p>
           </div>
-          <div className="bg-white rounded-2xl shadow-lg p-8">
+          <div className="dark-card rounded-2xl shadow-lg p-8">
             {error && <div className="bg-red-50 text-red-600 text-sm rounded-lg p-3 mb-4">{error}</div>}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
@@ -165,7 +165,7 @@ export default function AuthForm() {
         </div>
 
         {/* Card */}
-        <div className="bg-white rounded-2xl shadow-lg p-8">
+        <div className="dark-card rounded-2xl shadow-lg p-8">
           {/* Google button */}
           <button
             onClick={handleGoogle}

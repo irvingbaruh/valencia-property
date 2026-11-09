@@ -15,14 +15,14 @@ export default async function GlossaryPage({ params }) {
 
   return (
     <div className="bg-soft">
-      <div className="bg-white border-b border-border">
+      <div className="bg-white border-b border-white/10">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-16">
           <h1 className="text-4xl sm:text-5xl font-serif text-dark mb-4">{t('title')}</h1>
           <p className="text-lg text-text-muted">{t('subtitle')}</p>
         </div>
       </div>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <dl className="divide-y divide-border bg-white border border-border rounded-xl">
+        <dl className="divide-y divide-border dark-card border border-white/10 rounded-xl">
           {terms.map(([term, def]) => (
             <div key={term} className="p-5 sm:grid sm:grid-cols-[13rem_1fr] sm:gap-6">
               <dt className="font-serif text-dark mb-1 sm:mb-0">{term}</dt>

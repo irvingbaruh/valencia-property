@@ -60,7 +60,7 @@ export default function PropertiesGrid({ samples }) {
           <ScrollReveal key={property.id} delay={(i % 2) * 0.04}>
             <Wrap
               {...(property.href ? { href: property.href } : {})}
-              className="group block bg-white rounded-2xl overflow-hidden border border-border hover:border-gold/30 hover:shadow-card-hover transition-all duration-300 h-full flex flex-col"
+              className="group block dark-card rounded-2xl overflow-hidden border border-white/10 hover:border-gold/30 hover:shadow-card-hover transition-all duration-300 h-full flex flex-col"
             >
               <div className="relative h-72 sm:h-80 overflow-hidden bg-soft">
                 {property.image ? (
@@ -99,7 +99,7 @@ export default function PropertiesGrid({ samples }) {
                     </span>
                   ) : null}
                 </div>
-                <div className="mt-auto pt-5 border-t border-border flex items-center justify-between">
+                <div className="mt-auto pt-5 border-t border-white/10 flex items-center justify-between">
                   <span className="text-2xl font-serif text-dark">{property.price}</span>
                   <span className="w-10 h-10 rounded-full border border-gold/30 flex items-center justify-center group-hover:bg-gold group-hover:border-gold transition-all duration-300">
                     <ArrowRight size={16} className="text-gold group-hover:text-white transition-colors duration-300" />

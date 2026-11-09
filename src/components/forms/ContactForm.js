@@ -40,7 +40,7 @@ export default function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="bg-white rounded-2xl border border-border p-10 text-center">
+      <div className="dark-card rounded-2xl border border-white/10 p-10 text-center">
         <div className="w-14 h-14 rounded-full bg-gold flex items-center justify-center mx-auto mb-5">
           <Check size={24} className="text-white" />
         </div>
@@ -51,14 +51,14 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-border p-6 sm:p-8 space-y-5">
+    <form onSubmit={handleSubmit} className="dark-card rounded-2xl border border-white/10 p-6 sm:p-8 space-y-5">
       <div>
         <label className="block text-sm font-medium text-text-primary mb-1.5">{t('nameLabel')} *</label>
         <input
           type="text"
           value={values.name}
           onChange={handleChange('name')}
-          className={`w-full px-4 py-3 bg-soft border rounded-lg text-dark focus:outline-none focus:ring-2 focus:ring-gold/40 ${errors.name ? 'border-red-400' : 'border-border'}`}
+          className={`w-full px-4 py-3 bg-soft border rounded-lg text-dark focus:outline-none focus:ring-2 focus:ring-gold/40 ${errors.name ? 'border-red-400' : 'border-white/10'}`}
         />
       </div>
       <div className="grid sm:grid-cols-2 gap-5">
@@ -68,7 +68,7 @@ export default function ContactForm() {
             type="email"
             value={values.email}
             onChange={handleChange('email')}
-            className={`w-full px-4 py-3 bg-soft border rounded-lg text-dark focus:outline-none focus:ring-2 focus:ring-gold/40 ${errors.email ? 'border-red-400' : 'border-border'}`}
+            className={`w-full px-4 py-3 bg-soft border rounded-lg text-dark focus:outline-none focus:ring-2 focus:ring-gold/40 ${errors.email ? 'border-red-400' : 'border-white/10'}`}
           />
         </div>
         <div>
@@ -77,7 +77,7 @@ export default function ContactForm() {
             type="tel"
             value={values.phone}
             onChange={handleChange('phone')}
-            className="w-full px-4 py-3 bg-soft border border-border rounded-lg text-dark focus:outline-none focus:ring-2 focus:ring-gold/40"
+            className="w-full px-4 py-3 bg-soft border border-white/10 rounded-lg text-dark focus:outline-none focus:ring-2 focus:ring-gold/40"
           />
         </div>
       </div>
@@ -87,7 +87,7 @@ export default function ContactForm() {
           rows={4}
           value={values.message}
           onChange={handleChange('message')}
-          className={`w-full px-4 py-3 bg-soft border rounded-lg text-dark focus:outline-none focus:ring-2 focus:ring-gold/40 resize-none ${errors.message ? 'border-red-400' : 'border-border'}`}
+          className={`w-full px-4 py-3 bg-soft border rounded-lg text-dark focus:outline-none focus:ring-2 focus:ring-gold/40 resize-none ${errors.message ? 'border-red-400' : 'border-white/10'}`}
         />
       </div>
       {failed && <p className="text-sm text-red-500" role="alert">{t('submitError')}</p>}

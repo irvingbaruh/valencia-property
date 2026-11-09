@@ -43,7 +43,7 @@ export default function LiveExchangeRates() {
   }, []);
 
   return (
-    <div className="bg-white rounded-2xl border border-border p-6">
+    <div className="dark-card rounded-2xl border border-white/10 p-6">
       <div className="flex items-center justify-between mb-5">
         <h3 className="font-serif text-lg text-dark">{t('exchangeRatesTitle')}</h3>
         {status === 'loading' && <RefreshCw size={16} className="text-gold animate-spin" />}

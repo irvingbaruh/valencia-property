@@ -22,7 +22,7 @@ export default async function HizmetlerPage({ params }) {
   return (
     <div className="bg-soft">
       {/* Hero */}
-      <div className="bg-white border-b border-border">
+      <div className="bg-white border-b border-white/10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-16 text-center">
           <div className="inline-flex items-center gap-3 mb-6">
             <span className="h-px w-8 bg-gold/60" />
@@ -41,7 +41,7 @@ export default async function HizmetlerPage({ params }) {
             const Icon = service.icon;
             return (
               <ScrollReveal key={service.key} delay={i * 0.03}>
-                <div className="bg-white rounded-2xl border border-border p-6 h-full flex flex-col">
+                <div className="dark-card rounded-2xl border border-white/10 p-6 h-full flex flex-col">
                   <div className="w-12 h-12 rounded-xl bg-gold-light flex items-center justify-center mb-4">
                     <Icon size={22} className="text-gold" />
                   </div>

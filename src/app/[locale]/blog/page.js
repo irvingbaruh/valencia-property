@@ -66,7 +66,7 @@ export default function BlogPage() {
   return (
     <div className="bg-soft min-h-screen">
       {/* Hero */}
-      <div className="bg-white border-b border-border">
+      <div className="bg-white border-b border-white/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-16 text-center">
           <div className="inline-flex items-center gap-3 mb-6">
             <span className="h-px w-8 bg-gold/60" />
@@ -87,7 +87,7 @@ export default function BlogPage() {
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder={t.search}
-              className="w-full bg-white border border-border rounded-xl pl-10 pr-4 py-2.5 text-sm text-dark placeholder:text-text-muted focus:border-gold focus:outline-none"
+              className="w-full bg-white border border-white/10 rounded-xl pl-10 pr-4 py-2.5 text-sm text-dark placeholder:text-text-muted focus:border-gold focus:outline-none"
             />
           </div>
           {categories.length > 0 && (
@@ -97,7 +97,7 @@ export default function BlogPage() {
                 className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors border ${
                   selectedCategory === 'all'
                     ? 'bg-gold text-dark border-gold'
-                    : 'bg-white text-text-muted border-border hover:border-gold/50'
+                    : 'bg-white text-text-muted border-white/10 hover:border-gold/50'
                 }`}
               >
                 {t.all}
@@ -109,7 +109,7 @@ export default function BlogPage() {
                   className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors border ${
                     selectedCategory === cat
                       ? 'bg-gold text-dark border-gold'
-                      : 'bg-white text-text-muted border-border hover:border-gold/50'
+                      : 'bg-white text-text-muted border-white/10 hover:border-gold/50'
                   }`}
                 >
                   {categoryLabel(cat, locale)}
@@ -136,7 +136,7 @@ export default function BlogPage() {
               <a
                 key={post.id}
                 href={`/${locale}/blog/yazi/?s=${post.slug}`}
-                className="group bg-white rounded-2xl overflow-hidden border border-border hover:border-gold/40 hover:shadow-card-hover transition-all duration-300"
+                className="group dark-card rounded-2xl overflow-hidden border border-white/10 hover:border-gold/40 hover:shadow-card-hover transition-all duration-300"
               >
                 <div className="relative h-52 overflow-hidden bg-gray-100">
                   {post.cover_image ? (

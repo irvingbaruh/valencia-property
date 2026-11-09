@@ -17,7 +17,7 @@ export default async function AboutPage({ params }) {
 
   return (
     <div className="bg-soft">
-      <div className="bg-white border-b border-border">
+      <div className="bg-white border-b border-white/10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-16">
           <h1 className="text-4xl sm:text-5xl font-serif text-dark mb-4">{t('title')}</h1>
           <p className="text-lg text-text-muted max-w-2xl">{t('subtitle')}</p>
@@ -41,7 +41,7 @@ export default async function AboutPage({ params }) {
               <a
                 key={o.k}
                 href={localePath(locale, 'hizmetler', `${o.k}/`)}
-                className="block bg-white border border-border rounded-xl p-6 hover:border-gold transition-colors"
+                className="block dark-card border border-white/10 rounded-xl p-6 hover:border-gold transition-colors"
               >
                 <h3 className="font-serif text-lg text-dark mb-2">{o.h}</h3>
                 <p className="text-sm text-text-muted leading-relaxed">{o.p}</p>
@@ -62,7 +62,7 @@ export default async function AboutPage({ params }) {
           </div>
         </section>
 
-        <section className="bg-white border border-border rounded-xl p-6 sm:p-8">
+        <section className="dark-card border border-white/10 rounded-xl p-6 sm:p-8">
           <h2 className="text-xl font-serif text-dark mb-3">{t('partnersH')}</h2>
           <p className="text-text-muted leading-relaxed">{t('partnersP')}</p>
           <p className="text-xs text-text-muted mt-5">{t('note')}</p>

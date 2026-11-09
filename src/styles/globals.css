@@ -182,3 +182,25 @@ img {
 .ll-marquee { display: flex; width: max-content; animation: ll-marquee 45s linear infinite; }
 .ll-marquee:hover { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) { .ll-marquee { animation: none; } }
+
+/* ---- Dark cards: tüm beyaz kartlar siyah; içindeki yazılar otomatik açık renk ---- */
+.dark-card { background-color: var(--color-dark-mid); color: #fff; }
+.dark-card .text-dark, .dark-card .text-text-primary, .dark-card .text-charcoal,
+.dark-card [class*="text-[var(--color-dark)]"], .dark-card [class*="text-[var(--color-charcoal)]"],
+.dark-card [class*="text-gray-8"], .dark-card [class*="text-gray-9"], .dark-card [class*="text-[#1A1A2E]"],
+.dark-card h1, .dark-card h2, .dark-card h3, .dark-card h4, .dark-card summary, .dark-card dt { color: #fff; }
+.dark-card .text-text-secondary, .dark-card [class*="text-gray-6"], .dark-card [class*="text-gray-7"] { color: rgba(255,255,255,0.78); }
+.dark-card .text-text-muted, .dark-card [class*="text-gray-4"], .dark-card [class*="text-gray-5"] { color: rgba(255,255,255,0.58); }
+.dark-card .border-border, .dark-card [class*="border-gray-"] { border-color: rgba(255,255,255,0.12); }
+.dark-card .divide-border > * + * { border-color: rgba(255,255,255,0.12); }
+.dark-card .bg-soft, .dark-card .bg-white, .dark-card [class*="bg-gray-50"] { background-color: rgba(255,255,255,0.07); }
+.dark-card .bg-gold-light { background-color: rgba(201,168,76,0.16); }
+.dark-card .hover\:bg-soft:hover, .dark-card .hover\:bg-gray-50:hover { background-color: rgba(255,255,255,0.1); }
+.dark-card input, .dark-card select, .dark-card textarea { color: #fff; }
+.dark-card input::placeholder, .dark-card textarea::placeholder { color: rgba(255,255,255,0.4); }
+.dark-card option { color: #0B0B11; background: #fff; }
+.dark-card .bg-gold, .dark-card .bg-gold .text-dark, .dark-card .bg-dark .text-dark { color: #0B0B11; }
+.dark-card .bg-gold.text-dark, .dark-card button.bg-gold, .dark-card a.bg-gold { color: #0B0B11; }
+
+/* Serif başlıklarda sayılar hizalı (lining) görünsün */
+h1, h2, h3, h4, .font-serif { font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }

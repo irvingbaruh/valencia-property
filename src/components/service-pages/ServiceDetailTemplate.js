@@ -21,7 +21,7 @@ export default async function ServiceDetailTemplate({ locale, serviceKey, image,
   return (
     <div className="bg-soft">
       {/* Breadcrumb */}
-      <div className="bg-white border-b border-border">
+      <div className="bg-white border-b border-white/10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center gap-2 text-sm text-text-muted">
           <a href={`/${locale}/`} className="hover:text-gold transition-colors">{c('breadcrumbHome')}</a>
           <ChevronRight size={14} />
@@ -57,7 +57,7 @@ export default async function ServiceDetailTemplate({ locale, serviceKey, image,
             <div className="grid sm:grid-cols-2 gap-5">
               {steps.map((step, i) => (
                 <ScrollReveal key={i} delay={i * 0.04}>
-                  <div className="bg-white rounded-xl border border-border p-5 h-full">
+                  <div className="dark-card rounded-xl border border-white/10 p-5 h-full">
                     <div className="w-8 h-8 rounded-full bg-gold-light text-gold font-serif font-semibold flex items-center justify-center mb-3">
                       {i + 1}
                     </div>
@@ -73,7 +73,7 @@ export default async function ServiceDetailTemplate({ locale, serviceKey, image,
         {/* Who we work with */}
         <ScrollReveal>
           <h2 className="text-2xl font-serif text-dark mb-4">{c('whoTitle')}</h2>
-          <div className="bg-white rounded-xl border border-border p-6">
+          <div className="dark-card rounded-xl border border-white/10 p-6">
             <p className="text-text-secondary leading-relaxed">{t('who')}</p>
           </div>
         </ScrollReveal>
@@ -87,7 +87,7 @@ export default async function ServiceDetailTemplate({ locale, serviceKey, image,
             <div className="space-y-5">
               {faqs.map((faq, i) => (
                 <ScrollReveal key={i} delay={i * 0.04}>
-                  <div className="border-b border-border pb-5 last:border-0">
+                  <div className="border-b border-white/10 pb-5 last:border-0">
                     <p className="font-semibold text-dark mb-2">{faq.q}</p>
                     <p className="text-text-muted leading-relaxed">{faq.a}</p>
                   </div>

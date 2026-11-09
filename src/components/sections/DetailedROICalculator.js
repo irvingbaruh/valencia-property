@@ -87,7 +87,7 @@ export default function DetailedROICalculator() {
   return (
     <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
       {/* Inputs */}
-      <div className="bg-white rounded-2xl border border-border p-6 sm:p-8">
+      <div className="dark-card rounded-2xl border border-white/10 p-6 sm:p-8">
         <div className="space-y-7">
           <div>
             <label htmlFor="roi-price" className="flex items-center justify-between mb-2">
@@ -116,7 +116,7 @@ export default function DetailedROICalculator() {
               id="roi-district"
               value={districtSlug}
               onChange={(e) => setDistrictSlug(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-lg border border-border bg-white text-sm text-text-primary"
+              className="w-full px-4 py-2.5 rounded-lg border border-white/10 bg-white text-sm text-text-primary"
             >
               {data.districts.map((d) => (
                 <option key={d.slug} value={d.slug}>
@@ -182,7 +182,7 @@ export default function DetailedROICalculator() {
                         setTermYears((v) => Math.min(v, next.max_term_years));
                       }
                     }}
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-white text-sm text-text-primary"
+                    className="w-full px-4 py-2.5 rounded-lg border border-white/10 bg-white text-sm text-text-primary"
                   >
                     {data.mortgages.map((m) => (
                       <option key={m.id} value={m.id}>

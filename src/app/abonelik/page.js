@@ -32,7 +32,7 @@ export default function UnsubscribePage() {
   const t = TEXT[lang];
   return (
     <main className="min-h-screen flex items-center justify-center bg-[#F7F7F5] px-6">
-      <div className="max-w-md w-full bg-white rounded-2xl shadow-sm p-8 text-center">
+      <div className="max-w-md w-full dark-card rounded-2xl shadow-sm p-8 text-center">
         <h1 className="text-2xl font-serif text-[#0B0B11] mb-4">{t.title}</h1>
         <p className="text-[#444] mb-6">{t[state]}</p>
         <a href={`/${lang}/`} className="inline-block px-5 py-2.5 rounded-xl bg-[#0B0B11] text-white text-sm font-medium">

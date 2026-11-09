@@ -115,7 +115,7 @@ function MyServicesTab({ userId }) {
 
   if (services.length === 0) {
     return (
-      <div className="bg-white rounded-2xl shadow-sm p-12 text-center">
+      <div className="dark-card rounded-2xl shadow-sm p-12 text-center">
         <Briefcase className="w-12 h-12 text-gray-300 mx-auto mb-4" />
         <h3 className="text-lg font-serif text-[var(--color-dark)] mb-2">{t('noServices')}</h3>
         <p className="text-[var(--color-charcoal)]">
@@ -136,7 +136,7 @@ function MyServicesTab({ userId }) {
         const progress = svcStages.length > 0 ? Math.round((completedCount / svcStages.length) * 100) : 0;
 
         return (
-          <div key={svc.id} className="bg-white rounded-2xl shadow-sm overflow-hidden">
+          <div key={svc.id} className="dark-card rounded-2xl shadow-sm overflow-hidden">
             {/* Service Header */}
             <button
               onClick={() => loadStages(svc.id)}
@@ -289,7 +289,7 @@ function NotificationsTab({ userId, onUnreadChange }) {
 
   if (items.length === 0) {
     return (
-      <div className="bg-white rounded-2xl shadow-sm p-12 text-center">
+      <div className="dark-card rounded-2xl shadow-sm p-12 text-center">
         <Bell className="w-12 h-12 text-gray-300 mx-auto mb-4" />
         <h3 className="text-lg font-serif text-[var(--color-dark)] mb-2">{t('noNotifications')}</h3>
         <p className="text-[var(--color-charcoal)]">{t('noNotificationsDesc')}</p>
@@ -303,7 +303,7 @@ function NotificationsTab({ userId, onUnreadChange }) {
         <button
           key={n.id}
           onClick={() => !n.is_read && markRead(n.id)}
-          className={`w-full text-left bg-white rounded-2xl shadow-sm px-6 py-4 flex gap-4 items-start ${n.is_read ? 'opacity-70' : 'border-l-4 border-[var(--color-gold)]'}`}
+          className={`w-full text-left dark-card rounded-2xl shadow-sm px-6 py-4 flex gap-4 items-start ${n.is_read ? 'opacity-70' : 'border-l-4 border-[var(--color-gold)]'}`}
         >
           <Bell className="w-5 h-5 mt-0.5 shrink-0 text-[var(--color-gold)]" />
           <div className="flex-1 min-w-0">
@@ -488,7 +488,7 @@ export default function PanelContent() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-1 bg-white rounded-xl p-1 shadow-sm mb-8 overflow-x-auto">
+        <div className="flex gap-1 dark-card rounded-xl p-1 shadow-sm mb-8 overflow-x-auto">
           {tabs.map(({ id, label, icon: Icon, badge }) => (
             <button
               key={id}
@@ -511,7 +511,7 @@ export default function PanelContent() {
         </div>
 
         {!hasIntake && (
-          <div className="mb-6 bg-white rounded-2xl shadow-sm p-6 flex flex-col sm:flex-row sm:items-center gap-4 border border-[var(--color-gold)]/30">
+          <div className="mb-6 dark-card rounded-2xl shadow-sm p-6 flex flex-col sm:flex-row sm:items-center gap-4 border border-[var(--color-gold)]/30">
             <div className="flex-1">
               <h3 className="font-serif text-lg text-[var(--color-dark)]">{t('completeTitle')}</h3>
               <p className="text-sm text-[var(--color-charcoal)] mt-1">{t('completeBody')}</p>
@@ -533,7 +533,7 @@ export default function PanelContent() {
                 <div className="w-8 h-8 border-2 border-[var(--color-gold)] border-t-transparent rounded-full animate-spin" />
               </div>
             ) : favoriteProperties.length === 0 ? (
-              <div className="bg-white rounded-2xl shadow-sm p-12 text-center">
+              <div className="dark-card rounded-2xl shadow-sm p-12 text-center">
                 <Heart className="w-12 h-12 text-gray-300 mx-auto mb-4" />
                 <h3 className="text-lg font-serif text-[var(--color-dark)] mb-2">{t('noFavorites')}</h3>
                 <p className="text-[var(--color-charcoal)] mb-6">{t('noFavoritesDesc')}</p>
@@ -547,7 +547,7 @@ export default function PanelContent() {
             ) : (
               <div className="grid md:grid-cols-2 gap-6">
                 {favoriteProperties.map((property) => (
-                  <div key={property.id} className="bg-white rounded-2xl shadow-sm overflow-hidden group">
+                  <div key={property.id} className="dark-card rounded-2xl shadow-sm overflow-hidden group">
                     <div className="relative h-48">
                       <img
                         src={property.image}
@@ -594,7 +594,7 @@ export default function PanelContent() {
 
         {/* Profile Tab */}
         {activeTab === 'profile' && (
-          <div className="bg-white rounded-2xl shadow-sm p-8 max-w-2xl">
+          <div className="dark-card rounded-2xl shadow-sm p-8 max-w-2xl">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-serif text-[var(--color-dark)]">{t('profile')}</h2>
               {!editMode && (
@@ -745,7 +745,7 @@ export default function PanelContent() {
 
         {/* Settings Tab — placeholder for now */}
         {activeTab === 'settings' && (
-          <div className="bg-white rounded-2xl shadow-sm p-8 max-w-lg">
+          <div className="dark-card rounded-2xl shadow-sm p-8 max-w-lg">
             <h2 className="text-xl font-serif text-[var(--color-dark)] mb-4">{t('mailingTitle')}</h2>
             <p className="text-[var(--color-charcoal)] text-sm mb-5">{t('mailingDesc')}</p>
             <label className="flex items-center gap-3 cursor-pointer">

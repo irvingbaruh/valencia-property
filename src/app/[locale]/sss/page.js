@@ -25,7 +25,7 @@ export default async function FaqPage({ params }) {
   return (
     <div className="bg-soft">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <div className="bg-white border-b border-border">
+      <div className="bg-white border-b border-white/10">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-16">
           <h1 className="text-4xl sm:text-5xl font-serif text-dark mb-4">{t('title')}</h1>
           <p className="text-lg text-text-muted">{t('subtitle')}</p>
@@ -34,7 +34,7 @@ export default async function FaqPage({ params }) {
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="space-y-3">
           {items.map((i) => (
-            <details key={i.q} className="group bg-white border border-border rounded-xl open:border-gold">
+            <details key={i.q} className="group dark-card border border-white/10 rounded-xl open:border-gold">
               <summary className="cursor-pointer list-none flex items-center justify-between gap-4 p-5 font-medium text-dark">
                 {i.q}
                 <span className="text-gold text-xl leading-none transition-transform group-open:rotate-45" aria-hidden="true">+</span>

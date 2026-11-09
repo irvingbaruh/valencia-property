@@ -67,7 +67,7 @@ function Gallery({ images, alt, noPhoto }) {
   const [i, setI] = useState(0);
   const [open, setOpen] = useState(false);
   if (!images.length) {
-    return <div className="aspect-[16/10] rounded-2xl bg-soft border border-border flex items-center justify-center text-text-muted">{noPhoto}</div>;
+    return <div className="aspect-[16/10] rounded-2xl bg-soft border border-white/10 flex items-center justify-center text-text-muted">{noPhoto}</div>;
   }
   const go = useCallback((d) => setI((v) => (v + d + images.length) % images.length), [images.length]);
   const close = useCallback(() => setOpen(false), []);
@@ -166,7 +166,7 @@ function Detail() {
             ) : null}
           </div>
 
-          <aside className="lg:sticky lg:top-28 bg-white rounded-2xl border border-border p-6 shadow-card">
+          <aside className="lg:sticky lg:top-28 dark-card rounded-2xl border border-white/10 p-6 shadow-card">
             <div className="text-sm text-text-muted mb-1">{t('price')}</div>
             <div className="flex items-start justify-between gap-3 mb-1">
               <div className="text-3xl font-serif text-dark">{formatPrice(p.price, p.currency, locale)}</div>
@@ -176,7 +176,7 @@ function Detail() {
               <div className="text-xs text-text-muted mb-5">{t('perSqm')}: {formatPrice(Math.round(p.price / p.area_sqm), p.currency, locale)}</div>
             ) : <div className="mb-5" />}
             {facts.length ? (
-              <dl className="grid grid-cols-2 gap-4 py-5 border-t border-b border-border mb-5">
+              <dl className="grid grid-cols-2 gap-4 py-5 border-t border-b border-white/10 mb-5">
                 {facts.map((f) => (
                   <div key={f.label}>
                     <dt className="flex items-center gap-1.5 text-xs text-text-muted"><f.icon size={14} className="text-gold" />{f.label}</dt>
