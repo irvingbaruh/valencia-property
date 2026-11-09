@@ -8,7 +8,8 @@
     "properties": "Konutlar",
     "services": "Hizmetler",
     "calculator": "ROI Hesapla",
-    "blog": "Rehber",
+    "blog": "Blog",
+    "about": "Hakkımızda",
     "contact": "İletişim",
     "login": "Giriş",
     "cta": "Danışmanlık Al",
@@ -362,10 +363,10 @@
     "submitError": "Mesaj gönderilemedi. Lütfen tekrar deneyin veya WhatsApp üzerinden yazın."
   },
   "blog": {
-    "title": "Rehber",
+    "title": "Blog",
     "subtitle": "İspanya'da gayrimenkul yatırımı ve yaşamı hakkında bilmeniz gerekenler",
     "readMore": "Oku",
-    "backToList": "Rehber'e Dön",
+    "backToList": "Blog'a Dön",
     "posts": [
       {
         "category": "Yasal Süreç",
@@ -475,7 +476,7 @@
     "career": "Kariyer",
     "services_title": "Hizmetler",
     "resources": "Kaynaklar",
-    "blog": "Blog & Rehberler",
+    "blog": "Blog",
     "roi_calc": "ROI Hesaplayıcı",
     "faq": "Sıkça Sorulan Sorular",
     "glossary": "Sözlük",

@@ -56,7 +56,7 @@ export default function BlogPage() {
   });
 
   const labels = {
-    tr: { title: 'Blog & Rehber', subtitle: 'Valencia\'da gayrimenkul yatırımı hakkında bilgi ve rehberler', search: 'Yazılarda ara...', readMore: 'Devamını Oku', all: 'Tümü', noPosts: 'Henüz yayınlanmış yazı yok.', guide: 'Rehber' },
+    tr: { title: 'Blog', subtitle: 'Valencia\'da gayrimenkul yatırımı hakkında bilgi ve rehberler', search: 'Yazılarda ara...', readMore: 'Devamını Oku', all: 'Tümü', noPosts: 'Henüz yayınlanmış yazı yok.', guide: 'Rehber' },
     en: { title: 'Blog & Guide', subtitle: 'Information and guides about real estate investment in Valencia', search: 'Search posts...', readMore: 'Read More', all: 'All', noPosts: 'No published posts yet.', guide: 'Guide' },
     es: { title: 'Blog & Guía', subtitle: 'Información y guías sobre inversión inmobiliaria en Valencia', search: 'Buscar artículos...', readMore: 'Leer Más', all: 'Todos', noPosts: 'Aún no hay artículos publicados.', guide: 'Guía' },
     de: { title: 'Blog & Ratgeber', subtitle: 'Informationen und Ratgeber zur Immobilieninvestition in Valencia', search: 'Beiträge suchen...', readMore: 'Weiterlesen', all: 'Alle', noPosts: 'Noch keine veröffentlichten Beiträge.', guide: 'Ratgeber' },

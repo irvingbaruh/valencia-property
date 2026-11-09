@@ -68,7 +68,7 @@ export default function PropertiesGrid({ samples }) {
                     src={property.image}
                     alt={property.title}
                     loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    className="w-full h-full object-cover scale-[1.2] group-hover:scale-[1.26] transition-transform duration-700 ease-out"
                   />
                 ) : null}
                 <div className="absolute inset-0 bg-gradient-to-t from-dark/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

@@ -80,7 +80,7 @@ function ListingCard({ listing, t }) {
           <img
             src={listing.image}
             alt={listing.location}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+            className="w-full h-full object-cover scale-[1.2] group-hover:scale-[1.28] transition-transform duration-700 ease-out"
             loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-dark/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

@@ -100,6 +100,7 @@ export default function Header() {
     { label: t('services'), href: sectionHref('services', 'hizmetler') },
     { label: t('calculator'), href: sectionHref('calculator', 'roi-hesaplama') },
     { label: t('blog'), href: `/${locale}/blog/` },
+    { label: t('about'), href: localePath(locale, 'hakkimizda') },
     { label: t('contact'), href: sectionHref('contact', 'iletisim') },
   ];
 

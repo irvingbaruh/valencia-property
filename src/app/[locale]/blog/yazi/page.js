@@ -108,7 +108,7 @@ function BlogDetailContent() {
   return (
     <div className="bg-soft min-h-screen">
       {/* Breadcrumb */}
-      <div className="bg-white border-b border-border">
+      <div className="bg-band border-b border-border">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-4 flex items-center gap-2 text-sm text-text-muted">
           <a href={`/${locale}/`} className="hover:text-gold transition-colors">Lock & Loft</a>
           <ChevronRight size={14} />

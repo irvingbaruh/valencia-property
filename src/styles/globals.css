@@ -8,9 +8,10 @@
 @theme {
   /* ── Base / Neutrals ── */
   --color-white: #FFFFFF;
-  --color-soft: #F5F5F7;
+  --color-soft: #E3E5EA;
+  --color-band: #EDEEF2;
   --color-warm-gray: #F8F7F5;
-  --color-border: #E8EBF0;
+  --color-border: #CDD1D9;
 
   /* ── Dark / Black (logo black #0B0B11) ── */
   --color-dark: #0B0B11;
@@ -28,7 +29,7 @@
   /* ── Text ── */
   --color-text-primary: #0B0B11;
   --color-text-secondary: #4A5568;
-  --color-text-muted: #8896A6;
+  --color-text-muted: #596473;
 
   /* ── Semantic ── */
   --color-success: #22C55E;
@@ -74,7 +75,7 @@ html {
 body {
   font-family: var(--font-sans);
   color: var(--color-text-primary);
-  background-color: var(--color-white);
+  background-color: var(--color-band);
   line-height: 1.6;
 }
 

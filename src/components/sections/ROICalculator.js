@@ -27,7 +27,7 @@ export default function ROICalculator() {
     new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
 
   return (
-    <section id="calculator" className="section-padding bg-white">
+    <section id="calculator" className="section-padding bg-band">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: Calculator */}
