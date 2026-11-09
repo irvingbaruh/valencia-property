@@ -71,8 +71,8 @@ function ServiceCard({ service, index, isExpanded, onToggle, t, locale }) {
         className={`
           relative overflow-hidden rounded-2xl transition-all duration-500
           ${isExpanded
-            ? 'bg-white ring-1 ring-gold/40 shadow-lg shadow-gold/10'
-            : 'bg-white ring-1 ring-black/[0.06] group-hover:ring-gold/40 group-hover:shadow-[0_0_28px_rgba(201,168,76,0.18)]'
+            ? 'bg-dark ring-1 ring-gold/40 shadow-lg shadow-gold/10'
+            : 'bg-dark ring-1 ring-white/10 group-hover:ring-gold/40 group-hover:shadow-[0_0_28px_rgba(201,168,76,0.18)]'
           }
         `}
       >
@@ -120,14 +120,14 @@ function ServiceCard({ service, index, isExpanded, onToggle, t, locale }) {
               <motion.h3
                 layout
                 className={`font-serif text-lg leading-snug transition-colors duration-300 ${
-                  isExpanded ? 'text-gold' : 'text-dark group-hover:text-gold'
+                  isExpanded ? 'text-gold' : 'text-white group-hover:text-gold'
                 }`}
               >
                 {t(`${service.key}.title`)}
               </motion.h3>
               <motion.p
                 layout
-                className="text-sm text-text-muted mt-1 leading-relaxed"
+                className="text-sm text-white mt-1 leading-relaxed"
               >
                 {t(`${service.key}.desc`)}
               </motion.p>
@@ -144,7 +144,7 @@ function ServiceCard({ service, index, isExpanded, onToggle, t, locale }) {
                 animate={{ rotate: isExpanded ? 90 : 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <ChevronRight size={18} className={`transition-colors duration-300 ${isExpanded ? 'text-gold' : 'text-black/30 group-hover:text-gold'}`} />
+                <ChevronRight size={18} className={`transition-colors duration-300 ${isExpanded ? 'text-gold' : 'text-white/50 group-hover:text-gold'}`} />
               </motion.div>
             </motion.div>
           </motion.div>

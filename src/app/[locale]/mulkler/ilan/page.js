@@ -1,25 +1,83 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
-import { ArrowLeft, ArrowRight, MapPin, BedDouble, Bath, Maximize2, Trees, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, MapPin, BedDouble, Bath, Maximize2, Trees, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import FavoriteButton from '@/components/ui/FavoriteButton';
 import { localePath } from '@/lib/routes';
 import {
   fetchListing, listingTitle, listingDescription, listingImages, listingLocation, formatPrice, TYPE_KEYS,
 } from '@/lib/listings';
 
+function Lightbox({ images, index, onClose, onGo, alt }) {
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'Escape') onClose();
+      else if (e.key === 'ArrowLeft') onGo(-1);
+      else if (e.key === 'ArrowRight') onGo(1);
+    };
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [onClose, onGo]);
+
+  const touchX = { current: null };
+  const many = images.length > 1;
+  const btn = 'absolute top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/15 hover:bg-white/30 text-white flex items-center justify-center backdrop-blur-sm transition-colors';
+  return (
+    <div
+      className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center"
+      role="dialog"
+      aria-modal="true"
+      onClick={onClose}
+      onTouchStart={(e) => { touchX.current = e.touches[0].clientX; }}
+      onTouchEnd={(e) => {
+        if (touchX.current == null || !many) return;
+        const dx = e.changedTouches[0].clientX - touchX.current;
+        if (Math.abs(dx) > 50) onGo(dx < 0 ? 1 : -1);
+        touchX.current = null;
+      }}
+    >
+      <img
+        src={images[index]}
+        alt={alt}
+        className="max-w-[94vw] max-h-[88vh] object-contain select-none"
+        onClick={(e) => e.stopPropagation()}
+      />
+      <button type="button" onClick={(e) => { e.stopPropagation(); onClose(); }} aria-label="×" className="absolute top-4 right-4 w-11 h-11 rounded-full bg-white/15 hover:bg-white/30 text-white flex items-center justify-center backdrop-blur-sm transition-colors">
+        <X size={22} />
+      </button>
+      {many && (
+        <>
+          <button type="button" onClick={(e) => { e.stopPropagation(); onGo(-1); }} aria-label="‹" className={`${btn} left-3 sm:left-6`}><ChevronLeft size={24} /></button>
+          <button type="button" onClick={(e) => { e.stopPropagation(); onGo(1); }} aria-label="›" className={`${btn} right-3 sm:right-6`}><ChevronRight size={24} /></button>
+          <span className="absolute bottom-5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-white/15 text-white text-sm backdrop-blur-sm">{index + 1} / {images.length}</span>
+        </>
+      )}
+    </div>
+  );
+}
+
 function Gallery({ images, alt, noPhoto }) {
   const [i, setI] = useState(0);
+  const [open, setOpen] = useState(false);
   if (!images.length) {
     return <div className="aspect-[16/10] rounded-2xl bg-soft border border-border flex items-center justify-center text-text-muted">{noPhoto}</div>;
   }
-  const go = (d) => setI((v) => (v + d + images.length) % images.length);
+  const go = useCallback((d) => setI((v) => (v + d + images.length) % images.length), [images.length]);
+  const close = useCallback(() => setOpen(false), []);
   return (
     <div>
+      {open && <Lightbox images={images} index={i} onClose={close} onGo={go} alt={alt} />}
       <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-soft">
-        <img src={images[i]} alt={alt} className="w-full h-full object-cover" />
+        <button type="button" onClick={() => setOpen(true)} aria-label={alt} className="block w-full h-full cursor-zoom-in">
+          <img src={images[i]} alt={alt} className="w-full h-full object-cover" />
+        </button>
         {images.length > 1 && (
           <>
             <button type="button" onClick={() => go(-1)} aria-label="‹" className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow flex items-center justify-center">

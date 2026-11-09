@@ -204,7 +204,7 @@ export default function AdminDashboardPage() {
               />
               <StatCard
                 icon={TrendingUp}
-                label="Toplam Mülk"
+                label="Toplam Konut"
                 value={stats.totalProperties}
                 color="#DC1C2E"
               />

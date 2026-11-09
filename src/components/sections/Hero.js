@@ -81,7 +81,7 @@ export default function Hero() {
         />
 
         {/* Gradient overlays for text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-dark/60 via-dark/20 to-dark/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/65 via-dark/45 to-dark/75" />
 
         {/* Content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-6">
@@ -110,7 +110,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-base text-white/75 max-w-sm mx-auto mb-8 drop-shadow-lg text-center"
+            className="text-base text-white/85 max-w-sm mx-auto mb-8 drop-shadow-lg text-center"
           >
             {t('subtitle')}
           </motion.p>
@@ -257,6 +257,17 @@ export default function Hero() {
           </motion.div>
         </div>
 
+        {/* Legibility scrim: darker behind the text, lighter toward the edges so the photos stay visible */}
+        <motion.div
+          aria-hidden="true"
+          style={{
+            opacity: headingOpacity,
+            background:
+              'radial-gradient(ellipse 60% 55% at 50% 50%, rgba(11,11,17,0.62) 0%, rgba(11,11,17,0.42) 55%, rgba(11,11,17,0.22) 100%)',
+          }}
+          className="absolute inset-0 z-[15] pointer-events-none"
+        />
+
         {/* Heading overlay — centered on mosaic */}
         <motion.div
           style={{ opacity: headingOpacity, y: headingY }}
@@ -288,7 +299,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="text-lg sm:text-xl text-white/70 max-w-xl mx-auto mb-10 drop-shadow-lg"
+              className="text-lg sm:text-xl text-white/85 max-w-xl mx-auto mb-10 drop-shadow-lg"
             >
               {t('subtitle')}
             </motion.p>

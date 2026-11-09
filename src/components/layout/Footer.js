@@ -7,8 +7,10 @@ import { MapPin, Phone, Mail } from 'lucide-react';
 import { localePath } from '@/lib/routes';
 import { useContactSettings, telHref } from '@/lib/siteSettings';
 
-// Sosyal hesap adresleri. Boş bırakılan ikon sitede görünmez.
-const SOCIAL = { instagram: '', facebook: '', linkedin: '' };
+// Sosyal hesap adresleri. Gerçek adresi buraya yaz.
+const SOCIAL = { instagram: '#', facebook: '#', linkedin: '#' };
+// '#' = henüz adres yok: ikon görünür ama yeni sekme açmaz.
+const ext = (u) => (u && u !== '#' ? { target: '_blank', rel: 'noopener noreferrer' } : {});
 
 export default function Footer() {
   const t = useTranslations('footer');
@@ -100,7 +102,7 @@ export default function Footer() {
             <div className="flex gap-3 mb-6 empty:hidden">
               {SOCIAL.instagram && (
               <a
-                href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer"
+                href={SOCIAL.instagram} {...ext(SOCIAL.instagram)}
                 className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition-colors"
                 aria-label="Instagram"
               >
@@ -109,7 +111,7 @@ export default function Footer() {
               )}
               {SOCIAL.facebook && (
               <a
-                href={SOCIAL.facebook} target="_blank" rel="noopener noreferrer"
+                href={SOCIAL.facebook} {...ext(SOCIAL.facebook)}
                 className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition-colors"
                 aria-label="Facebook"
               >
@@ -118,7 +120,7 @@ export default function Footer() {
               )}
               {SOCIAL.linkedin && (
               <a
-                href={SOCIAL.linkedin} target="_blank" rel="noopener noreferrer"
+                href={SOCIAL.linkedin} {...ext(SOCIAL.linkedin)}
                 className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition-colors"
                 aria-label="LinkedIn"
               >

@@ -37,8 +37,8 @@
   --color-info: #6B8EBD;
 
   /* ── Fonts ── */
-  --font-serif: "DM Serif Display", Georgia, serif;
-  --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Jost", "Futura", "Century Gothic", system-ui, sans-serif;
 
   /* ── Spacing ── */
   --spacing-section: 6rem;
@@ -80,7 +80,14 @@ body {
 
 h1, h2, h3 {
   font-family: var(--font-serif);
-  line-height: 1.2;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+/* Cormorant has a small x-height; keep headings optically as large as before. */
+.font-serif {
+  font-weight: 600;
+  font-size-adjust: 0.44;
 }
 
 /* ═══════════════════════════════════════

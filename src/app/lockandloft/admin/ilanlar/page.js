@@ -274,7 +274,7 @@ export default function AdminIlanlarPage() {
   const toggleFeatured = async (r) => {
     if (!r.is_featured && !r.is_active) { flash('Seçkin yapmak için önce ilanı aktif edin.'); return; }
     const { error } = await supabase.from('properties').update({ is_featured: !r.is_featured }).eq('id', r.id);
-    if (error) flash(error.message.includes('En fazla 3') ? 'En fazla 3 seçkin mülk olabilir. Önce birinin yıldızını kaldırın.' : error.message); else patchRow(r.id, { is_featured: !r.is_featured });
+    if (error) flash(error.message.includes('En fazla 3') ? 'En fazla 3 seçkin konut olabilir. Önce birinin yıldızını kaldırın.' : error.message); else patchRow(r.id, { is_featured: !r.is_featured });
   };
   const remove = async (r) => {
     if (r.images?.length) {

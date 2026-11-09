@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Lock & Loft — İspanya'da Mülk Yatırımı",
+    "title": "Lock & Loft — İspanya'da Gayrimenkul Yatırımı",
     "description": "Valencia'da gayrimenkul yatırımı, dekorasyon, renovasyon ve kira yönetimi hizmetleri"
   },
   "nav": {
     "home": "Ana Sayfa",
-    "properties": "Mülkler",
+    "properties": "Konutlar",
     "services": "Hizmetler",
     "calculator": "ROI Hesapla",
     "blog": "Rehber",
@@ -15,10 +15,10 @@
     "panel": "Panel"
   },
   "hero": {
-    "title": "İspanya'da Hayalinizdeki Mülke Sahip Olun",
+    "title": "İspanya'da Hayalinizdeki Eve Sahip Olun",
     "subtitle": "Valencia'da yatırım, yaşam ve kira getirisi — hukuki süreçten dekorasyona kadar yanınızdayız.",
     "cta_primary": "Ücretsiz Danışmanlık",
-    "cta_secondary": "Mülkleri İncele"
+    "cta_secondary": "Konutları İncele"
   },
   "stats": {
     "localHeadline": "Yerinde",
@@ -30,28 +30,28 @@
     "partner": "RE/MAX İşbirliği"
   },
   "properties": {
-    "title": "Seçkin Mülkler",
+    "title": "Seçkin Konutlar",
     "subtitle": "Valencia ve çevresinde yatırım için en uygun fırsatlar",
     "badge_new": "Yeni",
     "badge_premium": "Premium",
     "rooms": "oda",
     "sqm": "m²",
-    "view_all": "Tüm Mülkleri Gör"
+    "view_all": "Tüm Konutları Gör"
   },
   "services": {
     "title": "Kapsamlı Hizmetlerimiz",
-    "subtitle": "Mülk arayışından anahtar teslimine kadar her adımda profesyonel destek",
+    "subtitle": "Konut arayışından anahtar teslimine kadar her adımda profesyonel destek",
     "explore": "Detayları Gör",
     "viewServicePage": "Hizmet Sayfasını Gör",
     "decorCta": "Decor Petit Koleksiyonunu İncele",
     "stagingCta": "Home Staging Hizmetini İncele",
     "viewAllServices": "Tüm Hizmetleri Gör",
     "search": {
-      "title": "Mülk Arama",
-      "desc": "Bütçenize ve kriterlerinize uygun mülkleri buluyoruz",
-      "d1": "Kişiselleştirilmiş mülk portföyü hazırlama",
+      "title": "Konut Arama",
+      "desc": "Bütçenize ve kriterlerinize uygun konutları buluyoruz",
+      "d1": "Kişiselleştirilmiş konut portföyü hazırlama",
       "d2": "Yerinde inceleme ve bölge analizi",
-      "d3": "RE/MAX ağı ile geniş mülk erişimi",
+      "d3": "RE/MAX ağı ile geniş konut erişimi",
       "d4": "Fiyat ve yatırım getirisi karşılaştırması"
     },
     "legal": {
@@ -108,9 +108,9 @@
       "ctaPrimary": "Danışmanlık Al"
     },
     "search": {
-      "title": "Mülk Arama",
+      "title": "Konut Arama",
       "intro": "Valencia ve çevresindeki en uygun yatırım ve yaşam fırsatlarını tek yerden keşfedin.",
-      "overview": "İki kaynaktan beslenen geniş bir envanter sunuyoruz: ekibimizin doğrudan sahadan bulduğu özel ilanlar ve RE/MAX Valencia'nın portföyünden gelen mülkler. Bölge, bütçe ve ihtiyacınıza göre filtreleyin.",
+      "overview": "İki kaynaktan beslenen geniş bir envanter sunuyoruz: ekibimizin doğrudan sahadan bulduğu özel ilanlar ve RE/MAX Valencia'nın portföyünden gelen konutlar. Bölge, bütçe ve ihtiyacınıza göre filtreleyin.",
       "steps": [
         {
           "title": "Keşif Görüşmesi",
@@ -118,18 +118,18 @@
         },
         {
           "title": "Kişiselleştirilmiş Liste",
-          "desc": "İhtiyacınıza uygun mülkleri seçip size sunuyoruz."
+          "desc": "İhtiyacınıza uygun konutları seçip size sunuyoruz."
         },
         {
           "title": "Yerinde İnceleme",
-          "desc": "Seçtiğiniz mülkleri birlikte veya sizin adınıza yerinde inceliyoruz."
+          "desc": "Seçtiğiniz konutları birlikte veya sizin adınıza yerinde inceliyoruz."
         },
         {
           "title": "Teklif & Süreç",
           "desc": "Teklif, pazarlık ve satın alma sürecinde yanınızdayız."
         }
       ],
-      "who": "RE/MAX Valencia işbirliğiyle geniş bir portföye erişiyor, bağımsız mülk sahipleriyle de doğrudan görüşüyoruz.",
+      "who": "RE/MAX Valencia işbirliğiyle geniş bir portföye erişiyor, bağımsız konut sahipleriyle de doğrudan görüşüyoruz.",
       "faqs": [
         {
           "q": "Sadece hazır ilanlara mı erişebiliyorum?",
@@ -143,7 +143,7 @@
     },
     "legal": {
       "title": "Hukuki Destek",
-      "intro": "İspanya'da mülk alım sürecinin her hukuki adımında güvenilir ortak avukatlarla yanınızdayız.",
+      "intro": "İspanya'da konut alım sürecinin her hukuki adımında güvenilir ortak avukatlarla yanınızdayız.",
       "overview": "NIE başvurusundan tapu devrine, vergilerden sözleşmeye kadar tüm süreç şeffaf şekilde yönetilir; biz avukatlık hizmeti vermiyoruz, güvenilir ortaklarla sizi buluşturuyoruz.",
       "steps": [
         {
@@ -166,18 +166,18 @@
       "who": "Valencia'da yerleşik, gayrimenkul hukukunda uzmanlaşmış, Türkçe veya İngilizce iletişim kurabilen ortak avukatlarla çalışıyoruz.",
       "faqs": [
         {
-          "q": "NIE almadan mülk alabilir miyim?",
+          "q": "NIE almadan konut alabilir miyim?",
           "a": "Hayır, NIE zorunludur; süreç genellikle 1-4 hafta sürer."
         },
         {
           "q": "Avukatlık ücretini kim öder?",
-          "a": "Alıcı öder, genellikle mülk bedelinin %1-1.5'i civarında."
+          "a": "Alıcı öder, genellikle konut bedelinin %1-1.5'i civarında."
         }
       ]
     },
     "decor": {
       "title": "Dekorasyon & Mobilya",
-      "intro": "Mülkünüzü konsept tasarımdan kuruluma kadar anahtar teslim döşüyoruz.",
+      "intro": "Konutunuzu konsept tasarımdan kuruluma kadar anahtar teslim döşüyoruz.",
       "overview": "Dekorasyon ortağımız Decor Petit ile, yaşam tarzınıza uygun mobilya ve aksesuar seçiminden kurulumuna kadar tüm süreci yönetiyoruz.",
       "steps": [
         {
@@ -204,14 +204,14 @@
           "a": "İkisi de — tek parça mobilyadan uçtan uca iç mekan tasarımına kadar."
         },
         {
-          "q": "Kiralık mülkler için de hizmet veriyor musunuz?",
-          "a": "Evet, Airbnb ve kiralık mülkler için de döşeme paketlerimiz var."
+          "q": "Kiralık konutlar için de hizmet veriyor musunuz?",
+          "a": "Evet, Airbnb ve kiralık konutlar için de döşeme paketlerimiz var."
         }
       ]
     },
     "renovation": {
       "title": "Renovasyon",
-      "intro": "Yenileme gerektiren mülkleri değer kazanan yaşam alanlarına dönüştürüyoruz.",
+      "intro": "Yenileme gerektiren konutları değer kazanan yaşam alanlarına dönüştürüyoruz.",
       "overview": "Küçük yenilemeden kapsamlı tadilata kadar, proje yönetimini izinlerden teslime kadar uçtan uca üstleniyoruz.",
       "steps": [
         {
@@ -245,7 +245,7 @@
     },
     "rental": {
       "title": "Kira Yönetimi",
-      "intro": "Mülkünüzü siz uzaktayken biz Valencia'da uçtan uca yönetiyoruz.",
+      "intro": "Konutunuzu siz uzaktayken biz Valencia'da uçtan uca yönetiyoruz.",
       "overview": "Kiracı bulmadan sözleşmeye, aylık tahsilattan bakım koordinasyonuna kadar tüm süreci üstleniyoruz.",
       "steps": [
         {
@@ -254,7 +254,7 @@
         },
         {
           "title": "Hazırlık",
-          "desc": "Gerekirse home staging ile mülk hazırlanır."
+          "desc": "Gerekirse home staging ile konut hazırlanır."
         },
         {
           "title": "Kiracı Bulma",
@@ -279,7 +279,7 @@
     },
     "staging": {
       "title": "Home Staging",
-      "intro": "Mülkünüzü satış veya kiralama öncesi en değerli haline getiriyoruz.",
+      "intro": "Konutunuzu satış veya kiralama öncesi en değerli haline getiriyoruz.",
       "overview": "Profesyonel sahneleme ile daha hızlı satış/kiralama ve daha yüksek teklif hedefliyoruz; Decor Petit'in home staging hizmetiyle entegre çalışıyoruz.",
       "steps": [
         {
@@ -302,26 +302,26 @@
       "who": "Decor Petit'in home staging ekibiyle birlikte çalışıyoruz.",
       "faqs": [
         {
-          "q": "Boş mülklerde de staging yapılabilir mi?",
-          "a": "Evet, en çok fark boş mülklerde görülür."
+          "q": "Boş konutlarda da staging yapılabilir mi?",
+          "a": "Evet, en çok fark boş konutlarda görülür."
         },
         {
           "q": "Staging maliyeti neye bağlı?",
-          "a": "Mülk büyüklüğü ve kapsam proje bazında belirlenir."
+          "a": "Konut büyüklüğü ve kapsam proje bazında belirlenir."
         }
       ]
     }
   },
   "mulklerPage": {
-    "title": "Tüm Mülkler",
-    "subtitle": "Valencia ve çevresindeki seçkin mülk portföyümüzü keşfedin.",
-    "ctaTitle": "Aradığınız Mülkü Bulamadınız mı?",
-    "ctaSubtitle": "İhtiyaçlarınıza özel mülkler bulmamız için bizimle görüşün.",
+    "title": "Tüm Konutlar",
+    "subtitle": "Valencia ve çevresindeki seçkin konut portföyümüzü keşfedin.",
+    "ctaTitle": "Aradığınız Konutu Bulamadınız mı?",
+    "ctaSubtitle": "İhtiyaçlarınıza özel konutlar bulmamız için bizimle görüşün.",
     "ctaButton": "Danışmanlık Al"
   },
   "hizmetlerPage": {
     "title": "Hizmetlerimiz",
-    "subtitle": "Mülk aramadan anahtar teslime kadar, İspanya'da gayrimenkul yolculuğunuzun her adımında yanınızdayız.",
+    "subtitle": "Konut aramadan anahtar teslime kadar, İspanya'da gayrimenkul yolculuğunuzun her adımında yanınızdayız.",
     "readMore": "Detayları Gör",
     "formTitle": "Size Nasıl Yardımcı Olabiliriz?",
     "formSubtitle": "Birkaç soruyu yanıtlayın, ihtiyaçlarınıza en uygun planı birlikte oluşturalım."
@@ -375,7 +375,7 @@
       },
       {
         "category": "Adım Adım",
-        "title": "Türk Vatandaşları İçin İspanya'da Mülk Alım Süreci",
+        "title": "Türk Vatandaşları İçin İspanya'da Konut Alım Süreci",
         "date": "2026-10-05",
         "image": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80&auto=format"
       },
@@ -416,15 +416,15 @@
     }
   },
   "process": {
-    "title": "4 Adımda Mülk Sahibi Olun",
+    "title": "4 Adımda Ev Sahibi Olun",
     "subtitle": "Basit ve şeffaf bir süreç",
     "step1": {
       "title": "İhtiyaç Analizi",
       "desc": "Bütçe, konum ve beklentilerinizi belirliyoruz"
     },
     "step2": {
-      "title": "Mülk Seçimi",
-      "desc": "Kriterlere uygun mülkleri sizinle paylaşıyoruz"
+      "title": "Konut Seçimi",
+      "desc": "Kriterlere uygun konutları sizinle paylaşıyoruz"
     },
     "step3": {
       "title": "Hukuki Süreç",
@@ -432,14 +432,14 @@
     },
     "step4": {
       "title": "Anahtar Teslim",
-      "desc": "Mülkünüzü yaşama veya kiraya hazır hale getiriyoruz"
+      "desc": "Konutunuzu yaşama veya kiraya hazır hale getiriyoruz"
     }
   },
   "roi": {
     "title": "Yatırım Getiri Hesaplayıcı",
     "subtitle": "Valencia'da gayrimenkul yatırımınızın potansiyel getirisini hesaplayın",
     "budget": "Yatırım Bütçesi",
-    "type": "Mülk Tipi",
+    "type": "Konut Tipi",
     "type_apartment": "Daire",
     "type_house": "Müstakil Ev",
     "type_commercial": "Ticari",
@@ -505,8 +505,8 @@
     "google": "Google ile Giriş",
     "loginTitle": "Hesabınıza Giriş Yapın",
     "registerTitle": "Yeni Hesap Oluşturun",
-    "loginSubtitle": "Favori mülklerinize erişin ve hizmetlerimizden yararlanın",
-    "registerSubtitle": "Ücretsiz üye olun, mülkleri favorilere ekleyin",
+    "loginSubtitle": "Favori konutlarınıza erişin ve hizmetlerimizden yararlanın",
+    "registerSubtitle": "Ücretsiz üye olun, konutları favorilere ekleyin",
     "checkEmail": "E-postanızı kontrol edin",
     "checkEmailDesc": "Hesabınızı doğrulamak için e-postanıza bir bağlantı gönderdik.",
     "errorInvalidCredentials": "E-posta veya şifre hatalı",
@@ -524,7 +524,7 @@
     "passwordUpdated": "Şifreniz güncellendi. Panelinize yönlendiriliyorsunuz.",
     "linkInvalid": "Bağlantı geçersiz veya süresi dolmuş. Şifre sıfırlamayı yeniden başlatın.",
     "passwordTooShort": "Şifre en az 8 karakter olmalı.",
-    "marketing": "Yeni mülk, piyasa ve yatırım haberlerini e-posta ile almak istiyorum (isteğe bağlı). E-postalarda açılma ve tıklama istatistikleri tutulur."
+    "marketing": "Yeni konut, piyasa ve yatırım haberlerini e-posta ile almak istiyorum (isteğe bağlı). E-postalarda açılma ve tıklama istatistikleri tutulur."
   },
   "panel": {
     "title": "Üye Paneli",
@@ -532,9 +532,9 @@
     "profile": "Profil",
     "favorites": "Favorilerim",
     "settings": "Ayarlar",
-    "noFavorites": "Henüz favori mülkünüz yok",
-    "noFavoritesDesc": "Mülkler sayfasından beğendiğiniz ilanları favorilere ekleyebilirsiniz.",
-    "browseMulkler": "Mülkleri İncele",
+    "noFavorites": "Henüz favori konutunuz yok",
+    "noFavoritesDesc": "Konutlar sayfasından beğendiğiniz ilanları favorilere ekleyebilirsiniz.",
+    "browseMulkler": "Konutları İncele",
     "editProfile": "Profili Düzenle",
     "save": "Kaydet",
     "saved": "Kaydedildi",
@@ -586,10 +586,10 @@
     "settingsSoon": "Ayarlar yakında eklenecek.",
     "myRequest": "Danışmanlık Talebim",
     "completeTitle": "Danışmanlık formunu tamamlayın",
-    "completeBody": "Size uygun mülkleri ve hizmetleri seçebilmemiz için birkaç kısa soruyu yanıtlayın.",
+    "completeBody": "Size uygun konutları ve hizmetleri seçebilmemiz için birkaç kısa soruyu yanıtlayın.",
     "completeCta": "Formu doldur",
     "mailingTitle": "E-posta bültenimiz",
-    "mailingDesc": "Yeni mülkler, piyasa gelişmeleri ve yatırım rehberleri. İstediğiniz zaman kapatabilirsiniz. E-postalarda açılma ve tıklama istatistikleri tutulur.",
+    "mailingDesc": "Yeni konutlar, piyasa gelişmeleri ve yatırım rehberleri. İstediğiniz zaman kapatabilirsiniz. E-postalarda açılma ve tıklama istatistikleri tutulur.",
     "mailingOn": "Bülten aboneliği açık",
     "mailingOff": "Bülten aboneliği kapalı",
     "mailingToggle": "Bülteni al"
@@ -611,7 +611,7 @@
         "title": "Yatırımı Planladığınız Zaman Aralığı"
       },
       "readyToBuy": {
-        "title": "Uygun bir mülk bulunduğunda satın alma sürecini başlatmaya hazır mısınız?"
+        "title": "Uygun bir konut bulunduğunda satın alma sürecini başlatmaya hazır mısınız?"
       },
       "purpose": {
         "title": "Valencia’da gayrimenkul satın almanızın temel amacı nedir?"
@@ -629,10 +629,10 @@
         "title": "Şehir merkezinde mi, yoksa daha uygun fiyatlı çevre bölgelerde mi gayrimenkul arıyorsunuz?"
       },
       "condition": {
-        "title": "Mülkün durumu için tercihiniz nedir?"
+        "title": "Konutun durumu için tercihiniz nedir?"
       },
       "propertyType": {
-        "title": "Hangi mülk tipini düşünüyorsunuz?"
+        "title": "Hangi konut tipini düşünüyorsunuz?"
       },
       "bedrooms": {
         "title": "Tercih ettiğiniz yatak odası sayısı nedir?"
@@ -641,7 +641,7 @@
         "title": "Tercih ettiğiniz minimum banyo sayısı nedir?"
       },
       "unwanted": {
-        "title": "Mülkte olmasını istemediğiniz özellikler var mı? (Örneğin asansörsüz bina, zemin kat, bakım gerektiren yapı)"
+        "title": "Konutta olmasını istemediğiniz özellikler var mı? (Örneğin asansörsüz bina, zemin kat, bakım gerektiren yapı)"
       },
       "furnished": {
         "title": "Konutun eşyalı olmasını tercih eder misiniz?"
@@ -662,7 +662,7 @@
         "title": "Tadilatla kira gelirini artırma seçeneğini değerlendirir misiniz?"
       },
       "management": {
-        "title": "Satın alma sonrasında kiralama ve mülk yönetimi hizmeti almak ister misiniz?"
+        "title": "Satın alma sonrasında kiralama ve konut yönetimi hizmeti almak ister misiniz?"
       },
       "legal": {
         "title": "Satın alma sürecinde avukat veya mali müşavir desteği almak ister misiniz?"
@@ -677,7 +677,7 @@
         "title": "Yatırım Amacı"
       },
       "s_prefs": {
-        "title": "Bölge ve Mülk Tercihleri"
+        "title": "Bölge ve Konut Tercihleri"
       },
       "s_budget": {
         "title": "Bütçe ve Ödeme Şekli"
@@ -852,7 +852,7 @@
     "thanksCheckEmail": "Üyeliğiniz oluşturuldu ve yanıtlarınız kaydedildi. Hesabınızı etkinleştirmek için e-postanıza gönderdiğimiz bağlantıya tıklayın.",
     "thanksSaved": "Talebiniz hesabınıza kaydedildi. Ekibimiz en kısa sürede sizinle iletişime geçecek.",
     "goPanel": "Üye Paneline Git",
-    "marketing": "Yeni mülk, piyasa ve yatırım haberlerini e-posta ile almak istiyorum (isteğe bağlı, istediğiniz zaman çıkabilirsiniz). E-postalarda açılma ve tıklama istatistikleri tutulur.",
+    "marketing": "Yeni konut, piyasa ve yatırım haberlerini e-posta ile almak istiyorum (isteğe bağlı, istediğiniz zaman çıkabilirsiniz). E-postalarda açılma ve tıklama istatistikleri tutulur.",
     "optional": "isteğe bağlı",
     "answerPh": "Yanıtınız",
     "privacyLink": "Gizlilik Politikası"
@@ -869,7 +869,7 @@
     "villa": "Villa",
     "land": "Arsa",
     "commercial": "Ticari",
-    "other": "Çok Birimli Mülk"
+    "other": "Çok Birimli Konut"
   },
   "common": {
     "viewAll": "Tüm İlanlar"
@@ -889,21 +889,21 @@
       {
         "h": "Hangi verileri topluyoruz",
         "p": [
-          "Siz bize verdiğiniz bilgileri saklarız: danışmanlık formundaki yanıtlarınız (yatırım amacı, bölge ve mülk tercihleri, bütçe, kira beklentisi, hizmet talepleri ve notlarınız), ad soyad, e-posta adresi, telefon numarası, iletişim formuna yazdığınız mesajlar ve üyelik şifreniz. Şifreniz yalnızca şifrelenmiş olarak saklanır; biz göremeyiz.",
+          "Siz bize verdiğiniz bilgileri saklarız: danışmanlık formundaki yanıtlarınız (yatırım amacı, bölge ve konut tercihleri, bütçe, kira beklentisi, hizmet talepleri ve notlarınız), ad soyad, e-posta adresi, telefon numarası, iletişim formuna yazdığınız mesajlar ve üyelik şifreniz. Şifreniz yalnızca şifrelenmiş olarak saklanır; biz göremeyiz.",
           "Sitenin tercih ettiğiniz dili hatırlaması için küçük bir çerez kullanırız. E-postalarımızda ayrıca açılma, tıklama ve geri dönme bilgileri tutulur (aşağıya bakın)."
         ]
       },
       {
         "h": "Verileri neden kullanıyoruz",
         "p": [
-          "Danışmanlık talebinizi değerlendirmek, size uygun mülk ve hizmetleri hazırlamak, üyelik hesabınızı yönetmek ve mesajlarınızı yanıtlamak için. Hukuki dayanağımız talebinizi yerine getirmek (sözleşme öncesi işlemler) ve üyelik oluştururken verdiğiniz onaydır.",
+          "Danışmanlık talebinizi değerlendirmek, size uygun konut ve hizmetleri hazırlamak, üyelik hesabınızı yönetmek ve mesajlarınızı yanıtlamak için. Hukuki dayanağımız talebinizi yerine getirmek (sözleşme öncesi işlemler) ve üyelik oluştururken verdiğiniz onaydır.",
           "Bülten e-postaları yalnızca bu seçeneği ayrıca işaretlediyseniz gönderilir; dayanağı açık rızanızdır."
         ]
       },
       {
         "h": "Bülten ve e-posta takibi",
         "p": [
-          "Bültene abone olursanız size yeni mülkler, piyasa gelişmeleri ve yatırım rehberleri göndeririz. Gönderdiğimiz e-postalarda açılma ve bağlantılara tıklama istatistikleri tutulur; bunu hangi içeriklerin işe yaradığını görmek için kullanırız.",
+          "Bültene abone olursanız size yeni konutlar, piyasa gelişmeleri ve yatırım rehberleri göndeririz. Gönderdiğimiz e-postalarda açılma ve bağlantılara tıklama istatistikleri tutulur; bunu hangi içeriklerin işe yaradığını görmek için kullanırız.",
           "Aboneliğinizi her e-postadaki bağlantıdan veya üyelik panelinizin ayarlarından istediğiniz zaman iptal edebilirsiniz. İptal tarihini kaydederiz ve size başka bülten göndermeyiz."
         ]
       },
@@ -949,7 +949,7 @@
     ]
   },
   "listing": {
-    "back": "Tüm mülkler",
+    "back": "Tüm konutlar",
     "bedrooms": "Oda",
     "bathrooms": "Banyo",
     "area": "Yapı alanı",
@@ -958,12 +958,12 @@
     "details": "Detaylar",
     "description": "Açıklama",
     "location": "Konum",
-    "contactTitle": "Bu mülk hakkında bilgi alın",
+    "contactTitle": "Bu konut hakkında bilgi alın",
     "contactText": "Fiyat, vergi ve satın alma süreci için bizimle görüşün.",
     "contactButton": "Bilgi Talep Et",
     "notFound": "Bu ilan artık yayında değil.",
     "loading": "Yükleniyor…",
-    "empty": "Şu an yayında ilan yok. Yakında yeni mülkler eklenecek.",
+    "empty": "Şu an yayında ilan yok. Yakında yeni konutlar eklenecek.",
     "photo": "Fotoğraf",
     "partner": "İlan RE/MAX portföyündendir.",
     "perSqm": "m² fiyatı"
@@ -997,10 +997,10 @@
     "open": "Sohbeti aç",
     "close": "Kapat",
     "title": "Lock & Loft Asistan",
-    "subtitle": "Valencia mülk yatırımı için sorularınız",
-    "greeting": "Merhaba! Valencia'daki mülkler, satın alma süreci ve hizmetlerimiz hakkında sorularınızı yanıtlayabilirim.",
-    "s1": "Hangi mülkler var?",
-    "s2": "Yabancı olarak mülk almak için ne gerekir?",
+    "subtitle": "Valencia konut yatırımı için sorularınız",
+    "greeting": "Merhaba! Valencia'daki konutlar, satın alma süreci ve hizmetlerimiz hakkında sorularınızı yanıtlayabilirim.",
+    "s1": "Hangi konutlar var?",
+    "s2": "Yabancı olarak konut almak için ne gerekir?",
     "s3": "Hizmetleriniz neler?",
     "placeholder": "Mesajınızı yazın…",
     "send": "Gönder",
@@ -1025,10 +1025,10 @@
   },
   "aboutPage": {
     "title": "Hakkımızda",
-    "subtitle": "Valencia ve Alicante'de ev danışmanlığından reformaya, hukuki desteğe ve kira yönetimine kadar mülk sürecinizin tamamını tek yerden yürütüyoruz.",
+    "subtitle": "Valencia ve Alicante'de ev danışmanlığından reformaya, hukuki desteğe ve kira yönetimine kadar konut sürecinizin tamamını tek yerden yürütüyoruz.",
     "storyH": "Biz Kimiz",
     "story": [
-      "Lock & Loft, Valencia ve Alicante bölgesinde ev almak, yenilemek, değerlendirmek veya yönetmek isteyenler için kurulmuş bir mülk hizmetleri markasıdır. Emlak danışmanlarımız RE/MAX bünyesinde çalışır; böylece geniş bir ilan portföyüne erişir ve süreci tanınmış bir uluslararası markanın çatısı altında yürütürüz.",
+      "Lock & Loft, Valencia ve Alicante bölgesinde ev almak, yenilemek, değerlendirmek veya yönetmek isteyenler için kurulmuş bir konut hizmetleri markasıdır. Emlak danışmanlarımız RE/MAX bünyesinde çalışır; böylece geniş bir ilan portföyüne erişir ve süreci tanınmış bir uluslararası markanın çatısı altında yürütürüz.",
       "Ev almak çoğu zaman işin yalnızca başlangıcıdır. Tapu, vergi, reform, dekorasyon, kiracı bulma ve yönetim için ayrı ayrı kapı çalmak yerine, bunların hepsini tek muhatapla ve sizin dilinizde koordine ediyoruz. Türkiye'den veya Avrupa'dan uzaktan yatırım yapan müşterilerimizin sürecin her aşamasını net görebilmesini önemsiyoruz."
     ],
     "offerH": "Neler Yapıyoruz",
@@ -1036,7 +1036,7 @@
       {
         "k": "mulk-arama",
         "h": "Emlak Danışmanlığı",
-        "p": "İhtiyacınıza, bütçenize ve kullanım amacınıza uygun mülkleri bulur; gezi, teklif ve satın alma sürecinde yanınızda oluruz."
+        "p": "İhtiyacınıza, bütçenize ve kullanım amacınıza uygun konutları bulur; gezi, teklif ve satın alma sürecinde yanınızda oluruz."
       },
       {
         "k": "hukuki-destek",
@@ -1051,17 +1051,17 @@
       {
         "k": "home-staging",
         "h": "Home Staging",
-        "p": "Satış veya kiralama öncesi mülkünüzün daha çekici sunulması için düzenleme ve profesyonel fotoğraf çekimini organize ederiz."
+        "p": "Satış veya kiralama öncesi konutunuzun daha çekici sunulması için düzenleme ve profesyonel fotoğraf çekimini organize ederiz."
       },
       {
         "k": "dekorasyon-mobilya",
         "h": "Dekorasyon & Mobilya",
-        "p": "Mülkünüzü kiralık veya kendi kullanımınız için döşer, tedarik ve kurulumu sizin adınıza yürütürüz."
+        "p": "Konutunuzu kiralık veya kendi kullanımınız için döşer, tedarik ve kurulumu sizin adınıza yürütürüz."
       },
       {
         "k": "kira-yonetimi",
-        "h": "Kira ve Mülk Yönetimi",
-        "p": "Kiracı bulma, sözleşme, kira tahsilatı, bakım ve düzenli raporlamayla yatırım mülkünüzü uzaktan rahatça yönetmenizi sağlarız."
+        "h": "Kira ve Konut Yönetimi",
+        "p": "Kiracı bulma, sözleşme, kira tahsilatı, bakım ve düzenli raporlamayla yatırım konutunuzu uzaktan rahatça yönetmenizi sağlarız."
       }
     ],
     "howH": "Nasıl Çalışıyoruz",
@@ -1098,7 +1098,7 @@
       {
         "h": "Ortaklık nasıl işliyor?",
         "p": [
-          "Emlak danışmanlarımız RE/MAX bünyesinde çalışır. Bu sayede RE/MAX'in Valencia ve Alicante bölgesindeki ilan portföyüne erişir; mülk gezileri, teklif ve satın alma sürecini tanınmış bir uluslararası markanın çatısı altında yürütürüz."
+          "Emlak danışmanlarımız RE/MAX bünyesinde çalışır. Bu sayede RE/MAX'in Valencia ve Alicante bölgesindeki ilan portföyüne erişir; konut gezileri, teklif ve satın alma sürecini tanınmış bir uluslararası markanın çatısı altında yürütürüz."
         ]
       },
       {
@@ -1111,7 +1111,7 @@
       {
         "h": "Sitedeki ilanlar",
         "p": [
-          "İlanlarımız iki kaynaktan gelir: RE/MAX portföyündeki mülkler ve ekibimizin doğrudan bulduğu özel mülkler. Fiyat ve müsaitlik durumu değişebilir; ilgilendiğiniz mülkün güncel bilgisini danışmanımızdan teyit ederiz."
+          "İlanlarımız iki kaynaktan gelir: RE/MAX portföyündeki konutlar ve ekibimizin doğrudan bulduğu özel konutlar. Fiyat ve müsaitlik durumu değişebilir; ilgilendiğiniz konutun güncel bilgisini danışmanımızdan teyit ederiz."
         ]
       },
       {
@@ -1135,19 +1135,19 @@
       },
       {
         "q": "İspanya'ya gelmeden satın alabilir miyim?",
-        "a": "Çoğu zaman evet. Mülkleri görüntülü görüşmeyle inceleyebilir, işlemleri vekaletname (poder) ile yetkilendirebilirsiniz. Vekaletname İspanya konsolosluğunda veya noterde düzenlenebilir. Yine de imzadan önce mülkü yerinde görmenizi öneririz."
+        "a": "Çoğu zaman evet. Konutları görüntülü görüşmeyle inceleyebilir, işlemleri vekaletname (poder) ile yetkilendirebilirsiniz. Vekaletname İspanya konsolosluğunda veya noterde düzenlenebilir. Yine de imzadan önce konutu yerinde görmenizi öneririz."
       },
       {
         "q": "Satın alırken fiyatın dışında ne kadar masraf çıkar?",
-        "a": "Vergiler, noter, tapu sicili ve gestoría giderleri toplamında genellikle fiyatın yüzde 10-15'i kadar ek maliyet oluşur; kredi alırsanız değerleme de eklenir. İkinci el konutta ITP, yeni konutta KDV (IVA) ve AJD uygulanır. Oranları bölgeler belirler ve zaman zaman değişir. Teklif aşamasında size mülke özel net bir hesap çıkarırız."
+        "a": "Vergiler, noter, tapu sicili ve gestoría giderleri toplamında genellikle fiyatın yüzde 10-15'i kadar ek maliyet oluşur; kredi alırsanız değerleme de eklenir. İkinci el konutta ITP, yeni konutta KDV (IVA) ve AJD uygulanır. Oranları bölgeler belirler ve zaman zaman değişir. Teklif aşamasında size konuta özel net bir hesap çıkarırız."
       },
       {
         "q": "Satın alma süreci ne kadar sürer?",
-        "a": "Süre mülke ve belgelere göre değişir. NIE, banka hesabı ve ön sözleşme (arras) hazır olduğunda, ikinci el konutlarda teklifin kabulünden tapuya genellikle bir ila üç ay gerekir."
+        "a": "Süre konuta ve belgelere göre değişir. NIE, banka hesabı ve ön sözleşme (arras) hazır olduğunda, ikinci el konutlarda teklifin kabulünden tapuya genellikle bir ila üç ay gerekir."
       },
       {
         "q": "Ev almak oturma izni sağlar mı?",
-        "a": "Hayır. İspanya'nın mülk yatırımına bağlı Golden Visa programı 3 Nisan 2025'te sona erdi; yalnızca konut satın almak artık oturma izni vermez. Başka oturum yolları vardır; hangisinin durumunuza uygun olduğunu hukuki iş ortaklarımız değerlendirir."
+        "a": "Hayır. İspanya'nın konut yatırımına bağlı Golden Visa programı 3 Nisan 2025'te sona erdi; yalnızca konut satın almak artık oturma izni vermez. Başka oturum yolları vardır; hangisinin durumunuza uygun olduğunu hukuki iş ortaklarımız değerlendirir."
       },
       {
         "q": "Konut kredisi kullanabilir miyim?",
@@ -1159,10 +1159,10 @@
       },
       {
         "q": "Reform ve home staging nasıl ilerliyor?",
-        "a": "Mülkünüzü birlikte inceler, ihtiyaçları belirler, bağımsız yüklenicilerden yazılı teklif toplar ve onayınızla işe başlarız. Süreç boyunca fotoğraflı ilerleme raporları paylaşır, teslimde birlikte kontrol ederiz."
+        "a": "Konutunuzu birlikte inceler, ihtiyaçları belirler, bağımsız yüklenicilerden yazılı teklif toplar ve onayınızla işe başlarız. Süreç boyunca fotoğraflı ilerleme raporları paylaşır, teslimde birlikte kontrol ederiz."
       },
       {
-        "q": "Satın aldıktan sonra mülkümü siz yönetebilir misiniz?",
+        "q": "Satın aldıktan sonra konutumu siz yönetebilir misiniz?",
         "a": "Evet. Kiracı bulma, kira sözleşmesi, kira tahsilatı, bakım ve düzenli raporlama gibi işleri yönetebiliriz. Kısa dönem (turistik) kiralama için bölgeye ve binanın kurallarına bağlı lisans şartları vardır; bunları baştan birlikte kontrol ederiz."
       },
       {
@@ -1206,11 +1206,11 @@
       ],
       [
         "Registro de la Propiedad",
-        "Tapu sicili. Mülkiyet ve ipotek gibi yükler burada kayıtlıdır; escritura sonrası mülk alıcı adına tescil edilir."
+        "Tapu sicili. Mülkiyet ve ipotek gibi yükler burada kayıtlıdır; escritura sonrası konut alıcı adına tescil edilir."
       ],
       [
         "Nota simple",
-        "Tapu sicilinden alınan kısa özet belge. Mülkün sahibini ve ipotek, haciz gibi yükleri gösterir; satın almadan önce mutlaka kontrol edilir."
+        "Tapu sicilinden alınan kısa özet belge. Konutun sahibini ve ipotek, haciz gibi yükleri gösterir; satın almadan önce mutlaka kontrol edilir."
       ],
       [
         "ITP",
@@ -1222,15 +1222,15 @@
       ],
       [
         "IBI",
-        "Impuesto sobre Bienes Inmuebles. Belediyenin her yıl mülk sahibinden aldığı emlak vergisi."
+        "Impuesto sobre Bienes Inmuebles. Belediyenin her yıl konut sahibinden aldığı emlak vergisi."
       ],
       [
         "Plusvalía municipal",
-        "Mülkü satan kişinin ödediği belediye vergisi; arsanın elde tutulduğu sürede kazandığı değer artışına dayanır."
+        "Konutu satan kişinin ödediği belediye vergisi; arsanın elde tutulduğu sürede kazandığı değer artışına dayanır."
       ],
       [
         "IRNR / Modelo 210",
-        "İspanya'da yerleşik olmayanların İspanya'daki gelirlerinden (kira, mülk satışı vb.) ödediği vergi. Beyan formu Modelo 210'dur."
+        "İspanya'da yerleşik olmayanların İspanya'daki gelirlerinden (kira, konut satışı vb.) ödediği vergi. Beyan formu Modelo 210'dur."
       ],
       [
         "Catastro",
@@ -1270,7 +1270,7 @@
       ],
       [
         "Home staging",
-        "Satış veya kiralama öncesi mülkü düzenleyerek, gerekirse döşeyerek ve fotoğraflayarak daha çekici sunma işi."
+        "Satış veya kiralama öncesi konutu düzenleyerek, gerekirse döşeyerek ve fotoğraflayarak daha çekici sunma işi."
       ]
     ]
   }
