@@ -21,6 +21,8 @@ const T = {
     disclaimer: 'Bu hesap tahmindir, garanti vermez. Gerçek getiri dairenin durumuna, kiracıya ve vergi durumunuza göre değişir. Yatırım kararı öncesi vergi danışmanı ve avukata danışın.',
     simpleCta: 'Detaylı hesaplama', simpleNote: 'Peşin alım, uzun dönem kira, Valencia ortalaması. Vergi ve masraflar sonrası.',
     annualNet: 'Tahmini yıllık net getiri', monthlyNet: 'Aylık net gelir',
+    areaLabel: 'Konut büyüklüğü (m², isteğe bağlı)', areaHint: (r) => 'Boş bırakırsanız kira, bölgenin ortalama kira/fiyat oranından hesaplanır. m² yazarsanız kira bölge ortalaması olan {r} €/m²/ay ile hesaplanır.'.replace('{r}', r), areaPh: 'örn. 140',
+    rentMonthly: 'Tahmini aylık kira', rentByArea: (a, r) => 'Kira, {a} m² x {r} €/m² ile hesaplandı'.replace('{a}', a).replace('{r}', r),
   },
   en: {
     price: 'Purchase price', district: 'District', typical: (p, r) => `Typical 2-bedroom flat here: ${p}, rent ${r}/month`,
@@ -43,6 +45,8 @@ const T = {
     disclaimer: 'This is an estimate, not a guarantee. Real returns depend on the flat, the tenant and your tax position. Speak to a tax adviser and lawyer before investing.',
     simpleCta: 'Detailed calculation', simpleNote: 'Cash purchase, long-term rental, Valencia average. After tax and costs.',
     annualNet: 'Estimated yearly net return', monthlyNet: 'Monthly net income',
+    areaLabel: 'Flat size (m², optional)', areaHint: (r) => "Leave empty to estimate rent from the district's typical rent-to-price ratio. Enter m² to use the district average of €{r}/m² per month.".replace('{r}', r), areaPh: 'e.g. 140',
+    rentMonthly: 'Estimated monthly rent', rentByArea: (a, r) => 'Rent calculated as {a} m² x €{r}/m²'.replace('{a}', a).replace('{r}', r),
   },
   es: {
     price: 'Precio de compra', district: 'Barrio', typical: (p, r) => `Piso medio de 2 habitaciones aquí: ${p}, alquiler ${r}/mes`,
@@ -65,6 +69,8 @@ const T = {
     disclaimer: 'Es una estimación, no una garantía. La rentabilidad real depende del piso, el inquilino y su situación fiscal. Consulte a un asesor fiscal y un abogado antes de invertir.',
     simpleCta: 'Cálculo detallado', simpleNote: 'Compra al contado, alquiler largo, media de Valencia. Tras impuestos y gastos.',
     annualNet: 'Rentabilidad neta anual estimada', monthlyNet: 'Ingreso neto mensual',
+    areaLabel: 'Superficie (m², opcional)', areaHint: (r) => 'Si lo deja vacío, el alquiler se estima con la relación alquiler/precio típica del barrio. Si indica los m², se usa la media del barrio: {r} €/m² al mes.'.replace('{r}', r), areaPh: 'p. ej. 140',
+    rentMonthly: 'Alquiler mensual estimado', rentByArea: (a, r) => 'Alquiler calculado como {a} m² x {r} €/m²'.replace('{a}', a).replace('{r}', r),
   },
   de: {
     price: 'Kaufpreis', district: 'Stadtteil', typical: (p, r) => `Typische 2-Zimmer-Wohnung hier: ${p}, Miete ${r}/Monat`,
@@ -87,6 +93,8 @@ const T = {
     disclaimer: 'Dies ist eine Schätzung, keine Garantie. Die tatsächliche Rendite hängt von Wohnung, Mieter und Ihrer Steuersituation ab. Sprechen Sie vor einer Investition mit Steuerberater und Anwalt.',
     simpleCta: 'Detaillierte Berechnung', simpleNote: 'Barkauf, Langzeitmiete, Valencia-Durchschnitt. Nach Steuern und Kosten.',
     annualNet: 'Geschätzte jährliche Nettorendite', monthlyNet: 'Monatliches Nettoeinkommen',
+    areaLabel: 'Wohnfläche (m², optional)', areaHint: (r) => 'Leer lassen: Die Miete wird aus dem üblichen Verhältnis von Miete zu Preis im Viertel geschätzt. Mit m² wird der Viertel-Durchschnitt von {r} €/m² pro Monat verwendet.'.replace('{r}', r), areaPh: 'z. B. 140',
+    rentMonthly: 'Geschätzte Monatsmiete', rentByArea: (a, r) => 'Miete berechnet als {a} m² x {r} €/m²'.replace('{a}', a).replace('{r}', r),
   },
 };
 

@@ -46,8 +46,11 @@ export function computeROI(input, data) {
   const P = input.price;
 
   const purchaseCosts = (P * (a.itp_pct + a.legal_costs_pct)) / 100;
-  const marketYield = (d.ref_rent * 12) / d.ref_price;
-  const potentialRent = P * marketYield;
+  // Rent: from the flat's size when given (district rent per m²), otherwise from the district's rent/price ratio
+  const area = Number(input.areaSqm) > 0 ? Number(input.areaSqm) : 0;
+  const rentPerSqm = d.ref_rent / (Number(d.ref_area) > 0 ? Number(d.ref_area) : 80);
+  const potentialRent = area ? area * rentPerSqm * 12 : P * ((d.ref_rent * 12) / d.ref_price);
+  const marketYield = potentialRent / P;
 
   const short = input.strategy === 'short';
   const gross = short ? potentialRent * a.str_multiplier : potentialRent * (1 - a.vacancy_pct / 100);
@@ -107,6 +110,8 @@ export function computeROI(input, data) {
     monthlyPayment: schedule.payment,
     gross,
     potentialRent,
+    rentPerSqm,
+    byArea: !!area,
     grossYield: marketYield,
     opex,
     breakdown: { mgmt, strCost, ibi, community, insurance, maintenance },

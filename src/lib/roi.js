@@ -22,7 +22,7 @@ export function useRoiData() {
         a.data.forEach((row) => (assumptions[row.key] = Number(row.value)));
         const stamps = [...d.data, ...(m.data || []), ...a.data].map((r) => r.updated_at).filter(Boolean);
         setData({
-          districts: d.data.map((r) => ({ ...r, ref_price: Number(r.ref_price), ref_rent: Number(r.ref_rent) })),
+          districts: d.data.map((r) => ({ ...r, ref_price: Number(r.ref_price), ref_rent: Number(r.ref_rent), ref_area: Number(r.ref_area) || 80 })),
           mortgages: (m.data || []).map((r) => ({
             ...r,
             rate_pct: Number(r.rate_pct),

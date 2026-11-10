@@ -43,6 +43,7 @@ export default function DetailedROICalculator() {
 
   const [price, setPrice] = useState(200000);
   const [districtSlug, setDistrictSlug] = useState('valencia-ortalama');
+  const [areaSqm, setAreaSqm] = useState('');
   const [taxStatus, setTaxStatus] = useState('noneu');
   const [strategy, setStrategy] = useState('long');
   const [financing, setFinancing] = useState('cash');
@@ -63,13 +64,15 @@ export default function DetailedROICalculator() {
   const pct = (n) =>
     new Intl.NumberFormat(LOCALE_TAG[locale] || 'en-GB', { style: 'percent', minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(n);
 
+  const rps = (n) => new Intl.NumberFormat(LOCALE_TAG[locale] || 'en-GB', { maximumFractionDigits: 1 }).format(n);
+
   const r = useMemo(
     () =>
       computeROI(
-        { price, districtSlug, taxStatus, strategy, financing: canFinance ? financing : 'cash', mortgageId, ltvPct, termYears },
+        { price, districtSlug, areaSqm: Number(areaSqm) || 0, taxStatus, strategy, financing: canFinance ? financing : 'cash', mortgageId, ltvPct, termYears },
         data
       ),
-    [price, districtSlug, taxStatus, strategy, financing, mortgageId, ltvPct, termYears, data, canFinance]
+    [price, districtSlug, areaSqm, taxStatus, strategy, financing, mortgageId, ltvPct, termYears, data, canFinance]
   );
 
   const district = r.district;
@@ -126,6 +129,23 @@ export default function DetailedROICalculator() {
             </select>
             <p className="text-xs text-text-muted mt-2">{tx.typical(eur(district.ref_price), eur(district.ref_rent))}</p>
             {showRange && <p className="text-xs text-text-muted mt-1">{tx.outOfRange(`${Math.round(r.priceVsTypical * 100)}%`)}</p>}
+          </div>
+
+          <div>
+            <label htmlFor="roi-area" className={label}>{tx.areaLabel}</label>
+            <input
+              id="roi-area"
+              type="number"
+              inputMode="numeric"
+              min="20"
+              max="1000"
+              step="1"
+              value={areaSqm}
+              placeholder={tx.areaPh}
+              onChange={(e) => setAreaSqm(e.target.value)}
+              className="w-full px-4 py-2.5 rounded-lg border border-white/10 bg-white text-sm text-text-primary"
+            />
+            <p className="text-xs text-text-muted mt-2">{tx.areaHint(rps(r.rentPerSqm))}</p>
           </div>
 
           <div>
@@ -281,6 +301,8 @@ export default function DetailedROICalculator() {
 
         <div className="mt-6 space-y-2">
           <p className="text-xs uppercase tracking-wider text-white mb-2">{tx.breakdown}</p>
+          <Row label={tx.rentMonthly} value={eur(r.potentialRent / 12)} />
+          {r.byArea && <p className="text-xs text-white">{tx.rentByArea(Number(areaSqm), rps(r.rentPerSqm))}</p>}
           <Row label={`${tx.rent} (${strategy === 'long' ? tx.vacancyNote : tx.short})`} value={eur(r.gross)} strong />
           {r.breakdown.mgmt > 0 && <Row label={tx.mgmt} value={`− ${eur(r.breakdown.mgmt)}`} />}
           {r.breakdown.strCost > 0 && <Row label={tx.strCost} value={`− ${eur(r.breakdown.strCost)}`} />}

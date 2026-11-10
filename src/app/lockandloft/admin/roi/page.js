@@ -178,6 +178,10 @@ function DistrictsSection() {
                 €/m² (bilgi)
                 <Num value={r.price_per_sqm} onChange={(v) => edit(r.id, { price_per_sqm: v === '' ? null : v })} label="Metrekare fiyatı" width="w-24" />
               </label>
+              <label className="text-[11px] text-[#9A9AAA]">
+                Referans m²
+                <Num value={r.ref_area} onChange={(v) => edit(r.id, { ref_area: v === '' ? 80 : v })} label="Referans daire m²" width="w-20" />
+              </label>
               <div className="text-[11px] text-[#9A9AAA] w-16">
                 Brüt verim
                 <p className="text-sm text-white tabular-nums mt-2">{yieldPct.toFixed(1)}%</p>
