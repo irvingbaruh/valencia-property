@@ -1362,6 +1362,17 @@
     "promoJoin": "Hazte miembro y añade la app",
     "promoEnable": "Activar notificaciones",
     "listingNote": "Guarda esta propiedad en favoritos y te avisamos en el móvil si cambia el precio.",
-    "listingJoin": "Hazte miembro y recibe avisos"
+    "listingJoin": "Hazte miembro y recibe avisos",
+    "tabHome": "Inicio",
+    "tabListings": "Propiedades",
+    "tabMarket": "Mercado",
+    "tabAccount": "Mi cuenta",
+    "quickTitle": "Activa las notificaciones",
+    "quickText": "Recibe en el móvil nuevas propiedades, cambios en tus favoritas y noticias del mercado.",
+    "quickNeedInstall": "Para recibir notificaciones, primero añade la app a la pantalla de inicio.",
+    "feedTitle": "Últimas noticias del mercado",
+    "feedAll": "Todas las notas de mercado",
+    "feedBlogTitle": "Del blog",
+    "feedBlogAll": "Todos los artículos"
   }
 }

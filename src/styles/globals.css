@@ -215,3 +215,7 @@ h1, h2, h3, h4, .font-serif { font-variant-numeric: lining-nums; font-feature-se
 
 /* Yatay kayma / yan boşluk olmasın (Geri tuşu sonrası dahil) */
 html, body { overflow-x: clip; max-width: 100%; }
+
+/* Installed app: room for the bottom tab bar, and the chat button sits above it */
+html.ll-standalone body { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
+html.ll-standalone button.fixed.bottom-5.right-5 { bottom: calc(76px + env(safe-area-inset-bottom)); }

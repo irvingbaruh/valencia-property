@@ -1362,6 +1362,17 @@
     "promoJoin": "Üye ol ve uygulamayı ekle",
     "promoEnable": "Bildirimleri aç",
     "listingNote": "Bu ilanı favorilerinize ekleyin; fiyatı değişirse telefonunuza haber verelim.",
-    "listingJoin": "Üye ol, haber al"
+    "listingJoin": "Üye ol, haber al",
+    "tabHome": "Ana sayfa",
+    "tabListings": "İlanlar",
+    "tabMarket": "Piyasa",
+    "tabAccount": "Panelim",
+    "quickTitle": "Bildirimleri açın",
+    "quickText": "Yeni ilan, favori ilan değişikliği ve piyasa haberleri telefonunuza anında gelsin.",
+    "quickNeedInstall": "Bildirimler için önce uygulamayı ana ekrana ekleyin.",
+    "feedTitle": "Piyasadan son haberler",
+    "feedAll": "Tüm piyasa notları",
+    "feedBlogTitle": "Blogdan",
+    "feedBlogAll": "Tüm yazılar"
   }
 }

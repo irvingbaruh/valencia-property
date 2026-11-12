@@ -1362,6 +1362,17 @@
     "promoJoin": "Join and add the app",
     "promoEnable": "Turn on notifications",
     "listingNote": "Save this listing to your favourites and we will notify your phone if its price changes.",
-    "listingJoin": "Join to get alerts"
+    "listingJoin": "Join to get alerts",
+    "tabHome": "Home",
+    "tabListings": "Listings",
+    "tabMarket": "Market",
+    "tabAccount": "My account",
+    "quickTitle": "Turn on notifications",
+    "quickText": "Get new listings, changes to your favourites and market news on your phone right away.",
+    "quickNeedInstall": "To get notifications, add the app to your Home Screen first.",
+    "feedTitle": "Latest market news",
+    "feedAll": "All market notes",
+    "feedBlogTitle": "From the blog",
+    "feedBlogAll": "All posts"
   }
 }

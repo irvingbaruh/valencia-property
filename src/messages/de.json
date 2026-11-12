@@ -1362,6 +1362,17 @@
     "promoJoin": "Mitglied werden und App hinzufügen",
     "promoEnable": "Benachrichtigungen aktivieren",
     "listingNote": "Speichern Sie dieses Inserat als Favorit, und wir benachrichtigen Ihr Handy bei einer Preisänderung.",
-    "listingJoin": "Mitglied werden und informiert bleiben"
+    "listingJoin": "Mitglied werden und informiert bleiben",
+    "tabHome": "Start",
+    "tabListings": "Inserate",
+    "tabMarket": "Markt",
+    "tabAccount": "Mein Konto",
+    "quickTitle": "Benachrichtigungen aktivieren",
+    "quickText": "Neue Inserate, Änderungen bei Ihren Favoriten und Marktnews sofort aufs Handy.",
+    "quickNeedInstall": "Für Benachrichtigungen fügen Sie die App zuerst zum Home-Bildschirm hinzu.",
+    "feedTitle": "Aktuelle Marktnews",
+    "feedAll": "Alle Marktnotizen",
+    "feedBlogTitle": "Aus dem Blog",
+    "feedBlogAll": "Alle Beiträge"
   }
 }

@@ -6,6 +6,8 @@ import { useTranslations, useLocale } from 'next-intl';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { getFavorites, removeFavorite } from '@/lib/favorites';
 import { supabase } from '@/lib/supabase';
+import PushQuickCard from '@/components/panel/PushQuickCard';
+import PanelFeed from '@/components/panel/PanelFeed';
 import MemberPushSettings from '@/components/panel/MemberPushSettings';
 import DocumentManager from '@/components/documents/DocumentManager';
 import { User, Heart, Settings, LogOut, Trash2, MapPin, BedDouble, Maximize2, Phone, Globe, Save, Check, Flag, FileCheck, MessageCircle, Shield, Briefcase, Clock, CheckCircle2, ArrowRight, ChevronRight, Bell, FileText } from 'lucide-react';
@@ -492,6 +494,8 @@ export default function PanelContent() {
           </button>
         </div>
 
+        <PushQuickCard />
+
         {/* Tabs */}
         <div className="grid grid-cols-3 gap-1 sm:flex dark-card rounded-xl p-1 shadow-sm mb-8 sm:overflow-x-auto">
           {tabs.map(({ id, label, icon: Icon, badge }) => (
@@ -585,6 +589,7 @@ export default function PanelContent() {
             )}
           </div>
         )}
+        {activeTab === 'favorites' && <PanelFeed />}
 
         {/* Services Tab */}
         {activeTab === 'services' && (

@@ -2,7 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useLocale } from 'next-intl';
+import { useAuth } from '@/components/providers/AuthProvider';
+import { localePath } from '@/lib/routes';
+import AppTabBar from '@/components/app/AppTabBar';
 import { Download, X } from 'lucide-react';
 import { registerSiteWorker, isIos, isStandalone } from '@/lib/memberPush';
 import InstallSteps from '@/components/app/InstallSteps';
@@ -19,12 +23,19 @@ const SNOOZE_KEY = 'll_app_banner_until';
 export default function SiteApp() {
   const t = useTranslations('memberApp');
   const pathname = usePathname();
+  const router = useRouter();
+  const locale = useLocale();
+  const { user, loading } = useAuth();
+  const [standalone, setStandalone] = useState(false);
   const [show, setShow] = useState(false);
   const [ios, setIos] = useState(false);
   const [guide, setGuide] = useState(false);
 
   useEffect(() => {
     registerSiteWorker();
+    const sa = isStandalone();
+    setStandalone(sa);
+    if (sa) document.documentElement.classList.add('ll-standalone');
     const onPrompt = (e) => { e.preventDefault(); deferred = e; listeners.forEach((f) => f()); };
     const onInstalled = () => { deferred = null; setShow(false); listeners.forEach((f) => f()); };
     window.addEventListener('beforeinstallprompt', onPrompt);
@@ -37,6 +48,14 @@ export default function SiteApp() {
     if (phone && !snoozed && !isStandalone()) timer = setTimeout(() => setShow(true), 9000);
     return () => { clearTimeout(timer); window.removeEventListener('beforeinstallprompt', onPrompt); window.removeEventListener('appinstalled', onInstalled); };
   }, []);
+
+  // Opening the installed app lands on the member panel (or sign-in), not on the marketing home page.
+  useEffect(() => {
+    if (!standalone || loading) return;
+    const q = new URLSearchParams(window.location.search);
+    if (q.get('source') !== 'app' || !/^\/(tr|es|en|de)\/?$/.test(window.location.pathname)) return;
+    router.replace(user ? localePath(locale, 'panel') : `${localePath(locale, 'giris')}?app=1`);
+  }, [standalone, loading, user, locale, router]);
 
   const dismiss = () => {
     setShow(false);
@@ -55,6 +74,8 @@ export default function SiteApp() {
 
   // Only offer it when the browser can actually install (Android prompt) or on iPhone (guide).
   const canOffer = show && !/\/panel|\/mi-cuenta|\/account|\/mein-konto/.test(pathname || '') && (ios || deferred);
+  const inAdmin = /\/lockandloft\//.test(pathname || '');
+  if (standalone) return inAdmin ? null : <AppTabBar />;
   if (!canOffer && !guide) return null;
 
   return (
