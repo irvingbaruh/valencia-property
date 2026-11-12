@@ -40,6 +40,7 @@ export default function ReviewsAdmin() {
   const patch = async (r, fields) => {
     await supabase.from('reviews').update(fields).eq('id', r.id);
     load();
+    window.dispatchEvent(new Event('reviews-changed'));
   };
   const approve = (r) => patch(r, { status: 'approved', published_at: new Date().toISOString(), admin_reply: (replies[r.id] || '').trim() || null });
   const reject = (r) => patch(r, { status: 'rejected', published_at: null });
@@ -48,6 +49,7 @@ export default function ReviewsAdmin() {
     if (!confirm('Bu yorum kalıcı olarak silinsin mi?')) return;
     await supabase.from('reviews').delete().eq('id', r.id);
     load();
+    window.dispatchEvent(new Event('reviews-changed'));
   };
 
   const shown = rows.filter((r) => r.status === tab);

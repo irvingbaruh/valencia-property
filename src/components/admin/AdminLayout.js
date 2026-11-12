@@ -55,6 +55,7 @@ export default function AdminLayout({ children, activeSection = 'dashboard' }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [aalOk, setAalOk] = useState(false);
   const [openMsgs, setOpenMsgs] = useState(0);
+  const [pendingReviews, setPendingReviews] = useState(0);
 
   // Before sending anyone to the login page, make one more attempt to renew the session
   // (a phone that was asleep comes back with an expired access token).
@@ -113,6 +114,15 @@ export default function AdminLayout({ children, activeSection = 'dashboard' }) {
       .then(({ count }) => setOpenMsgs(count || 0));
   }, [isAdmin, activeSection]);
 
+  useEffect(() => {
+    if (!isAdmin) return;
+    const load = () => supabase.from('reviews').select('id', { count: 'exact', head: true }).eq('status', 'pending')
+      .then(({ count }) => setPendingReviews(count || 0));
+    load();
+    window.addEventListener('reviews-changed', load);
+    return () => window.removeEventListener('reviews-changed', load);
+  }, [isAdmin, activeSection]);
+
   const handleSignOut = async () => {
     await signOut();
     router.replace(`${ADMIN_BASE}/giris/`);
@@ -166,6 +176,9 @@ export default function AdminLayout({ children, activeSection = 'dashboard' }) {
               >
                 <Icon className="w-5 h-5" />
                 {label}
+                {id === 'yorumlar' && pendingReviews > 0 && (
+                  <span className="ml-1 min-w-[20px] h-5 px-1.5 rounded-full bg-[#DC1C2E] text-white text-[11px] leading-5 text-center">{pendingReviews}</span>
+                )}
                 {disabled && (
                   <span className="ml-auto text-[10px] px-1.5 py-0.5 rounded" style={{ background: '#1E1E2E', color: '#6A6A7A' }}>
                     Yakında
