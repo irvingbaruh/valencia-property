@@ -3,7 +3,7 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 import { localePath } from '@/lib/routes';
 
 /*
@@ -36,15 +36,6 @@ export default function Hero() {
   const t = useTranslations('hero');
   const locale = useLocale();
   const sectionRef = useRef(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia('(max-width: 768px)');
-    setIsMobile(mq.matches);
-    const handler = (e) => setIsMobile(e.matches);
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
-  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -67,9 +58,9 @@ export default function Hero() {
   const centerRadius = useTransform(scrollYProgress, [0, 0.5], [12, 0]);
 
   // ─── Mobile hero: single full-bleed image ───
-  if (isMobile) {
-    return (
-      <section className="relative h-screen overflow-hidden bg-dark">
+  // Both variants are in the static HTML; CSS picks one so mobile never paints the desktop mosaic first.
+  const mobileHero = (
+      <section className="md:hidden relative h-screen overflow-hidden bg-dark">
         {/* Full-bleed background image */}
         <motion.img
           src={mobileHeroImage}
@@ -138,14 +129,13 @@ export default function Hero() {
           </div>
         </motion.div>
       </section>
-    );
-  }
+  );
 
   // ─── Desktop hero: mosaic scroll-zoom ───
-  return (
+  const desktopHero = (
     <section
       ref={sectionRef}
-      className="relative"
+      className="hidden md:block relative"
       style={{ height: '250vh' }}
     >
       {/* Sticky viewport container */}
@@ -167,6 +157,7 @@ export default function Hero() {
               className="relative overflow-hidden rounded-xl"
             >
               <img
+                loading="lazy"
                 src={mosaicImages[0].src}
                 alt={mosaicImages[0].alt}
                 className="w-full h-full object-cover"
@@ -185,6 +176,7 @@ export default function Hero() {
               className="relative overflow-hidden rounded-xl row-span-1"
             >
               <img
+                loading="lazy"
                 src={mosaicImages[1].src}
                 alt={mosaicImages[1].alt}
                 className="w-full h-full object-cover"
@@ -202,6 +194,7 @@ export default function Hero() {
               className="relative overflow-hidden rounded-xl"
             >
               <img
+                loading="lazy"
                 src={mosaicImages[2].src}
                 alt={mosaicImages[2].alt}
                 className="w-full h-full object-cover"
@@ -214,6 +207,7 @@ export default function Hero() {
               className="relative overflow-hidden rounded-xl"
             >
               <img
+                loading="lazy"
                 src={mosaicImages[3].src}
                 alt={mosaicImages[3].alt}
                 className="w-full h-full object-cover"
@@ -226,6 +220,7 @@ export default function Hero() {
               className="relative overflow-hidden rounded-xl"
             >
               <img
+                loading="lazy"
                 src={mosaicImages[4].src}
                 alt={mosaicImages[4].alt}
                 className="w-full h-full object-cover"
@@ -238,6 +233,7 @@ export default function Hero() {
               className="relative overflow-hidden rounded-xl"
             >
               <img
+                loading="lazy"
                 src={mosaicImages[5].src}
                 alt={mosaicImages[5].alt}
                 className="w-full h-full object-cover"
@@ -323,5 +319,12 @@ export default function Hero() {
         </motion.div>
       </div>
     </section>
+  );
+
+  return (
+    <>
+      {mobileHero}
+      {desktopHero}
+    </>
   );
 }
