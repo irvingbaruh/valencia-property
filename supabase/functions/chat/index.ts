@@ -74,6 +74,41 @@ async function adminEmails(sb: ReturnType<typeof createClient>) {
   return emails.filter((e) => /^\S+@\S+\.\S+$/.test(e));
 }
 
+type Cfg = { provider: string; error: boolean };
+let cfgCache: { t: number; v: Cfg } | null = null;
+// The admin can switch the provider (Anthropic <-> DeepSeek) in the panel; the secret CHAT_PROVIDER is only the default.
+async function chatCfg(sb: ReturnType<typeof createClient>): Promise<Cfg> {
+  if (cfgCache && Date.now() - cfgCache.t < 30000) return cfgCache.v;
+  const { data } = await sb.from('site_settings').select('key,value').in('key', ['chat_provider', 'chat_status']);
+  const m: Record<string, any> = Object.fromEntries((data || []).map((r: { key: string; value: unknown }) => [r.key, r.value]));
+  const p = String(m.chat_provider?.provider || '').toLowerCase();
+  const v = { provider: ['anthropic', 'mistral', 'deepseek'].includes(p) ? p : (Deno.env.get('CHAT_PROVIDER') || 'anthropic').toLowerCase(), error: !!m.chat_status?.error };
+  cfgCache = { t: Date.now(), v };
+  return v;
+}
+async function setStatus(sb: ReturnType<typeof createClient>, value: Record<string, unknown>) {
+  await sb.from('site_settings').upsert({ key: 'chat_status', value, is_public: false, updated_at: new Date().toISOString() });
+  cfgCache = null;
+}
+// A failed call is written to the panel and mailed to the admins (at most once every 3 hours).
+async function reportFailure(sb: ReturnType<typeof createClient>, provider: string, status: number, detail: string) {
+  const { data } = await sb.from('site_settings').select('value').eq('key', 'chat_status').maybeSingle();
+  const prev = (data?.value || {}) as Record<string, any>;
+  const now = new Date();
+  const alertDue = !prev.alerted_at || now.getTime() - new Date(prev.alerted_at).getTime() > 3 * 3600 * 1000;
+  await setStatus(sb, { error: true, provider, status, detail: detail.slice(0, 240), at: now.toISOString(), alerted_at: alertDue ? now.toISOString() : prev.alerted_at });
+  if (!alertDue) return;
+  const emails = await adminEmails(sb);
+  if (!emails.length) return;
+  const name = provider === 'anthropic' ? 'Anthropic (Claude)' : provider === 'mistral' ? 'Mistral' : 'DeepSeek';
+  const html = `<!doctype html><html><body style="font-family:Arial,Helvetica,sans-serif;color:#222;font-size:15px"><h2 style="margin:0 0 12px">Sohbet asistanı yanıt veremiyor</h2><p>${esc(name)} hata döndürdü (kod ${status}). Büyük olasılıkla kredi bitti ya da anahtar geçersiz. Ziyaretçiler şu an "asistan şu an kullanılamıyor" mesajı görüyor.</p><p style="color:#777;font-size:13px">${esc(detail.slice(0, 240))}</p><p><a href="${ADMIN}/sohbetler/" style="color:#9A7B2C">Yönetim → Sohbetler</a> sayfasından sağlayıcıyı değiştirebilirsiniz.</p></body></html>`;
+  await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${Deno.env.get('RESEND_API_KEY')}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ from: Deno.env.get('MAIL_FROM'), to: emails, subject: `Sohbet asistanı çalışmıyor (${name})`, html }),
+  }).catch(() => {});
+}
+
 Deno.serve(async (req) => {
   const origin = req.headers.get('origin') || '';
   const okOrigin = /^https:\/\/(www\.)?lockandloft\.com$/.test(origin) || /^http:\/\/localhost(:\d+)?$/.test(origin);
@@ -131,10 +166,11 @@ Deno.serve(async (req) => {
     }
 
     // ---------- message ----------
-    // Provider is chosen with secrets: CHAT_PROVIDER = anthropic (default) | mistral | deepseek, CHAT_MODEL optional.
-    const provider = (Deno.env.get('CHAT_PROVIDER') || 'anthropic').toLowerCase();
+    // Provider: admin panel setting (site_settings.chat_provider), else secret CHAT_PROVIDER, else anthropic. Models: CHAT_MODEL (Anthropic), DEEPSEEK_MODEL, MISTRAL_MODEL.
+    const cfg = await chatCfg(sb);
+    const provider = cfg.provider;
     const key = Deno.env.get(provider === 'mistral' ? 'MISTRAL_API_KEY' : provider === 'deepseek' ? 'DEEPSEEK_API_KEY' : 'ANTHROPIC_API_KEY');
-    if (!key) return json({ error: 'not_configured' }, 503, cors);
+    if (!key) { await reportFailure(sb, provider, 503, 'API anahtarı (secret) tanımlı değil'); return json({ error: 'not_configured' }, 503, cors); }
     const message = String(body.message || '').trim().slice(0, 1000);
     if (!message) return json({ error: 'empty' }, 400, cors);
 
@@ -185,14 +221,16 @@ Deno.serve(async (req) => {
         signal: AbortSignal.timeout(45000),
       });
       if (!res.ok) {
-        console.error('anthropic', res.status, (await res.text()).slice(0, 300));
+        const txt = (await res.text()).slice(0, 300);
+        console.error('anthropic', res.status, txt);
+        await reportFailure(sb, 'anthropic', res.status, txt);
         return json({ error: 'ai_unavailable', session_id: sessionId }, 502, cors);
       }
       const out = await res.json();
       reply = String((out?.content || []).filter((c: { type: string }) => c.type === 'text').map((c: { text: string }) => c.text).join('')).trim();
     } else {
       const url = provider === 'mistral' ? 'https://api.mistral.ai/v1/chat/completions' : 'https://api.deepseek.com/chat/completions';
-      const model = Deno.env.get('CHAT_MODEL') || (provider === 'mistral' ? 'mistral-small-latest' : 'deepseek-chat');
+      const model = provider === 'mistral' ? (Deno.env.get('MISTRAL_MODEL') || 'mistral-small-latest') : (Deno.env.get('DEEPSEEK_MODEL') || 'deepseek-chat');
       const res = await fetch(url, {
         method: 'POST',
         headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
@@ -200,12 +238,15 @@ Deno.serve(async (req) => {
         signal: AbortSignal.timeout(45000),
       });
       if (!res.ok) {
-        console.error(provider, res.status, (await res.text()).slice(0, 300));
+        const txt = (await res.text()).slice(0, 300);
+        console.error(provider, res.status, txt);
+        await reportFailure(sb, provider, res.status, txt);
         return json({ error: 'ai_unavailable', session_id: sessionId }, 502, cors);
       }
       const out = await res.json();
       reply = String(out?.choices?.[0]?.message?.content || '').trim();
     }
+    if (cfg.error) await setStatus(sb, { error: false, at: new Date().toISOString() });
     const showContact = reply.includes('[[CONTACT]]');
     reply = reply.replace(/\[\[CONTACT\]\]/g, '').trim();
     if (!reply) return json({ error: 'ai_unavailable', session_id: sessionId }, 502, cors);

@@ -921,7 +921,7 @@
       {
         "h": "Yapay zekâ sohbet asistanı",
         "p": [
-          "Sitedeki sohbet asistanına yazdığınız mesajlar, yanıt üretmek için Anthropic'in yapay zekâ hizmetine (Claude) gönderilir. Bu sağlayıcı verileri Avrupa Ekonomik Alanı dışında, Amerika Birleşik Devletleri dahil, işleyebilir. Bu nedenle sohbette şifre, kimlik/pasaport numarası, ödeme bilgisi veya başka hassas bilgi paylaşmamanızı rica ederiz.",
+          "Sitedeki sohbet asistanına yazdığınız mesajlar, yanıt üretmek için Anthropic'in yapay zekâ hizmetine (Claude) gönderilir. Bu sağlayıcı verileri Avrupa Ekonomik Alanı dışında, Amerika Birleşik Devletleri dahil, işleyebilir. Bu nedenle sohbette şifre, kimlik/pasaport numarası, ödeme bilgisi veya başka hassas bilgi paylaşmamanızı rica ederiz. Gerektiğinde yedek sağlayıcı olarak DeepSeek kullanılabilir; bu durumda mesajlar Avrupa Ekonomik Alanı dışındaki, Çin dahil, sunuculara gidebilir.",
           "İletişim formunda bıraktığınız ad, e-posta ve telefon yapay zekâ modeline gönderilmez; yalnızca size dönmek için bize iletilir. Konuşmalar, size dönebilmemiz ve hizmeti geliştirebilmemiz için sistemimizde saklanır; silinmesini info@lockandloft.com adresinden isteyebilirsiniz. Asistan hata yapabilir ve hukuki ya da mali tavsiye vermez."
         ]
       },

@@ -921,7 +921,7 @@
       {
         "h": "AI chat assistant",
         "p": [
-          "Messages you type into the site's chat assistant are sent to Anthropic's AI service (Claude) to generate a reply. This provider may process data outside the European Economic Area, including in the United States. Please do not share passwords, ID or passport numbers, payment details or other sensitive information in the chat.",
+          "Messages you type into the site's chat assistant are sent to Anthropic's AI service (Claude) to generate a reply. This provider may process data outside the European Economic Area, including in the United States. Please do not share passwords, ID or passport numbers, payment details or other sensitive information in the chat. If needed, DeepSeek may be used as a backup provider; in that case messages may be sent to servers outside the European Economic Area, including in China.",
           "The name, email and phone number you leave in the chat's contact form are not sent to the AI model; they reach only us so we can get back to you. Conversations are stored in our system so we can follow up and improve the service; you can ask for deletion at info@lockandloft.com. The assistant can make mistakes and does not give legal or financial advice."
         ]
       },

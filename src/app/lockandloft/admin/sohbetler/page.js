@@ -3,9 +3,63 @@
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
 import AdminLayout from '@/components/admin/AdminLayout';
-import { MessageSquare, Trash2, Mail, Phone, UserRound } from 'lucide-react';
+import { MessageSquare, Trash2, Mail, Phone, UserRound, AlertTriangle } from 'lucide-react';
 
 const fmt = (d) => new Date(d).toLocaleString('tr-TR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+
+const PROVIDERS = [
+  { id: 'anthropic', name: 'Anthropic (Claude Haiku)', note: 'Ana sağlayıcı' },
+  { id: 'deepseek', name: 'DeepSeek', note: 'Yedek; veriler AB dışına (Çin dahil) gidebilir' },
+];
+
+function ProviderBox() {
+  const [provider, setProvider] = useState('anthropic');
+  const [status, setStatus] = useState(null);
+  const [busy, setBusy] = useState(false);
+  const load = useCallback(async () => {
+    const { data } = await supabase.from('site_settings').select('key,value').in('key', ['chat_provider', 'chat_status']);
+    const m = Object.fromEntries((data || []).map((r) => [r.key, r.value]));
+    setProvider(m.chat_provider?.provider || 'anthropic');
+    setStatus(m.chat_status || null);
+  }, []);
+  useEffect(() => { load(); }, [load]);
+  const choose = async (id) => {
+    if (id === provider) return;
+    setBusy(true);
+    const { error } = await supabase.from('site_settings').upsert({ key: 'chat_provider', value: { provider: id }, is_public: false, updated_at: new Date().toISOString() });
+    if (error) alert('Kaydedilemedi: ' + error.message); else setProvider(id);
+    setBusy(false);
+  };
+  const dismiss = async () => {
+    await supabase.from('site_settings').upsert({ key: 'chat_status', value: { error: false, at: new Date().toISOString() }, is_public: false, updated_at: new Date().toISOString() });
+    load();
+  };
+  return (
+    <div className="bg-[#151521] border border-[#2A2A3A] rounded-2xl p-4 mb-5">
+      {status?.error && (
+        <div className="flex items-start gap-3 mb-4 p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-sm text-red-200">
+          <AlertTriangle size={18} className="shrink-0 mt-0.5" />
+          <div className="flex-1">
+            <b>Asistan şu an yanıt veremiyor.</b> {status.provider === 'anthropic' ? 'Anthropic' : status.provider === 'deepseek' ? 'DeepSeek' : status.provider} hata verdi (kod {status.status}), {status.at ? fmt(status.at) : ''}. Kredi bitmiş ya da anahtar geçersiz olabilir. Aşağıdan diğer sağlayıcıya geçebilirsiniz.
+            {status.detail ? <div className="text-xs opacity-70 mt-1 break-words">{status.detail}</div> : null}
+          </div>
+          <button onClick={dismiss} className="text-xs underline shrink-0">Uyarıyı kapat</button>
+        </div>
+      )}
+      <div className="text-sm text-white font-medium mb-2">Sohbet asistanı sağlayıcısı</div>
+      <div className="flex flex-wrap gap-2">
+        {PROVIDERS.map((p) => (
+          <button key={p.id} disabled={busy} onClick={() => choose(p.id)}
+            className={`text-left px-4 py-2.5 rounded-xl border text-sm transition-colors ${provider === p.id ? 'border-[#C9A84C] bg-[#C9A84C]/10 text-white' : 'border-[#2A2A3A] text-[#C8C8D4] hover:border-[#C9A84C]/50'}`}>
+            <div className="font-medium">{p.name}{provider === p.id ? ' · seçili' : ''}</div>
+            <div className="text-xs text-[#9A9AAA]">{p.note}</div>
+          </button>
+        ))}
+      </div>
+      <p className="text-xs text-[#9A9AAA] mt-3">Anthropic kredisi bitince DeepSeek'e geçin, kredi yenilenince geri alın. Değişiklik bir dakika içinde geçerli olur. DeepSeek için Supabase'te DEEPSEEK_API_KEY tanımlı olmalı. Hata olursa yöneticilere e-posta gider (en sık 3 saatte bir).</p>
+    </div>
+  );
+}
 
 export default function ChatsAdmin() {
   const [rows, setRows] = useState([]);
@@ -43,6 +97,7 @@ export default function ChatsAdmin() {
   return (
     <AdminLayout activeSection="sohbetler">
       <div className="p-6 lg:p-8">
+        <ProviderBox />
         <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
           <div>
             <h1 className="text-2xl font-semibold text-white">Sohbetler</h1>
