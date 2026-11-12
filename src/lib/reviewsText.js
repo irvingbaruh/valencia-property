@@ -1,6 +1,6 @@
 const L = (tr, es, en, de) => ({ tr, es, en, de });
 export const RV = {
-  title: L('Müşterilerimiz Ne Diyor?', '¿Qué dicen nuestros clientes?', 'What our clients say', 'Was unsere Kunden sagen'),
+  title: L('Üyelerimiz Ne Diyor?', '¿Qué dicen nuestros miembros?', 'What our members say', 'Was unsere Mitglieder sagen'),
   subOne: L('Üyelerimizin geri bildirimleri', 'Opiniones de nuestros miembros', 'Feedback from our members', 'Rückmeldungen unserer Mitglieder'),
   subNone: L('İlk yorumu siz yazın', 'Sé el primero en dejar tu opinión', 'Be the first to leave a review', 'Schreiben Sie die erste Bewertung'),
   count: L('yorum', 'opiniones', 'reviews', 'Bewertungen'),
