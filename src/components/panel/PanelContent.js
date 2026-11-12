@@ -478,7 +478,7 @@ export default function PanelContent() {
   ];
 
   return (
-    <div className="min-h-screen bg-[var(--color-soft)] pt-24 pb-16 px-4">
+    <div className="min-h-screen bg-[var(--color-soft)] pt-44 pb-16 px-4">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
@@ -500,12 +500,12 @@ export default function PanelContent() {
         <PushQuickCard />
 
         {/* Tabs */}
-        <div className="grid grid-cols-3 gap-1 sm:flex dark-card rounded-xl p-1 shadow-sm mb-8 sm:overflow-x-auto">
+        <div className="grid grid-cols-3 sm:grid-cols-6 gap-1 dark-card rounded-xl p-1 shadow-sm mb-8">
           {tabs.map(({ id, label, icon: Icon, badge, wide }) => (
             <button
               key={id}
               onClick={() => setActiveTab(id)}
-              className={`relative min-w-0 ${wide ? 'col-span-3 sm:col-span-1 border border-[var(--color-gold)]/50 sm:border-transparent' : ''} sm:flex-1 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-1 sm:px-3 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-medium leading-tight text-center sm:whitespace-nowrap transition-colors ${
+              className={`relative min-w-0 ${wide ? 'col-span-3 sm:col-span-6 border border-[var(--color-gold)]/50' : ''} flex flex-col items-center justify-center gap-1 px-1 sm:px-2 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-medium leading-tight text-center transition-colors ${
                 activeTab === id
                   ? 'bg-[var(--color-gold)] text-white'
                   : 'text-[var(--color-charcoal)] hover:bg-gray-50'

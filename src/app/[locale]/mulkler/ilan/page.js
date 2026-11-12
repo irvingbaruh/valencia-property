@@ -148,7 +148,7 @@ function Detail() {
 
   return (
     <div className="bg-soft">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-40 pb-10 lg:pb-14">
         <a href={back} className="inline-flex items-center gap-2 text-gold font-medium hover:underline mb-6"><ArrowLeft size={16} />{t('back')}</a>
         <div className="grid lg:grid-cols-[1fr_380px] gap-8 lg:gap-12 items-start">
           <div>

@@ -77,10 +77,10 @@ function ReviewForm({ locale }) {
   };
 
   if (loading) return null;
-  const shell = 'mt-10 max-w-2xl mx-auto rounded-xl border border-gold/30 bg-white/5 p-6';
+  const shell = 'mt-10 max-w-2xl mx-auto rounded-xl border border-gold/30 bg-white/5 p-6 sm:p-8 text-center flex flex-col items-center';
   const head = (
-    <div className="flex items-center gap-3 mb-4">
-      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-dark"><MessageCircle size={18} /></span>
+    <div className="flex flex-col items-center gap-3 mb-5">
+      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-gold text-dark"><MessageCircle size={20} /></span>
       <div>
         <h3 className="font-serif text-xl text-white">{t(RV.writeTitle, locale)}</h3>
         <p className="text-sm text-white/70">{t(RV.writeSub, locale)}</p>
@@ -103,7 +103,7 @@ function ReviewForm({ locale }) {
     return (
       <div className={shell}>
         {head}
-        <div className="flex items-center gap-3 mb-3"><Stars value={mine.rating} size={18} /></div>
+        <div className="flex items-center justify-center gap-3 mb-3"><Stars value={mine.rating} size={18} /></div>
         {mine.comment && <p className="text-sm text-white/90 mb-3 whitespace-pre-line">&ldquo;{mine.comment}&rdquo;</p>}
         <p className="text-sm text-gold mb-4">{t(s === 'approved' ? RV.live : s === 'rejected' ? RV.rejected : RV.pending, locale)}</p>
         <button onClick={() => setEdit(true)} className="text-sm text-white underline">{t(RV.update, locale)}</button>
@@ -114,7 +114,7 @@ function ReviewForm({ locale }) {
   return (
     <form onSubmit={submit} className={shell}>
       {head}
-      <div className="flex gap-1 mb-4" role="radiogroup" aria-label={t(RV.stars, locale)}>
+      <div className="flex justify-center gap-1 mb-4" role="radiogroup" aria-label={t(RV.stars, locale)}>
         {[1, 2, 3, 4, 5].map((n) => (
           <button key={n} type="button" role="radio" aria-checked={rating === n} onClick={() => setRating(n)} className="p-1" aria-label={`${n}`}>
             <Star size={30} className={n <= rating ? 'text-gold fill-gold' : 'text-white/30'} />
@@ -122,7 +122,7 @@ function ReviewForm({ locale }) {
         ))}
       </div>
       <textarea value={comment} onChange={(e) => setComment(e.target.value)} maxLength={1000} rows={4} placeholder={t(RV.placeholder, locale)}
-        className="w-full rounded-lg bg-[#0B0B11] border border-white/15 p-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-gold" />
+        className="w-full rounded-lg bg-[#0B0B11] border border-white/15 p-3 text-sm text-white text-left placeholder:text-white/40 focus:outline-none focus:border-gold" />
       {msg && <p className="text-sm text-red-300 mt-2">{msg}</p>}
       <button disabled={busy} className="mt-4 inline-flex items-center rounded-lg bg-gold px-5 py-2.5 text-sm font-medium text-dark hover:opacity-90 disabled:opacity-60">{busy ? t(RV.sending, locale) : t(RV.send, locale)}</button>
       <p className="text-xs text-white/50 mt-4">{t(RV.note, locale)}</p>
