@@ -9,6 +9,14 @@ import PurchaseCostCalculator from '@/components/sections/PurchaseCostCalculator
 import MemberInvite from '@/components/ui/MemberInvite';
 import FavoriteButton from '@/components/ui/FavoriteButton';
 import { localePath } from '@/lib/routes';
+import { useAuth } from '@/components/providers/AuthProvider';
+
+const LOCKED = {
+  tr: ['Bu ilan üyelere açık.', 'Ücretsiz üye olun, tüm ilanları görün.', 'Üye ol'],
+  es: ['Esta propiedad es solo para miembros.', 'Crea una cuenta gratuita y ve todas las propiedades.', 'Crear cuenta'],
+  en: ['This listing is for members only.', 'Create a free account to see every listing.', 'Join free'],
+  de: ['Dieses Angebot ist nur für Mitglieder.', 'Kostenloses Konto erstellen und alle Angebote sehen.', 'Kostenlos registrieren'],
+};
 import {
   fetchListing, listingTitle, listingDescription, listingImages, listingLocation, formatPrice, TYPE_KEYS,
 } from '@/lib/listings';
@@ -111,22 +119,35 @@ function Detail() {
   const t = useTranslations('listing');
   const tType = useTranslations('propertyType');
   const id = useSearchParams().get('id');
+  const { user, loading: authLoading } = useAuth();
   const [p, setP] = useState(null);
   const [state, setState] = useState('loading');
 
   useEffect(() => {
     let off = false;
     if (!id) { setState('missing'); return; }
+    if (authLoading) return;
     fetchListing(id).then((row) => {
       if (off) return;
       if (row) { setP(row); setState('ok'); } else setState('missing');
     });
     return () => { off = true; };
-  }, [id]);
+  }, [id, authLoading, user?.id]);
 
   const back = localePath(locale, 'mulkler');
   if (state === 'loading') {
     return <div className="bg-soft min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-2 border-gold border-t-transparent rounded-full animate-spin" /></div>;
+  }
+  if (state === 'missing' && !user) {
+    const L = LOCKED[locale] || LOCKED.en;
+    return (
+      <div className="bg-soft min-h-[60vh] flex flex-col items-center justify-center gap-4 px-4 text-center">
+        <p className="text-lg text-dark font-serif">{L[0]}</p>
+        <p className="text-text-muted">{L[1]}</p>
+        <a href={`${localePath(locale, 'giris')}?mode=register&from=listing`} className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold text-dark font-semibold hover:opacity-90">{L[2]}</a>
+        <a href={back} className="inline-flex items-center gap-2 text-gold font-medium hover:underline"><ArrowLeft size={16} />{t('back')}</a>
+      </div>
+    );
   }
   if (state === 'missing') {
     return (

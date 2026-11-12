@@ -15,6 +15,13 @@ export async function fetchListings({ featured = false, limit = 60 } = {}) {
   return data || [];
 }
 
+// What a visitor without an account cannot see: count, price spread and places of the locked listings (server-side summary).
+export async function fetchGateSummary() {
+  const { data, error } = await supabase.rpc('guest_gate_summary');
+  if (error || !data) return null;
+  return { hidden: Number(data.hidden) || 0, total: Number(data.total) || 0, prices: (data.prices || []).map(Number).filter((n) => n > 0), cities: data.cities || [] };
+}
+
 export async function fetchListing(id) {
   const { data } = await supabase.from('properties').select(COLS).eq('id', id).eq('is_active', true).maybeSingle();
   return data || null;

@@ -26,13 +26,16 @@ const sha = async (s: string) => {
 
 const SERVICES = `Lock & Loft helps international buyers (many of them from Turkey) invest in property around Valencia, Spain, together with its partner RE/MAX.
 Services: (1) Property search: personalized portfolio, on-site inspection and area analysis, wide access through the RE/MAX network, price and ROI comparison. (2) Legal support: NIE application and follow-up, notary and deed process, tax advisory and declaration support, purchase contract review. (3) Decoration & furniture (Decor Petit collection): 3D interior design, furniture procurement, turnkey installation. (4) Renovation: kitchen/bathroom, electrical and plumbing, finishes, municipal permits and project management. (5) Rental management. (6) Home staging for selling or renting.
-Typical purchase steps for a non-EU buyer: choose a property, obtain an NIE, open a Spanish bank account, sign a reservation and private contract, pay taxes, sign the deed at the notary, register the property. The site has a ROI calculator.`;
+Typical purchase steps for a non-EU buyer: choose a property, obtain an NIE, open a Spanish bank account, sign a reservation and private contract, pay taxes, sign the deed at the notary, register the property. The site has a ROI calculator.
+Known facts: Spain's Golden Visa tied to property purchase ended on 3 April 2025, so buying a home no longer grants residency by itself. A proposed extra tax for non-EU buyers is not law; do not state it as a rule. Rental yield figures on the site assume long-term rentals, not tourist lets.`;
 
 let ctxCache: { t: number; lang: string; text: string } | null = null;
 async function context(sb: ReturnType<typeof createClient>, lang: string) {
   if (ctxCache && ctxCache.lang === lang && Date.now() - ctxCache.t < 5 * 60 * 1000) return ctxCache.text;
+  // The chat is open to everyone, so it only knows the listings that are open to visitors without an account.
+  const { data: guestIds } = await sb.rpc('guest_listing_ids');
   const [{ data: props }, { data: notes }] = await Promise.all([
-    sb.from('properties').select('*').eq('is_active', true).order('is_featured', { ascending: false }).order('published_at', { ascending: false }).limit(40),
+    sb.from('properties').select('*').eq('is_active', true).in('id', (guestIds as string[]) || []).order('is_featured', { ascending: false }).order('published_at', { ascending: false }).limit(40),
     sb.from('market_notes').select('*').eq('status', 'published').order('created_at', { ascending: false }).limit(6),
   ]);
   const pl = (props || []).map((p: Record<string, unknown>) => {
@@ -128,7 +131,9 @@ Deno.serve(async (req) => {
     }
 
     // ---------- message ----------
-    const key = Deno.env.get('DEEPSEEK_API_KEY');
+    // Provider is chosen with secrets: CHAT_PROVIDER = anthropic (default) | mistral | deepseek, CHAT_MODEL optional.
+    const provider = (Deno.env.get('CHAT_PROVIDER') || 'anthropic').toLowerCase();
+    const key = Deno.env.get(provider === 'mistral' ? 'MISTRAL_API_KEY' : provider === 'deepseek' ? 'DEEPSEEK_API_KEY' : 'ANTHROPIC_API_KEY');
     if (!key) return json({ error: 'not_configured' }, 503, cors);
     const message = String(body.message || '').trim().slice(0, 1000);
     if (!message) return json({ error: 'empty' }, 400, cors);
@@ -157,24 +162,50 @@ Deno.serve(async (req) => {
     const history = (hist || []).reverse().map((m: { role: string; content: string }) => ({ role: m.role === 'user' ? 'user' : 'assistant', content: m.content }));
 
     const ctx = await context(sb, lang);
-    const res = await fetch('https://api.deepseek.com/chat/completions', {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: Deno.env.get('DEEPSEEK_MODEL') || 'deepseek-chat',
-        messages: [{ role: 'system', content: systemPrompt(lang, ctx) }, ...history],
-        temperature: 0.4,
-        max_tokens: 600,
-        stream: false,
-      }),
-      signal: AbortSignal.timeout(45000),
-    });
-    if (!res.ok) {
-      console.error('deepseek', res.status, (await res.text()).slice(0, 300));
-      return json({ error: 'ai_unavailable', session_id: sessionId }, 502, cors);
+    const sys = systemPrompt(lang, ctx);
+    // Anthropic wants strictly alternating turns starting with the user; merge neighbours with the same role.
+    const turns: { role: string; content: string }[] = [];
+    for (const m of history) {
+      const last = turns[turns.length - 1];
+      if (last && last.role === m.role) last.content += `\n${m.content}`; else turns.push({ ...m });
     }
-    const out = await res.json();
-    let reply = String(out?.choices?.[0]?.message?.content || '').trim();
+    while (turns.length && turns[0].role !== 'user') turns.shift();
+    let reply = '';
+    if (provider === 'anthropic') {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'x-api-key': key, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
+        body: JSON.stringify({
+          model: Deno.env.get('CHAT_MODEL') || 'claude-haiku-5-5',
+          max_tokens: 600,
+          temperature: 0.4,
+          system: [{ type: 'text', text: sys, cache_control: { type: 'ephemeral' } }],
+          messages: turns,
+        }),
+        signal: AbortSignal.timeout(45000),
+      });
+      if (!res.ok) {
+        console.error('anthropic', res.status, (await res.text()).slice(0, 300));
+        return json({ error: 'ai_unavailable', session_id: sessionId }, 502, cors);
+      }
+      const out = await res.json();
+      reply = String((out?.content || []).filter((c: { type: string }) => c.type === 'text').map((c: { text: string }) => c.text).join('')).trim();
+    } else {
+      const url = provider === 'mistral' ? 'https://api.mistral.ai/v1/chat/completions' : 'https://api.deepseek.com/chat/completions';
+      const model = Deno.env.get('CHAT_MODEL') || (provider === 'mistral' ? 'mistral-small-latest' : 'deepseek-chat');
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model, messages: [{ role: 'system', content: sys }, ...turns], temperature: 0.4, max_tokens: 600, stream: false }),
+        signal: AbortSignal.timeout(45000),
+      });
+      if (!res.ok) {
+        console.error(provider, res.status, (await res.text()).slice(0, 300));
+        return json({ error: 'ai_unavailable', session_id: sessionId }, 502, cors);
+      }
+      const out = await res.json();
+      reply = String(out?.choices?.[0]?.message?.content || '').trim();
+    }
     const showContact = reply.includes('[[CONTACT]]');
     reply = reply.replace(/\[\[CONTACT\]\]/g, '').trim();
     if (!reply) return json({ error: 'ai_unavailable', session_id: sessionId }, 502, cors);

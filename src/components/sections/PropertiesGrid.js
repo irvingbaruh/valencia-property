@@ -14,12 +14,11 @@ import { localePath } from '@/lib/routes';
 import FavoriteButton from '@/components/ui/FavoriteButton';
 import { propertyTitle } from '@/lib/propertyText';
 import {
-  fetchListings, listingTitle, listingCover, listingLocation, formatPrice, listingHref,
+  fetchListings, fetchGateSummary, listingTitle, listingCover, listingLocation, formatPrice, listingHref,
 } from '@/lib/listings';
 
 // Grid for /mulkler: live listings from Supabase; the sample cards stay only until the first listing is published.
 // Visitors who are not signed in see this many listings; members see all of them.
-const GUEST_LIMIT = 15;
 
 const EMPTY = {
   q: '', province: '', area: '', type: '', beds: '', baths: '',
@@ -53,11 +52,15 @@ export default function PropertiesGrid({ samples }) {
     if (stashed) setF({ ...EMPTY, ...stashed });
   }, []);
 
+  const [gate, setGate] = useState(null);
+  // The server decides what a visitor may see (members get every listing), so reload once we know who is signed in.
   useEffect(() => {
+    if (authLoading) return;
     let off = false;
     fetchListings({ limit: 200 }).then((rows) => { if (!off) setLive(rows); });
+    if (!user) fetchGateSummary().then((x) => { if (!off) setGate(x); }); else setGate(null);
     return () => { off = true; };
-  }, []);
+  }, [authLoading, user?.id]);
 
   const isLive = !!live && live.length > 0;
 
@@ -154,13 +157,13 @@ export default function PropertiesGrid({ samples }) {
   const dirty = JSON.stringify({ ...f, sort: '' }) !== JSON.stringify({ ...EMPTY, sort: '' });
 
   // Listing limit for visitors. While we still do not know if someone is signed in, show the limited list without the gate card.
-  const limited = isLive && !user && items.length > GUEST_LIMIT;
-  const visible = limited ? items.slice(0, GUEST_LIMIT) : items;
-  const hidden = limited ? items.slice(GUEST_LIMIT) : [];
+  const limited = isLive && !user && !!gate && gate.hidden > 0;
+  const visible = items;
   const gateReady = limited && !authLoading;
-  const hiddenPrices = hidden.map((x) => x.priceNum).filter((n) => n != null);
+  const hiddenCount = gate ? gate.hidden : 0;
+  const hiddenPrices = gate ? gate.prices : [];
   const eur0 = (n) => new Intl.NumberFormat({ tr: 'tr-TR', es: 'es-ES', en: 'en-GB', de: 'de-DE' }[locale] || 'en-GB', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
-  const hiddenPlaces = [...new Set(hidden.map((x) => String(x.cityRaw || '').split(/[\/,]/)[0].trim()).filter(Boolean))].slice(0, 4);
+  const hiddenPlaces = [...new Set((gate ? gate.cities : []).map((c) => String(c || '').split(/[\/,]/)[0].trim()).filter(Boolean))].slice(0, 4);
 
   const typeLabel = (k) => (tType.has(k) ? tType(k) : k);
   const joinHref = (from) => `${localePath(locale, 'giris')}?mode=register&from=${from}`;
@@ -385,8 +388,8 @@ export default function PropertiesGrid({ samples }) {
         <div className="flex items-start gap-4">
           <Lock className="text-gold shrink-0 mt-1" size={26} />
           <div className="flex-1">
-            <h2 className="font-serif text-2xl text-dark mb-1">{g.gate.title(visible.length, items.length)}</h2>
-            <p className="text-text-muted">{g.gate.text(hidden.length)}</p>
+            <h2 className="font-serif text-2xl text-dark mb-1">{g.gate.title(visible.length, gate.total)}</h2>
+            <p className="text-text-muted">{g.gate.text(hiddenCount)}</p>
             {hiddenPrices.length > 0 && (
               <p className="text-sm text-text-muted mt-2">
                 {g.gate.peek(hiddenPlaces.join(', '), `${eur0(Math.min(...hiddenPrices))} – ${eur0(Math.max(...hiddenPrices))}`)}
