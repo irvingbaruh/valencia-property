@@ -96,6 +96,10 @@ Deno.serve(async (req) => {
         payload = kind === 'document_upload'
           ? { title: 'Yeni belge yüklendi', body: cut(`${await who(r.user_id)} · ${r.file_name}`, 120), url: `${ADMIN}/dosyalar/`, tag: kind }
           : { title: 'Belge silme isteği', body: cut(`${await who(r.user_id)} · ${r.file_name}`, 120), url: `${ADMIN}/dosyalar/?filter=delete`, tag: kind };
+      } else if (kind === 'review') {
+        const { data: r } = await sb.from('reviews').select('display_name,rating,comment').eq('id', id).maybeSingle();
+        if (!r) return json({ skipped: 'not_found' });
+        payload = { title: `Yeni yorum (${r.rating}/5)`, body: cut(`${r.display_name}${r.comment ? ': ' + r.comment : ''}`, 120), url: `${ADMIN}/yorumlar/`, tag: kind };
       } else if (kind === 'chat_started') {
         const { data: s } = await sb.from('chat_sessions').select('first_message,language').eq('id', id).maybeSingle();
         let first = s?.first_message;

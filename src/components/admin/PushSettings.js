@@ -12,6 +12,7 @@ const EVENTS = [
   ['member', 'Yeni üye kaydı'],
   ['document_upload', 'Üye belge yükledi'],
   ['doc_delete_request', 'Belge silme isteği'],
+  ['review', 'Yeni yorum geldi (onay bekliyor)'],
   ['chat_started', 'Biri sohbeti kullandı'],
   ['chat_lead', 'Sohbette iletişim bilgisi bırakıldı'],
   ['digest', 'Günlük özet (her akşam)'],
