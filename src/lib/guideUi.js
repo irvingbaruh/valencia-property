@@ -21,8 +21,29 @@ export const PAGES = {
     meta: L('Valencia ve Alicante’de yapılacaklar', 'Qué hacer en Valencia y Alicante', 'Things to do in Valencia and Alicante', 'Aktivitäten in Valencia und Alicante') },
   okullar: { nav: L('Okullar', 'Colegios', 'Schools', 'Schulen'), title: L('Uluslararası okullar', 'Colegios internacionales', 'International schools', 'Internationale Schulen'),
     sub: L('Müfredat, yaş aralığı ve yayımlanmış yıllık ücretler.', 'Currículo, edades y cuotas anuales publicadas.', 'Curriculum, ages and published annual fees.', 'Lehrplan, Alter und veröffentlichte Jahresgebühren.'), hero: 'okullar', open: true },
+  'yasam-maliyeti': { nav: L('Yaşam maliyeti', 'Coste de vida', 'Cost of living', 'Lebenshaltung'), title: L('Yaşam maliyeti hesaplayıcı', 'Calculadora de coste de vida', 'Cost of living calculator', 'Lebenshaltungskosten-Rechner'),
+    sub: L('Market, faturalar, okul, sağlık ve konut: ayda ne kadar harcarsınız?', 'Compra, facturas, colegio, sanidad y vivienda: ¿cuánto gastarás al mes?', 'Groceries, bills, school, health and housing: what will you spend each month?', 'Einkauf, Rechnungen, Schule, Gesundheit, Wohnen: Was kostet ein Monat?'), hero: 'v-mercado' },
+  tasinma: { nav: L('Taşınma adımları', 'Mudanza paso a paso', 'Moving step by step', 'Umzug Schritt für Schritt'), title: L('Taşınma yol haritası', 'Hoja de ruta para mudarte', 'Moving roadmap', 'Umzugsfahrplan'),
+    sub: L('NIE, ikamet kaydı, banka, sağlık kartı, okul ve ehliyet: hangi sırayla, nerede, ne kadar sürede.', 'NIE, padrón, banco, tarjeta sanitaria y colegio: en qué orden, dónde y cuánto tarda.', 'NIE, padrón, bank, health card and school: in what order, where and how long.', 'NIE, Padrón, Bank, Gesundheitskarte und Schule: Reihenfolge, Ort und Dauer.'), hero: 'v-colon' },
+  'turk-toplulugu': { nav: L('Türk topluluğu', 'Comunidad turca', 'Turkish community', 'Türkische Gemeinde'), title: L('Türk topluluğu ve tanıdık lezzetler', 'Comunidad turca', 'Turkish community', 'Türkische Gemeinde'),
+    sub: L('Türk restoranları, helal market, cami, konsolosluk ve Türkiye’ye direkt uçuşlar.', '', '', ''), hero: 'v-oldtown', locales: ['tr'] },
+  'valencia-mi-alicante-mi': { nav: L('Valencia mı, Alicante mı?', '¿Valencia o Alicante?', 'Valencia or Alicante?', 'Valencia oder Alicante?'), title: L('Valencia mı, Alicante mı?', '¿Valencia o Alicante?', 'Valencia or Alicante?', 'Valencia oder Alicante?'),
+    sub: L('Sekiz kısa soruyla size hangi şehrin uyduğunu görün.', 'Ocho preguntas para ver qué ciudad encaja contigo.', 'Eight quick questions to see which city suits you.', 'Acht kurze Fragen: Welche Stadt passt zu Ihnen?'), hero: 'alicante', open: true },
+  iklim: { nav: L('İklim', 'Clima', 'Climate', 'Klima'), title: L('Ay ay iklim', 'El clima mes a mes', 'Climate month by month', 'Klima Monat für Monat'),
+    sub: L('Sıcaklık, nem, güneş ve yağmur; yazın neminden de dürüstçe bahsediyoruz.', 'Temperatura, humedad, sol y lluvia, también la humedad del verano.', 'Temperature, humidity, sun and rain, including the summer humidity.', 'Temperatur, Feuchte, Sonne und Regen, auch die Sommerschwüle.'), hero: 'benidorm' },
+  vize: { nav: L('Vize ve oturum', 'Visados', 'Visas', 'Visa'), title: L('Vize ve oturum seçenekleri', 'Visados y residencia', 'Visas and residence', 'Visa und Aufenthalt'),
+    sub: L('Altın vize kalktı. Non-lucrative, dijital göçebe, çalışma ve öğrenci yolları 2026 şartlarıyla.', 'Sin golden visa: no lucrativa, nómada digital, trabajo y estudios con los requisitos de 2026.', 'No more golden visa: non-lucrative, digital nomad, work and study routes with 2026 requirements.', 'Kein Golden Visa mehr: nicht erwerbstätig, Digital Nomad, Arbeit und Studium mit den Anforderungen 2026.'), hero: 'v-artes' },
+  vergi: { nav: L('Vergi', 'Impuestos', 'Tax', 'Steuern'), title: L('Vergi rehberi', 'Guía de impuestos', 'Tax guide', 'Steuerratgeber'),
+    sub: L('Yerleşik olan ve olmayan ev sahibi farkı, kira geliri, dünya geliri ve servet vergisi.', 'Residente y no residente, alquiler, renta mundial y patrimonio.', 'Resident vs non-resident owners, rental income, worldwide income and wealth tax.', 'Ansässig oder nicht, Mieteinnahmen, Welteinkommen und Vermögensteuer.'), hero: 'v-carmen' },
+  saglik: { nav: L('Sağlık', 'Sanidad', 'Healthcare', 'Gesundheit'), title: L('Sağlık sistemi', 'Sistema sanitario', 'Healthcare', 'Gesundheitssystem'),
+    sub: L('Kamu ve özel sistem, sigorta fiyatları ve başlıca hastaneler.', 'Pública y privada, precios de seguros y hospitales principales.', 'Public and private care, insurance prices and the main hospitals.', 'Öffentlich und privat, Versicherungspreise und wichtige Kliniken.'), hero: 'v-artes2' },
+  takvim: { nav: L('Etkinlik takvimi', 'Calendario', 'Events', 'Kalender'), title: L('Etkinlik takvimi', 'Calendario de fiestas', 'Events calendar', 'Veranstaltungskalender'),
+    sub: L('Fallas, Hogueras, plaj sezonu ve Noel: ay ay ne oluyor.', 'Fallas, Hogueras, playa y Navidad: qué pasa cada mes.', 'Fallas, Hogueras, beach season and Christmas: what happens each month.', 'Fallas, Hogueras, Badesaison und Weihnachten: was wann passiert.'), hero: 'a-santacruz' },
+  dezavantajlar: { nav: L('Dezavantajlar', 'Inconvenientes', 'Downsides', 'Nachteile'), title: L('Dürüst olalım: dezavantajlar', 'Seamos sinceros: inconvenientes', 'Honestly: the downsides', 'Ehrlich gesagt: die Nachteile'),
+    sub: L('Bürokrasi, yaz sıcağı, maaşlar, işgal riski, Valensiyanca ve sel riski.', 'Burocracia, calor, sueldos, okupación, valenciano e inundaciones.', 'Bureaucracy, summer heat, salaries, squatting, Valencian and flood risk.', 'Bürokratie, Hitze, Gehälter, Besetzungen, Valencianisch und Hochwasser.'), hero: 'calpe-stairs' },
 };
-export const PAGE_ORDER = ['rehber', 'yasam', 'semtler', 'nerede', 'bolgeler', 'aktiviteler', 'okullar'];
+export const PAGE_ORDER = ['rehber', 'valencia-mi-alicante-mi', 'yasam', 'yasam-maliyeti', 'semtler', 'nerede', 'bolgeler', 'iklim', 'aktiviteler', 'takvim', 'okullar', 'saglik', 'vize', 'tasinma', 'vergi', 'dezavantajlar', 'turk-toplulugu'];
+export const pageVisible = (k, locale) => !PAGES[k]?.locales || PAGES[k].locales.includes(locale);
 
 export const HUB = {
   yasam: { icon: 'Sun', img: 'altea-street', text: L('Günlük hayat, ulaşım ve güvenlik', 'Vida diaria, transporte y seguridad', 'Daily life, transport and safety', 'Alltag, Verkehr und Sicherheit') },
@@ -31,6 +52,16 @@ export const HUB = {
   bolgeler: { icon: 'Waves', img: 'calpe-bay', text: L('Altea, Calpe, Benidorm, Jávea…', 'Altea, Calpe, Benidorm, Jávea…', 'Altea, Calpe, Benidorm, Jávea…', 'Altea, Calpe, Benidorm, Jávea…') },
   aktiviteler: { icon: 'PartyPopper', img: 'calpe-stairs', text: L('Festivaller, doğa, deniz', 'Fiestas, naturaleza, mar', 'Festivals, nature, sea', 'Feste, Natur, Meer') },
   okullar: { icon: 'GraduationCap', img: 'okullar', text: L('Uluslararası okullar ve ücretler', 'Colegios internacionales y cuotas', 'International schools and fees', 'Internationale Schulen und Gebühren') },
+  'yasam-maliyeti': { icon: 'Calculator', img: 'v-mercado', text: L('Ayda ne kadar harcarsınız?', '¿Cuánto gastarás al mes?', 'What will a month cost?', 'Was kostet ein Monat?') },
+  tasinma: { icon: 'Route', img: 'v-colon', text: L('NIE’den okul kaydına adım adım', 'Del NIE al colegio, paso a paso', 'From NIE to school, step by step', 'Von der NIE bis zur Schule') },
+  'valencia-mi-alicante-mi': { icon: 'Scale', img: 'alicante', text: L('8 soruluk kısa test', 'Test de 8 preguntas', 'An 8-question quiz', 'Test mit 8 Fragen') },
+  iklim: { icon: 'CloudSun', img: 'benidorm', text: L('Ay ay sıcaklık, nem ve güneş', 'Temperatura, humedad y sol', 'Temperature, humidity and sun', 'Temperatur, Feuchte, Sonne') },
+  takvim: { icon: 'CalendarDays', img: 'a-santacruz', text: L('Fallas, Hogueras ve daha fazlası', 'Fallas, Hogueras y más', 'Fallas, Hogueras and more', 'Fallas, Hogueras und mehr') },
+  saglik: { icon: 'HeartPulse', img: 'v-artes2', text: L('Kamu, özel sigorta, hastaneler', 'Pública, privada, hospitales', 'Public, private, hospitals', 'Öffentlich, privat, Kliniken') },
+  vize: { icon: 'Stamp', img: 'v-artes', text: L('2026 şartlarıyla oturum yolları', 'Vías de residencia 2026', 'Residence routes for 2026', 'Aufenthaltswege 2026') },
+  vergi: { icon: 'Receipt', img: 'v-carmen', text: L('Yerleşik ve yerleşik olmayan', 'Residente y no residente', 'Resident and non-resident', 'Ansässig und nicht ansässig') },
+  dezavantajlar: { icon: 'TriangleAlert', img: 'calpe-stairs', text: L('Bilmeniz gereken zor taraflar', 'Lo difícil, sin rodeos', 'The hard parts, plainly', 'Die schwierigen Seiten') },
+  'turk-toplulugu': { icon: 'Users', img: 'v-oldtown', text: L('Türk restoranları, helal market, konsolosluk', '', '', '') },
 };
 
 export const STR = {

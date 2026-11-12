@@ -9,6 +9,8 @@ import { guide } from '@/lib/guideContent';
 import { PAGES, STR } from '@/lib/guideUi';
 import GuideShell from '@/components/guide/GuideShell';
 import GuideHubCards from '@/components/guide/GuideHubCards';
+import { CostOfLiving, AreaDays, AreaCompare, Community, Roadmap, Sources } from '@/components/guide/LifeScreens';
+import { Visas, Tax, SchoolSystem, Climate, Health, Events, Quiz, Cons, Sources2 } from '@/components/guide/LifeScreens2';
 
 const t = (o, l) => (o && (o[l] || o.tr)) || '';
 const Ic = { Sun, Building2, MapPin, Utensils, TrainFront, Car, Plane, Umbrella, Eye, Waves, Landmark };
@@ -297,19 +299,34 @@ function Schools({ locale, g, ui }) {
   );
 }
 
+const LIFE_PAGES = ['yasam-maliyeti', 'turk-toplulugu', 'tasinma'];
+const LIFE2_PAGES = ['vize', 'vergi', 'iklim', 'saglik', 'takvim', 'valencia-mi-alicante-mi', 'dezavantajlar'];
+
 export default function GuideScreens({ page }) {
   const locale = useLocale();
   const g = guide(locale);
   const ui = areaUi(locale);
   return (
-    <GuideShell page={page} sources={page !== 'nerede' && page !== 'aktiviteler' && page !== 'yasam' && page !== 'rehber'}>
+    <GuideShell page={page} sources={page !== 'nerede' && page !== 'aktiviteler' && page !== 'yasam' && page !== 'rehber' && !LIFE_PAGES.includes(page) && !LIFE2_PAGES.includes(page)}>
       {page === 'rehber' && <Hub locale={locale} g={g} />}
       {page === 'yasam' && <Life locale={locale} g={g} />}
-      {page === 'semtler' && <Areas locale={locale} cities={['valencia', 'alicante']} ui={ui} />}
+      {page === 'semtler' && <><AreaCompare /><AreaDays /><Areas locale={locale} cities={['valencia', 'alicante']} ui={ui} /></>}
+      {page === 'yasam-maliyeti' && <CostOfLiving />}
+      {page === 'turk-toplulugu' && <Community />}
+      {page === 'tasinma' && <Roadmap />}
+      {LIFE_PAGES.includes(page) && <Sources locale={locale} />}
+      {page === 'vize' && <Visas />}
+      {page === 'vergi' && <Tax />}
+      {page === 'iklim' && <Climate />}
+      {page === 'saglik' && <Health />}
+      {page === 'takvim' && <Events />}
+      {page === 'valencia-mi-alicante-mi' && <Quiz />}
+      {page === 'dezavantajlar' && <Cons />}
+      {LIFE2_PAGES.includes(page) && <Sources2 locale={locale} />}
       {page === 'nerede' && <Places locale={locale} ui={ui} />}
       {page === 'bolgeler' && <Coast locale={locale} g={g} ui={ui} />}
       {page === 'aktiviteler' && <Activities locale={locale} g={g} />}
-      {page === 'okullar' && <Schools locale={locale} g={g} ui={ui} />}
+      {page === 'okullar' && <><SchoolSystem /><Schools locale={locale} g={g} ui={ui} /></>}
     </GuideShell>
   );
 }

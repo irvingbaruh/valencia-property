@@ -7,7 +7,7 @@ import { localePath } from '@/lib/routes';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { areaUi, SOURCES } from '@/lib/areaContent';
 import { benefits } from '@/lib/memberBenefits';
-import { PAGES, PAGE_ORDER, STR } from '@/lib/guideUi';
+import { PAGES, PAGE_ORDER, STR, pageVisible } from '@/lib/guideUi';
 import GuideCta from '@/components/sections/GuideCta';
 import { gt } from '@/lib/growthText';
 import { trackFunnel } from '@/lib/funnel';
@@ -33,7 +33,7 @@ function SubNav({ page, locale }) {
   return (
     <nav aria-label="Guide" className="relative bg-soft border-b border-border">
       <div ref={ref} onScroll={check} className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {PAGE_ORDER.map((k) => (
+        {PAGE_ORDER.filter((k) => pageVisible(k, locale)).map((k) => (
           <a key={k} href={localePath(locale, k)} aria-current={k === page ? 'page' : undefined}
             className={`shrink-0 rounded-full border px-4 py-2 text-sm transition-colors ${k === page ? 'bg-gold text-dark border-gold font-semibold' : 'border-border text-dark hover:border-gold hover:text-gold'}`}>
             {t(PAGES[k].nav, locale)}
@@ -57,7 +57,7 @@ export default function GuideShell({ page, children, sources = true }) {
   const P = PAGES[page];
   const isMember = !!user;
   const g = gt(locale).guide;
-  const canView = isMember || !!P.open; // one sample page is open to everyone
+  const canView = (isMember || !!P.open) && pageVisible(page, locale); // one sample page is open to everyone; some pages exist only in Turkish
   const sampleHref = `${localePath(locale, 'okullar')}`;
   const joinHref = `${localePath(locale, 'giris')}?mode=register&from=guide`;
 
@@ -75,7 +75,11 @@ export default function GuideShell({ page, children, sources = true }) {
 
       {loading && <div className="min-h-[40vh]" />}
 
-      {!loading && !canView && (
+      {!loading && !pageVisible(page, locale) && (
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14"><a href={localePath(locale, 'rehber')} className="text-gold font-semibold hover:underline">{ui.back}</a></div>
+      )}
+
+      {!loading && !canView && pageVisible(page, locale) && (
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
           <div className="rounded-2xl border border-gold/40 bg-white p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center gap-4">
             <Lock className="text-gold shrink-0" size={28} />

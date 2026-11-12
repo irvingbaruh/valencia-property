@@ -1,11 +1,11 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { Sun, Building2, Waves, PartyPopper, GraduationCap, Compass, ArrowRight } from 'lucide-react';
+import { Sun, Building2, Waves, PartyPopper, GraduationCap, Compass, ArrowRight, Calculator, Route, Users, Scale, CloudSun, CalendarDays, HeartPulse, Stamp, Receipt, TriangleAlert } from 'lucide-react';
 import { localePath } from '@/lib/routes';
-import { PAGES, HUB } from '@/lib/guideUi';
+import { PAGES, HUB, pageVisible } from '@/lib/guideUi';
 
-const ICONS = { Sun, Building2, Waves, PartyPopper, GraduationCap, Compass };
+const ICONS = { Sun, Building2, Waves, PartyPopper, GraduationCap, Compass, Calculator, Route, Users, Scale, CloudSun, CalendarDays, HeartPulse, Stamp, Receipt, TriangleAlert };
 const t = (o, l) => (o && (o[l] || o.tr)) || '';
 
 // The five guide topics as photo cards. Used on the guide overview and in the member panel.
@@ -13,7 +13,7 @@ export default function GuideHubCards() {
   const locale = useLocale();
   return (
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {Object.keys(HUB).map((k) => {
+      {Object.keys(HUB).filter((k) => pageVisible(k, locale)).map((k) => {
         const h = HUB[k];
         const Icon = ICONS[h.icon];
         return (
