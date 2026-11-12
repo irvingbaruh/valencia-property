@@ -13,7 +13,8 @@
     "contact": "İletişim",
     "login": "Giriş",
     "cta": "Danışmanlık Al",
-    "panel": "Panel"
+    "panel": "Panel",
+    "guide": "Rehber"
   },
   "hero": {
     "title": "İspanya'da Hayalinizdeki Eve Sahip Olun",
@@ -485,7 +486,8 @@
     "address": "Valencia, İspanya",
     "copyright": "© 2026 Lock & Loft. Tüm hakları saklıdır.",
     "remax_note": "RE/MAX işbirliği ile hizmet vermekteyiz.",
-    "privacy": "Gizlilik Politikası"
+    "privacy": "Gizlilik Politikası",
+    "guide": "Valencia ve Alicante rehberi"
   },
   "interstitials": {
     "interstitial1_line1": "Akdeniz'de",

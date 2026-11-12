@@ -13,7 +13,8 @@
     "contact": "Contacto",
     "login": "Acceso",
     "cta": "Consulta Gratuita",
-    "panel": "Panel"
+    "panel": "Panel",
+    "guide": "Guía"
   },
   "hero": {
     "title": "Sea Propietario de su Inmueble Soñado en España",
@@ -485,7 +486,8 @@
     "address": "Valencia, España",
     "copyright": "© 2026 Lock & Loft. Todos los derechos reservados.",
     "remax_note": "Servicio en colaboración con RE/MAX.",
-    "privacy": "Política de privacidad"
+    "privacy": "Política de privacidad",
+    "guide": "Guía de Valencia y Alicante"
   },
   "interstitials": {
     "interstitial1_line1": "Vida en",

@@ -13,7 +13,8 @@
     "contact": "Kontakt",
     "login": "Anmelden",
     "cta": "Beratung Anfordern",
-    "panel": "Panel"
+    "panel": "Panel",
+    "guide": "Ratgeber"
   },
   "hero": {
     "title": "Besitzen Sie Ihre Traumimmobilie in Spanien",
@@ -485,7 +486,8 @@
     "address": "Valencia, Spanien",
     "copyright": "© 2026 Lock & Loft. Alle Rechte vorbehalten.",
     "remax_note": "Service in Partnerschaft mit RE/MAX.",
-    "privacy": "Datenschutzerklärung"
+    "privacy": "Datenschutzerklärung",
+    "guide": "Valencia & Alicante Ratgeber"
   },
   "interstitials": {
     "interstitial1_line1": "Leben am",

@@ -13,7 +13,8 @@
     "contact": "Contact",
     "login": "Sign In",
     "cta": "Get Consultation",
-    "panel": "Panel"
+    "panel": "Panel",
+    "guide": "Guide"
   },
   "hero": {
     "title": "Own Your Dream Property in Spain",
@@ -485,7 +486,8 @@
     "address": "Valencia, Spain",
     "copyright": "© 2026 Lock & Loft. All rights reserved.",
     "remax_note": "Serving in partnership with RE/MAX.",
-    "privacy": "Privacy Policy"
+    "privacy": "Privacy Policy",
+    "guide": "Valencia & Alicante guide"
   },
   "interstitials": {
     "interstitial1_line1": "Life Along",

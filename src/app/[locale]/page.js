@@ -12,6 +12,7 @@ import MarketNotes from '@/components/sections/MarketNotes';
 import CTASection from '@/components/sections/CTASection';
 import ParallaxBreak from '@/components/ui/ParallaxBreak';
 import { InterstitialWrapper } from '@/components/ui/InterstitialWrapper';
+import GuideTeaser from '@/components/sections/GuideTeaser';
 import AppPromo from '@/components/app/AppPromo';
 import ScrollToHash from '@/components/ui/ScrollToHash';
 
@@ -33,6 +34,7 @@ export default async function HomePage({ params }) {
       />
       <Services />
       <Process />
+      <GuideTeaser />
       <InterstitialWrapper
         image="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1920&q=80&auto=format"
         alt="Modern Mediterranean villa"

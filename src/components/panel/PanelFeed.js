@@ -5,6 +5,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { ArrowRight } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { localePath } from '@/lib/routes';
+import GuideTeaser from '@/components/sections/GuideTeaser';
 import { fetchNotes, noteTitle, noteSummary, noteDate } from '@/lib/marketNotes';
 
 const pick = (r, base, l) => [l, 'tr', 'en', 'es', 'de'].map((x) => r[`${base}_${x}`]).find((v) => v && String(v).trim()) || '';
@@ -24,9 +25,11 @@ export default function PanelFeed() {
       .then(({ data }) => setPosts(data || []));
   }, []);
 
-  if (!notes.length && !posts.length) return null;
   return (
-    <div className="mt-10 grid lg:grid-cols-[3fr_2fr] gap-6">
+    <>
+    <GuideTeaser variant="panel" />
+    {(notes.length > 0 || posts.length > 0) && (
+    <div className="mt-6 grid lg:grid-cols-[3fr_2fr] gap-6">
       {notes.length > 0 && (
         <section className="dark-card rounded-2xl shadow-sm p-6">
           <div className="flex items-baseline justify-between gap-3 mb-4">
@@ -65,5 +68,7 @@ export default function PanelFeed() {
         </section>
       )}
     </div>
+    )}
+    </>
   );
 }

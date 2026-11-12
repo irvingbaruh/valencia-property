@@ -13,6 +13,7 @@ export const ROUTES = {
   hakkimizda: { tr: 'hakkimizda', es: 'nosotros', en: 'about', de: 'ueber-uns' },
   remax: { tr: 'remax', es: 'remax', en: 'remax', de: 'remax' },
   sss: { tr: 'sss', es: 'preguntas-frecuentes', en: 'faq', de: 'haeufige-fragen' },
+  rehber: { tr: 'rehber', es: 'guia', en: 'guide', de: 'ratgeber' },
   sozluk: { tr: 'sozluk', es: 'glosario', en: 'glossary', de: 'glossar' },
   'sifre-yenile': { tr: 'sifre-yenile', es: 'restablecer-contrasena', en: 'reset-password', de: 'passwort-zuruecksetzen' },
 };

@@ -31,6 +31,7 @@ export default function Footer() {
       title: t('services_title'),
       links: [
         { label: t('resources'), href: `/${locale}/blog/` },
+        { label: t('guide'), href: localePath(locale, 'rehber') },
         { label: t('roi_calc'), href: localePath(locale, 'roi-hesaplama') },
         { label: t('faq'), href: localePath(locale, 'sss') },
         { label: t('glossary'), href: localePath(locale, 'sozluk') },
