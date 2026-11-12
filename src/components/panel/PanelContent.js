@@ -10,6 +10,9 @@ import PushQuickCard from '@/components/panel/PushQuickCard';
 import PanelFeed from '@/components/panel/PanelFeed';
 import MemberPushSettings from '@/components/panel/MemberPushSettings';
 import DocumentManager from '@/components/documents/DocumentManager';
+import { benefits } from '@/lib/memberBenefits';
+import { guide } from '@/lib/guideContent';
+import { areaUi } from '@/lib/areaContent';
 import { User, Heart, Settings, LogOut, Trash2, MapPin, BedDouble, Maximize2, Phone, Globe, Save, Check, Flag, FileCheck, MessageCircle, Shield, Briefcase, Clock, CheckCircle2, ArrowRight, ChevronRight, Bell, FileText } from 'lucide-react';
 import Link from 'next/link';
 import { localePath } from '@/lib/routes';
@@ -471,6 +474,7 @@ export default function PanelContent() {
     { id: 'documents', label: t('tabDocuments'), icon: FileText },
     { id: 'notifications', label: t('tabNotifications'), icon: Bell, badge: unreadCount },
     { id: 'profile', label: t('profile'), icon: User },
+    { id: 'guide', label: benefits(locale).guideLabel, icon: MapPin },
     { id: 'settings', label: t('settings'), icon: Settings },
   ];
 
@@ -487,7 +491,7 @@ export default function PanelContent() {
           </div>
           <button
             onClick={handleSignOut}
-            className="flex items-center gap-2 px-4 py-2 text-sm text-[var(--color-charcoal)] hover:text-red-600 border border-gray-200 rounded-xl hover:border-red-200 transition-colors"
+            className="ll-logout flex items-center gap-2 px-4 py-2 text-sm text-[var(--color-charcoal)] hover:text-red-600 border border-gray-200 rounded-xl hover:border-red-200 transition-colors"
           >
             <LogOut className="w-4 h-4" />
             {tAuth('logout')}
@@ -754,6 +758,18 @@ export default function PanelContent() {
         )}
 
         {/* Settings Tab — placeholder for now */}
+        {activeTab === 'guide' && (
+          <div className="grid sm:grid-cols-3 gap-4">
+            {[['rehber', guide(locale).title, guide(locale).subtitle], ['semtler', areaUi(locale).areas.title, areaUi(locale).areas.subtitle], ['okullar', areaUi(locale).schools.title, areaUi(locale).schools.subtitle]].map(([key, title, sub]) => (
+              <a key={key} href={localePath(locale, key)} className="dark-card rounded-2xl shadow-sm p-6 border border-[var(--color-gold)]/30 hover:border-[var(--color-gold)] transition-colors">
+                <MapPin className="w-5 h-5 text-[var(--color-gold)] mb-3" />
+                <p className="font-serif text-lg text-[var(--color-dark)]">{title}</p>
+                <p className="text-sm text-[var(--color-charcoal)] mt-1">{sub}</p>
+              </a>
+            ))}
+          </div>
+        )}
+
         {activeTab === 'settings' && (
           <div className="dark-card rounded-2xl shadow-sm p-8 max-w-lg">
             <h2 className="text-xl font-serif text-[var(--color-dark)] mb-4">{t('mailingTitle')}</h2>

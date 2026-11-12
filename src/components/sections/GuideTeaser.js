@@ -4,12 +4,15 @@ import { useLocale } from 'next-intl';
 import { ArrowRight, MapPin } from 'lucide-react';
 import { localePath } from '@/lib/routes';
 import { guide } from '@/lib/guideContent';
+import { benefits } from '@/lib/memberBenefits';
+import { useAuth } from '@/components/providers/AuthProvider';
 
 // Short invitation to the Valencia & Alicante living guide. variant: 'home' (full-width band) | 'panel' (compact card).
 export default function GuideTeaser({ variant = 'home' }) {
   const locale = useLocale();
-  const { teaser } = guide(locale);
-  const href = localePath(locale, 'rehber');
+  const { user } = useAuth();
+  const teaser = user ? guide(locale).teaser : benefits(locale).teaser;
+  const href = user ? localePath(locale, 'rehber') : `${localePath(locale, 'giris')}?app=1`;
   if (variant === 'panel') {
     return (
       <a href={href} className="mt-10 dark-card rounded-2xl shadow-sm p-6 flex items-center gap-4 border border-[var(--color-gold)]/30 hover:border-[var(--color-gold)] transition-colors">

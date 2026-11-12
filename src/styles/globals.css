@@ -219,3 +219,6 @@ html, body { overflow-x: clip; max-width: 100%; }
 /* Installed app: room for the bottom tab bar, and the chat button sits above it */
 html.ll-standalone body { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
 html.ll-standalone button.fixed.bottom-5.right-5 { bottom: calc(76px + env(safe-area-inset-bottom)); }
+
+/* Installed app: the member stays signed in, so there is no sign-out button */
+html.ll-standalone .ll-logout { display: none !important; }

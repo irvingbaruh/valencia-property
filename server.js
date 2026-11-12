@@ -136,7 +136,7 @@ const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 let SEO = { home: {}, pages: {}, services: {} };
 try { SEO = JSON.parse(fs.readFileSync(path.join(__dirname, 'seo-meta.json'), 'utf8')); } catch (e) { console.error('seo-meta.json missing'); }
 
-const PAGE_KEYS = ['iletisim', 'hizmetler', 'mulkler', 'roi-hesaplama', 'piyasa', 'blog', 'gizlilik', 'hakkimizda', 'remax', 'sss', 'sozluk', 'rehber', 'semtler', 'okullar'];
+const PAGE_KEYS = ['iletisim', 'hizmetler', 'mulkler', 'roi-hesaplama', 'piyasa', 'blog', 'gizlilik', 'hakkimizda', 'remax', 'sss', 'sozluk'];
 const SERVICE_KEYS = ['mulk-arama', 'hukuki-destek', 'dekorasyon-mobilya', 'renovasyon', 'kira-yonetimi', 'home-staging'];
 const NOINDEX_KEYS = ['giris', 'panel', 'sifre-yenile'];
 

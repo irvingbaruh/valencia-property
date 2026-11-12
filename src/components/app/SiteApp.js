@@ -49,14 +49,6 @@ export default function SiteApp() {
     return () => { clearTimeout(timer); window.removeEventListener('beforeinstallprompt', onPrompt); window.removeEventListener('appinstalled', onInstalled); };
   }, []);
 
-  // Opening the installed app lands on the member panel (or sign-in), not on the marketing home page.
-  useEffect(() => {
-    if (!standalone || loading) return;
-    const q = new URLSearchParams(window.location.search);
-    if (q.get('source') !== 'app' || !/^\/(tr|es|en|de)\/?$/.test(window.location.pathname)) return;
-    router.replace(user ? localePath(locale, 'panel') : `${localePath(locale, 'giris')}?app=1`);
-  }, [standalone, loading, user, locale, router]);
-
   const dismiss = () => {
     setShow(false);
     try { localStorage.setItem(SNOOZE_KEY, String(Date.now() + 14 * 864e5)); } catch {}
