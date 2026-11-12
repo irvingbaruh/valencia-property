@@ -20,7 +20,7 @@ export const PAGES = {
     sub: L('Festivaller, doğa, deniz ve gastronomi: dolu bir takvim.', 'Fiestas, naturaleza, mar y gastronomía: un calendario lleno.', 'Festivals, nature, sea and food: a full calendar.', 'Feste, Natur, Meer und Gastronomie: ein voller Kalender.'), hero: 'calpe-stairs',
     meta: L('Valencia ve Alicante’de yapılacaklar', 'Qué hacer en Valencia y Alicante', 'Things to do in Valencia and Alicante', 'Aktivitäten in Valencia und Alicante') },
   okullar: { nav: L('Okullar', 'Colegios', 'Schools', 'Schulen'), title: L('Uluslararası okullar', 'Colegios internacionales', 'International schools', 'Internationale Schulen'),
-    sub: L('Müfredat, yaş aralığı ve yayımlanmış yıllık ücretler.', 'Currículo, edades y cuotas anuales publicadas.', 'Curriculum, ages and published annual fees.', 'Lehrplan, Alter und veröffentlichte Jahresgebühren.'), hero: null },
+    sub: L('Müfredat, yaş aralığı ve yayımlanmış yıllık ücretler.', 'Currículo, edades y cuotas anuales publicadas.', 'Curriculum, ages and published annual fees.', 'Lehrplan, Alter und veröffentlichte Jahresgebühren.'), hero: 'okullar' },
 };
 export const PAGE_ORDER = ['rehber', 'yasam', 'semtler', 'nerede', 'bolgeler', 'aktiviteler', 'okullar'];
 
@@ -30,7 +30,7 @@ export const HUB = {
   nerede: { icon: 'Compass', img: 'v-artes2', text: L('Ruzafa, El Carmen, Gran Vía, Santa Cruz…', 'Ruzafa, El Carmen, Gran Vía, Santa Cruz…', 'Ruzafa, El Carmen, Gran Vía, Santa Cruz…', 'Ruzafa, El Carmen, Gran Vía, Santa Cruz…') },
   bolgeler: { icon: 'Waves', img: 'calpe-bay', text: L('Altea, Calpe, Benidorm, Jávea…', 'Altea, Calpe, Benidorm, Jávea…', 'Altea, Calpe, Benidorm, Jávea…', 'Altea, Calpe, Benidorm, Jávea…') },
   aktiviteler: { icon: 'PartyPopper', img: 'calpe-stairs', text: L('Festivaller, doğa, deniz', 'Fiestas, naturaleza, mar', 'Festivals, nature, sea', 'Feste, Natur, Meer') },
-  okullar: { icon: 'GraduationCap', img: null, text: L('Uluslararası okullar ve ücretler', 'Colegios internacionales y cuotas', 'International schools and fees', 'Internationale Schulen und Gebühren') },
+  okullar: { icon: 'GraduationCap', img: 'okullar', text: L('Uluslararası okullar ve ücretler', 'Colegios internacionales y cuotas', 'International schools and fees', 'Internationale Schulen und Gebühren') },
 };
 
 export const STR = {
