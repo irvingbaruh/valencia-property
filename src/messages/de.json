@@ -921,7 +921,7 @@
       {
         "h": "KI-Chat-Assistent",
         "p": [
-          "Nachrichten, die Sie im Chat-Assistenten der Website eingeben, werden zur Erstellung einer Antwort an den KI-Dienst von DeepSeek gesendet. Die Server dieses Anbieters können sich außerhalb des Europäischen Wirtschaftsraums befinden, auch in China. Bitte teilen Sie im Chat keine Passwörter, Ausweis- oder Passnummern, Zahlungsdaten oder andere sensible Informationen mit.",
+          "Nachrichten, die Sie im Chat-Assistenten der Website eingeben, werden zur Erstellung einer Antwort an den KI-Dienst von Anthropic (Claude) gesendet. Dieser Anbieter kann Daten außerhalb des Europäischen Wirtschaftsraums verarbeiten, auch in den Vereinigten Staaten. Bitte teilen Sie im Chat daher keine Passwörter, Ausweis- oder Passnummern, Zahlungsdaten oder andere sensible Informationen mit.",
           "Name, E-Mail und Telefonnummer, die Sie im Kontaktformular des Chats hinterlassen, werden nicht an das KI-Modell gesendet; sie erreichen nur uns, damit wir uns bei Ihnen melden können. Gespräche werden in unserem System gespeichert, um nachzufassen und den Dienst zu verbessern; Sie können die Löschung unter info@lockandloft.com verlangen. Der Assistent kann Fehler machen und gibt keine Rechts- oder Finanzberatung."
         ]
       },
