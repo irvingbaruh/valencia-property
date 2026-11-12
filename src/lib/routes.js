@@ -14,6 +14,8 @@ export const ROUTES = {
   remax: { tr: 'remax', es: 'remax', en: 'remax', de: 'remax' },
   sss: { tr: 'sss', es: 'preguntas-frecuentes', en: 'faq', de: 'haeufige-fragen' },
   rehber: { tr: 'rehber', es: 'guia', en: 'guide', de: 'ratgeber' },
+  semtler: { tr: 'semtler', es: 'barrios', en: 'neighbourhoods', de: 'stadtteile' },
+  okullar: { tr: 'okullar', es: 'colegios-internacionales', en: 'international-schools', de: 'internationale-schulen' },
   sozluk: { tr: 'sozluk', es: 'glosario', en: 'glossary', de: 'glossar' },
   'sifre-yenile': { tr: 'sifre-yenile', es: 'restablecer-contrasena', en: 'reset-password', de: 'passwort-zuruecksetzen' },
 };

@@ -233,6 +233,42 @@
     "t": "Leben in Valencia und Alicante: ein Ratgeber | Lock & Loft",
     "d": "Wie sind Valencia und Alicante wirklich? Ein ehrlicher Ratgeber zu Alltag, Verkehr, Sicherheit, Vierteln, Orten, Aktivitäten und internationalen Schulen."
    }
+  },
+  "semtler": {
+   "tr": {
+    "t": "Valencia ve Alicante semtleri: fiyat, kira ve yaşam | Lock & Loft",
+    "d": "Semt semt Valencia, Alicante ve Costa Blanca: metrekare fiyatları, kira seviyeleri ve hangi semt kime uygun. Üyelere özel."
+   },
+   "es": {
+    "t": "Barrios de Valencia y Alicante: precios, alquiler y ambiente | Lock & Loft",
+    "d": "Barrio a barrio en Valencia, Alicante y la Costa Blanca: precios por m², alquileres y para quién es cada zona. Solo para miembros."
+   },
+   "en": {
+    "t": "Valencia and Alicante neighbourhoods: prices, rents and feel | Lock & Loft",
+    "d": "Neighbourhood by neighbourhood across Valencia, Alicante and the Costa Blanca: price per m², rents and who each area suits. Members only."
+   },
+   "de": {
+    "t": "Viertel in Valencia und Alicante: Preise, Mieten und Flair | Lock & Loft",
+    "d": "Viertel für Viertel in Valencia, Alicante und an der Costa Blanca: Quadratmeterpreise, Mieten und für wen sich jedes Gebiet eignet. Nur für Mitglieder."
+   }
+  },
+  "okullar": {
+   "tr": {
+    "t": "Valencia ve Alicante uluslararası okulları | Lock & Loft",
+    "d": "Valencia ve Alicante çevresindeki uluslararası okullar: müfredat, yaş aralığı ve yayımlanmış ücret aralıkları. Üyelere özel."
+   },
+   "es": {
+    "t": "Colegios internacionales en Valencia y Alicante | Lock & Loft",
+    "d": "Colegios internacionales en Valencia y Alicante: currículo, edades y horquillas de cuotas publicadas. Solo para miembros."
+   },
+   "en": {
+    "t": "International schools in Valencia and Alicante | Lock & Loft",
+    "d": "International schools around Valencia and Alicante: curriculum, ages and published fee ranges. Members only."
+   },
+   "de": {
+    "t": "Internationale Schulen in Valencia und Alicante | Lock & Loft",
+    "d": "Internationale Schulen um Valencia und Alicante: Lehrplan, Alter und veröffentlichte Gebührenspannen. Nur für Mitglieder."
+   }
   }
  },
  "services": {

@@ -1,6 +1,8 @@
 import { setRequestLocale } from 'next-intl/server';
 import { guide } from '@/lib/guideContent';
 import GuideCta from '@/components/sections/GuideCta';
+import { areaUi } from '@/lib/areaContent';
+import { localePath } from '@/lib/routes';
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -12,6 +14,7 @@ export default async function GuidePage({ params }) {
   const { locale } = await params;
   setRequestLocale(locale);
   const g = guide(locale);
+  const ui = areaUi(locale);
   const midAfter = g.sections.findIndex((s) => s.id === 'alicante-semtler');
 
   return (
@@ -54,6 +57,16 @@ export default async function GuidePage({ params }) {
             )}
           </div>
         ))}
+
+        <div className="grid sm:grid-cols-2 gap-4">
+          {[['semtler', ui.areas], ['okullar', ui.schools]].map(([key, p]) => (
+            <a key={key} href={localePath(locale, key)} className="dark-card border border-gold/30 rounded-xl p-5 hover:border-gold transition-colors">
+              <h3 className="font-serif text-xl text-dark mb-1">{p.title}</h3>
+              <p className="text-sm text-text-muted">{p.subtitle}</p>
+              <p className="text-sm text-gold mt-3">{ui.lockTitle}</p>
+            </a>
+          ))}
+        </div>
 
         <GuideCta {...g.cta} />
         <p className="text-xs text-text-muted">{g.disclaimer}</p>
