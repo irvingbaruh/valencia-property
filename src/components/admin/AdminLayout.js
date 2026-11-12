@@ -26,6 +26,7 @@ import {
   MessageSquare,
   MailCheck,
   BarChart3,
+  Star,
 } from 'lucide-react';
 
 export const ADMIN_BASE = '/lockandloft/admin';
@@ -37,6 +38,7 @@ const navItems = [
   { id: 'piyasa', href: '/piyasa', icon: Newspaper, label: 'Piyasa Notları' },
   { id: 'trafik', href: '/trafik', icon: BarChart3, label: 'Trafik' },
   { id: 'sohbetler', href: '/sohbetler', icon: MessageSquare, label: 'Sohbetler' },
+  { id: 'yorumlar', href: '/yorumlar', icon: Star, label: 'Yorumlar' },
   { id: 'hizmetler', href: '/hizmetler', icon: Briefcase, label: 'Hizmetler' },
   { id: 'blog', href: '/blog', icon: PenSquare, label: 'Blog' },
   { id: 'mailing', href: '/mailing', icon: Mail, label: 'Mailing' },

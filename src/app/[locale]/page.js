@@ -6,7 +6,7 @@ import Properties from '@/components/sections/Properties';
 import Services from '@/components/sections/Services';
 import Process from '@/components/sections/Process';
 import ROICalculator from '@/components/sections/ROICalculator';
-import Testimonials from '@/components/sections/Testimonials';
+import Reviews from '@/components/sections/Reviews';
 import NewListings from '@/components/sections/NewListings';
 import MarketNotes from '@/components/sections/MarketNotes';
 import CTASection from '@/components/sections/CTASection';
@@ -45,7 +45,7 @@ export default async function HomePage({ params }) {
       <NewListings />
       <MarketNotes />
       <AppPromo />
-      <Testimonials />
+      <Reviews />
       <CTASection />
     </>
   );
