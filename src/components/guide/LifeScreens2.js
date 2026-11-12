@@ -1,9 +1,10 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useLocale } from 'next-intl';
 import { Palmtree, Laptop, Briefcase, GraduationCap, Info, Building2, ShieldCheck, Siren, Clock, Thermometer, Wallet, DoorOpen, Languages, CloudRain, Ban, Volume2, MapPin, ArrowRight, RotateCcw, CalendarDays, Hospital } from 'lucide-react';
 import { localePath } from '@/lib/routes';
+import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { trackFunnel } from '@/lib/funnel';
 import { VISAS, VISA_NOTES, TAX, SCHOOL_TYPES, SCHOOL_FACTS, SCHOOL_TR, CLIMATE, CLIMATE_NOTES, HEALTH_BLOCKS, HOSPITALS, EVENTS, QUIZ, QUIZ_FLIGHT_TR, CONS, LIFE2_SOURCES, months, life2Ui } from '@/lib/lifeContent2';
@@ -229,7 +230,25 @@ export function Events() {
   const m = months(locale);
   const now = new Date().getMonth();
   const [only, setOnly] = useState(false);
-  const list = EVENTS.filter((e) => !only || e.m === now);
+  // Admin-edited events (city_events table); the static list stays as the fallback.
+  const [rows, setRows] = useState(null);
+  useEffect(() => {
+    let live = true;
+    supabase.from('city_events').select('*').eq('status', 'published').then(({ data, error }) => {
+      if (live && !error && data?.length) setRows(data);
+    }, () => {});
+    return () => { live = false; };
+  }, []);
+  const all = useMemo(() => {
+    if (!rows) return EVENTS;
+    const pickL = (r, base) => ({ tr: r[`${base}_tr`], es: r[`${base}_es`], en: r[`${base}_en`], de: r[`${base}_de`] });
+    return rows.map((r) => ({
+      m: r.recurring_month ? r.recurring_month - 1 : new Date(`${r.start_date}T12:00:00`).getMonth(),
+      sort: r.start_date || '',
+      city: r.city, name: pickL(r, 'title'), date: pickL(r, 'date_label'), t: pickL(r, 'summary'),
+    })).sort((a, b) => a.m - b.m || a.sort.localeCompare(b.sort));
+  }, [rows]);
+  const list = all.filter((e) => !only || e.m === now);
   const cityName = (c) => (c === 'both' ? 'Valencia · Alicante' : c === 'valencia' ? 'Valencia' : 'Alicante');
   return (
     <section>
