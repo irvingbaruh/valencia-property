@@ -2,7 +2,7 @@
 const L = (tr, es, en, de) => ({ tr, es, en, de });
 
 export const PAGES = {
-  rehber: { nav: L('Genel bakış', 'Resumen', 'Overview', 'Überblick'), title: L('Şehir rehberi', 'Guía de la ciudad', 'City guide', 'Stadtführer'),
+  rehber: { nav: L('Genel bakış', 'Resumen', 'Overview', 'Überblick'), title: L('Valencia & Alicante rehberi', 'Guía Valencia y Alicante', 'Valencia & Alicante guide', 'Valencia & Alicante Ratgeber'),
     sub: L('Valencia, Alicante ve Costa Blanca: yaşam, semtler, okullar ve yapılacaklar.', 'Valencia, Alicante y la Costa Blanca: vida diaria, barrios, colegios y planes.', 'Valencia, Alicante and the Costa Blanca: daily life, neighbourhoods, schools and things to do.', 'Valencia, Alicante und Costa Blanca: Alltag, Viertel, Schulen und Aktivitäten.'),
     hero: 'calpe-bay' },
   yasam: { nav: L('Yaşam ve ulaşım', 'Vida y transporte', 'Life & transport', 'Alltag & Verkehr'), title: L('Yaşam, ulaşım ve güvenlik', 'Vida, transporte y seguridad', 'Life, transport and safety', 'Alltag, Verkehr und Sicherheit'),
@@ -13,17 +13,21 @@ export const PAGES = {
   bolgeler: { nav: L('Costa Blanca', 'Costa Blanca', 'Costa Blanca', 'Costa Blanca'), title: L('Costa Blanca kasabaları', 'Pueblos de la Costa Blanca', 'Costa Blanca towns', 'Orte der Costa Blanca'),
     sub: L('Altea, Calpe, Benidorm, Jávea ve diğerleri: hangisi kime uygun.', 'Altea, Calpe, Benidorm, Jávea y más: cuál encaja con cada perfil.', 'Altea, Calpe, Benidorm, Jávea and more: which suits whom.', 'Altea, Calpe, Benidorm, Jávea und mehr: was zu wem passt.'), hero: 'benidorm',
     meta: L('Costa Blanca kasabaları: Altea, Calpe, Benidorm, Jávea', 'Pueblos de la Costa Blanca: Altea, Calpe, Benidorm, Jávea', 'Costa Blanca towns: Altea, Calpe, Benidorm, Jávea', 'Orte der Costa Blanca: Altea, Calpe, Benidorm, Jávea') },
+  nerede: { nav: L('Şehir içi', 'Dentro de la ciudad', 'Inside the city', 'In der Stadt'), title: L('Şehrin içinde ne nerede?', '¿Qué hay dónde?', 'What is where?', 'Was ist wo?'),
+    sub: L('Valencia ve Alicante’de semt semt gece hayatı, restoranlar, kültür ve plajlar.', 'Valencia y Alicante barrio a barrio: ocio nocturno, restaurantes, cultura y playas.', 'Valencia and Alicante area by area: nightlife, restaurants, culture and beaches.', 'Valencia und Alicante Viertel für Viertel: Nachtleben, Restaurants, Kultur und Strände.'), hero: 'alicante',
+    meta: L('Valencia ve Alicante şehir içi rehberi', 'Guía por barrios de Valencia y Alicante', 'Valencia and Alicante area guide', 'Viertelführer Valencia und Alicante') },
   aktiviteler: { nav: L('Aktiviteler', 'Actividades', 'Things to do', 'Aktivitäten'), title: L('Neler yapılır?', '¿Qué hacer?', 'Things to do', 'Was kann man unternehmen?'),
     sub: L('Festivaller, doğa, deniz ve gastronomi: dolu bir takvim.', 'Fiestas, naturaleza, mar y gastronomía: un calendario lleno.', 'Festivals, nature, sea and food: a full calendar.', 'Feste, Natur, Meer und Gastronomie: ein voller Kalender.'), hero: 'calpe-stairs',
     meta: L('Valencia ve Alicante’de yapılacaklar', 'Qué hacer en Valencia y Alicante', 'Things to do in Valencia and Alicante', 'Aktivitäten in Valencia und Alicante') },
   okullar: { nav: L('Okullar', 'Colegios', 'Schools', 'Schulen'), title: L('Uluslararası okullar', 'Colegios internacionales', 'International schools', 'Internationale Schulen'),
     sub: L('Müfredat, yaş aralığı ve yayımlanmış yıllık ücretler.', 'Currículo, edades y cuotas anuales publicadas.', 'Curriculum, ages and published annual fees.', 'Lehrplan, Alter und veröffentlichte Jahresgebühren.'), hero: null },
 };
-export const PAGE_ORDER = ['rehber', 'yasam', 'semtler', 'bolgeler', 'aktiviteler', 'okullar'];
+export const PAGE_ORDER = ['rehber', 'yasam', 'semtler', 'nerede', 'bolgeler', 'aktiviteler', 'okullar'];
 
 export const HUB = {
   yasam: { icon: 'Sun', img: 'altea-street', text: L('Günlük hayat, ulaşım ve güvenlik', 'Vida diaria, transporte y seguridad', 'Daily life, transport and safety', 'Alltag, Verkehr und Sicherheit') },
   semtler: { icon: 'Building2', img: 'alicante', text: L('Valencia ve Alicante: fiyat ve kira', 'Valencia y Alicante: precio y alquiler', 'Valencia and Alicante: price and rent', 'Valencia und Alicante: Preis und Miete') },
+  nerede: { icon: 'Compass', img: 'altea-flowers', text: L('Ruzafa, El Carmen, Gran Vía, Santa Cruz…', 'Ruzafa, El Carmen, Gran Vía, Santa Cruz…', 'Ruzafa, El Carmen, Gran Vía, Santa Cruz…', 'Ruzafa, El Carmen, Gran Vía, Santa Cruz…') },
   bolgeler: { icon: 'Waves', img: 'calpe-bay', text: L('Altea, Calpe, Benidorm, Jávea…', 'Altea, Calpe, Benidorm, Jávea…', 'Altea, Calpe, Benidorm, Jávea…', 'Altea, Calpe, Benidorm, Jávea…') },
   aktiviteler: { icon: 'PartyPopper', img: 'calpe-stairs', text: L('Festivaller, doğa, deniz', 'Fiestas, naturaleza, mar', 'Festivals, nature, sea', 'Feste, Natur, Meer') },
   okullar: { icon: 'GraduationCap', img: null, text: L('Uluslararası okullar ve ücretler', 'Colegios internacionales y cuotas', 'International schools and fees', 'Internationale Schulen und Gebühren') },

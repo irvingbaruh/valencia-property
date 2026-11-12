@@ -473,8 +473,8 @@ export default function PanelContent() {
     { id: 'documents', label: t('tabDocuments'), icon: FileText },
     { id: 'notifications', label: t('tabNotifications'), icon: Bell, badge: unreadCount },
     { id: 'profile', label: t('profile'), icon: User },
-    { id: 'guide', label: benefits(locale).guideLabel, icon: MapPin },
     { id: 'settings', label: t('settings'), icon: Settings },
+    { id: 'guide', label: benefits(locale).guideLabel, icon: MapPin, wide: true },
   ];
 
   return (
@@ -501,11 +501,11 @@ export default function PanelContent() {
 
         {/* Tabs */}
         <div className="grid grid-cols-3 gap-1 sm:flex dark-card rounded-xl p-1 shadow-sm mb-8 sm:overflow-x-auto">
-          {tabs.map(({ id, label, icon: Icon, badge }) => (
+          {tabs.map(({ id, label, icon: Icon, badge, wide }) => (
             <button
               key={id}
               onClick={() => setActiveTab(id)}
-              className={`relative min-w-0 sm:flex-1 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-1 sm:px-3 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-medium leading-tight text-center sm:whitespace-nowrap transition-colors ${
+              className={`relative min-w-0 ${wide ? 'col-span-3 sm:col-span-1 border border-[var(--color-gold)]/50 sm:border-transparent' : ''} sm:flex-1 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-1 sm:px-3 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-medium leading-tight text-center sm:whitespace-nowrap transition-colors ${
                 activeTab === id
                   ? 'bg-[var(--color-gold)] text-white'
                   : 'text-[var(--color-charcoal)] hover:bg-gray-50'

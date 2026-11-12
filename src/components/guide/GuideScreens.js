@@ -1,8 +1,10 @@
 'use client';
 
+import { useState } from 'react';
 import { useLocale } from 'next-intl';
-import { Sun, Building2, MapPin, Utensils, TrainFront, Car, Plane, Umbrella, Eye, Waves, Landmark, Clock, TriangleAlert, GraduationCap, Bus, Users, TrendingUp, Compass, Euro, Home, Info } from 'lucide-react';
+import { Sun, Building2, MapPin, Utensils, TrainFront, Car, Plane, Umbrella, Eye, Waves, Landmark, Clock, TriangleAlert, GraduationCap, Bus, Users, TrendingUp, Compass, Euro, Home, Info, Moon, Leaf, ShoppingBag, Heart } from 'lucide-react';
 import { AREAS, SCHOOLS, CITY_STATS, areaUi } from '@/lib/areaContent';
+import { PLACES, CATS, PLACE_SOURCES } from '@/lib/placesContent';
 import { guide } from '@/lib/guideContent';
 import { PAGES, STR } from '@/lib/guideUi';
 import GuideShell from '@/components/guide/GuideShell';
@@ -203,6 +205,55 @@ function Activities({ locale, g }) {
   );
 }
 
+const CAT_ICON = { food: Utensils, nightlife: Moon, culture: Landmark, nature: Leaf, beach: Waves, family: Users, shopping: ShoppingBag };
+const FILTERS = ['all', 'food', 'nightlife', 'culture', 'nature', 'beach', 'family', 'shopping'];
+const ALL = { tr: 'Hepsi', es: 'Todo', en: 'All', de: 'Alle' };
+
+function Places({ locale, ui }) {
+  const [f, setF] = useState('all');
+  const st = { tr: 'Kaynaklar', es: 'Fuentes', en: 'Sources', de: 'Quellen' };
+  const note = { tr: 'Bilgiler herkese açık turizm ve basın kaynaklarından özetlendi; mekân saatleri ve fiyatları değişebilir.', es: 'Resumen de guías turísticas y prensa públicas; horarios y precios pueden cambiar.', en: 'Summarised from public tourism and press sources; opening hours and prices can change.', de: 'Zusammengefasst aus öffentlichen Tourismus- und Pressequellen; Öffnungszeiten und Preise können sich ändern.' };
+  return (
+    <>
+      <div className="flex flex-wrap gap-2" role="group">
+        {FILTERS.map((k) => {
+          const Icn = CAT_ICON[k];
+          return (
+            <button key={k} onClick={() => setF(k)} aria-pressed={f === k}
+              className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-medium border transition-colors ${f === k ? 'bg-gold text-dark border-gold' : 'border-white/15 text-text-muted hover:border-gold/60'}`}>
+              {Icn && <Icn size={14} />}{k === 'all' ? t(ALL, locale) : t(CATS[k], locale)}
+            </button>
+          );
+        })}
+      </div>
+      {['valencia', 'alicante'].map((c) => {
+        const list = PLACES.filter((p) => p.city === c && (f === 'all' || p.cats.includes(f)));
+        if (!list.length) return null;
+        return (
+          <section key={c}>
+            <SectionTitle Icon={MapPin}>{ui.cities[c]}</SectionTitle>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {list.map((p) => (
+                <article key={p.id} className="rounded-2xl dark-card border border-white/10 p-5">
+                  <h3 className="font-serif text-lg text-dark leading-tight mb-2">{p.name}</h3>
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {p.cats.map((k) => { const Icn = CAT_ICON[k]; return <span key={k} className="inline-flex items-center gap-1 rounded-full bg-gold/15 text-gold px-2.5 py-0.5 text-xs"><Icn size={12} />{t(CATS[k], locale)}</span>; })}
+                  </div>
+                  <p className="text-sm text-text-muted leading-relaxed">{t(p.t, locale)}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        );
+      })}
+      <div className="text-xs text-text-muted space-y-1">
+        <p><strong>{t(st, locale)}:</strong> {PLACE_SOURCES.map(([n, u], i) => (<span key={u}>{i > 0 && ', '}<a href={u} target="_blank" rel="noopener noreferrer" className="underline">{n}</a></span>))}</p>
+        <p>{t(note, locale)}</p>
+      </div>
+    </>
+  );
+}
+
 function Schools({ locale, g, ui }) {
   const nf = new Intl.NumberFormat(locale);
   const rows = SCHOOLS.filter((s) => s.fees).map((s) => ({ name: s.name, min: s.fees[0], max: s.fees[1], label: `${nf.format(s.fees[0])} - ${nf.format(s.fees[1])} €` }));
@@ -248,10 +299,11 @@ export default function GuideScreens({ page }) {
   const g = guide(locale);
   const ui = areaUi(locale);
   return (
-    <GuideShell page={page} sources={page !== 'aktiviteler' && page !== 'yasam' && page !== 'rehber'}>
+    <GuideShell page={page} sources={page !== 'nerede' && page !== 'aktiviteler' && page !== 'yasam' && page !== 'rehber'}>
       {page === 'rehber' && <Hub locale={locale} g={g} />}
       {page === 'yasam' && <Life locale={locale} g={g} />}
       {page === 'semtler' && <Areas locale={locale} cities={['valencia', 'alicante']} ui={ui} />}
+      {page === 'nerede' && <Places locale={locale} ui={ui} />}
       {page === 'bolgeler' && <Coast locale={locale} g={g} ui={ui} />}
       {page === 'aktiviteler' && <Activities locale={locale} g={g} />}
       {page === 'okullar' && <Schools locale={locale} g={g} ui={ui} />}

@@ -94,6 +94,7 @@ const ROUTES = {
   okullar: { es: 'colegios-internacionales', en: 'international-schools', de: 'internationale-schulen' },
   yasam: { es: 'vida-diaria', en: 'daily-life', de: 'alltag' },
   bolgeler: { es: 'costa-blanca', en: 'costa-blanca', de: 'costa-blanca' },
+  nerede: { es: 'que-ver', en: 'whats-where', de: 'was-wo' },
   aktiviteler: { es: 'actividades', en: 'activities', de: 'aktivitaeten' },
   sozluk: { es: 'glosario', en: 'glossary', de: 'glossar' },
   'sifre-yenile': { es: 'restablecer-contrasena', en: 'reset-password', de: 'passwort-zuruecksetzen' },
