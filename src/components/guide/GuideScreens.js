@@ -234,12 +234,15 @@ function Places({ locale, ui }) {
             <SectionTitle Icon={MapPin}>{ui.cities[c]}</SectionTitle>
             <div className="grid sm:grid-cols-2 gap-4">
               {list.map((p) => (
-                <article key={p.id} className="rounded-2xl dark-card border border-white/10 p-5">
+                <article key={p.id} className="rounded-2xl dark-card border border-white/10 overflow-hidden">
+                  {p.img && <img src={`/images/guide/${p.img}.jpg`} alt="" loading="lazy" className="w-full h-48 object-cover" />}
+                  <div className="p-5">
                   <h3 className="font-serif text-lg text-dark leading-tight mb-2">{p.name}</h3>
                   <div className="flex flex-wrap gap-1.5 mb-3">
                     {p.cats.map((k) => { const Icn = CAT_ICON[k]; return <span key={k} className="inline-flex items-center gap-1 rounded-full bg-gold/15 text-gold px-2.5 py-0.5 text-xs"><Icn size={12} />{t(CATS[k], locale)}</span>; })}
                   </div>
                   <p className="text-sm text-text-muted leading-relaxed">{t(p.t, locale)}</p>
+                  </div>
                 </article>
               ))}
             </div>
