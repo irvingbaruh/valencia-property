@@ -16,6 +16,9 @@ export const ROUTES = {
   rehber: { tr: 'rehber', es: 'guia', en: 'guide', de: 'ratgeber' },
   semtler: { tr: 'semtler', es: 'barrios', en: 'neighbourhoods', de: 'stadtteile' },
   okullar: { tr: 'okullar', es: 'colegios-internacionales', en: 'international-schools', de: 'internationale-schulen' },
+  yasam: { tr: 'yasam', es: 'vida-diaria', en: 'daily-life', de: 'alltag' },
+  bolgeler: { tr: 'bolgeler', es: 'costa-blanca', en: 'costa-blanca', de: 'costa-blanca' },
+  aktiviteler: { tr: 'aktiviteler', es: 'actividades', en: 'activities', de: 'aktivitaeten' },
   sozluk: { tr: 'sozluk', es: 'glosario', en: 'glossary', de: 'glossar' },
   'sifre-yenile': { tr: 'sifre-yenile', es: 'restablecer-contrasena', en: 'reset-password', de: 'passwort-zuruecksetzen' },
 };

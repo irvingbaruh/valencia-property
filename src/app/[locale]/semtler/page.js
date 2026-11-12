@@ -1,15 +1,16 @@
 import { setRequestLocale } from 'next-intl/server';
-import { areaUi } from '@/lib/areaContent';
-import MemberDirectory from '@/components/sections/MemberDirectory';
+import { PAGES } from '@/lib/guideUi';
+import GuideScreens from '@/components/guide/GuideScreens';
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
-  const p = areaUi(locale).areas;
-  return { title: `${p.metaTitle} | Lock & Loft`, description: p.metaDesc, robots: { index: false } };
+  const P = PAGES['semtler'];
+  const title = (P.meta || P.title)[locale] || P.title.tr;
+  return { title: `${title} | Lock & Loft`, robots: { index: false } };
 }
 
 export default async function Page({ params }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <MemberDirectory kind="areas" />;
+  return <GuideScreens page="semtler" />;
 }

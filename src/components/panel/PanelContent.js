@@ -11,8 +11,7 @@ import PanelFeed from '@/components/panel/PanelFeed';
 import MemberPushSettings from '@/components/panel/MemberPushSettings';
 import DocumentManager from '@/components/documents/DocumentManager';
 import { benefits } from '@/lib/memberBenefits';
-import { guide } from '@/lib/guideContent';
-import { areaUi } from '@/lib/areaContent';
+import GuideHubCards from '@/components/guide/GuideHubCards';
 import { User, Heart, Settings, LogOut, Trash2, MapPin, BedDouble, Maximize2, Phone, Globe, Save, Check, Flag, FileCheck, MessageCircle, Shield, Briefcase, Clock, CheckCircle2, ArrowRight, ChevronRight, Bell, FileText } from 'lucide-react';
 import Link from 'next/link';
 import { localePath } from '@/lib/routes';
@@ -758,17 +757,7 @@ export default function PanelContent() {
         )}
 
         {/* Settings Tab — placeholder for now */}
-        {activeTab === 'guide' && (
-          <div className="grid sm:grid-cols-3 gap-4">
-            {[['rehber', guide(locale).title, guide(locale).subtitle], ['semtler', areaUi(locale).areas.title, areaUi(locale).areas.subtitle], ['okullar', areaUi(locale).schools.title, areaUi(locale).schools.subtitle]].map(([key, title, sub]) => (
-              <a key={key} href={localePath(locale, key)} className="dark-card rounded-2xl shadow-sm p-6 border border-[var(--color-gold)]/30 hover:border-[var(--color-gold)] transition-colors">
-                <MapPin className="w-5 h-5 text-[var(--color-gold)] mb-3" />
-                <p className="font-serif text-lg text-[var(--color-dark)]">{title}</p>
-                <p className="text-sm text-[var(--color-charcoal)] mt-1">{sub}</p>
-              </a>
-            ))}
-          </div>
-        )}
+        {activeTab === 'guide' && <GuideHubCards />}
 
         {activeTab === 'settings' && (
           <div className="dark-card rounded-2xl shadow-sm p-8 max-w-lg">
