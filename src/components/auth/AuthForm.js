@@ -51,7 +51,8 @@ export default function AuthForm() {
             setError(t('errorGeneric'));
           }
         } else {
-          router.push(localePath(locale, 'panel'));
+          const fromApp = new URLSearchParams(window.location.search).get('app') === '1';
+          router.push(localePath(locale, 'panel') + (fromApp ? '?tab=settings' : ''));
         }
       } else {
         const { data, error: signUpError } = await signUp(email, password, fullName, { marketing });

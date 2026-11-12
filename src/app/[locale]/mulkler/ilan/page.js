@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, Suspense } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { ArrowLeft, ArrowRight, MapPin, BedDouble, Bath, Maximize2, Trees, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import AppPromo from '@/components/app/AppPromo';
 import FavoriteButton from '@/components/ui/FavoriteButton';
 import { localePath } from '@/lib/routes';
 import {
@@ -191,6 +192,7 @@ function Detail() {
               {t('contactButton')}
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
             </a>
+            <AppPromo variant="listing" />
             <p className="text-xs text-text-muted mt-4">{t('partner')}</p>
           </aside>
         </div>

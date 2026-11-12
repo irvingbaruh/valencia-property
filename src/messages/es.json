@@ -1316,7 +1316,7 @@
   },
   "memberApp": {
     "bannerTitle": "Añade la app de Lock & Loft",
-    "bannerText": "Recibe avisos de nuevas propiedades, divisas y noticias.",
+    "bannerText": "Hazte miembro y entérate primero de las propiedades que te gustan y del mercado.",
     "installShort": "Añadir",
     "installBtn": "Añadir la app al móvil",
     "close": "Cerrar",
@@ -1356,6 +1356,12 @@
     "rateSaved": "Alerta de cambio guardada.",
     "pushTest": "Enviar notificación de prueba",
     "testOk": "Notificación de prueba enviada.",
-    "testFail": "No se pudo enviar la notificación de prueba."
+    "testFail": "No se pudo enviar la notificación de prueba.",
+    "promoTitle": "Añade la app y entérate primero de las novedades",
+    "promoText": "Hazte miembro y añade la app al móvil. Recibe avisos cuando cambie el precio de tus favoritas, cuando haya nuevas propiedades, artículos o notas de mercado, o cuando el cambio llegue al valor que elijas.",
+    "promoJoin": "Hazte miembro y añade la app",
+    "promoEnable": "Activar notificaciones",
+    "listingNote": "Guarda esta propiedad en favoritos y te avisamos en el móvil si cambia el precio.",
+    "listingJoin": "Hazte miembro y recibe avisos"
   }
 }

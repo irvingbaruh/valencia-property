@@ -359,6 +359,10 @@ export default function PanelContent() {
   const { user, profile, loading, signOut, updateProfile } = useAuth();
 
   const [activeTab, setActiveTab] = useState('favorites');
+  useEffect(() => {
+    const tab = new URLSearchParams(window.location.search).get('tab');
+    if (['favorites', 'services', 'documents', 'notifications', 'profile', 'settings'].includes(tab)) setActiveTab(tab);
+  }, []);
   const [unreadCount, setUnreadCount] = useState(0);
   const [favorites, setFavorites] = useState([]);
   const [loadingFavorites, setLoadingFavorites] = useState(true);

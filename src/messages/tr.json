@@ -1316,7 +1316,7 @@
   },
   "memberApp": {
     "bannerTitle": "Lock & Loft uygulamasını ekleyin",
-    "bannerText": "Yeni ilan, kur ve haber bildirimleri alın.",
+    "bannerText": "Üye olun, beğendiğiniz ilanlardan ve piyasadan ilk siz haberdar olun.",
     "installShort": "Ekle",
     "installBtn": "Uygulamayı telefona ekle",
     "close": "Kapat",
@@ -1356,6 +1356,12 @@
     "rateSaved": "Kur uyarısı kaydedildi.",
     "pushTest": "Deneme bildirimi gönder",
     "testOk": "Deneme bildirimi gönderildi.",
-    "testFail": "Deneme bildirimi gönderilemedi."
+    "testFail": "Deneme bildirimi gönderilemedi.",
+    "promoTitle": "Uygulamayı ekleyin, ilanlardan ilk siz haberdar olun",
+    "promoText": "Üye olup uygulamayı telefonunuza ekleyin. Beğendiğiniz emlakların fiyatı değişince, yeni ilan, blog yazısı ve piyasa notu yayınlanınca, kur belirlediğiniz değere gelince bildirim alın.",
+    "promoJoin": "Üye ol ve uygulamayı ekle",
+    "promoEnable": "Bildirimleri aç",
+    "listingNote": "Bu ilanı favorilerinize ekleyin; fiyatı değişirse telefonunuza haber verelim.",
+    "listingJoin": "Üye ol, haber al"
   }
 }

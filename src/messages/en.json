@@ -1316,7 +1316,7 @@
   },
   "memberApp": {
     "bannerTitle": "Add the Lock & Loft app",
-    "bannerText": "Get alerts for new listings, rates and news.",
+    "bannerText": "Join, and be the first to hear about listings you like and the market.",
     "installShort": "Add",
     "installBtn": "Add the app to your phone",
     "close": "Close",
@@ -1356,6 +1356,12 @@
     "rateSaved": "Rate alert saved.",
     "pushTest": "Send a test notification",
     "testOk": "Test notification sent.",
-    "testFail": "The test notification could not be sent."
+    "testFail": "The test notification could not be sent.",
+    "promoTitle": "Add the app and hear about new listings first",
+    "promoText": "Become a member and add the app to your phone. Get notified when the price of a favourite changes, when new listings, blog posts and market notes are published, or when the exchange rate hits your target.",
+    "promoJoin": "Join and add the app",
+    "promoEnable": "Turn on notifications",
+    "listingNote": "Save this listing to your favourites and we will notify your phone if its price changes.",
+    "listingJoin": "Join to get alerts"
   }
 }

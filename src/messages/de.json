@@ -1316,7 +1316,7 @@
   },
   "memberApp": {
     "bannerTitle": "Lock & Loft App hinzufügen",
-    "bannerText": "Erhalten Sie Hinweise zu neuen Inseraten, Kursen und News.",
+    "bannerText": "Werden Sie Mitglied und erfahren Sie als Erste/r von Inseraten und Marktnews.",
     "installShort": "Hinzufügen",
     "installBtn": "App zum Handy hinzufügen",
     "close": "Schließen",
@@ -1356,6 +1356,12 @@
     "rateSaved": "Kurswarnung gespeichert.",
     "pushTest": "Testbenachrichtigung senden",
     "testOk": "Testbenachrichtigung gesendet.",
-    "testFail": "Die Testbenachrichtigung konnte nicht gesendet werden."
+    "testFail": "Die Testbenachrichtigung konnte nicht gesendet werden.",
+    "promoTitle": "App hinzufügen und als Erste/r informiert sein",
+    "promoText": "Werden Sie Mitglied und fügen Sie die App Ihrem Handy hinzu. Erhalten Sie Hinweise bei Preisänderungen Ihrer Favoriten, neuen Inseraten, Blogbeiträgen und Marktnotizen oder wenn der Kurs Ihren Zielwert erreicht.",
+    "promoJoin": "Mitglied werden und App hinzufügen",
+    "promoEnable": "Benachrichtigungen aktivieren",
+    "listingNote": "Speichern Sie dieses Inserat als Favorit, und wir benachrichtigen Ihr Handy bei einer Preisänderung.",
+    "listingJoin": "Mitglied werden und informiert bleiben"
   }
 }
