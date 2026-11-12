@@ -12,10 +12,10 @@ import { localePath } from '@/lib/routes';
 import { useAuth } from '@/components/providers/AuthProvider';
 
 const LOCKED = {
-  tr: ['Bu ilan üyelere açık.', 'Ücretsiz üye olun, tüm ilanları görün.', 'Üye ol'],
-  es: ['Esta propiedad es solo para miembros.', 'Crea una cuenta gratuita y ve todas las propiedades.', 'Crear cuenta'],
-  en: ['This listing is for members only.', 'Create a free account to see every listing.', 'Join free'],
-  de: ['Dieses Angebot ist nur für Mitglieder.', 'Kostenloses Konto erstellen und alle Angebote sehen.', 'Kostenlos registrieren'],
+  tr: ['Bu ilan ücretsiz üyelikle açılır.', 'Ücretsiz üye olun, tüm ilanları görün.', 'Üye ol'],
+  es: ['Esta propiedad se abre con una cuenta gratuita.', 'Crea una cuenta gratuita y ve todas las propiedades.', 'Crear cuenta'],
+  en: ['This listing opens with a free account.', 'Create a free account to see every listing.', 'Join free'],
+  de: ['Dieses Angebot öffnet sich mit kostenlosem Konto.', 'Kostenloses Konto erstellen und alle Angebote sehen.', 'Kostenlos registrieren'],
 };
 import {
   fetchListing, listingTitle, listingDescription, listingImages, listingLocation, formatPrice, TYPE_KEYS,

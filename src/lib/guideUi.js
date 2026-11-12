@@ -39,7 +39,7 @@ export const PAGES = {
     sub: L('Kamu ve özel sistem, sigorta fiyatları ve başlıca hastaneler.', 'Pública y privada, precios de seguros y hospitales principales.', 'Public and private care, insurance prices and the main hospitals.', 'Öffentlich und privat, Versicherungspreise und wichtige Kliniken.'), hero: 'v-artes2' },
   takvim: { nav: L('Etkinlik takvimi', 'Calendario', 'Events', 'Kalender'), title: L('Etkinlik takvimi', 'Calendario de fiestas', 'Events calendar', 'Veranstaltungskalender'),
     sub: L('Fallas, Hogueras, plaj sezonu ve Noel: ay ay ne oluyor.', 'Fallas, Hogueras, playa y Navidad: qué pasa cada mes.', 'Fallas, Hogueras, beach season and Christmas: what happens each month.', 'Fallas, Hogueras, Badesaison und Weihnachten: was wann passiert.'), hero: 'a-santacruz' },
-  dezavantajlar: { nav: L('Dezavantajlar', 'Inconvenientes', 'Downsides', 'Nachteile'), title: L('Dürüst olalım: dezavantajlar', 'Seamos sinceros: inconvenientes', 'Honestly: the downsides', 'Ehrlich gesagt: die Nachteile'),
+  dezavantajlar: { nav: L('Dikkat edilecekler', 'A tener en cuenta', 'Things to be aware of', 'Gut zu wissen'), title: L('Dikkat etmeniz gereken noktalar', 'Cosas a tener en cuenta', 'Things to be aware of', 'Worauf man achten sollte'),
     sub: L('Bürokrasi, yaz sıcağı, maaşlar, işgal riski, Valensiyanca ve sel riski.', 'Burocracia, calor, sueldos, okupación, valenciano e inundaciones.', 'Bureaucracy, summer heat, salaries, squatting, Valencian and flood risk.', 'Bürokratie, Hitze, Gehälter, Besetzungen, Valencianisch und Hochwasser.'), hero: 'calpe-stairs' },
 };
 export const PAGE_ORDER = ['rehber', 'valencia-mi-alicante-mi', 'yasam', 'yasam-maliyeti', 'semtler', 'nerede', 'bolgeler', 'iklim', 'aktiviteler', 'takvim', 'okullar', 'saglik', 'vize', 'tasinma', 'vergi', 'dezavantajlar', 'turk-toplulugu'];
@@ -60,7 +60,7 @@ export const HUB = {
   saglik: { icon: 'HeartPulse', img: 'v-artes2', text: L('Kamu, özel sigorta, hastaneler', 'Pública, privada, hospitales', 'Public, private, hospitals', 'Öffentlich, privat, Kliniken') },
   vize: { icon: 'Stamp', img: 'v-artes', text: L('2026 şartlarıyla oturum yolları', 'Vías de residencia 2026', 'Residence routes for 2026', 'Aufenthaltswege 2026') },
   vergi: { icon: 'Receipt', img: 'v-carmen', text: L('Yerleşik ve yerleşik olmayan', 'Residente y no residente', 'Resident and non-resident', 'Ansässig und nicht ansässig') },
-  dezavantajlar: { icon: 'TriangleAlert', img: 'calpe-stairs', text: L('Bilmeniz gereken zor taraflar', 'Lo difícil, sin rodeos', 'The hard parts, plainly', 'Die schwierigen Seiten') },
+  dezavantajlar: { icon: 'Lightbulb', img: 'calpe-stairs', text: L('Bilmenizde fayda olan noktalar', 'Lo que conviene saber de antemano', 'Good to know before you decide', 'Gut zu wissen vor der Entscheidung') },
   'turk-toplulugu': { icon: 'Users', img: 'v-oldtown', text: L('Türk restoranları, helal market, konsolosluk', '', '', '') },
 };
 

@@ -1,11 +1,11 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { Sun, Building2, Waves, PartyPopper, GraduationCap, Compass, ArrowRight, Calculator, Route, Users, Scale, CloudSun, CalendarDays, HeartPulse, Stamp, Receipt, TriangleAlert } from 'lucide-react';
+import { Sun, Building2, Waves, PartyPopper, GraduationCap, Compass, ArrowRight, Calculator, Route, Users, Scale, CloudSun, CalendarDays, HeartPulse, Stamp, Receipt, TriangleAlert, Lightbulb } from 'lucide-react';
 import { localePath } from '@/lib/routes';
 import { PAGES, HUB, pageVisible } from '@/lib/guideUi';
 
-const ICONS = { Sun, Building2, Waves, PartyPopper, GraduationCap, Compass, Calculator, Route, Users, Scale, CloudSun, CalendarDays, HeartPulse, Stamp, Receipt, TriangleAlert };
+const ICONS = { Sun, Building2, Waves, PartyPopper, GraduationCap, Compass, Calculator, Route, Users, Scale, CloudSun, CalendarDays, HeartPulse, Stamp, Receipt, TriangleAlert, Lightbulb };
 const t = (o, l) => (o && (o[l] || o.tr)) || '';
 
 // The five guide topics as photo cards. Used on the guide overview and in the member panel.

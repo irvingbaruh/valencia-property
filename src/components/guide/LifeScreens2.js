@@ -344,7 +344,7 @@ export function Cons() {
           const Icon = ICONS[c.icon] || Info;
           return (
             <article key={c.icon} className="rounded-2xl bg-white border border-border p-5 sm:p-6 flex gap-4">
-              <span className="shrink-0 flex h-11 w-11 items-center justify-center rounded-full bg-[#DC1C2E]/10 text-[#DC1C2E]"><Icon size={20} /></span>
+              <span className="shrink-0 flex h-11 w-11 items-center justify-center rounded-full bg-gold-light text-gold"><Icon size={20} /></span>
               <div>
                 <h3 className="font-serif text-lg text-dark mb-1">{t(c.title, locale)}</h3>
                 <p className="text-sm text-text-muted leading-relaxed">{t(c.t, locale)}</p>

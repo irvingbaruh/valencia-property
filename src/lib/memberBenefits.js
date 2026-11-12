@@ -11,7 +11,7 @@ const tr = {
     ['Belgeler ve hizmet takibi', 'Belgelerinizi yükleyin, hizmet sürecinizi tek yerden izleyin.'],
     ['Telefona uygulama olarak indirin', 'Ana ekrana ekleyin, bildirimler ve hesabınız tek dokunuşta açılsın.'],
   ],
-  locked: 'Valencia & Alicante rehberi sadece üyelere açık', lockedText: 'Ücretsiz üye olun ya da giriş yapın; rehberin tamamı açılsın.', join: 'Üye ol veya giriş yap', open: 'Rehbere git', cards: 'Rehber sayfaları',
+  locked: 'Valencia & Alicante rehberi ücretsiz üyelikle açılır', lockedText: 'Ücretsiz üye olun ya da giriş yapın; rehberin tamamı açılsın.', join: 'Üye ol veya giriş yap', open: 'Rehbere git', cards: 'Rehber sayfaları',
 };
 const es = {
   guideLabel: 'Guía Valencia y Alicante',
@@ -25,7 +25,7 @@ const es = {
     ['Documentos y seguimiento de servicios', 'Sube tus documentos y sigue tus servicios en un solo lugar.'],
     ['Instálala como app en el móvil', 'Añádela a la pantalla de inicio: avisos y tu cuenta a un toque.'],
   ],
-  locked: 'La guía de Valencia y Alicante es solo para miembros', lockedText: 'Hazte miembro gratis o accede para ver la guía completa.', join: 'Hazte miembro o accede', open: 'Ir a la guía', cards: 'Páginas de la guía',
+  locked: 'La guía de Valencia y Alicante se abre con una cuenta gratuita', lockedText: 'Hazte miembro gratis o accede para ver la guía completa.', join: 'Hazte miembro o accede', open: 'Ir a la guía', cards: 'Páginas de la guía',
 };
 const en = {
   guideLabel: 'Valencia & Alicante guide',
@@ -39,7 +39,7 @@ const en = {
     ['Documents and service tracking', 'Upload your documents and follow your services in one place.'],
     ['Install as a phone app', 'Add it to your home screen: alerts and your account one tap away.'],
   ],
-  locked: 'The city guide is for members only', lockedText: 'Join free or log in to open the full guide.', join: 'Join or log in', open: 'Open the guide', cards: 'Guide pages',
+  locked: 'The city guide opens with a free membership', lockedText: 'Join free or log in to open the full guide.', join: 'Join or log in', open: 'Open the guide', cards: 'Guide pages',
 };
 const de = {
   guideLabel: 'Valencia & Alicante Ratgeber',
@@ -53,7 +53,7 @@ const de = {
     ['Dokumente und Leistungsverfolgung', 'Laden Sie Dokumente hoch und verfolgen Sie Ihre Leistungen an einem Ort.'],
     ['Als Handy-App installieren', 'Zum Startbildschirm hinzufügen: Hinweise und Ihr Konto mit einem Tipp.'],
   ],
-  locked: 'Der Valencia & Alicante Ratgeber ist nur für Mitglieder', lockedText: 'Kostenlos Mitglied werden oder anmelden, um den ganzen Führer zu öffnen.', join: 'Mitglied werden oder anmelden', open: 'Zum Ratgeber', cards: 'Seiten des Führers',
+  locked: 'Der Valencia & Alicante Ratgeber öffnet sich mit kostenloser Mitgliedschaft', lockedText: 'Kostenlos Mitglied werden oder anmelden, um den ganzen Führer zu öffnen.', join: 'Mitglied werden oder anmelden', open: 'Zum Ratgeber', cards: 'Seiten des Führers',
 };
 const B = { tr, es, en, de };
 export const benefits = (locale) => B[locale] || B.tr;
