@@ -1130,6 +1130,24 @@
         "p": [
           "The real estate brokerage itself is handled through the relevant RE/MAX office. Other services such as legal, tax and renovation are provided under separate scopes by our independent partners. Before work starts, we confirm in writing who provides which service and what it covers."
         ]
+      },
+      {
+        "h": "How we are paid",
+        "p": [
+          "On property sales, the commission is charged under the RE/MAX office's usual practice; we tell you in writing who pays it and how much before the transaction.",
+          "Independent providers such as lawyers or renovation companies give you their quote directly. On jobs we refer, we may receive a referral commission from the provider; if so, we say so clearly, and you are free to get a quote from another provider.",
+          "For support (advice) on administrative steps such as the NIE, and for rental management, we charge a service fee; the amount is agreed in writing before we start."
+        ]
+      },
+      {
+        "h": "Our advisor",
+        "p": [
+          "Our property advisor works at RE/MAX Valencia; you can see her profile on the RE/MAX site."
+        ],
+        "link": {
+          "href": "https://www.remax.com/esp/en/residential/agent/valencia/lis-siva-mizrakli-102585412",
+          "label": "RE/MAX advisor profile"
+        }
       }
     ],
     "legal": "RE/MAX is a registered trademark of RE/MAX, LLC. Each RE/MAX office is independently owned and operated.",

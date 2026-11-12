@@ -1130,6 +1130,24 @@
         "p": [
           "Emlak aracılık işlemi ilgili RE/MAX ofisi aracılığıyla yürür. Hukuk, vergi, reform gibi diğer hizmetler ayrı kapsamlarla ve bağımsız iş ortaklarımızla verilir. Hangi hizmeti kimin verdiğini ve kapsamını işe başlamadan önce yazılı olarak netleştiririz."
         ]
+      },
+      {
+        "h": "Nasıl ücretlendiriyoruz?",
+        "p": [
+          "Emlak aracılığında komisyon RE/MAX ofisinin olağan işleyişine göre tahsil edilir; kimden ve ne kadar alındığını işlem öncesinde size yazılı olarak bildiririz.",
+          "Avukat, renovasyon firması gibi bağımsız sağlayıcılar teklifi doğrudan size verir. Yönlendirdiğimiz işlerde sağlayıcıdan yönlendirme komisyonu alabiliriz; bu varsa açıkça belirtiriz ve istediğiniz başka bir sağlayıcıdan da teklif alabilirsiniz.",
+          "NIE gibi idari süreçlerde destek (danışmanlık) ve kira yönetimi için hizmet ücreti alınır; tutarı işe başlamadan önce yazılı olarak netleştiririz."
+        ]
+      },
+      {
+        "h": "Danışmanımız",
+        "p": [
+          "Emlak danışmanımız RE/MAX Valencia bünyesinde çalışır; profilini RE/MAX sitesinde görebilirsiniz."
+        ],
+        "link": {
+          "href": "https://www.remax.com/esp/en/residential/agent/valencia/lis-siva-mizrakli-102585412",
+          "label": "RE/MAX danışman profili"
+        }
       }
     ],
     "legal": "RE/MAX, RE/MAX, LLC'nin tescilli markasıdır. Her RE/MAX ofisi bağımsız olarak sahiplenilir ve işletilir.",

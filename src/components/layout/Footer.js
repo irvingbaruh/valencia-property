@@ -9,7 +9,7 @@ import { useContactSettings, telHref } from '@/lib/siteSettings';
 import InstallButton from '@/components/app/InstallButton';
 
 // Sosyal hesap adresleri. Gerçek adresi buraya yaz.
-const SOCIAL = { instagram: 'https://www.instagram.com/lockandloft/', facebook: '#', linkedin: '#' };
+const SOCIAL = { instagram: 'https://www.instagram.com/lockandloft/', facebook: 'https://www.facebook.com/profile.php?id=61596095025692', linkedin: 'https://www.linkedin.com/company/146948581/' };
 // '#' = henüz adres yok: ikon görünür ama yeni sekme açmaz.
 const ext = (u) => (u && u !== '#' ? { target: '_blank', rel: 'noopener noreferrer' } : {});
 

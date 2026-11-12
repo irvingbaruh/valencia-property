@@ -32,6 +32,9 @@ export default async function RemaxPage({ params }) {
               {s.p.map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
+              {s.link && (
+                <p><a href={s.link.href} target="_blank" rel="noopener noreferrer" className="text-sm underline underline-offset-4 hover:text-gold">{s.link.label}</a></p>
+              )}
             </div>
           </section>
         ))}

@@ -1130,6 +1130,24 @@
         "p": [
           "La intermediación inmobiliaria se realiza a través de la oficina RE/MAX correspondiente. Otros servicios, como los legales, fiscales o de reforma, se prestan con alcances distintos por nuestros socios independientes. Antes de empezar, confirmamos por escrito quién presta cada servicio y qué incluye."
         ]
+      },
+      {
+        "h": "Cómo nos remuneramos",
+        "p": [
+          "En la intermediación inmobiliaria, la comisión se cobra según el funcionamiento habitual de la oficina RE/MAX; le informamos por escrito de quién la paga y de su importe antes de la operación.",
+          "Proveedores independientes como abogados o empresas de reformas le dan su presupuesto directamente. En los trabajos que derivamos podemos recibir una comisión del proveedor; si existe, se lo indicamos con claridad y puede pedir presupuesto a otro proveedor.",
+          "Por el apoyo (asesoramiento) en trámites administrativos como el NIE y por la gestión de alquileres cobramos una tarifa de servicio; su importe se acuerda por escrito antes de empezar."
+        ]
+      },
+      {
+        "h": "Nuestra asesora",
+        "p": [
+          "Nuestra asesora inmobiliaria trabaja en RE/MAX Valencia; puede ver su perfil en el sitio de RE/MAX."
+        ],
+        "link": {
+          "href": "https://www.remax.com/esp/en/residential/agent/valencia/lis-siva-mizrakli-102585412",
+          "label": "Perfil de la asesora en RE/MAX"
+        }
       }
     ],
     "legal": "RE/MAX es una marca registrada de RE/MAX, LLC. Cada oficina RE/MAX es de propiedad y gestión independientes.",
