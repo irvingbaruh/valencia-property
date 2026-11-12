@@ -9,6 +9,7 @@
  *  - A member can only ask for deletion, with a reason; the admin approves or declines.
  */
 
+import PanelEmptyInfo from '@/components/panel/PanelEmptyInfo';
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
 import { uploadDocument, openDocument, adminDeleteDocument, DOC_ACCEPT } from '@/lib/documents';
@@ -336,7 +337,9 @@ export default function DocumentManager({ memberId, isAdmin = false, lang = 'tr'
       </div>
 
       {/* Files */}
-      {shown.length === 0 ? (
+      {shown.length === 0 && docs.length === 0 && !isAdmin ? (
+        <PanelEmptyInfo kind="documents" />
+      ) : shown.length === 0 ? (
         <div className={`${T.box} p-8 text-center ${T.muted}`}>
           <FileText className="w-8 h-8 mx-auto mb-2 opacity-40" />
           {docs.length === 0 ? L.emptyAll : L.empty}

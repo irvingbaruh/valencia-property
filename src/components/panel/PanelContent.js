@@ -7,6 +7,7 @@ import { useAuth } from '@/components/providers/AuthProvider';
 import { getFavorites, removeFavorite } from '@/lib/favorites';
 import { supabase } from '@/lib/supabase';
 import PushQuickCard from '@/components/panel/PushQuickCard';
+import PanelEmptyInfo from '@/components/panel/PanelEmptyInfo';
 import PanelFeed from '@/components/panel/PanelFeed';
 import SavedSearches from '@/components/panel/SavedSearches';
 import WelcomeModal from '@/components/panel/WelcomeModal';
@@ -120,17 +121,7 @@ function MyServicesTab({ userId }) {
     );
   }
 
-  if (services.length === 0) {
-    return (
-      <div className="dark-card rounded-2xl shadow-sm p-12 text-center">
-        <Briefcase className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-        <h3 className="text-lg font-serif text-[var(--color-dark)] mb-2">{t('noServices')}</h3>
-        <p className="text-[var(--color-charcoal)]">
-          {t('noServicesDesc')}
-        </p>
-      </div>
-    );
-  }
+  if (services.length === 0) return <PanelEmptyInfo kind="services" />;
 
   return (
     <div className="space-y-4">
@@ -294,15 +285,7 @@ function NotificationsTab({ userId, onUnreadChange }) {
     );
   }
 
-  if (items.length === 0) {
-    return (
-      <div className="dark-card rounded-2xl shadow-sm p-12 text-center">
-        <Bell className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-        <h3 className="text-lg font-serif text-[var(--color-dark)] mb-2">{t('noNotifications')}</h3>
-        <p className="text-[var(--color-charcoal)]">{t('noNotificationsDesc')}</p>
-      </div>
-    );
-  }
+  if (items.length === 0) return <PanelEmptyInfo kind="notifications" />;
 
   return (
     <div className="space-y-3">
