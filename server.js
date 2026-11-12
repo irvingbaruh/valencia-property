@@ -386,7 +386,11 @@ const server = http.createServer((req, res) => {
     }
     const content = fs.readFileSync(filePath);
     const hdr = { 'Content-Type': getMime(filePath) };
-    if (/\/sw\.js$/.test(filePath) || /\.webmanifest$/.test(filePath)) { hdr['Cache-Control'] = 'no-cache'; hdr['Service-Worker-Allowed'] = '/lockandloft/admin/'; }
+    if (/\/sw\.js$/.test(filePath) || /\.webmanifest$/.test(filePath)) {
+      hdr['Cache-Control'] = 'no-cache';
+      if (/\/lockandloft\/admin\/sw\.js$/.test(filePath)) hdr['Service-Worker-Allowed'] = '/lockandloft/admin/';
+      else if (/\/sw\.js$/.test(filePath)) hdr['Service-Worker-Allowed'] = '/';
+    }
     res.writeHead(200, hdr);
     res.end(content);
   } else {

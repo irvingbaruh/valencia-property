@@ -6,6 +6,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ChatWidget from '@/components/chat/ChatWidget';
 import Tracker from '@/components/analytics/Tracker';
+import SiteApp from '@/components/app/SiteApp';
 import { AuthProvider } from '@/components/providers/AuthProvider';
 
 export function generateStaticParams() {
@@ -18,6 +19,7 @@ export async function generateMetadata({ params }) {
   return {
     title: { absolute: t('title') },
     description: t('description'),
+    manifest: `/manifest-${locale}.webmanifest`,
     openGraph: { title: t('title'), description: t('description'), locale },
   };
 }
@@ -40,6 +42,7 @@ export default async function LocaleLayout({ children, params }) {
         <Footer />
         <ChatWidget />
         <Tracker />
+        <SiteApp />
       </AuthProvider>
     </NextIntlClientProvider>
   );

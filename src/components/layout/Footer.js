@@ -6,6 +6,7 @@ import Logo from '@/components/brand/Logo';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import { localePath } from '@/lib/routes';
 import { useContactSettings, telHref } from '@/lib/siteSettings';
+import InstallButton from '@/components/app/InstallButton';
 
 // Sosyal hesap adresleri. Gerçek adresi buraya yaz.
 const SOCIAL = { instagram: '#', facebook: '#', linkedin: '#' };
@@ -99,6 +100,7 @@ export default function Footer() {
                 </a>
               </div>
             </div>
+            <div className="mb-5 empty:hidden"><InstallButton /></div>
             <div className="flex gap-3 mb-6 empty:hidden">
               {SOCIAL.instagram && (
               <a

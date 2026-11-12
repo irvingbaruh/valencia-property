@@ -112,7 +112,7 @@ Deno.serve(async (req) => {
       }
     }
 
-    let q = sb.from('push_subscriptions').select('id,endpoint,p256dh,auth,events');
+    let q = sb.from('push_subscriptions').select('id,endpoint,p256dh,auth,events').eq('audience', 'admin');
     if (onlyUser) q = q.eq('user_id', onlyUser);
     const { data: subs } = await q;
     const targets = (subs || []).filter((s: any) => kind === 'test' || s.events?.[kind] === true);

@@ -6,6 +6,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { getFavorites, removeFavorite } from '@/lib/favorites';
 import { supabase } from '@/lib/supabase';
+import MemberPushSettings from '@/components/panel/MemberPushSettings';
 import DocumentManager from '@/components/documents/DocumentManager';
 import { User, Heart, Settings, LogOut, Trash2, MapPin, BedDouble, Maximize2, Phone, Globe, Save, Check, Flag, FileCheck, MessageCircle, Shield, Briefcase, Clock, CheckCircle2, ArrowRight, ChevronRight, Bell, FileText } from 'lucide-react';
 import Link from 'next/link';
@@ -761,6 +762,7 @@ export default function PanelContent() {
             </label>
           </div>
         )}
+        {activeTab === 'settings' && <MemberPushSettings />}
       </div>
     </div>
   );

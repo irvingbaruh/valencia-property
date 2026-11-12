@@ -1,5 +1,6 @@
 'use client';
 
+import { disableMemberPush } from '@/lib/memberPush';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { localePath } from '@/lib/routes';
@@ -114,6 +115,8 @@ export function AuthProvider({ children }) {
   };
 
   const signOut = async () => {
+    // the next person on this phone must not receive this member's notifications
+    await disableMemberPush();
     // local: signing out here must not end the same account's sessions on other devices (the admin phone app)
     const { error } = await supabase.auth.signOut({ scope: 'local' });
     if (!error) {
