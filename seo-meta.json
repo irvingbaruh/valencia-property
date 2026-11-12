@@ -2,19 +2,19 @@
  "home": {
   "tr": {
    "t": "Lock & Loft — İspanya'da Gayrimenkul Yatırımı",
-   "d": "Valencia'da gayrimenkul yatırımı, dekorasyon, renovasyon ve kira yönetimi hizmetleri"
+   "d": "Valencia ve Alicante'de gayrimenkul yatırımı, dekorasyon, renovasyon ve kira yönetimi hizmetleri"
   },
   "es": {
    "t": "Lock & Loft — Inversión Inmobiliaria en España",
-   "d": "Servicios de inversión inmobiliaria, decoración, renovación y gestión de alquileres en Valencia"
+   "d": "Servicios de inversión inmobiliaria, decoración, renovación y gestión de alquileres en Valencia y Alicante"
   },
   "en": {
    "t": "Lock & Loft — Real Estate Investment in Spain",
-   "d": "Property investment, decoration, renovation and rental management services in Valencia"
+   "d": "Property investment, decoration, renovation and rental management services in Valencia and Alicante"
   },
   "de": {
    "t": "Lock & Loft — Immobilieninvestition in Spanien",
-   "d": "Immobilieninvestition, Dekoration, Renovierung und Mietverwaltung in Valencia"
+   "d": "Immobilieninvestition, Dekoration, Renovierung und Mietverwaltung in Valencia und Alicante"
   }
  },
  "pages": {
@@ -57,37 +57,37 @@
   "mulkler": {
    "tr": {
     "t": "Tüm Konutlar | Lock & Loft",
-    "d": "Valencia ve çevresindeki seçkin konut portföyümüzü keşfedin."
+    "d": "Valencia, Alicante ve çevresindeki seçkin konut portföyümüzü keşfedin."
    },
    "es": {
     "t": "Todas las Propiedades | Lock & Loft",
-    "d": "Explore nuestra selecta cartera de propiedades en Valencia y alrededores."
+    "d": "Explore nuestra selecta cartera de propiedades en Valencia, Alicante y alrededores."
    },
    "en": {
     "t": "All Properties | Lock & Loft",
-    "d": "Explore our curated property portfolio in Valencia and the surrounding area."
+    "d": "Explore our curated property portfolio in Valencia, Alicante and the surrounding area."
    },
    "de": {
     "t": "Alle Immobilien | Lock & Loft",
-    "d": "Entdecken Sie unser ausgewähltes Immobilienportfolio in Valencia und Umgebung."
+    "d": "Entdecken Sie unser ausgewähltes Immobilienportfolio in Valencia, Alicante und Umgebung."
    }
   },
   "roi-hesaplama": {
    "tr": {
     "t": "Yatırım Getiri Hesaplayıcı | Lock & Loft",
-    "d": "Valencia'da gayrimenkul yatırımınızın potansiyel getirisini detaylı şekilde hesaplayın."
+    "d": "Valencia ve Alicante'de gayrimenkul yatırımınızın potansiyel getirisini detaylı şekilde hesaplayın."
    },
    "es": {
     "t": "Calculadora de Rentabilidad | Lock & Loft",
-    "d": "Calcule en detalle el retorno potencial de su inversión inmobiliaria en Valencia."
+    "d": "Calcule en detalle el retorno potencial de su inversión inmobiliaria en Valencia y Alicante."
    },
    "en": {
     "t": "Investment Return Calculator | Lock & Loft",
-    "d": "Calculate the potential return on your real estate investment in Valencia in detail."
+    "d": "Calculate the potential return on your real estate investment in Valencia and Alicante in detail."
    },
    "de": {
     "t": "Renditerechner | Lock & Loft",
-    "d": "Berechnen Sie detailliert die potenzielle Rendite Ihrer Immobilieninvestition in Valencia."
+    "d": "Berechnen Sie detailliert die potenzielle Rendite Ihrer Immobilieninvestition in Valencia und Alicante."
    }
   },
   "piyasa": {
@@ -275,19 +275,19 @@
   "mulk-arama": {
    "tr": {
     "t": "Konut Arama | Lock & Loft",
-    "d": "Valencia ve çevresindeki en uygun yatırım ve yaşam fırsatlarını tek yerden keşfedin."
+    "d": "Valencia, Alicante ve çevresindeki en uygun yatırım ve yaşam fırsatlarını tek yerden keşfedin."
    },
    "es": {
     "t": "Búsqueda de Propiedades | Lock & Loft",
-    "d": "Descubra las mejores oportunidades de inversión y vivienda en Valencia y alrededores, todo en un solo lugar."
+    "d": "Descubra las mejores oportunidades de inversión y vivienda en Valencia, Alicante y alrededores, todo en un solo lugar."
    },
    "en": {
     "t": "Property Search | Lock & Loft",
-    "d": "Discover the best investment and lifestyle opportunities in Valencia and the surrounding area, all in one place."
+    "d": "Discover the best investment and lifestyle opportunities in Valencia, Alicante and the surrounding area, all in one place."
    },
    "de": {
     "t": "Immobiliensuche | Lock & Loft",
-    "d": "Entdecken Sie die besten Investitions- und Wohnmöglichkeiten in Valencia und Umgebung, alles an einem Ort."
+    "d": "Entdecken Sie die besten Investitions- und Wohnmöglichkeiten in Valencia, Alicante und Umgebung, alles an einem Ort."
    }
   },
   "hukuki-destek": {
@@ -347,19 +347,19 @@
   "kira-yonetimi": {
    "tr": {
     "t": "Satış Sonrası Yönetim | Lock & Loft",
-    "d": "Konutunuzu siz uzaktayken biz Valencia'da uçtan uca yönetiyoruz."
+    "d": "Konutunuzu siz uzaktayken biz Valencia ve Alicante'de uçtan uca yönetiyoruz."
    },
    "es": {
     "t": "Gestión Posventa | Lock & Loft",
-    "d": "Gestionamos su vivienda de principio a fin en Valencia mientras usted está lejos."
+    "d": "Gestionamos su vivienda de principio a fin en Valencia y Alicante mientras usted está lejos."
    },
    "en": {
     "t": "After-Sales Management | Lock & Loft",
-    "d": "We run your property end to end in Valencia while you are away."
+    "d": "We run your property end to end in Valencia and Alicante while you are away."
    },
    "de": {
     "t": "After-Sales-Management | Lock & Loft",
-    "d": "Wir verwalten Ihre Immobilie in Valencia von A bis Z, während Sie nicht vor Ort sind."
+    "d": "Wir verwalten Ihre Immobilie in Valencia und Alicante von A bis Z, während Sie nicht vor Ort sind."
    }
   },
   "home-staging": {

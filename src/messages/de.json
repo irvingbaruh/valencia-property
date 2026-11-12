@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Lock & Loft — Immobilieninvestition in Spanien",
-    "description": "Immobilieninvestition, Dekoration, Renovierung und Mietverwaltung in Valencia"
+    "description": "Immobilieninvestition, Dekoration, Renovierung und Mietverwaltung in Valencia und Alicante"
   },
   "nav": {
     "home": "Startseite",
@@ -18,7 +18,7 @@
   },
   "hero": {
     "title": "Besitzen Sie Ihre Traumimmobilie in Spanien",
-    "subtitle": "Investition, Lifestyle und Mietrendite in Valencia — wir begleiten Sie von rechtlichen Prozessen bis zur Einrichtung.",
+    "subtitle": "Investition, Lifestyle und Mietrendite in Valencia und Alicante — wir begleiten Sie von rechtlichen Prozessen bis zur Einrichtung.",
     "cta_primary": "Kostenlose Beratung",
     "cta_secondary": "Immobilien Ansehen"
   },
@@ -33,7 +33,7 @@
   },
   "properties": {
     "title": "Ausgewählte Immobilien",
-    "subtitle": "Die besten Investitionsmöglichkeiten in und um Valencia",
+    "subtitle": "Die besten Investitionsmöglichkeiten in und um Valencia und Alicante",
     "badge_new": "Neu",
     "badge_premium": "Premium",
     "rooms": "Zimmer",
@@ -112,7 +112,7 @@
     },
     "search": {
       "title": "Immobiliensuche",
-      "intro": "Entdecken Sie die besten Investitions- und Wohnmöglichkeiten in Valencia und Umgebung, alles an einem Ort.",
+      "intro": "Entdecken Sie die besten Investitions- und Wohnmöglichkeiten in Valencia, Alicante und Umgebung, alles an einem Ort.",
       "overview": "Wir bieten ein breites Angebot aus zwei Quellen: exklusive Objekte, die unser Team direkt vor Ort findet, und Immobilien aus dem Portfolio von RE/MAX Valencia. Filtern Sie nach Lage, Budget und Bedarf.",
       "steps": [
         {
@@ -248,7 +248,7 @@
     },
     "rental": {
       "title": "After-Sales-Management",
-      "intro": "Wir verwalten Ihre Immobilie in Valencia von A bis Z, während Sie nicht vor Ort sind.",
+      "intro": "Wir verwalten Ihre Immobilie in Valencia und Alicante von A bis Z, während Sie nicht vor Ort sind.",
       "overview": "Wir übernehmen den gesamten Prozess nach dem Kauf: von der Vermietung (Langzeit oder Airbnb) bis zur Betreuung von Rechnungen, Steuern und Instandhaltung.",
       "steps": [
         {
@@ -317,7 +317,7 @@
   },
   "mulklerPage": {
     "title": "Alle Immobilien",
-    "subtitle": "Entdecken Sie unser ausgewähltes Immobilienportfolio in Valencia und Umgebung.",
+    "subtitle": "Entdecken Sie unser ausgewähltes Immobilienportfolio in Valencia, Alicante und Umgebung.",
     "ctaTitle": "Nicht Gefunden, Wonach Sie Suchen?",
     "ctaSubtitle": "Sprechen Sie mit uns, damit wir passende Immobilien für Sie finden.",
     "ctaButton": "Beratung Anfordern"
@@ -331,7 +331,7 @@
   },
   "roiPage": {
     "title": "Renditerechner",
-    "subtitle": "Berechnen Sie detailliert die potenzielle Rendite Ihrer Immobilieninvestition in Valencia.",
+    "subtitle": "Berechnen Sie detailliert die potenzielle Rendite Ihrer Immobilieninvestition in Valencia und Alicante.",
     "liveDataTitle": "Aktuelle Marktdaten",
     "exchangeRatesTitle": "Live-Wechselkurse",
     "exchangeRatesNote": "Die Kurse werden in Echtzeit in Ihrem Browser aktualisiert.",
@@ -440,7 +440,7 @@
   },
   "roi": {
     "title": "Renditerechner",
-    "subtitle": "Berechnen Sie die potenzielle Rendite Ihrer Immobilieninvestition in Valencia",
+    "subtitle": "Berechnen Sie die potenzielle Rendite Ihrer Immobilieninvestition in Valencia und Alicante",
     "budget": "Investitionsbudget",
     "type": "Immobilientyp",
     "type_apartment": "Wohnung",
@@ -1008,8 +1008,8 @@
     "open": "Chat öffnen",
     "close": "Schließen",
     "title": "Lock & Loft Assistent",
-    "subtitle": "Fragen zur Investition in Valencia",
-    "greeting": "Hallo! Ich beantworte Ihre Fragen zu Immobilien in Valencia, zum Kaufprozess und zu unseren Leistungen.",
+    "subtitle": "Fragen zur Investition in Valencia und Alicante",
+    "greeting": "Hallo! Ich beantworte Ihre Fragen zu Immobilien in Valencia und Alicante, zum Kaufprozess und zu unseren Leistungen.",
     "s1": "Welche Immobilien gibt es?",
     "s2": "Was brauche ich als Ausländer zum Kauf?",
     "s3": "Welche Leistungen bieten Sie an?",

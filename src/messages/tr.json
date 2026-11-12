@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Lock & Loft — İspanya'da Gayrimenkul Yatırımı",
-    "description": "Valencia'da gayrimenkul yatırımı, dekorasyon, renovasyon ve kira yönetimi hizmetleri"
+    "description": "Valencia ve Alicante'de gayrimenkul yatırımı, dekorasyon, renovasyon ve kira yönetimi hizmetleri"
   },
   "nav": {
     "home": "Ana Sayfa",
@@ -18,7 +18,7 @@
   },
   "hero": {
     "title": "İspanya'da Hayalinizdeki Eve Sahip Olun",
-    "subtitle": "Valencia'da yatırım, yaşam ve kira getirisi — hukuki süreçten dekorasyona kadar yanınızdayız.",
+    "subtitle": "Valencia ve Alicante'de yatırım, yaşam ve kira getirisi — hukuki süreçten dekorasyona kadar yanınızdayız.",
     "cta_primary": "Ücretsiz Danışmanlık",
     "cta_secondary": "Konutları İncele"
   },
@@ -33,7 +33,7 @@
   },
   "properties": {
     "title": "Seçkin Konutlar",
-    "subtitle": "Valencia ve çevresinde yatırım için en uygun fırsatlar",
+    "subtitle": "Valencia, Alicante ve çevresinde yatırım için en uygun fırsatlar",
     "badge_new": "Yeni",
     "badge_premium": "Premium",
     "rooms": "oda",
@@ -112,7 +112,7 @@
     },
     "search": {
       "title": "Konut Arama",
-      "intro": "Valencia ve çevresindeki en uygun yatırım ve yaşam fırsatlarını tek yerden keşfedin.",
+      "intro": "Valencia, Alicante ve çevresindeki en uygun yatırım ve yaşam fırsatlarını tek yerden keşfedin.",
       "overview": "İki kaynaktan beslenen geniş bir envanter sunuyoruz: ekibimizin doğrudan sahadan bulduğu özel ilanlar ve RE/MAX Valencia'nın portföyünden gelen konutlar. Bölge, bütçe ve ihtiyacınıza göre filtreleyin.",
       "steps": [
         {
@@ -248,7 +248,7 @@
     },
     "rental": {
       "title": "Satış Sonrası Yönetim",
-      "intro": "Konutunuzu siz uzaktayken biz Valencia'da uçtan uca yönetiyoruz.",
+      "intro": "Konutunuzu siz uzaktayken biz Valencia ve Alicante'de uçtan uca yönetiyoruz.",
       "overview": "Kiralamadan (uzun dönem veya Airbnb) fatura, vergi ve bakım takibine kadar satın alma sonrasındaki tüm süreci üstleniyoruz.",
       "steps": [
         {
@@ -317,7 +317,7 @@
   },
   "mulklerPage": {
     "title": "Tüm Konutlar",
-    "subtitle": "Valencia ve çevresindeki seçkin konut portföyümüzü keşfedin.",
+    "subtitle": "Valencia, Alicante ve çevresindeki seçkin konut portföyümüzü keşfedin.",
     "ctaTitle": "Aradığınız Konutu Bulamadınız mı?",
     "ctaSubtitle": "İhtiyaçlarınıza özel konutlar bulmamız için bizimle görüşün.",
     "ctaButton": "Danışmanlık Al"
@@ -331,7 +331,7 @@
   },
   "roiPage": {
     "title": "Yatırım Getiri Hesaplayıcı",
-    "subtitle": "Valencia'da gayrimenkul yatırımınızın potansiyel getirisini detaylı şekilde hesaplayın.",
+    "subtitle": "Valencia ve Alicante'de gayrimenkul yatırımınızın potansiyel getirisini detaylı şekilde hesaplayın.",
     "liveDataTitle": "Güncel Piyasa Verileri",
     "exchangeRatesTitle": "Canlı Döviz Kurları",
     "exchangeRatesNote": "Kurlar tarayıcınızda gerçek zamanlı olarak güncellenir.",
@@ -440,7 +440,7 @@
   },
   "roi": {
     "title": "Yatırım Getiri Hesaplayıcı",
-    "subtitle": "Valencia'da gayrimenkul yatırımınızın potansiyel getirisini hesaplayın",
+    "subtitle": "Valencia ve Alicante'de gayrimenkul yatırımınızın potansiyel getirisini hesaplayın",
     "budget": "Yatırım Bütçesi",
     "type": "Konut Tipi",
     "type_apartment": "Daire",
@@ -1008,8 +1008,8 @@
     "open": "Sohbeti aç",
     "close": "Kapat",
     "title": "Lock & Loft Asistan",
-    "subtitle": "Valencia konut yatırımı için sorularınız",
-    "greeting": "Merhaba! Valencia'daki konutlar, satın alma süreci ve hizmetlerimiz hakkında sorularınızı yanıtlayabilirim.",
+    "subtitle": "Valencia ve Alicante konut yatırımı için sorularınız",
+    "greeting": "Merhaba! Valencia ve Alicante'deki konutlar, satın alma süreci ve hizmetlerimiz hakkında sorularınızı yanıtlayabilirim.",
     "s1": "Hangi konutlar var?",
     "s2": "Yabancı olarak konut almak için ne gerekir?",
     "s3": "Hizmetleriniz neler?",

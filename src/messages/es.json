@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Lock & Loft — Inversión Inmobiliaria en España",
-    "description": "Servicios de inversión inmobiliaria, decoración, renovación y gestión de alquileres en Valencia"
+    "description": "Servicios de inversión inmobiliaria, decoración, renovación y gestión de alquileres en Valencia y Alicante"
   },
   "nav": {
     "home": "Inicio",
@@ -18,7 +18,7 @@
   },
   "hero": {
     "title": "Sea Propietario de su Inmueble Soñado en España",
-    "subtitle": "Inversión, estilo de vida y rentabilidad en Valencia — le acompañamos desde los trámites legales hasta la decoración.",
+    "subtitle": "Inversión, estilo de vida y rentabilidad en Valencia y Alicante — le acompañamos desde los trámites legales hasta la decoración.",
     "cta_primary": "Consulta Gratuita",
     "cta_secondary": "Ver Inmuebles"
   },
@@ -33,7 +33,7 @@
   },
   "properties": {
     "title": "Inmuebles Destacados",
-    "subtitle": "Las mejores oportunidades de inversión en Valencia y alrededores",
+    "subtitle": "Las mejores oportunidades de inversión en Valencia, Alicante y alrededores",
     "badge_new": "Nuevo",
     "badge_premium": "Premium",
     "rooms": "hab.",
@@ -112,7 +112,7 @@
     },
     "search": {
       "title": "Búsqueda de Propiedades",
-      "intro": "Descubra las mejores oportunidades de inversión y vivienda en Valencia y alrededores, todo en un solo lugar.",
+      "intro": "Descubra las mejores oportunidades de inversión y vivienda en Valencia, Alicante y alrededores, todo en un solo lugar.",
       "overview": "Ofrecemos un amplio inventario de dos fuentes: anuncios exclusivos encontrados directamente por nuestro equipo y propiedades de la cartera de RE/MAX Valencia. Filtre por zona, presupuesto y necesidades.",
       "steps": [
         {
@@ -248,7 +248,7 @@
     },
     "rental": {
       "title": "Gestión Posventa",
-      "intro": "Gestionamos su vivienda de principio a fin en Valencia mientras usted está lejos.",
+      "intro": "Gestionamos su vivienda de principio a fin en Valencia y Alicante mientras usted está lejos.",
       "overview": "Nos ocupamos de todo el proceso posterior a la compra: del alquiler (larga duración o Airbnb) al seguimiento de facturas, impuestos y mantenimiento.",
       "steps": [
         {
@@ -317,7 +317,7 @@
   },
   "mulklerPage": {
     "title": "Todas las Propiedades",
-    "subtitle": "Explore nuestra selecta cartera de propiedades en Valencia y alrededores.",
+    "subtitle": "Explore nuestra selecta cartera de propiedades en Valencia, Alicante y alrededores.",
     "ctaTitle": "¿No Encuentra lo que Busca?",
     "ctaSubtitle": "Hable con nosotros para encontrar propiedades a medida de sus necesidades.",
     "ctaButton": "Solicitar Consulta"
@@ -331,7 +331,7 @@
   },
   "roiPage": {
     "title": "Calculadora de Rentabilidad",
-    "subtitle": "Calcule en detalle el retorno potencial de su inversión inmobiliaria en Valencia.",
+    "subtitle": "Calcule en detalle el retorno potencial de su inversión inmobiliaria en Valencia y Alicante.",
     "liveDataTitle": "Datos de Mercado Actuales",
     "exchangeRatesTitle": "Tipos de Cambio en Vivo",
     "exchangeRatesNote": "Los tipos se actualizan en tiempo real en su navegador.",
@@ -440,7 +440,7 @@
   },
   "roi": {
     "title": "Calculadora de Rentabilidad",
-    "subtitle": "Calcule el retorno potencial de su inversión inmobiliaria en Valencia",
+    "subtitle": "Calcule el retorno potencial de su inversión inmobiliaria en Valencia y Alicante",
     "budget": "Presupuesto de Inversión",
     "type": "Tipo de Inmueble",
     "type_apartment": "Piso",
@@ -1008,8 +1008,8 @@
     "open": "Abrir chat",
     "close": "Cerrar",
     "title": "Asistente Lock & Loft",
-    "subtitle": "Dudas sobre inversión en Valencia",
-    "greeting": "¡Hola! Puedo responder a tus preguntas sobre propiedades en Valencia, el proceso de compra y nuestros servicios.",
+    "subtitle": "Dudas sobre inversión en Valencia y Alicante",
+    "greeting": "¡Hola! Puedo responder a tus preguntas sobre propiedades en Valencia y Alicante, el proceso de compra y nuestros servicios.",
     "s1": "¿Qué propiedades hay?",
     "s2": "¿Qué necesito para comprar siendo extranjero?",
     "s3": "¿Qué servicios ofrecéis?",
