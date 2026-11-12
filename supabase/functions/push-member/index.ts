@@ -25,30 +25,70 @@ const panelUrl = (l: string) => `/${l}/${SLUG.panel[l]}/`;
 
 const T: Record<string, Record<string, string>> = {
   tr: {
-    listing_new: 'Yeni ilan', off: 'Favori ilanınız artık yayında değil', price: 'Favori ilanınızın fiyatı değişti',
+    listing_new: 'Yeni ilan', saved: 'Aramanıza uyan yeni ilan', off: 'Favori ilanınız artık yayında değil', price: 'Favori ilanınızın fiyatı değişti',
     blog: 'Yeni blog yazısı', market: 'Yeni piyasa notu', above: 'EUR/TRY yükseldi', below: 'EUR/TRY düştü',
     daily: 'Günün EUR/TRY kuru', test: 'Bildirimler bu cihazda çalışıyor.', doc_new: 'Dosyalarınıza yeni belge eklendi',
     doc_approved: 'Belgeniz onaylandı', doc_rejected: 'Belgeniz için düzeltme gerekiyor', doc_status: 'Belge durumu güncellendi',
   },
   es: {
-    listing_new: 'Nueva propiedad', off: 'Tu propiedad favorita ya no está disponible', price: 'Ha cambiado el precio de tu propiedad favorita',
+    listing_new: 'Nueva propiedad', saved: 'Nueva propiedad para tu búsqueda', off: 'Tu propiedad favorita ya no está disponible', price: 'Ha cambiado el precio de tu propiedad favorita',
     blog: 'Nuevo artículo del blog', market: 'Nueva nota de mercado', above: 'EUR/TRY ha subido', below: 'EUR/TRY ha bajado',
     daily: 'EUR/TRY de hoy', test: 'Las notificaciones funcionan en este dispositivo.', doc_new: 'Se ha añadido un documento a tus archivos',
     doc_approved: 'Tu documento ha sido aprobado', doc_rejected: 'Tu documento necesita correcciones', doc_status: 'Estado del documento actualizado',
   },
   en: {
-    listing_new: 'New listing', off: 'Your favourite listing is no longer available', price: 'The price of your favourite listing changed',
+    listing_new: 'New listing', saved: 'New listing matching your search', off: 'Your favourite listing is no longer available', price: 'The price of your favourite listing changed',
     blog: 'New blog post', market: 'New market note', above: 'EUR/TRY went up', below: 'EUR/TRY went down',
     daily: "Today's EUR/TRY rate", test: 'Notifications work on this device.', doc_new: 'A new document was added to your files',
     doc_approved: 'Your document was approved', doc_rejected: 'Your document needs changes', doc_status: 'Document status updated',
   },
   de: {
-    listing_new: 'Neues Inserat', off: 'Ihr favorisiertes Inserat ist nicht mehr verfügbar', price: 'Der Preis Ihres favorisierten Inserats hat sich geändert',
+    listing_new: 'Neues Inserat', saved: 'Neues Inserat zu Ihrer Suche', off: 'Ihr favorisiertes Inserat ist nicht mehr verfügbar', price: 'Der Preis Ihres favorisierten Inserats hat sich geändert',
     blog: 'Neuer Blogbeitrag', market: 'Neue Marktnotiz', above: 'EUR/TRY ist gestiegen', below: 'EUR/TRY ist gefallen',
     daily: 'EUR/TRY-Kurs heute', test: 'Benachrichtigungen funktionieren auf diesem Gerät.', doc_new: 'Ihren Dateien wurde ein Dokument hinzugefügt',
     doc_approved: 'Ihr Dokument wurde genehmigt', doc_rejected: 'Ihr Dokument muss überarbeitet werden', doc_status: 'Dokumentstatus aktualisiert',
   },
 };
+
+// ---- saved searches ---------------------------------------------------------
+const nrm = (s: unknown) => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+const tries = (s: unknown) => [s, ...String(s ?? '').split(/[\/,]/)].map(nrm).filter(Boolean);
+const regionProvince = (region: unknown) => {
+  const r = nrm(region);
+  if (r.includes('alicante') || r.includes('alacant')) return 'alicante';
+  if (r.includes('valencia')) return r === 'comunidadvalenciana' ? '' : 'valencia';
+  return '';
+};
+// Same rules as the filter bar on the listings page, evaluated for one new listing.
+function matchesSearch(p: any, m: any): boolean {
+  if (!m || typeof m !== 'object') return false;
+  const num = (v: unknown) => (v === '' || v == null ? null : Number(v));
+  const price = p.price == null ? null : Number(p.price);
+  if (m.type && p.property_type !== m.type) return false;
+  if (num(m.beds) != null && !(Number(p.bedrooms) >= Number(m.beds))) return false;
+  if (num(m.baths) != null && !(Number(p.bathrooms) >= Number(m.baths))) return false;
+  if (num(m.priceMin) != null && !(price != null && price >= Number(m.priceMin))) return false;
+  if (num(m.priceMax) != null && !(price != null && price <= Number(m.priceMax))) return false;
+  if (num(m.sqmMin) != null && !(p.area_sqm != null && Number(p.area_sqm) >= Number(m.sqmMin))) return false;
+  if (num(m.sqmMax) != null && !(p.area_sqm != null && Number(p.area_sqm) <= Number(m.sqmMax))) return false;
+  if (num(m.plotMin) != null && !(p.land_sqm != null && Number(p.land_sqm) >= Number(m.plotMin))) return false;
+  if (m.newBuild) {
+    const y = (p.features || []).map((v: unknown) => String(v).match(/(\d{4})/)).find(Boolean);
+    if (!(y && Number(y[1]) >= 2024)) return false;
+  }
+  const terms: string[] = Array.isArray(m.terms) ? m.terms : [];
+  if (m.area || m.province) {
+    const here = [...tries(p.city), ...tries(p.neighborhood)];
+    const placeHit = terms.length > 0 && here.some((x) => terms.includes(x));
+    if (m.area) { if (!placeHit) return false; }
+    else if (!(placeHit || regionProvince(p.region) === m.province)) return false;
+  }
+  if (m.q) {
+    const hay = nrm([p.title_tr, p.title_es, p.title_en, p.title_de, p.neighborhood, p.city, p.region].join(' '));
+    if (!hay.includes(nrm(m.q))) return false;
+  }
+  return true;
+}
 
 type Payload = { title: string; body: string; url: string; tag?: string };
 
@@ -176,7 +216,7 @@ Deno.serve(async (req) => {
     }
 
     if (kind === 'listing_new' || kind === 'listing_change') {
-      const { data: p } = await sb.from('properties').select('id,price,region,city,is_active,title_tr,title_es,title_en,title_de').eq('id', id).maybeSingle();
+      const { data: p } = await sb.from('properties').select('id,price,region,city,neighborhood,property_type,bedrooms,bathrooms,area_sqm,land_sqm,features,is_active,title_tr,title_es,title_en,title_de').eq('id', id).maybeSingle();
       if (!p) return json({ skipped: 'not_found' });
       const change = String(body?.change || '');
       const ref = kind === 'listing_new' ? id : `${id}:${change}:${change === 'price' ? p.price : ''}`;
@@ -188,12 +228,28 @@ Deno.serve(async (req) => {
         const since = new Date(Date.now() - 15 * 60 * 1000).toISOString();
         const { count } = await sb.from('push_log').select('id', { count: 'exact', head: true }).eq('kind', 'listing_new').gte('created_at', since);
         if ((count || 0) > 3) return json({ skipped: 'burst' });
-        const subs = await loadSubs('new_listing');
-        return push(subs, (s) => ({
-          title: `${T[s.lang].listing_new}: ${cut(pick(p, 'title', s.lang), 60)}`,
-          body: cut([eur(p.price), place].filter(Boolean).join(' · '), 120),
-          url: href(s.lang), tag: `l-${id}`,
-        }));
+        // Members who saved a search get an alert only when the listing matches it (instead of every new listing).
+        const { data: saved } = await sb.from('saved_searches').select('user_id,name,match').eq('notify', true);
+        const mine: Record<string, any[]> = {};
+        for (const r of saved || []) (mine[r.user_id] ||= []).push(r);
+        const subs = (await loadSubs(null)).filter((s: any) => (mine[s.user_id] ? s.events?.saved_search !== false : s.events?.new_listing === true));
+        return push(subs, (s) => {
+          const list = mine[s.user_id];
+          if (list) {
+            const hit = list.find((r) => matchesSearch(p, r.match));
+            if (!hit) return null;
+            return {
+              title: `${T[s.lang].saved}: ${cut(hit.name, 50)}`,
+              body: cut([cut(pick(p, 'title', s.lang), 60), eur(p.price), place].filter(Boolean).join(' · '), 140),
+              url: href(s.lang), tag: `l-${id}`,
+            };
+          }
+          return {
+            title: `${T[s.lang].listing_new}: ${cut(pick(p, 'title', s.lang), 60)}`,
+            body: cut([eur(p.price), place].filter(Boolean).join(' · '), 120),
+            url: href(s.lang), tag: `l-${id}`,
+          };
+        });
       }
       const { data: favs } = await sb.from('favorites').select('user_id').eq('property_id', id);
       const users = [...new Set((favs || []).map((f: any) => f.user_id))];

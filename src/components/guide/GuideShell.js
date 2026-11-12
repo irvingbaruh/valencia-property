@@ -9,6 +9,8 @@ import { areaUi, SOURCES } from '@/lib/areaContent';
 import { benefits } from '@/lib/memberBenefits';
 import { PAGES, PAGE_ORDER, STR } from '@/lib/guideUi';
 import GuideCta from '@/components/sections/GuideCta';
+import { gt } from '@/lib/growthText';
+import { trackFunnel } from '@/lib/funnel';
 
 const t = (o, l) => (o && (o[l] || o.tr)) || '';
 
@@ -54,6 +56,10 @@ export default function GuideShell({ page, children, sources = true }) {
   const b = benefits(locale);
   const P = PAGES[page];
   const isMember = !!user;
+  const g = gt(locale).guide;
+  const canView = isMember || !!P.open; // one sample page is open to everyone
+  const sampleHref = `${localePath(locale, 'okullar')}`;
+  const joinHref = `${localePath(locale, 'giris')}?mode=register&from=guide`;
 
   return (
     <div className="bg-soft min-h-screen">
@@ -69,7 +75,7 @@ export default function GuideShell({ page, children, sources = true }) {
 
       {loading && <div className="min-h-[40vh]" />}
 
-      {!loading && !isMember && (
+      {!loading && !canView && (
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
           <div className="rounded-2xl border border-gold/40 bg-white p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center gap-4">
             <Lock className="text-gold shrink-0" size={28} />
@@ -81,6 +87,11 @@ export default function GuideShell({ page, children, sources = true }) {
               {b.join}<ArrowRight size={15} />
             </a>
           </div>
+          <p className="mt-4 text-sm">
+            <a href={sampleHref} onClick={() => trackFunnel('gate_click', 'guide_sample')} className="text-gold font-semibold hover:underline">
+              {g.try(t(PAGES.okullar.title, locale))}
+            </a>
+          </p>
           <h2 className="font-serif text-2xl text-dark mt-12 mb-4">{b.title}</h2>
           <ul className="space-y-3">
             {b.items.map(([h, tx]) => (
@@ -90,9 +101,19 @@ export default function GuideShell({ page, children, sources = true }) {
         </div>
       )}
 
-      {!loading && isMember && (
+      {!loading && canView && (
         <>
-          <SubNav page={page} locale={locale} />
+          {isMember ? <SubNav page={page} locale={locale} /> : (
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+              <div className="rounded-2xl border border-gold/40 bg-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-4">
+                <Lock className="text-gold shrink-0" size={24} />
+                <p className="flex-1 text-sm text-text-muted">{g.sample}</p>
+                <a href={joinHref} onClick={() => trackFunnel('invite_click', 'guide_sample')} className="inline-flex items-center justify-center gap-2 rounded-xl bg-gold text-dark font-semibold px-5 py-3 text-sm hover:bg-gold-hover transition-colors">
+                  {g.join}<ArrowRight size={15} />
+                </a>
+              </div>
+            </div>
+          )}
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-14">
             {children}
             <GuideCta title={ui.ctaTitle} text={ui.ctaText} whatsapp={ui.wa} form={ui.form} members={ui.join} />

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
@@ -10,6 +10,8 @@ import AppTabBar from '@/components/app/AppTabBar';
 import { Download, X } from 'lucide-react';
 import { registerSiteWorker, isIos, isStandalone } from '@/lib/memberPush';
 import InstallSteps from '@/components/app/InstallSteps';
+import { supabase } from '@/lib/supabase';
+import { trackFunnel } from '@/lib/funnel';
 
 // Registers the site service worker, keeps the browser's install prompt for later, and shows a small
 // "add to your phone" banner to phone visitors (once every two weeks, never inside the installed app).
@@ -19,6 +21,7 @@ export const getInstallPrompt = () => deferred;
 export const onInstallPrompt = (fn) => { listeners.add(fn); return () => listeners.delete(fn); };
 
 const SNOOZE_KEY = 'll_app_banner_until';
+const platformOf = () => (isIos() ? 'ios' : /Android/i.test(navigator.userAgent) ? 'android' : 'desktop');
 
 export default function SiteApp() {
   const t = useTranslations('memberApp');
@@ -30,6 +33,20 @@ export default function SiteApp() {
   const [show, setShow] = useState(false);
   const [ios, setIos] = useState(false);
   const [guide, setGuide] = useState(false);
+  const userRef = useRef(null);
+  userRef.current = user;
+
+  // Which members have the installed app: written to their profile when they open it, and counted in the funnel.
+  useEffect(() => {
+    if (loading || !isStandalone()) return;
+    let sent = false;
+    try { sent = sessionStorage.getItem('ll_app_open') === '1'; } catch {}
+    if (!sent) {
+      trackFunnel('app_open', platformOf());
+      try { sessionStorage.setItem('ll_app_open', '1'); } catch {}
+    }
+    if (user) supabase.rpc('mark_app_open', { p_platform: platformOf() }).then(() => {}, () => {});
+  }, [loading, user]);
 
   useEffect(() => {
     registerSiteWorker();
@@ -37,7 +54,11 @@ export default function SiteApp() {
     setStandalone(sa);
     if (sa) document.documentElement.classList.add('ll-standalone');
     const onPrompt = (e) => { e.preventDefault(); deferred = e; listeners.forEach((f) => f()); };
-    const onInstalled = () => { deferred = null; setShow(false); listeners.forEach((f) => f()); };
+    const onInstalled = () => {
+      deferred = null; setShow(false); listeners.forEach((f) => f());
+      trackFunnel('app_install', platformOf());
+      if (userRef.current) supabase.rpc('mark_app_open', { p_platform: platformOf() }).then(() => {}, () => {});
+    };
     window.addEventListener('beforeinstallprompt', onPrompt);
     window.addEventListener('appinstalled', onInstalled);
     setIos(isIos());

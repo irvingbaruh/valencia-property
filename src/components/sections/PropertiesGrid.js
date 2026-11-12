@@ -3,9 +3,14 @@
 import FillImage from '@/components/ui/FillImage';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { MapPin, BedDouble, Maximize2, ArrowRight, SlidersHorizontal, Search } from 'lucide-react';
+import { MapPin, BedDouble, Maximize2, ArrowRight, SlidersHorizontal, Search, Bell, Check, Lock } from 'lucide-react';
 import { PROVINCES, ZONES, norm, matchPlace, placeSlug, provinceFromRegion } from '@/lib/areas';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+import { useAuth } from '@/components/providers/AuthProvider';
+import { gt } from '@/lib/growthText';
+import { trackFunnel } from '@/lib/funnel';
+import { createSavedSearch, describeFilters, stashSearch, takeStashedSearch, MAX_SEARCHES } from '@/lib/savedSearches';
+import { localePath } from '@/lib/routes';
 import FavoriteButton from '@/components/ui/FavoriteButton';
 import { propertyTitle } from '@/lib/propertyText';
 import {
@@ -13,10 +18,19 @@ import {
 } from '@/lib/listings';
 
 // Grid for /mulkler: live listings from Supabase; the sample cards stay only until the first listing is published.
+// Visitors who are not signed in see this many listings; members see all of them.
+const GUEST_LIMIT = 15;
+
 const EMPTY = {
   q: '', province: '', area: '', type: '', beds: '', baths: '',
   priceMin: '', priceMax: '', sqmMin: '', sqmMax: '', plotMin: '', newBuild: false, sort: 'new',
 };
+
+// Counts one "gate shown" in the signup funnel each time the limit card appears.
+function GateSeen({ n }) {
+  useEffect(() => { trackFunnel('gate_view', String(n)); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  return null;
+}
 
 export default function PropertiesGrid({ samples }) {
   const tType = useTranslations('propertyType');
@@ -24,10 +38,20 @@ export default function PropertiesGrid({ samples }) {
   const locale = useLocale();
   const tf = useTranslations('listingFilters');
   const t = useTranslations('properties');
+  const g = gt(locale);
+  const { user, loading: authLoading } = useAuth();
   const [live, setLive] = useState(null);
   const [f, setF] = useState(EMPTY);
+  const [saveState, setSaveState] = useState(null); // null | 'saving' | 'saved' | 'limit' | 'error'
+  const [needsPush, setNeedsPush] = useState(false);
   const set = (k) => (e) => setF((o) => ({ ...o, [k]: e.target.value }));
   const setProvince = (e) => setF((o) => ({ ...o, province: e.target.value, area: '' }));
+
+  // "Open search" in the member panel lands here with that search's filters
+  useEffect(() => {
+    const stashed = takeStashedSearch();
+    if (stashed) setF({ ...EMPTY, ...stashed });
+  }, []);
 
   useEffect(() => {
     let off = false;
@@ -124,9 +148,39 @@ export default function PropertiesGrid({ samples }) {
       if (f.sort === 'priceDesc') return (b.priceNum ?? -1) - (a.priceNum ?? -1);
       if (f.sort === 'sqm') return (Number(b.sqm) || 0) - (Number(a.sqm) || 0);
       if (f.sort === 'sqmPrice') return sqmPrice(a) - sqmPrice(b);
-      return 0;
+      // default order: featured first, then newest (the list already arrives newest first)
+      return (b.badge === 'premium') - (a.badge === 'premium');
     });
   const dirty = JSON.stringify({ ...f, sort: '' }) !== JSON.stringify({ ...EMPTY, sort: '' });
+
+  // Listing limit for visitors. While we still do not know if someone is signed in, show the limited list without the gate card.
+  const limited = isLive && !user && items.length > GUEST_LIMIT;
+  const visible = limited ? items.slice(0, GUEST_LIMIT) : items;
+  const hidden = limited ? items.slice(GUEST_LIMIT) : [];
+  const gateReady = limited && !authLoading;
+  const hiddenPrices = hidden.map((x) => x.priceNum).filter((n) => n != null);
+  const eur0 = (n) => new Intl.NumberFormat({ tr: 'tr-TR', es: 'es-ES', en: 'en-GB', de: 'de-DE' }[locale] || 'en-GB', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
+  const hiddenPlaces = [...new Set(hidden.map((x) => String(x.cityRaw || '').split(/[\/,]/)[0].trim()).filter(Boolean))].slice(0, 4);
+
+  const typeLabel = (k) => (tType.has(k) ? tType(k) : k);
+  const joinHref = (from) => `${localePath(locale, 'giris')}?mode=register&from=${from}`;
+  const onSaveSearch = async () => {
+    if (!user) {
+      trackFunnel('invite_click', 'save_search');
+      stashSearch(f);
+      window.location.href = joinHref('save_search');
+      return;
+    }
+    setSaveState('saving');
+    const { error } = await createSavedSearch(user.id, f, describeFilters(f, locale, typeLabel));
+    if (error) {
+      setSaveState(/row-level security|42501/i.test(`${error.code} ${error.message}`) ? 'limit' : 'error');
+      return;
+    }
+    trackFunnel('search_saved');
+    setNeedsPush(typeof Notification === 'undefined' || Notification.permission !== 'granted');
+    setSaveState('saved');
+  };
   const field = 'w-full px-3 py-2.5 rounded-lg border border-border bg-white text-sm text-dark focus:outline-none focus:border-gold';
   const label = 'block text-xs font-semibold text-white mb-1.5';
   const zoneName = (z) => z.name[locale] || z.name.en;
@@ -231,12 +285,34 @@ export default function PropertiesGrid({ samples }) {
             <option value="sqmPrice">{tf('sortSqmPrice')}</option>
           </select>
           {dirty && (
-            <button type="button" onClick={() => setF({ ...EMPTY, sort: f.sort })} className="text-sm text-gold font-semibold hover:underline pb-2.5">
+            <button type="button" onClick={() => { setF({ ...EMPTY, sort: f.sort }); setSaveState(null); }} className="text-sm text-gold font-semibold hover:underline pb-2.5">
               {tf('reset')}
             </button>
           )}
         </div>
       </div>
+
+      {dirty && isLive && (
+        <div className="mt-4 pt-4 border-t border-white/10 flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            onClick={onSaveSearch}
+            disabled={saveState === 'saving' || saveState === 'saved'}
+            className="inline-flex items-center gap-2 rounded-lg border border-gold text-gold px-4 py-2 text-sm font-semibold hover:bg-gold hover:text-dark transition-colors disabled:opacity-60"
+          >
+            {saveState === 'saved' ? <Check size={15} /> : <Bell size={15} />}
+            {saveState === 'saved' ? g.saved.saved : !authLoading && !user ? g.saved.guest : g.saved.save}
+          </button>
+          {saveState === 'saved' && (
+            <p className="text-sm text-white">
+              {g.saved.hint}{' '}
+              {needsPush && <a href={`${localePath(locale, 'panel')}?tab=settings`} className="text-gold font-semibold underline">{g.saved.pushLink}</a>}
+            </p>
+          )}
+          {saveState === 'limit' && <p className="text-sm text-white">{g.saved.limit.replace('10', String(MAX_SEARCHES))}</p>}
+          {saveState === 'error' && <p className="text-sm text-white">{g.saved.error}</p>}
+        </div>
+      )}
     </div>
 
     {items.length === 0 && (
@@ -246,8 +322,8 @@ export default function PropertiesGrid({ samples }) {
       </div>
     )}
 
-    <div className="grid sm:grid-cols-2 gap-8 lg:gap-10 mb-20">
-      {items.map((property, i) => {
+    <div className={`grid sm:grid-cols-2 gap-8 lg:gap-10 ${gateReady ? 'mb-10' : 'mb-20'}`}>
+      {visible.map((property, i) => {
         const Wrap = property.href ? 'a' : 'div';
         return (
           <ScrollReveal key={property.id} delay={(i % 2) * 0.04}>
@@ -303,6 +379,45 @@ export default function PropertiesGrid({ samples }) {
         );
       })}
     </div>
+    {gateReady && (
+      <div className="rounded-2xl border border-gold/40 bg-white p-6 sm:p-8 mb-20">
+        <GateSeen n={items.length} />
+        <div className="flex items-start gap-4">
+          <Lock className="text-gold shrink-0 mt-1" size={26} />
+          <div className="flex-1">
+            <h2 className="font-serif text-2xl text-dark mb-1">{g.gate.title(visible.length, items.length)}</h2>
+            <p className="text-text-muted">{g.gate.text(hidden.length)}</p>
+            {hiddenPrices.length > 0 && (
+              <p className="text-sm text-text-muted mt-2">
+                {g.gate.peek(hiddenPlaces.join(', '), `${eur0(Math.min(...hiddenPrices))} – ${eur0(Math.max(...hiddenPrices))}`)}
+              </p>
+            )}
+            <ul className="mt-5 grid sm:grid-cols-2 gap-x-6 gap-y-2">
+              {g.gate.bullets.map((b) => (
+                <li key={b} className="flex gap-2 text-sm text-dark"><Check className="w-4 h-4 text-gold shrink-0 mt-0.5" />{b}</li>
+              ))}
+            </ul>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <a
+                href={joinHref('gate')}
+                onClick={() => trackFunnel('gate_click', 'join')}
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-gold text-dark font-semibold px-6 py-3 text-sm hover:bg-gold-hover transition-colors"
+              >
+                {g.gate.join}<ArrowRight size={15} />
+              </a>
+              <a
+                href={`${localePath(locale, 'giris')}?from=gate`}
+                onClick={() => trackFunnel('gate_click', 'login')}
+                className="text-sm font-semibold text-gold hover:underline"
+              >
+                {g.gate.login}
+              </a>
+              <span className="text-xs text-text-muted">{g.gate.note}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
     </>
   );
 }

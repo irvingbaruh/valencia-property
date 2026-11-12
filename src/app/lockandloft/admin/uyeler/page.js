@@ -20,6 +20,9 @@ import {
   Check,
   UserCircle,
   Trash2,
+  Smartphone,
+  Bell,
+  Search as SearchIcon,
 } from 'lucide-react';
 
 const ROLES = [
@@ -170,6 +173,7 @@ export default function AdminMembersPage() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [roleFilter, setRoleFilter] = useState('all');
+  const [appOnly, setAppOnly] = useState(false);
   const [sortField, setSortField] = useState('created_at');
   const [sortDir, setSortDir] = useState('desc');
   const [selectedMember, setSelectedMember] = useState(null);
@@ -201,7 +205,7 @@ export default function AdminMembersPage() {
     try {
       let query = supabase
         .from('profiles_with_email')
-        .select('id, full_name, email, phone, whatsapp_phone, role, preferred_language, country, citizenship, has_residence_permit, created_at, updated_at')
+        .select('id, full_name, email, phone, whatsapp_phone, role, preferred_language, country, citizenship, has_residence_permit, created_at, updated_at, app_installed_at, app_last_open_at, app_platform, has_push, saved_searches')
         .order(sortField, { ascending: sortDir === 'asc' });
 
       if (roleFilter !== 'all') {
@@ -266,6 +270,25 @@ export default function AdminMembersPage() {
           </p>
         </div>
 
+        {/* How many members use the installed app / have notifications on */}
+        {(() => {
+          const people = members.filter((m) => m.role !== 'admin');
+          const withApp = people.filter((m) => m.app_installed_at).length;
+          const withPush = people.filter((m) => m.has_push).length;
+          const week = people.filter((m) => m.app_last_open_at && Date.now() - new Date(m.app_last_open_at).getTime() < 7 * 864e5).length;
+          return (
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+              {[['Üye', people.length], ['Uygulaması olan', withApp], ['Son 7 günde uygulamayı açan', week], ['Bildirimi açık', withPush]].map(([l, v]) => (
+                <div key={l} className="rounded-xl p-4" style={{ background: '#151521', border: '1px solid #1E1E2E' }}>
+                  <p className="text-xs text-[#9A9AAA]">{l}</p>
+                  <p className="text-2xl font-semibold text-white mt-1">{v}</p>
+                </div>
+              ))}
+              <p className="col-span-2 lg:col-span-4 text-xs text-[#6A6A7A]">Uygulama bilgisi, üye kurulu uygulamayı giriş yapmış olarak ilk açtığında kaydedilir; bu özellikten önce kuranlar bir sonraki açılışta görünür.</p>
+            </div>
+          );
+        })()}
+
         {/* Filters */}
         <div className="flex flex-col sm:flex-row gap-3 mb-6">
           <div className="relative flex-1">
@@ -280,6 +303,14 @@ export default function AdminMembersPage() {
             />
           </div>
           <div className="flex gap-2">
+            <button
+              onClick={() => setAppOnly((v) => !v)}
+              className="px-4 py-2.5 rounded-lg text-sm font-medium transition-colors"
+              style={appOnly ? { background: 'rgba(201, 168, 76, 0.15)', color: '#C9A84C' } : { background: '#151521', border: '1px solid #1E1E2E', color: '#9A9AAA' }}
+            >
+              <Smartphone className="w-3.5 h-3.5 inline mr-1.5" />
+              Uygulaması olanlar
+            </button>
             {['all', 'user', 'admin'].map((role) => (
               <button
                 key={role}
@@ -338,7 +369,7 @@ export default function AdminMembersPage() {
             </div>
           ) : (
             <div>
-              {members.map((member) => (
+              {(appOnly ? members.filter((m) => m.app_installed_at) : members).map((member) => (
                 <div
                   key={member.id}
                   className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr_100px_100px_90px] gap-2 md:gap-4 px-5 py-3.5 hover:bg-white/5 transition-colors cursor-pointer"
@@ -355,6 +386,19 @@ export default function AdminMembersPage() {
                     </div>
                     <span className="text-sm font-medium text-white truncate hover:text-[#C9A84C]">
                       {member.full_name || 'İsimsiz'}
+                    </span>
+                    <span className="flex items-center gap-1.5 shrink-0">
+                      {member.app_installed_at && (
+                        <span title={`Uygulama kurulu (${member.app_platform || '?'}). Son açılış: ${new Date(member.app_last_open_at).toLocaleDateString('tr-TR')}`}>
+                          <Smartphone className="w-3.5 h-3.5 text-green-400" aria-label="Uygulaması var" />
+                        </span>
+                      )}
+                      {member.has_push && (
+                        <span title="Bildirimi açık"><Bell className="w-3.5 h-3.5 text-[#C9A84C]" aria-label="Bildirimi açık" /></span>
+                      )}
+                      {Number(member.saved_searches) > 0 && (
+                        <span title={`${member.saved_searches} kayıtlı arama`}><SearchIcon className="w-3.5 h-3.5 text-[#9A9AAA]" aria-label="Kayıtlı arama var" /></span>
+                      )}
                     </span>
                   </div>
 

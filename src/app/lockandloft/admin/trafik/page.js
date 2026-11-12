@@ -111,12 +111,79 @@ function Daily({ days }) {
   );
 }
 
+const CTX = {
+  favorite: 'Favori kalbine dokundu',
+  listing: 'İlan sayfasındaki davet',
+  cost: 'Maliyet hesaplayıcıdaki davet',
+  save_search: 'Aramayı kaydet düğmesi',
+  gate: '15 ilan sınırı kartı',
+  join: 'Sınır kartı: Ücretsiz üye ol',
+  login: 'Sınır kartı: Giriş yap',
+  guide_sample: 'Rehber örnek sayfası',
+  guide: 'Rehber örnek sayfası',
+  direct: 'Doğrudan',
+  '-': 'Belirtilmemiş',
+};
+
+function Funnel({ f }) {
+  if (!f) return null;
+  const v = (k) => Number((f.steps.find((x) => x.step === k) || {}).visitors || 0);
+  const e = (k) => Number((f.steps.find((x) => x.step === k) || {}).events || 0);
+  const rows = [
+    ['Ziyaretçi', f.visitors],
+    ['İlan sayfasını açan', f.listing_page],
+    ['15 ilan sınırı kartını gören', v('gate_view')],
+    ['Sınır kartında üyelik düğmesine basan', v('gate_click')],
+    ['Başka bir davete basan (favori, ilan, hesaplayıcı, arama)', v('invite_click')],
+    ['Giriş/kayıt sayfasını açan', v('auth_view')],
+    ['Kayıt formunu gönderen', v('signup_start') + v('signup_google')],
+  ];
+  const top = Math.max(1, ...rows.map((r) => r[1]));
+  return (
+    <section className="rounded-xl p-5" style={card}>
+      <h2 className="text-base font-semibold text-white mb-1">Üyelik hunisi</h2>
+      <p className="text-xs text-[#6A6A7A] mb-4">Ziyaretçi sayıları günlük sayılır; aynı kişi farklı günlerde birden fazla kez görünebilir. Gerçek yeni üye sayısı doğrudan üye kayıtlarından gelir.</p>
+      <ul className="space-y-2">
+        {rows.map(([label, n]) => (
+          <li key={label}>
+            <div className="flex justify-between text-sm text-white"><span>{label}</span><span className="tabular-nums text-[#C9A84C]">{nf(n)}</span></div>
+            <div className="h-1.5 rounded bg-[#0B0B11] mt-1"><div className="h-1.5 rounded bg-[#C9A84C]" style={{ width: `${Math.max(2, (n / top) * 100)}%` }} /></div>
+          </li>
+        ))}
+      </ul>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-5">
+        <Tile label="Yeni üye (bu aralıkta)" value={f.signups} hint={`Toplam üye: ${nf(f.members)}`} />
+        <Tile label="Aramasını kaydeden" value={e('search_saved')} hint="Kayıtlı arama sayısı" />
+        <Tile label="Hoş geldin ekranından işlem" value={e('welcome_go')} hint={`${nf(e('welcome_view'))} kez gösterildi`} />
+        <Tile label="Bildirimi açık üye" value={f.push_members} />
+      </div>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-3">
+        <Tile label="Uygulamayı kuran (bu aralıkta)" value={v('app_install')} hint="Android/Chrome kurulum olayı" />
+        <Tile label="Uygulamayı açan (bu aralıkta)" value={v('app_open')} hint="Kurulu uygulamadan giren ziyaretçi" />
+        <Tile label="Uygulaması olan üye" value={f.app_members} hint="Girişli açılıştan bilinen" />
+        <Tile label="Son 30 günde uygulamayı açan üye" value={f.app_active_30d} />
+      </div>
+      {f.contexts.filter((c) => c.step !== 'invite_view').length > 0 && (
+        <div className="mt-5">
+          <p className="text-sm font-semibold text-white mb-2">Davetler nerede işe yarıyor?</p>
+          <ul className="divide-y divide-[#1E1E2E]">
+            {f.contexts.filter((c) => c.step !== 'invite_view').map((c, i) => (
+              <li key={i} className="py-1.5 flex justify-between text-sm text-white"><span>{CTX[c.ctx] || c.ctx}</span><span className="tabular-nums text-[#C9A84C]">{nf(c.n)} tıklama</span></li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </section>
+  );
+}
+
 function Traffic() {
   const today = iso(new Date());
   const [range, setRange] = useState('7');
   const [from, setFrom] = useState(today);
   const [to, setTo] = useState(today);
   const [data, setData] = useState(null);
+  const [fun, setFun] = useState(null);
   const [err, setErr] = useState('');
 
   const load = useCallback(async () => {
@@ -138,6 +205,8 @@ function Traffic() {
       setErr('');
       setData(res);
     }
+    const { data: fres } = await supabase.rpc('funnel_summary', { p_from: a.toISOString(), p_to: b.toISOString() });
+    if (fres) setFun(fres);
   }, [range, from, to, today]);
 
   useEffect(() => {
@@ -202,6 +271,8 @@ function Traffic() {
           </div>
 
           <Daily days={d.by_day} />
+
+          <Funnel f={fun} />
 
           <div className="grid lg:grid-cols-2 gap-5">
             <Rows title="En çok açılan sayfalar" cols="görüntüleme" rows={d.top_pages.map((r) => ({ main: r.path, value: nf(r.views), sub: `${nf(r.visitors)} ziyaretçi` }))} />

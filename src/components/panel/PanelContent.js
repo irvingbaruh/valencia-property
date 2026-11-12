@@ -8,6 +8,8 @@ import { getFavorites, removeFavorite } from '@/lib/favorites';
 import { supabase } from '@/lib/supabase';
 import PushQuickCard from '@/components/panel/PushQuickCard';
 import PanelFeed from '@/components/panel/PanelFeed';
+import SavedSearches from '@/components/panel/SavedSearches';
+import WelcomeModal from '@/components/panel/WelcomeModal';
 import MemberPushSettings from '@/components/panel/MemberPushSettings';
 import DocumentManager from '@/components/documents/DocumentManager';
 import { benefits } from '@/lib/memberBenefits';
@@ -538,8 +540,10 @@ export default function PanelContent() {
         )}
 
         {/* Favorites Tab */}
+        {user && <WelcomeModal goTab={setActiveTab} />}
         {activeTab === 'favorites' && (
           <div>
+            <SavedSearches />
             {loadingFavorites ? (
               <div className="flex justify-center py-16">
                 <div className="w-8 h-8 border-2 border-[var(--color-gold)] border-t-transparent rounded-full animate-spin" />

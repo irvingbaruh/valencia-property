@@ -20,7 +20,7 @@ export const PAGES = {
     sub: L('Festivaller, doğa, deniz ve gastronomi: dolu bir takvim.', 'Fiestas, naturaleza, mar y gastronomía: un calendario lleno.', 'Festivals, nature, sea and food: a full calendar.', 'Feste, Natur, Meer und Gastronomie: ein voller Kalender.'), hero: 'calpe-stairs',
     meta: L('Valencia ve Alicante’de yapılacaklar', 'Qué hacer en Valencia y Alicante', 'Things to do in Valencia and Alicante', 'Aktivitäten in Valencia und Alicante') },
   okullar: { nav: L('Okullar', 'Colegios', 'Schools', 'Schulen'), title: L('Uluslararası okullar', 'Colegios internacionales', 'International schools', 'Internationale Schulen'),
-    sub: L('Müfredat, yaş aralığı ve yayımlanmış yıllık ücretler.', 'Currículo, edades y cuotas anuales publicadas.', 'Curriculum, ages and published annual fees.', 'Lehrplan, Alter und veröffentlichte Jahresgebühren.'), hero: 'okullar' },
+    sub: L('Müfredat, yaş aralığı ve yayımlanmış yıllık ücretler.', 'Currículo, edades y cuotas anuales publicadas.', 'Curriculum, ages and published annual fees.', 'Lehrplan, Alter und veröffentlichte Jahresgebühren.'), hero: 'okullar', open: true },
 };
 export const PAGE_ORDER = ['rehber', 'yasam', 'semtler', 'nerede', 'bolgeler', 'aktiviteler', 'okullar'];
 

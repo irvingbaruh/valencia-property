@@ -2,6 +2,9 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { ArrowRight, Newspaper } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import DetailedROICalculator from '@/components/sections/DetailedROICalculator';
+import PurchaseCostCalculator from '@/components/sections/PurchaseCostCalculator';
+import MemberInvite from '@/components/ui/MemberInvite';
+import { gt } from '@/lib/growthText';
 import LiveExchangeRates from '@/components/sections/LiveExchangeRates';
 import { localePath } from '@/lib/routes';
 
@@ -36,6 +39,16 @@ export default async function ROIPage({ params }) {
         <ScrollReveal>
           <DetailedROICalculator />
         </ScrollReveal>
+
+        {/* Total purchase cost */}
+        <section id="maliyet" className="scroll-mt-32">
+          <ScrollReveal>
+            <h2 className="text-2xl font-serif text-dark mb-2">{gt(locale).cost.title}</h2>
+            <p className="text-text-muted mb-6 max-w-2xl">{gt(locale).cost.subtitle}</p>
+          </ScrollReveal>
+          <PurchaseCostCalculator />
+          <MemberInvite context="cost" kind="cost" className="mt-8" />
+        </section>
 
         {/* Live data */}
         <section>

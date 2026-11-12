@@ -113,10 +113,21 @@ export default function Tracker() {
     const mo = new MutationObserver(() => scan());
     mo.observe(document.body, { childList: true, subtree: true });
 
+    // signup-funnel steps from trackFunnel() (lib/funnel.js); steps sent before this mounted are queued
+    const onFunnel = (e) => {
+      const d = e.detail || {};
+      if (d.step) push({ k: 'funnel', lb: String(d.step).slice(0, 40), t: String(d.ctx || '').slice(0, 60) });
+    };
+    window.addEventListener('ll:funnel', onFunnel);
+    window.__llFunnelReady = true;
+    (window.__llFunnelQ || []).splice(0).forEach((d) => onFunnel({ detail: d }));
+
     return () => {
       document.removeEventListener('click', onClick, { capture: true });
       document.removeEventListener('visibilitychange', onHide);
       window.removeEventListener('pagehide', flush);
+      window.removeEventListener('ll:funnel', onFunnel);
+      window.__llFunnelReady = false;
       io.disconnect();
       mo.disconnect();
     };

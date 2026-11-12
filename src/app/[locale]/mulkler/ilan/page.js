@@ -5,6 +5,8 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { ArrowLeft, ArrowRight, MapPin, BedDouble, Bath, Maximize2, Trees, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import AppPromo from '@/components/app/AppPromo';
+import PurchaseCostCalculator from '@/components/sections/PurchaseCostCalculator';
+import MemberInvite from '@/components/ui/MemberInvite';
 import FavoriteButton from '@/components/ui/FavoriteButton';
 import { localePath } from '@/lib/routes';
 import {
@@ -165,6 +167,10 @@ function Detail() {
                 <p className="text-text-muted leading-relaxed whitespace-pre-line max-w-prose">{desc}</p>
               </div>
             ) : null}
+            {p.price && (!p.currency || p.currency === 'EUR') ? (
+              <div className="mt-8"><PurchaseCostCalculator initialPrice={Number(p.price)} compact /></div>
+            ) : null}
+            <MemberInvite context="listing" kind="listing" className="mt-6" />
           </div>
 
           <aside className="lg:sticky lg:top-28 dark-card rounded-2xl border border-white/10 p-6 shadow-card">

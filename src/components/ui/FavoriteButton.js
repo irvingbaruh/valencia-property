@@ -6,6 +6,7 @@ import { useAuth } from '@/components/providers/AuthProvider';
 import { addFavorite, removeFavorite, isFavorited } from '@/lib/favorites';
 import { useLocale } from 'next-intl';
 import { localePath } from '@/lib/routes';
+import { trackFunnel } from '@/lib/funnel';
 
 export default function FavoriteButton({ propertyId, className = '' }) {
   const { user } = useAuth();
@@ -26,8 +27,9 @@ export default function FavoriteButton({ propertyId, className = '' }) {
     e.stopPropagation();
 
     if (!user) {
-      // Redirect to login
-      window.location.href = localePath(locale, 'giris');
+      // A visitor who taps the heart is asking for an account: send them to sign up
+      trackFunnel('invite_click', 'favorite');
+      window.location.href = `${localePath(locale, 'giris')}?mode=register&from=favorite`;
       return;
     }
 

@@ -3,7 +3,7 @@ export const FALLBACK = {
   districts: [{ slug: 'valencia-ortalama', name: 'Valencia', ref_price: 270000, ref_rent: 1320, price_per_sqm: 3378, updated_at: null }],
   mortgages: [],
   assumptions: {
-    itp_pct: 9, legal_costs_pct: 1.5, tax_noneu_pct: 24, tax_eu_pct: 19, vacancy_pct: 4, mgmt_fee_pct: 10,
+    itp_pct: 9, itp_high_pct: 11, itp_high_threshold: 1000000, vat_new_pct: 10, ajd_pct: 1.4, legal_costs_pct: 1.5, tax_noneu_pct: 24, tax_eu_pct: 19, vacancy_pct: 4, mgmt_fee_pct: 10,
     ibi_pct: 0.25, community_monthly: 50, insurance_annual: 250, maintenance_pct: 0.5, rent_growth_pct: 2,
     appreciation_pct: 2, str_multiplier: 1.8, str_cost_pct: 35,
   },

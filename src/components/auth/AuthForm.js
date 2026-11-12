@@ -1,12 +1,13 @@
 'use client';
 
 import { supabase } from '@/lib/supabase';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { Mail, Lock, User, Eye, EyeOff } from 'lucide-react';
 import { localePath } from '@/lib/routes';
+import { trackFunnel } from '@/lib/funnel';
 
 export default function AuthForm() {
   const t = useTranslations('auth');
@@ -22,6 +23,13 @@ export default function AuthForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
+  // Invitations link here with ?mode=register&from=<where the invite was>
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    if (q.get('mode') === 'register') setMode('register');
+    trackFunnel('auth_view', q.get('from') || 'direct');
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,6 +63,7 @@ export default function AuthForm() {
           router.push(localePath(locale, 'panel') + (fromApp ? '?tab=settings' : ''));
         }
       } else {
+        trackFunnel('signup_start');
         const { data, error: signUpError } = await signUp(email, password, fullName, { marketing });
         if (signUpError) {
           if (signUpError.message?.includes('already registered')) {
@@ -65,6 +74,7 @@ export default function AuthForm() {
         } else if (data?.user?.identities?.length === 0) {
           setError(t('errorEmailTaken'));
         } else {
+          trackFunnel('signup_sent');
           setMode('checkEmail');
         }
       }
@@ -77,6 +87,7 @@ export default function AuthForm() {
 
   const handleGoogle = async () => {
     setError('');
+    trackFunnel('signup_google', mode);
     const { error: googleError } = await signInWithGoogle();
     if (googleError) {
       setError(t('errorGeneric'));
