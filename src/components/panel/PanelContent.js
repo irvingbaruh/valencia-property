@@ -493,12 +493,12 @@ export default function PanelContent() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-1 dark-card rounded-xl p-1 shadow-sm mb-8 overflow-x-auto">
+        <div className="grid grid-cols-3 gap-1 sm:flex dark-card rounded-xl p-1 shadow-sm mb-8 sm:overflow-x-auto">
           {tabs.map(({ id, label, icon: Icon, badge }) => (
             <button
               key={id}
               onClick={() => setActiveTab(id)}
-              className={`flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
+              className={`relative min-w-0 sm:flex-1 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-1 sm:px-3 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-medium leading-tight text-center sm:whitespace-nowrap transition-colors ${
                 activeTab === id
                   ? 'bg-[var(--color-gold)] text-white'
                   : 'text-[var(--color-charcoal)] hover:bg-gray-50'
@@ -507,7 +507,7 @@ export default function PanelContent() {
               <Icon className="w-4 h-4" />
               {label}
               {badge > 0 && (
-                <span className="min-w-5 h-5 px-1 rounded-full bg-[var(--color-red,#DC1C2E)] text-white text-[10px] font-bold flex items-center justify-center">
+                <span className="absolute top-1 right-1.5 sm:static min-w-5 h-5 px-1 rounded-full bg-[var(--color-red,#DC1C2E)] text-white text-[10px] font-bold flex items-center justify-center">
                   {badge}
                 </span>
               )}
