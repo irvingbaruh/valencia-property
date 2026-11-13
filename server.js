@@ -4,6 +4,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const zlib = require('zlib');
 
 const PORT = process.env.PORT || 3000;
 const STATIC_DIR = path.join(__dirname, 'out');
@@ -14,11 +15,13 @@ const ARCHIVE = path.join(__dirname, 'static-site.tar.gz');
 if (fs.existsSync(ARCHIVE)) {
   console.log('Found static-site.tar.gz — extracting (overwrites any existing out/)...');
   try {
-    // Ensure out/ directory exists
-    if (!fs.existsSync(STATIC_DIR)) {
-      fs.mkdirSync(STATIC_DIR, { recursive: true });
-    }
-    execSync(`tar -xzf "${ARCHIVE}" -C "${STATIC_DIR}"`, { cwd: __dirname, stdio: 'inherit' });
+    // Extract into a fresh folder and swap it in, so files from older builds do not pile up in out/
+    const NEXT_DIR = path.join(__dirname, 'out.next');
+    fs.rmSync(NEXT_DIR, { recursive: true, force: true });
+    fs.mkdirSync(NEXT_DIR, { recursive: true });
+    execSync(`tar -xzf "${ARCHIVE}" -C "${NEXT_DIR}"`, { cwd: __dirname, stdio: 'inherit' });
+    fs.rmSync(STATIC_DIR, { recursive: true, force: true });
+    fs.renameSync(NEXT_DIR, STATIC_DIR);
     console.log('Extraction complete.');
   } catch (err) {
     console.error('Failed to extract static-site.tar.gz:', err.message);
@@ -49,6 +52,8 @@ const MIME_TYPES = {
   '.webmanifest': 'application/manifest+json',
   '.mp4': 'video/mp4',
   '.webm': 'video/webm',
+  '.txt': 'text/plain; charset=utf-8',
+  '.xml': 'application/xml; charset=utf-8',
 };
 
 
@@ -129,13 +134,44 @@ function getMime(filePath) {
   return MIME_TYPES[path.extname(filePath).toLowerCase()] || 'application/octet-stream';
 }
 
+// Only files inside out/ are ever served: a path that resolves outside it (../) is treated as not found.
 function tryFile(filePath) {
   try {
-    if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-      return filePath;
+    const full = path.resolve(filePath);
+    if (!full.startsWith(STATIC_DIR + path.sep)) return null;
+    if (fs.existsSync(full) && fs.statSync(full).isFile()) {
+      return full;
     }
   } catch {}
   return null;
+}
+
+// Compression and caching. Hashed build files never change, pages must always be fresh after a deploy.
+const COMPRESSIBLE = /\.(html|css|js|json|svg|txt|xml|webmanifest)$/i;
+const gzCache = new Map();
+function cacheControl(filePath) {
+  const rel = filePath.slice(STATIC_DIR.length).replace(/\\/g, '/');
+  if (rel.startsWith('/_next/static/')) return 'public, max-age=31536000, immutable';
+  if (/\.(png|jpe?g|gif|webp|svg|ico|woff2?|ttf)$/i.test(rel)) return 'public, max-age=604800';
+  return 'no-cache';
+}
+function send(req, res, status, headers, body, cacheKey) {
+  const h = { ...headers };
+  const type = String(h['Content-Type'] || '');
+  const wantsGzip = /\bgzip\b/.test(String(req.headers['accept-encoding'] || ''));
+  if (wantsGzip && body.length > 1024 && /text\/|javascript|json|xml|svg|manifest/.test(type)) {
+    let gz = cacheKey && gzCache.get(cacheKey);
+    if (!gz) {
+      gz = zlib.gzipSync(body);
+      if (cacheKey && gzCache.size < 2000) gzCache.set(cacheKey, gz);
+    }
+    body = gz;
+    h['Content-Encoding'] = 'gzip';
+  }
+  h.Vary = h.Vary ? `${h.Vary}, Accept-Encoding` : 'Accept-Encoding';
+  h['Content-Length'] = body.length;
+  res.writeHead(status, h);
+  res.end(req.method === 'HEAD' ? undefined : body);
 }
 
 
@@ -302,12 +338,34 @@ async function serveHtml(req, res, filePath, urlPath) {
   try {
     html = await decorate(html, urlPath, new URL(req.url, SITE).searchParams);
   } catch (e) { console.error('decorate failed', e.message); }
-  res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-  res.end(html);
+  send(req, res, 200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache' }, Buffer.from(html, 'utf8'));
 }
 
 const server = http.createServer((req, res) => {
-  let urlPath = decodeURIComponent(req.url.split('?')[0]);
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  if (req.url.startsWith('/lockandloft/')) res.setHeader('X-Frame-Options', 'SAMEORIGIN'); // the admin must never be framed by another site
+  res.setHeader('Strict-Transport-Security', 'max-age=31536000');
+  try {
+    handle(req, res);
+  } catch (e) {
+    console.error('request failed', req.url, e.message);
+    if (!res.headersSent) res.writeHead(500, { 'Content-Type': 'text/plain' });
+    res.end('Server error');
+  }
+});
+
+function handle(req, res) {
+  let urlPath;
+  try {
+    urlPath = decodeURIComponent(req.url.split('?')[0]);
+  } catch (e) {
+    // malformed percent-encoding (e.g. "/%") used to crash the whole server
+    res.writeHead(400, { 'Content-Type': 'text/plain' });
+    res.end('Bad Request');
+    return;
+  }
+  if (urlPath.includes('\0')) { res.writeHead(400, { 'Content-Type': 'text/plain' }); res.end('Bad Request'); return; }
 
   if (urlPath === '/robots.txt') {
     res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
@@ -410,14 +468,13 @@ const server = http.createServer((req, res) => {
       return;
     }
     const content = fs.readFileSync(filePath);
-    const hdr = { 'Content-Type': getMime(filePath) };
+    const hdr = { 'Content-Type': getMime(filePath), 'Cache-Control': cacheControl(filePath) };
     if (/\/sw\.js$/.test(filePath) || /\.webmanifest$/.test(filePath)) {
       hdr['Cache-Control'] = 'no-cache';
       if (/\/lockandloft\/admin\/sw\.js$/.test(filePath)) hdr['Service-Worker-Allowed'] = '/lockandloft/admin/';
       else if (/\/sw\.js$/.test(filePath)) hdr['Service-Worker-Allowed'] = '/';
     }
-    res.writeHead(200, hdr);
-    res.end(content);
+    send(req, res, 200, hdr, content, COMPRESSIBLE.test(filePath) ? filePath : null);
   } else {
     // 404 - try to serve a custom 404 page
     const notFoundPage = tryFile(path.join(STATIC_DIR, '404.html'));
@@ -430,7 +487,10 @@ const server = http.createServer((req, res) => {
       res.end('Not Found');
     }
   }
-});
+}
+
+process.on('uncaughtException', (e) => console.error('uncaught', e));
+process.on('unhandledRejection', (e) => console.error('unhandled', e));
 
 server.listen(PORT, () => {
   console.log(`Static server running on port ${PORT}`);
