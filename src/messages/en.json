@@ -948,7 +948,8 @@
       {
         "h": "Cookies and local storage",
         "p": [
-          "We use no advertising or tracking cookies. There are only records the site needs to work: your chosen language and, if you are logged in, your session."
+          "We use no advertising or tracking cookies. There are only records the site needs to work: your chosen language and, if you are logged in, your session.",
+          "In addition, on your first visit we keep in your browser's local storage, for up to 90 days, which source you came from (for example Instagram, Google or a campaign link) and the first page you opened. If you sign up, that information is saved to your account so we can tell which channel works. If you do not sign up, it is not linked to you on our servers. You can remove it by clearing the site data in your browser."
         ]
       },
       {

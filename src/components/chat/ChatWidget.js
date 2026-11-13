@@ -2,12 +2,28 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { MessageCircle, X, Send, Loader2, CheckCircle2 } from 'lucide-react';
+import { MessageCircle, X, Send, Loader2, CheckCircle2, Phone } from 'lucide-react';
+import { useAuth } from '@/components/providers/AuthProvider';
+import { useContactSettings, waDigits } from '@/lib/siteSettings';
+import { trackFunnel } from '@/lib/funnel';
 
 const ENDPOINT = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/chat`;
 const KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const STORE = 'll_chat_v1';
 const CONTACT_SLUG = { tr: 'iletisim', es: 'contacto', en: 'contact', de: 'kontakt' };
+// Members get a direct WhatsApp line next to the assistant.
+const WA = {
+  tr: { label: 'WhatsApp’tan yazın', text: (n) => `Merhaba, Lock & Loft üyesiyim${n ? ` (${n})` : ''}. Bir sorum var: ` },
+  es: { label: 'Escríbenos por WhatsApp', text: (n) => `Hola, soy miembro de Lock & Loft${n ? ` (${n})` : ''}. Tengo una pregunta: ` },
+  en: { label: 'Message us on WhatsApp', text: (n) => `Hello, I am a Lock & Loft member${n ? ` (${n})` : ''}. I have a question: ` },
+  de: { label: 'Per WhatsApp schreiben', text: (n) => `Hallo, ich bin Mitglied bei Lock & Loft${n ? ` (${n})` : ''}. Ich habe eine Frage: ` },
+};
+const WaIcon = () => (
+  <span className="relative flex items-center justify-center" aria-hidden="true">
+    <MessageCircle size={28} color="#fff" strokeWidth={1.8} />
+    <Phone size={11} color="#fff" strokeWidth={2.6} className="absolute" />
+  </span>
+);
 
 async function call(payload) {
   const res = await fetch(ENDPOINT, {
@@ -101,11 +117,27 @@ export default function ChatWidget() {
     setFormBusy(false);
   };
 
+  const { user, profile } = useAuth();
+  const contact = useContactSettings();
+  const wa = WA[locale] || WA.en;
+  const showWa = !!user && profile?.role !== 'admin' && !!waDigits(contact.whatsapp);
   const suggestions = [t('s1'), t('s2'), t('s3')];
   const contactUrl = `/${locale}/${CONTACT_SLUG[locale]}/`;
 
   return (
     <>
+      {!open && showWa && (
+        <a
+          href={`https://wa.me/${waDigits(contact.whatsapp)}?text=${encodeURIComponent(wa.text(profile?.full_name || ''))}`}
+          target="_blank" rel="noopener noreferrer"
+          aria-label={wa.label} title={wa.label} data-track="whatsapp_bubble"
+          onClick={() => trackFunnel('wa_click', 'bubble')}
+          className="ll-wa fixed bottom-[76px] right-5 z-40 flex h-12 w-12 items-center justify-center rounded-full shadow-xl transition-transform hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]"
+          style={{ background: '#25D366' }}
+        >
+          <WaIcon />
+        </a>
+      )}
       {!open && (
         <button
           onClick={() => setOpen(true)}

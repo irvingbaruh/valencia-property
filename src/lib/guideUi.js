@@ -1,10 +1,10 @@
-// Copy for the city-guide screens (hub, life, areas, coast, activities, schools). Members only.
+// Copy for the city-guide screens (hub, life, areas, coast, activities, schools). Guests see the first part of each page.
 const L = (tr, es, en, de) => ({ tr, es, en, de });
 
 export const PAGES = {
   rehber: { nav: L('Genel bakış', 'Resumen', 'Overview', 'Überblick'), title: L('Valencia & Alicante rehberi', 'Guía Valencia y Alicante', 'Valencia & Alicante guide', 'Valencia & Alicante Ratgeber'),
     sub: L('Valencia, Alicante ve Costa Blanca: yaşam, semtler, okullar ve yapılacaklar.', 'Valencia, Alicante y la Costa Blanca: vida diaria, barrios, colegios y planes.', 'Valencia, Alicante and the Costa Blanca: daily life, neighbourhoods, schools and things to do.', 'Valencia, Alicante und Costa Blanca: Alltag, Viertel, Schulen und Aktivitäten.'),
-    hero: 'calpe-bay' },
+    hero: 'calpe-bay', open: true, hub: true },
   yasam: { nav: L('Yaşam ve ulaşım', 'Vida y transporte', 'Life & transport', 'Alltag & Verkehr'), title: L('Yaşam, ulaşım ve güvenlik', 'Vida, transporte y seguridad', 'Life, transport and safety', 'Alltag, Verkehr und Sicherheit'),
     sub: L('Günlük hayat nasıl, nasıl dolaşılır, nelere dikkat edilir.', 'Cómo es el día a día, cómo moverse y a qué prestar atención.', 'What daily life is like, how to get around and what to watch for.', 'Wie der Alltag aussieht, wie man sich bewegt und worauf man achten sollte.'),
     hero: 'altea-flowers', meta: L('Valencia ve Alicante’de yaşam, ulaşım ve güvenlik', 'Vida, transporte y seguridad en Valencia y Alicante', 'Life, transport and safety in Valencia and Alicante', 'Alltag, Verkehr und Sicherheit in Valencia und Alicante') },
@@ -44,6 +44,15 @@ export const PAGES = {
 };
 export const PAGE_ORDER = ['rehber', 'valencia-mi-alicante-mi', 'yasam', 'yasam-maliyeti', 'semtler', 'nerede', 'bolgeler', 'iklim', 'aktiviteler', 'takvim', 'okullar', 'saglik', 'vize', 'tasinma', 'vergi', 'dezavantajlar', 'turk-toplulugu'];
 export const pageVisible = (k, locale) => !PAGES[k]?.locales || PAGES[k].locales.includes(locale);
+
+// Page <title> and description. Guide pages are indexable: guests see the first part of each page,
+// the rest opens with a free membership. Pages that do not exist in a language stay out of the index there.
+export const guideMeta = (k, locale) => {
+  const P = PAGES[k];
+  const title = (P.meta || P.title)[locale] || P.title.tr;
+  const description = P.sub[locale] || P.sub.tr;
+  return { title: `${title} | Lock & Loft`, description, openGraph: { title, description }, ...(pageVisible(k, locale) ? {} : { robots: { index: false } }) };
+};
 
 export const HUB = {
   yasam: { icon: 'Sun', img: 'altea-street', text: L('Günlük hayat, ulaşım ve güvenlik', 'Vida diaria, transporte y seguridad', 'Daily life, transport and safety', 'Alltag, Verkehr und Sicherheit') },

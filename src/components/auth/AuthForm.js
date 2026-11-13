@@ -29,6 +29,8 @@ export default function AuthForm() {
     const q = new URLSearchParams(window.location.search);
     if (q.get('mode') === 'register') setMode('register');
     trackFunnel('auth_view', q.get('from') || 'direct');
+    // came here to book a call: open the booking picker once they are in the panel
+    try { if (q.get('from') === 'booking') sessionStorage.setItem('ll_after', 'meeting'); } catch {}
   }, []);
 
   const handleSubmit = async (e) => {

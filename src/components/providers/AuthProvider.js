@@ -4,6 +4,7 @@ import { disableMemberPush } from '@/lib/memberPush';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { localePath } from '@/lib/routes';
+import { readAttribution } from '@/lib/attribution';
 
 const AuthContext = createContext({
   user: null,
@@ -33,6 +34,15 @@ export function AuthProvider({ children }) {
 
     if (!error && data) {
       setProfile(data);
+      // once per browser session: mark the member as seen and, for sign-ups without metadata (Google), store the first-visit source
+      try {
+        if (data.role !== 'admin' && sessionStorage.getItem('ll_seen') !== userId) {
+          sessionStorage.setItem('ll_seen', userId);
+          supabase.rpc('touch_seen').then(() => {}, () => {});
+          const attr = !data.attribution && readAttribution();
+          if (attr) supabase.rpc('set_my_attribution', { p: attr }).then(() => {}, () => {});
+        }
+      } catch {}
     }
   };
 
@@ -79,7 +89,7 @@ export function AuthProvider({ children }) {
       email,
       password,
       options: {
-        data: { full_name: fullName, lang, ...extra },
+        data: { full_name: fullName, lang, ...(readAttribution() ? { attr: readAttribution() } : {}), ...extra },
         emailRedirectTo: typeof window !== 'undefined' ? `${window.location.origin}${localePath(lang, 'panel')}` : undefined,
       },
     });

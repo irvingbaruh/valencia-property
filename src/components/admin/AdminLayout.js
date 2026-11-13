@@ -28,6 +28,7 @@ import {
   MailCheck,
   BarChart3,
   Star,
+  CalendarClock,
 } from 'lucide-react';
 
 export const ADMIN_BASE = '/lockandloft/admin';
@@ -35,6 +36,7 @@ export const ADMIN_BASE = '/lockandloft/admin';
 const navItems = [
   { id: 'dashboard', href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { id: 'uyeler', href: '/uyeler', icon: Users, label: 'Üyeler' },
+  { id: 'randevular', href: '/randevular', icon: CalendarClock, label: 'Randevular' },
   { id: 'ilanlar', href: '/ilanlar', icon: Building2, label: 'İlanlar' },
   { id: 'piyasa', href: '/piyasa', icon: Newspaper, label: 'Piyasa Notları' },
   { id: 'takvim', href: '/takvim', icon: CalendarDays, label: 'Şehir Takvimi' },

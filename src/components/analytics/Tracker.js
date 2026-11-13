@@ -2,9 +2,10 @@
 
 import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
+import { captureAttribution } from '@/lib/attribution';
 
 // Cookieless first-party analytics: page views, clicks and listing impressions.
-// Nothing is stored in the browser except an "ignore me" flag set on the admins' own devices.
+// Stored in the browser: an "ignore me" flag on the admins' own devices and the first-visit source (lib/attribution.js).
 const ENDPOINT = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/track`;
 const LISTING_RE = /ilan\/\?id=([0-9a-f-]{36})/i;
 
@@ -48,7 +49,9 @@ export default function Tracker() {
       if (u && u.host !== window.location.host) ref = u.host.replace(/^www\./, '');
     } catch {}
     const m = window.location.pathname.includes('/ilan') ? LISTING_RE.exec(`ilan/${window.location.search}`) : null;
-    push({ k: 'view', r: ref, id: m ? m[1] : undefined });
+    // campaign tags (utm_source / utm_campaign) of this visit; the first-touch source is remembered for sign-up
+    const tags = skip() ? {} : captureAttribution();
+    push({ k: 'view', r: ref, id: m ? m[1] : undefined, ...tags });
   }, [pathname]);
 
   useEffect(() => {

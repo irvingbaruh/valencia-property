@@ -7,6 +7,7 @@ import { supabase } from '@/lib/supabase';
 import AdminLayout, { ADMIN_BASE } from '@/components/admin/AdminLayout';
 import { assignService, setStageStatus, setServiceStatus, notifyMember, TEXT } from '@/lib/adminServices';
 import DocumentManager from '@/components/documents/DocumentManager';
+import LeadPanel from '@/components/admin/LeadPanel';
 import trMessages from '@/messages/tr.json';
 import {
   ArrowLeft,
@@ -523,6 +524,8 @@ function MemberDetail() {
         <Fact icon={Calendar} label="Kayıt tarihi" value={fmtDate(member.created_at)} />
         <Fact icon={Globe} label="Dil" value={(member.preferred_language || '').toUpperCase()} />
       </section>
+
+      <LeadPanel member={member} />
 
       {intake && <IntakeCard intake={intake} services={services} templates={templates} memberId={memberId} onChanged={load} />}
 

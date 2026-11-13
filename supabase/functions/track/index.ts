@@ -55,6 +55,8 @@ Deno.serve(async (req) => {
         target: clip(e.t, 200) || null,
         listing_id: UUID.test(String(e.id || '')) ? e.id : null,
         referrer: clip(e.r, 80) || null,
+        src: clip(e.s, 40).toLowerCase() || null,
+        camp: clip(e.c, 60) || null,
         country: /^[A-Z]{2}$/.test(country) && country !== 'XX' && country !== 'T1' ? country : null,
         city: city || null,
         device: dev,

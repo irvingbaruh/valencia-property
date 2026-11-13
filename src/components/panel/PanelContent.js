@@ -17,6 +17,8 @@ import { benefits } from '@/lib/memberBenefits';
 import GuideHubCards from '@/components/guide/GuideHubCards';
 import { User, Heart, Settings, LogOut, Trash2, MapPin, BedDouble, Maximize2, Phone, Globe, Save, Check, Flag, FileCheck, MessageCircle, Shield, Briefcase, Clock, CheckCircle2, ArrowRight, ChevronRight, Bell, FileText } from 'lucide-react';
 import Link from 'next/link';
+import Booking from '@/components/booking/Booking';
+import MeetingCard from '@/components/booking/MeetingCard';
 import { localePath } from '@/lib/routes';
 import { propertyTitle } from '@/lib/propertyText';
 
@@ -350,7 +352,13 @@ export default function PanelContent() {
   const [activeTab, setActiveTab] = useState('favorites');
   useEffect(() => {
     const tab = new URLSearchParams(window.location.search).get('tab');
-    if (['favorites', 'services', 'documents', 'notifications', 'profile', 'settings'].includes(tab)) setActiveTab(tab);
+    if (['favorites', 'services', 'documents', 'notifications', 'profile', 'settings', 'meeting'].includes(tab)) setActiveTab(tab);
+    else {
+      try {
+        if (sessionStorage.getItem('ll_after') === 'meeting') setActiveTab('meeting');
+        sessionStorage.removeItem('ll_after');
+      } catch {}
+    }
   }, []);
   const [unreadCount, setUnreadCount] = useState(0);
   const [favorites, setFavorites] = useState([]);
@@ -521,6 +529,8 @@ export default function PanelContent() {
             </Link>
           </div>
         )}
+
+        {activeTab === 'meeting' ? <div className="mb-6"><Booking /></div> : <MeetingCard onOpen={() => setActiveTab('meeting')} />}
 
         {/* Favorites Tab */}
         {user && <WelcomeModal goTab={setActiveTab} />}

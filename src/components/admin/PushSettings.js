@@ -15,6 +15,10 @@ const EVENTS = [
   ['review', 'Yeni yorum geldi (onay bekliyor)'],
   ['chat_started', 'Biri sohbeti kullandı'],
   ['chat_lead', 'Sohbette iletişim bilgisi bırakıldı'],
+  ['booking', 'Yeni görüşme randevusu'],
+  ['booking_cancelled', 'Üye randevuyu iptal etti'],
+  ['booking_soon', 'Görüşmeye 1 saat kaldı'],
+  ['followup', 'Dönüş bekleyen üyeler (her sabah)'],
   ['digest', 'Günlük özet (her akşam)'],
   ['visit', 'Sitede yeni ziyaretçi (çok sık gelebilir)'],
 ];

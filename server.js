@@ -152,6 +152,9 @@ try { SEO = JSON.parse(fs.readFileSync(path.join(__dirname, 'seo-meta.json'), 'u
 const PAGE_KEYS = ['iletisim', 'hizmetler', 'mulkler', 'roi-hesaplama', 'piyasa', 'blog', 'gizlilik', 'hakkimizda', 'remax', 'sss', 'sozluk'];
 const SERVICE_KEYS = ['mulk-arama', 'hukuki-destek', 'dekorasyon-mobilya', 'renovasyon', 'kira-yonetimi', 'home-staging'];
 const NOINDEX_KEYS = ['giris', 'panel', 'sifre-yenile'];
+// City guide: indexable (guests see the first part of each page). Pages that exist only in Turkish are listed for /tr/ alone.
+const GUIDE_KEYS = ['rehber', 'valencia-mi-alicante-mi', 'yasam', 'yasam-maliyeti', 'semtler', 'nerede', 'bolgeler', 'iklim', 'aktiviteler', 'takvim', 'okullar', 'saglik', 'vize', 'tasinma', 'vergi', 'dezavantajlar'];
+const TR_ONLY_KEYS = ['turk-toplulugu'];
 
 const pageSlug = (loc, key) => (loc === 'tr' ? key : (ROUTES[key] && ROUTES[key][loc]) || key);
 const svcSlug = (loc, svc) => (loc === 'tr' ? svc : (SERVICE_SLUGS[svc] && SERVICE_SLUGS[svc][loc]) || svc);
@@ -258,6 +261,10 @@ async function decorate(html, urlPath, query) {
   const canonical = pageUrl(loc, key, sub, qs);
   if (meta) html = setMeta(html, { url: canonical, ...meta });
   let links = `<link rel="canonical" href="${esc(canonical)}"/>`;
+  if (TR_ONLY_KEYS.includes(key)) {
+    if (loc !== 'tr') return html.replace('</head>', '<meta name="robots" content="noindex,nofollow"/></head>');
+    return html.replace('</head>', `${links}</head>`);
+  }
   for (const l of LOCALES) links += `<link rel="alternate" hreflang="${l}" href="${esc(pageUrl(l, key, sub, qs))}"/>`;
   links += `<link rel="alternate" hreflang="x-default" href="${esc(pageUrl('en', key, sub, qs))}"/>`;
   if (!key) ld += ldJson({ '@context': 'https://schema.org', '@type': 'RealEstateAgent', name: 'Lock & Loft', url: SITE, logo: `${SITE}/icon.svg`, areaServed: 'Valencia, Spain', knowsLanguage: ['tr', 'es', 'en', 'de'] });
@@ -275,6 +282,8 @@ async function buildSitemap() {
   add('');
   PAGE_KEYS.forEach((k) => add(k));
   SERVICE_KEYS.forEach((s) => add('hizmetler', [s]));
+  GUIDE_KEYS.forEach((k) => add(k));
+  TR_ONLY_KEYS.forEach((k) => urls.push(`<url><loc>${esc(pageUrl('tr', k))}</loc></url>`));
   try {
     const props = await sb('properties?is_active=eq.true&select=id,updated_at', 60 * 60 * 1000);
     props.forEach((p) => add('mulkler', ['ilan'], `?id=${p.id}`, p.updated_at));

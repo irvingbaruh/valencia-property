@@ -49,6 +49,8 @@ const T = {
       join: 'Ücretsiz üye ol, tüm rehberi aç',
       more: 'Tüm rehber',
       try: (n) => `Önce örnek bir sayfaya göz atın: ${n}`,
+      rest: 'Sayfanın devamı ücretsiz üyelikle açılır',
+      restText: 'Ücretsiz üye olun: bu sayfanın tamamı, hesaplayıcılar ve rehberin diğer bölümleri açılır. Kredi kartı gerekmez.',
     },
     welcome: {
       title: 'Hoş geldiniz!',
@@ -144,6 +146,8 @@ const T = {
       join: 'Crear cuenta gratis y abrir toda la guía',
       more: 'Toda la guía',
       try: (n) => `Echa un vistazo antes a una página de ejemplo: ${n}`,
+      rest: 'El resto de la página se abre con una cuenta gratuita',
+      restText: 'Regístrese gratis: se abre la página completa, las calculadoras y el resto de la guía. Sin tarjeta.',
     },
     welcome: {
       title: '¡Bienvenido!',
@@ -239,6 +243,8 @@ const T = {
       join: 'Create a free account and open the whole guide',
       more: 'Whole guide',
       try: (n) => `Have a look at a sample page first: ${n}`,
+      rest: 'The rest of this page opens with a free membership',
+      restText: 'Join free: the full page, the calculators and the rest of the guide open up. No card needed.',
     },
     welcome: {
       title: 'Welcome!',
@@ -334,6 +340,8 @@ const T = {
       join: 'Kostenloses Konto erstellen und den ganzen Ratgeber öffnen',
       more: 'Ganzer Ratgeber',
       try: (n) => `Werfen Sie zuerst einen Blick auf eine Beispielseite: ${n}`,
+      rest: 'Der Rest dieser Seite öffnet sich mit kostenloser Mitgliedschaft',
+      restText: 'Kostenlos anmelden: die ganze Seite, die Rechner und der übrige Ratgeber werden freigeschaltet. Ohne Kreditkarte.',
     },
     welcome: {
       title: 'Willkommen!',

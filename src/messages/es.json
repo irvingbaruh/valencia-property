@@ -948,7 +948,8 @@
       {
         "h": "Cookies y almacenamiento local",
         "p": [
-          "No usamos cookies publicitarias ni de seguimiento. Solo hay registros necesarios para el funcionamiento del sitio: el idioma elegido y, si ha iniciado sesión, su sesión."
+          "No usamos cookies publicitarias ni de seguimiento. Solo hay registros necesarios para el funcionamiento del sitio: el idioma elegido y, si ha iniciado sesión, su sesión.",
+          "Además, en su primera visita guardamos en el almacenamiento local de su navegador, durante un máximo de 90 días, de qué fuente llegó (por ejemplo Instagram, Google o un enlace de campaña) y la primera página que abrió. Si se registra, ese dato se guarda en su cuenta para saber qué canal funciona. Si no se registra, no se vincula a usted en nuestros servidores. Puede borrarlo eliminando los datos del sitio en su navegador."
         ]
       },
       {

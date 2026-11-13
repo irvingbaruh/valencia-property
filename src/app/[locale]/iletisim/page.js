@@ -2,6 +2,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import ContactForm from '@/components/forms/ContactForm';
 import ContactDetailsCard from '@/components/forms/ContactDetailsCard';
+import { BookingCta } from '@/components/booking/Booking';
 
 
 export default async function IletisimPage({ params }) {
@@ -25,6 +26,7 @@ export default async function IletisimPage({ params }) {
       </div>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <BookingCta ctx="contact" className="mb-12" />
         <div className="grid lg:grid-cols-2 gap-10">
           {/* Form */}
           <ScrollReveal from="left">

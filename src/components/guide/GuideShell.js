@@ -13,6 +13,8 @@ import { gt } from '@/lib/growthText';
 import { trackFunnel } from '@/lib/funnel';
 
 const t = (o, l) => (o && (o[l] || o.tr)) || '';
+// Tells search engines that the clipped part is member content (free sign-up), not hidden text.
+const PAYWALL_LD = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebPage', isAccessibleForFree: false, hasPart: { '@type': 'WebPageElement', isAccessibleForFree: false, cssSelector: '.guide-gated' } });
 
 // Horizontal pill menu with a fade and arrow on the right edge so it is clear there is more to swipe to.
 function SubNav({ page, locale }) {
@@ -57,9 +59,13 @@ export default function GuideShell({ page, children, sources = true }) {
   const P = PAGES[page];
   const isMember = !!user;
   const g = gt(locale).guide;
-  const canView = (isMember || !!P.open) && pageVisible(page, locale); // one sample page is open to everyone; some pages exist only in Turkish
-  const sampleHref = `${localePath(locale, 'okullar')}`;
-  const joinHref = `${localePath(locale, 'giris')}?mode=register&from=guide`;
+  const visible = pageVisible(page, locale); // some pages exist only in Turkish
+  const full = isMember || !!P.open; // the hub, the sample page and the quiz are open to everyone
+  // Guests (and the static HTML, before the session is known) get the first part of the page; the rest opens with a free membership.
+  const clipped = visible && !full;
+  const showJoin = clipped && !loading;
+  const joinHref = `${localePath(locale, 'giris')}?mode=register&from=guide_${page}`;
+  useEffect(() => { if (showJoin) trackFunnel('gate_view', `guide_${page}`); }, [showJoin, page]);
 
   return (
     <div className="bg-soft min-h-screen">
@@ -73,41 +79,14 @@ export default function GuideShell({ page, children, sources = true }) {
         </div>
       </header>
 
-      {loading && <div className="min-h-[40vh]" />}
-
-      {!loading && !pageVisible(page, locale) && (
+      {!visible && (
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14"><a href={localePath(locale, 'rehber')} className="text-gold font-semibold hover:underline">{ui.back}</a></div>
       )}
 
-      {!loading && !canView && pageVisible(page, locale) && (
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-          <div className="rounded-2xl border border-gold/40 bg-white p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center gap-4">
-            <Lock className="text-gold shrink-0" size={28} />
-            <div className="flex-1">
-              <h2 className="font-serif text-2xl text-dark mb-1">{b.locked}</h2>
-              <p className="text-text-muted">{b.lockedText}</p>
-            </div>
-            <a href={`${localePath(locale, 'giris')}?app=1`} className="inline-flex items-center justify-center gap-2 rounded-xl bg-gold text-dark font-semibold px-5 py-3 text-sm hover:bg-gold-hover transition-colors">
-              {b.join}<ArrowRight size={15} />
-            </a>
-          </div>
-          <p className="mt-4 text-sm">
-            <a href={sampleHref} onClick={() => trackFunnel('gate_click', 'guide_sample')} className="text-gold font-semibold hover:underline">
-              {g.try(t(PAGES.okullar.title, locale))}
-            </a>
-          </p>
-          <h2 className="font-serif text-2xl text-dark mt-12 mb-4">{b.title}</h2>
-          <ul className="space-y-3">
-            {b.items.map(([h, tx]) => (
-              <li key={h} className="flex gap-3"><Check className="w-5 h-5 text-gold shrink-0 mt-0.5" /><div><p className="font-medium text-dark">{h}</p><p className="text-sm text-text-muted">{tx}</p></div></li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {!loading && canView && (
+      {visible && (
         <>
-          {isMember ? <SubNav page={page} locale={locale} /> : (
+          <SubNav page={page} locale={locale} />
+          {!loading && !isMember && P.open && !P.hub && (
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
               <div className="rounded-2xl border border-gold/40 bg-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-4">
                 <Lock className="text-gold shrink-0" size={24} />
@@ -119,9 +98,32 @@ export default function GuideShell({ page, children, sources = true }) {
             </div>
           )}
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-14">
-            {children}
-            <GuideCta title={ui.ctaTitle} text={ui.ctaText} whatsapp={ui.wa} form={ui.form} members={ui.join} />
-            {sources && (
+            <div className={clipped ? 'guide-gated relative max-h-[1500px] sm:max-h-[1150px] overflow-hidden' : undefined}>
+              <div className="space-y-14">{children}</div>
+              {clipped && <div className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[var(--color-soft,#f5f5f5)] via-[var(--color-soft,#f5f5f5)]/85 to-transparent" />}
+            </div>
+            {clipped && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: PAYWALL_LD }} />}
+            {showJoin && (
+              <div className="rounded-2xl border border-gold/50 bg-white p-6 sm:p-8 -mt-6">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                  <Lock className="text-gold shrink-0" size={28} />
+                  <div className="flex-1">
+                    <h2 className="font-serif text-2xl text-dark mb-1">{g.rest}</h2>
+                    <p className="text-text-muted">{g.restText}</p>
+                  </div>
+                  <a href={joinHref} onClick={() => trackFunnel('gate_click', `guide_${page}`)} className="inline-flex items-center justify-center gap-2 rounded-xl bg-gold text-dark font-semibold px-5 py-3 text-sm hover:bg-gold-hover transition-colors whitespace-nowrap">
+                    {g.join}<ArrowRight size={15} />
+                  </a>
+                </div>
+                <ul className="mt-6 grid sm:grid-cols-2 gap-3">
+                  {b.items.slice(0, 4).map(([h, tx]) => (
+                    <li key={h} className="flex gap-3"><Check className="w-5 h-5 text-gold shrink-0 mt-0.5" /><div><p className="font-medium text-dark">{h}</p><p className="text-sm text-text-muted">{tx}</p></div></li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {!clipped && <GuideCta title={ui.ctaTitle} text={ui.ctaText} whatsapp={ui.wa} form={ui.form} members={ui.join} />}
+            {sources && !clipped && (
               <div className="text-xs text-text-muted space-y-2">
                 <p><strong>{ui.sourcesTitle}:</strong> {SOURCES.map(([n, u], i) => (<span key={u}>{i > 0 && ', '}<a href={u} target="_blank" rel="noopener noreferrer" className="underline">{n}</a></span>))}</p>
                 <p>{ui.sourcesNote}</p>

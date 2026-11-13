@@ -64,6 +64,15 @@ Deno.serve(async (req) => {
         body: `${visitors} ziyaretçi, ${v.count || 0} sayfa görüntüleme, ${c.count || 0} tıklama, ${lc.count || 0} ilan tıklaması`,
         url: `${ADMIN}/trafik/`, tag: 'digest',
       };
+    } else if (kind === 'followup') {
+      if (req.headers.get('x-cron-key') !== C.cron_key) return json({ error: 'unauthorized' }, 401);
+      const day = new Date().toISOString().slice(0, 10);
+      const { error: dup } = await sb.from('push_log').insert({ kind, ref: day });
+      if (dup) return json({ skipped: 'done' });
+      const i = body.info || {};
+      const n = Number(i.count) || 0;
+      if (!n) return json({ skipped: 'none' });
+      payload = { title: `${n} kişi dönüş bekliyor`, body: cut(`${i.names || ''}${n > 3 ? ' ve diğerleri' : ''}`, 120), url: `${ADMIN}/uyeler/?f=followup`, tag: kind };
     } else {
       // event kinds backed by a real row
       const id = String(body?.id || '');
@@ -111,6 +120,13 @@ Deno.serve(async (req) => {
       } else if (kind === 'chat_lead') {
         const { data: s } = await sb.from('chat_sessions').select('contact_name,contact_phone,contact_email').eq('id', id).maybeSingle();
         payload = { title: 'Sohbette iletişim bilgisi bırakıldı', body: cut([s?.contact_name, s?.contact_phone || s?.contact_email].filter(Boolean).join(' · ') || 'Yeni potansiyel müşteri', 120), url: `${ADMIN}/sohbetler/`, tag: kind };
+      } else if (kind === 'booking' || kind === 'booking_cancelled' || kind === 'booking_soon') {
+        const { data: a } = await sb.from('appointments').select('user_id,starts_at,channel,topic').eq('id', id).maybeSingle();
+        if (!a) return json({ skipped: 'not_found' });
+        const when = new Date(a.starts_at).toLocaleString('tr-TR', { timeZone: 'Europe/Madrid', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+        const ch = a.channel === 'whatsapp' ? 'WhatsApp' : a.channel === 'phone' ? 'Telefon' : 'Google Meet';
+        const title = kind === 'booking' ? 'Yeni görüşme randevusu' : kind === 'booking_cancelled' ? 'Görüşme iptal edildi' : 'Görüşme 1 saat içinde';
+        payload = { title, body: cut(`${await who(a.user_id)} · ${when} · ${ch}${a.topic ? ' · ' + a.topic : ''}`, 140), url: `${ADMIN}/randevular/`, tag: kind };
       } else {
         return json({ error: 'bad_kind' }, 400);
       }

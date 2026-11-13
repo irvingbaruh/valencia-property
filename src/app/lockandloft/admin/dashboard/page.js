@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
-import AdminLayout from '@/components/admin/AdminLayout';
+import AdminLayout, { ADMIN_BASE } from '@/components/admin/AdminLayout';
+import LeadBoard from '@/components/admin/LeadBoard';
+import Link from 'next/link';
 import {
   Users,
   UserPlus,
@@ -57,7 +59,8 @@ function RecentMemberRow({ member }) {
   const timeAgo = getTimeAgo(createdAt);
 
   return (
-    <div
+    <Link
+      href={`${ADMIN_BASE}/uyeler/detay/?id=${member.id}`}
       className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors rounded-lg"
     >
       <div
@@ -76,7 +79,7 @@ function RecentMemberRow({ member }) {
         <Clock className="w-3 h-3" />
         {timeAgo}
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -210,17 +213,15 @@ export default function AdminDashboardPage() {
               />
             </div>
 
+            <LeadBoard />
+
             {/* Recent Members */}
             <div className="rounded-xl" style={{ background: '#151521', border: '1px solid #1E1E2E' }}>
               <div className="px-5 py-4 flex items-center justify-between" style={{ borderBottom: '1px solid #1E1E2E' }}>
                 <h2 className="text-base font-semibold text-white">Son Kayıt Olan Üyeler</h2>
-                <a
-                  href="#"
-                  className="text-xs font-medium hover:underline"
-                  style={{ color: '#C9A84C' }}
-                >
-                  Tümünü Gör →
-                </a>
+                <Link href={`${ADMIN_BASE}/uyeler/`} className="text-xs font-medium hover:underline" style={{ color: '#C9A84C' }}>
+                  Tümünü gör
+                </Link>
               </div>
               <div className="p-2">
                 {recentMembers.length === 0 ? (

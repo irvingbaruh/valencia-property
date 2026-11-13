@@ -1,7 +1,8 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { MessageCircle, ArrowRight } from 'lucide-react';
+import { MessageCircle, ArrowRight, Video } from 'lucide-react';
+import { bookingText } from '@/lib/bookingText';
 import { localePath } from '@/lib/routes';
 import { useContactSettings, waDigits } from '@/lib/siteSettings';
 import { useAuth } from '@/components/providers/AuthProvider';
@@ -21,6 +22,9 @@ export default function GuideCta({ title, text, whatsapp, form, members, compact
         </a>
         <a href={localePath(locale, 'iletisim')} className="inline-flex items-center gap-2 rounded-xl border border-white/30 px-5 py-3 text-sm hover:border-gold hover:text-gold transition-colors">
           {form}<ArrowRight size={15} />
+        </a>
+        <a href={user ? `${localePath(locale, 'panel')}?tab=meeting` : `${localePath(locale, 'giris')}?mode=register&from=booking`} data-track="booking_cta_guide" className="inline-flex items-center gap-2 rounded-xl border border-white/30 px-5 py-3 text-sm hover:border-gold hover:text-gold transition-colors">
+          <Video size={15} />{bookingText(locale).title}
         </a>
       </div>
       {!compact && !loading && !user && (

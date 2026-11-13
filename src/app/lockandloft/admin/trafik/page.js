@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
 import AdminLayout from '@/components/admin/AdminLayout';
+import SourcesBox from '@/components/admin/SourcesBox';
 
 const card = { background: '#151521', border: '1px solid #1E1E2E' };
 const inner = { background: '#0B0B11', border: '1px solid #1E1E2E' };
@@ -121,6 +122,10 @@ const CTX = {
   login: 'Sınır kartı: Giriş yap',
   guide_sample: 'Rehber örnek sayfası',
   guide: 'Rehber örnek sayfası',
+  booking: 'Görüşme randevusu daveti',
+  booking_home: 'Ana sayfa: görüşme daveti',
+  booking_contact: 'İletişim sayfası: görüşme daveti',
+  panel: 'Üye paneli',
   direct: 'Doğrudan',
   '-': 'Belirtilmemiş',
 };
@@ -132,8 +137,8 @@ function Funnel({ f }) {
   const rows = [
     ['Ziyaretçi', f.visitors],
     ['İlan sayfasını açan', f.listing_page],
-    ['15 ilan sınırı kartını gören', v('gate_view')],
-    ['Sınır kartında üyelik düğmesine basan', v('gate_click')],
+    ['Üyelik kartını gören (15 ilan sınırı ya da rehberin devamı)', v('gate_view')],
+    ['Üyelik kartında düğmeye basan', v('gate_click')],
     ['Başka bir davete basan (favori, ilan, hesaplayıcı, arama)', v('invite_click')],
     ['Giriş/kayıt sayfasını açan', v('auth_view')],
     ['Kayıt formunu gönderen', v('signup_start') + v('signup_google')],
@@ -163,12 +168,16 @@ function Funnel({ f }) {
         <Tile label="Uygulaması olan üye" value={f.app_members} hint="Girişli açılıştan bilinen" />
         <Tile label="Son 30 günde uygulamayı açan üye" value={f.app_active_30d} />
       </div>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-3">
+        <Tile label="Görüşme randevusu alan" value={e('booking_done')} hint={`${nf(e('booking_open'))} kez randevu ekranı açıldı`} />
+        <Tile label="WhatsApp balonuna basan üye" value={e('wa_click')} hint="Yalnız üyelere gösterilir" />
+      </div>
       {f.contexts.filter((c) => c.step !== 'invite_view').length > 0 && (
         <div className="mt-5">
           <p className="text-sm font-semibold text-white mb-2">Davetler nerede işe yarıyor?</p>
           <ul className="divide-y divide-[#1E1E2E]">
             {f.contexts.filter((c) => c.step !== 'invite_view').map((c, i) => (
-              <li key={i} className="py-1.5 flex justify-between text-sm text-white"><span>{CTX[c.ctx] || c.ctx}</span><span className="tabular-nums text-[#C9A84C]">{nf(c.n)} tıklama</span></li>
+              <li key={i} className="py-1.5 flex justify-between text-sm text-white"><span>{CTX[c.ctx] || (c.ctx.startsWith('guide_') ? `Rehber sayfası: ${c.ctx.slice(6)}` : c.ctx)}</span><span className="tabular-nums text-[#C9A84C]">{nf(c.n)} tıklama</span></li>
             ))}
           </ul>
         </div>
@@ -184,6 +193,7 @@ function Traffic() {
   const [to, setTo] = useState(today);
   const [data, setData] = useState(null);
   const [fun, setFun] = useState(null);
+  const [src, setSrc] = useState(null);
   const [err, setErr] = useState('');
 
   const load = useCallback(async () => {
@@ -207,6 +217,8 @@ function Traffic() {
     }
     const { data: fres } = await supabase.rpc('funnel_summary', { p_from: a.toISOString(), p_to: b.toISOString() });
     if (fres) setFun(fres);
+    const { data: sres } = await supabase.rpc('admin_source_stats', { p_from: a.toISOString(), p_to: b.toISOString() });
+    if (sres) setSrc(sres);
   }, [range, from, to, today]);
 
   useEffect(() => {
@@ -273,6 +285,8 @@ function Traffic() {
           <Daily days={d.by_day} />
 
           <Funnel f={fun} />
+
+          <SourcesBox stats={src} />
 
           <div className="grid lg:grid-cols-2 gap-5">
             <Rows title="En çok açılan sayfalar" cols="görüntüleme" rows={d.top_pages.map((r) => ({ main: r.path, value: nf(r.views), sub: `${nf(r.visitors)} ziyaretçi` }))} />

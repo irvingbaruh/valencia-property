@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
 import AdminLayout, { ADMIN_BASE } from '@/components/admin/AdminLayout';
+import { channelLabel, CHANNEL_COLOR, scoreTone, needsAttention, waitingDays } from '@/lib/leads';
 import {
   Search,
   Filter,
@@ -23,6 +24,8 @@ import {
   Smartphone,
   Bell,
   Search as SearchIcon,
+  Flame,
+  Clock,
 } from 'lucide-react';
 
 const ROLES = [
@@ -177,6 +180,13 @@ export default function AdminMembersPage() {
   const [sortField, setSortField] = useState('created_at');
   const [sortDir, setSortDir] = useState('desc');
   const [selectedMember, setSelectedMember] = useState(null);
+  const [leads, setLeads] = useState({}); // id -> warmth score, source and follow-up state
+  const [followOnly, setFollowOnly] = useState(false);
+  const [hotFirst, setHotFirst] = useState(false);
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get('f') === 'followup') setFollowOnly(true);
+    supabase.rpc('admin_leads').then(({ data }) => setLeads(Object.fromEntries((data || []).map((l) => [l.id, l]))));
+  }, []);
   const [toDelete, setToDelete] = useState(null);
   const [deleting, setDeleting] = useState(false);
   const [delError, setDelError] = useState('');
@@ -205,7 +215,7 @@ export default function AdminMembersPage() {
     try {
       let query = supabase
         .from('profiles_with_email')
-        .select('id, full_name, email, phone, whatsapp_phone, role, preferred_language, country, citizenship, has_residence_permit, created_at, updated_at, app_installed_at, app_last_open_at, app_platform, has_push, saved_searches')
+        .select('id, full_name, email, phone, whatsapp_phone, role, preferred_language, country, citizenship, has_residence_permit, created_at, updated_at, channel, app_installed_at, app_last_open_at, app_platform, has_push, saved_searches')
         .order(sortField, { ascending: sortDir === 'asc' });
 
       if (roleFilter !== 'all') {
@@ -302,7 +312,23 @@ export default function AdminMembersPage() {
               style={{ background: '#151521', border: '1px solid #1E1E2E' }}
             />
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => setFollowOnly((v) => !v)}
+              className="px-4 py-2.5 rounded-lg text-sm font-medium transition-colors"
+              style={followOnly ? { background: 'rgba(248,113,113,0.15)', color: '#F87171' } : { background: '#151521', border: '1px solid #1E1E2E', color: '#9A9AAA' }}
+            >
+              <Clock className="w-3.5 h-3.5 inline mr-1.5" />
+              Dönüş bekleyenler{Object.values(leads).filter(needsAttention).length ? ` (${Object.values(leads).filter(needsAttention).length})` : ''}
+            </button>
+            <button
+              onClick={() => setHotFirst((v) => !v)}
+              className="px-4 py-2.5 rounded-lg text-sm font-medium transition-colors"
+              style={hotFirst ? { background: 'rgba(201, 168, 76, 0.15)', color: '#C9A84C' } : { background: '#151521', border: '1px solid #1E1E2E', color: '#9A9AAA' }}
+            >
+              <Flame className="w-3.5 h-3.5 inline mr-1.5" />
+              En sıcak önce
+            </button>
             <button
               onClick={() => setAppOnly((v) => !v)}
               className="px-4 py-2.5 rounded-lg text-sm font-medium transition-colors"
@@ -369,7 +395,10 @@ export default function AdminMembersPage() {
             </div>
           ) : (
             <div>
-              {(appOnly ? members.filter((m) => m.app_installed_at) : members).map((member) => (
+              {members
+                .filter((m) => (!appOnly || m.app_installed_at) && (!followOnly || (leads[m.id] && needsAttention(leads[m.id]))))
+                .sort((a, b) => (hotFirst ? (leads[b.id]?.score || 0) - (leads[a.id]?.score || 0) : 0))
+                .map((member) => (
                 <div
                   key={member.id}
                   className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr_100px_100px_90px] gap-2 md:gap-4 px-5 py-3.5 hover:bg-white/5 transition-colors cursor-pointer"
@@ -399,12 +428,29 @@ export default function AdminMembersPage() {
                       {Number(member.saved_searches) > 0 && (
                         <span title={`${member.saved_searches} kayıtlı arama`}><SearchIcon className="w-3.5 h-3.5 text-[#9A9AAA]" aria-label="Kayıtlı arama var" /></span>
                       )}
+                      {leads[member.id] && (() => {
+                        const l = leads[member.id];
+                        const tone = scoreTone(l.score);
+                        return (
+                          <>
+                            <span className="text-[11px] font-semibold px-1.5 py-0.5 rounded-full tabular-nums" style={{ background: tone.bg, color: tone.color }} title={`Sıcaklık puanı: ${l.score} (${tone.label})`}>{l.score}</span>
+                            {needsAttention(l) && (
+                              <span className="text-[11px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(248,113,113,0.15)', color: '#F87171' }}>
+                                {l.followup_due ? 'Bugün ara' : `${waitingDays(l)} gündür bekliyor`}
+                              </span>
+                            )}
+                          </>
+                        );
+                      })()}
                     </span>
                   </div>
 
-                  {/* Email */}
-                  <div className="flex items-center">
+                  {/* Email + source */}
+                  <div className="flex items-center gap-2 min-w-0">
                     <span className="text-sm text-[#9A9AAA] truncate">{member.email}</span>
+                    {member.channel && (
+                      <span className="shrink-0 text-[11px] px-1.5 py-0.5 rounded-full" style={{ border: `1px solid ${CHANNEL_COLOR(member.channel)}55`, color: CHANNEL_COLOR(member.channel) }} title="İlk geldiği kanal">{channelLabel(member.channel)}</span>
+                    )}
                   </div>
 
                   {/* Role */}

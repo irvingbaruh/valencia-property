@@ -1,15 +1,20 @@
 'use client';
 
 import { useTranslations, useLocale } from 'next-intl';
-import { ArrowRight, Phone } from 'lucide-react';
+import { ArrowRight, Phone, Video } from 'lucide-react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import { localePath } from '@/lib/routes';
 import { useContactSettings, telHref } from '@/lib/siteSettings';
+import { useAuth } from '@/components/providers/AuthProvider';
+import { bookingText } from '@/lib/bookingText';
+import { trackFunnel } from '@/lib/funnel';
 
 export default function CTASection() {
   const t = useTranslations('cta_section');
   const locale = useLocale();
   const contact = useContactSettings();
+  const { user } = useAuth();
+  const bookHref = user ? `${localePath(locale, 'panel')}?tab=meeting` : `${localePath(locale, 'giris')}?mode=register&from=booking`;
 
   return (
     <section id="contact" className="relative overflow-hidden">
@@ -55,6 +60,10 @@ export default function CTASection() {
               {t('phone')}
             </a>
           </div>
+          <a href={bookHref} onClick={() => trackFunnel(user ? 'booking_open' : 'invite_click', 'booking_home')} data-track="booking_cta_home"
+            className="mt-6 inline-flex items-center gap-2 text-gold hover:underline">
+            <Video size={18} />{bookingText(locale).title}<ArrowRight size={16} />
+          </a>
         </ScrollReveal>
       </div>
     </section>
