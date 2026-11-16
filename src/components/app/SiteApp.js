@@ -8,7 +8,7 @@ import { useAuth } from '@/components/providers/AuthProvider';
 import { localePath } from '@/lib/routes';
 import AppTabBar from '@/components/app/AppTabBar';
 import { Download, X } from 'lucide-react';
-import { registerSiteWorker, isIos, isStandalone } from '@/lib/memberPush';
+import { registerSiteWorker, isIos, isStandalone, pushCapable, hasMemberPush, enableMemberPush, pushOptedOut } from '@/lib/memberPush';
 import InstallSteps from '@/components/app/InstallSteps';
 import { supabase } from '@/lib/supabase';
 import { trackFunnel } from '@/lib/funnel';
@@ -47,6 +47,25 @@ export default function SiteApp() {
     }
     if (user) supabase.rpc('mark_app_open', { p_platform: platformOf() }).then(() => {}, () => {});
   }, [loading, user]);
+
+  // Installed app: notifications are on by default for members. If the browser already allows them the
+  // device is subscribed silently; otherwise the permission question appears on the first tap (browsers
+  // require a tap). Members who switch them off in Settings, or refuse the question, are not asked again.
+  const inAdminPath = /\/lockandloft\//.test(pathname || '');
+  useEffect(() => {
+    if (loading || !user || inAdminPath || !isStandalone() || !pushCapable() || pushOptedOut(user.id)) return;
+    let gone = false;
+    let cleanup = () => {};
+    (async () => {
+      if (await hasMemberPush(user.id)) return;
+      if (gone || Notification.permission === 'denied') return;
+      if (Notification.permission === 'granted') { enableMemberPush(user.id, locale).catch(() => {}); return; }
+      const ask = () => { cleanup(); enableMemberPush(user.id, locale).catch(() => {}); };
+      window.addEventListener('pointerup', ask, { once: true });
+      cleanup = () => window.removeEventListener('pointerup', ask);
+    })();
+    return () => { gone = true; cleanup(); };
+  }, [loading, user, locale, inAdminPath]);
 
   useEffect(() => {
     registerSiteWorker();

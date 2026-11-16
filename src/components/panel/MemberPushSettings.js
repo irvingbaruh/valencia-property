@@ -5,7 +5,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Bell, BellOff } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/components/providers/AuthProvider';
-import { MEMBER_DEFAULTS, isIos, isStandalone, pushCapable, currentSubscription, enableMemberPush, disableMemberPush } from '@/lib/memberPush';
+import { MEMBER_DEFAULTS, isIos, isStandalone, pushCapable, currentSubscription, enableMemberPush, disableMemberPush, setPushOptOut } from '@/lib/memberPush';
 import InstallButton from '@/components/app/InstallButton';
 
 const TYPES = ['new_listing', 'favorite_change', 'content', 'account'];
@@ -44,6 +44,12 @@ export default function MemberPushSettings() {
   }, [load]);
 
   useEffect(() => {
+    const f = () => load();
+    window.addEventListener('ll-push-changed', f);
+    return () => window.removeEventListener('ll-push-changed', f);
+  }, [load]);
+
+  useEffect(() => {
     fetch('https://api.frankfurter.dev/v1/latest?base=EUR&symbols=TRY').then((r) => r.json()).then((j) => setRate(j?.rates?.TRY || null)).catch(() => {});
   }, []);
 
@@ -59,6 +65,7 @@ export default function MemberPushSettings() {
 
   const disable = async () => {
     setBusy(true); setMsg(null);
+    setPushOptOut(user.id, true);
     await disableMemberPush();
     setRow(null);
     setBusy(false);

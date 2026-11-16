@@ -42,6 +42,20 @@ export async function currentSubscription() {
   }
 }
 
+// A member who switches notifications off on this device is not asked again (per device and account).
+const optKey = (uid) => `ll_push_off_${uid}`;
+export const pushOptedOut = (uid) => { try { return localStorage.getItem(optKey(uid)) === '1'; } catch { return false; } };
+export const setPushOptOut = (uid, off) => { try { off ? localStorage.setItem(optKey(uid), '1') : localStorage.removeItem(optKey(uid)); } catch {} };
+const changed = () => { try { window.dispatchEvent(new Event('ll-push-changed')); } catch {} };
+
+// Does this device already have a saved subscription for this member?
+export async function hasMemberPush(userId) {
+  const sub = await currentSubscription();
+  if (!sub || !userId) return false;
+  const { data } = await supabase.from('push_subscriptions').select('id').eq('endpoint', sub.endpoint).eq('user_id', userId).maybeSingle();
+  return !!data;
+}
+
 // Ask for permission, subscribe this device and save it for the signed-in member.
 export async function enableMemberPush(userId, locale) {
   const perm = await Notification.requestPermission();
@@ -59,6 +73,8 @@ export async function enableMemberPush(userId, locale) {
     device_label: deviceLabel(), locale, events: MEMBER_DEFAULTS,
   });
   if (error) return { ok: false, reason: 'failed' };
+  setPushOptOut(userId, false);
+  changed();
   return { ok: true };
 }
 
@@ -70,4 +86,5 @@ export async function disableMemberPush() {
     await supabase.from('push_subscriptions').delete().eq('endpoint', sub.endpoint);
     await sub.unsubscribe();
   } catch {}
+  changed();
 }

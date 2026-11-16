@@ -5,10 +5,11 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Bell } from 'lucide-react';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { supabase } from '@/lib/supabase';
-import { isIos, isStandalone, pushCapable, currentSubscription, enableMemberPush } from '@/lib/memberPush';
+import { isIos, isStandalone, pushCapable, hasMemberPush, enableMemberPush, pushOptedOut } from '@/lib/memberPush';
 import InstallButton from '@/components/app/InstallButton';
 
-// A switch at the top of the member panel: notifications are off until the member turns them on here.
+// A switch at the top of the member panel for browsers and members who have not got notifications yet.
+// Inside the installed app they are switched on automatically (see SiteApp); members who turned them off are left alone.
 export default function PushQuickCard() {
   const t = useTranslations('memberApp');
   const locale = useLocale();
@@ -16,22 +17,25 @@ export default function PushQuickCard() {
   const [state, setState] = useState('hidden'); // hidden | off | install
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState('');
+  const [tick, setTick] = useState(0);
+
+  useEffect(() => {
+    const f = () => setTick((n) => n + 1);
+    window.addEventListener('ll-push-changed', f);
+    return () => window.removeEventListener('ll-push-changed', f);
+  }, []);
 
   useEffect(() => {
     let off = false;
     (async () => {
       if (isIos() && !isStandalone()) { setState('install'); return; }
       if (!pushCapable()) return;
-      const sub = await currentSubscription();
-      let on = false;
-      if (sub && user) {
-        const { data } = await supabase.from('push_subscriptions').select('id').eq('endpoint', sub.endpoint).eq('user_id', user.id).maybeSingle();
-        on = !!data;
-      }
+      if (user && isStandalone() && pushOptedOut(user.id)) { if (!off) setState('hidden'); return; }
+      const on = await hasMemberPush(user?.id);
       if (!off) setState(on ? 'hidden' : 'off');
     })();
     return () => { off = true; };
-  }, [user]);
+  }, [user, tick]);
 
   if (state === 'hidden') return null;
 
