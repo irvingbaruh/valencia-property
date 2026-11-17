@@ -62,6 +62,8 @@ function Editor({ row, onClose, onSaved }) {
   const [note, setNote] = useState('');
   const [meta, setMeta] = useState(null); // extra fields from an import (external_id, coordinates, features)
   const [publish, setPublish] = useState(false);
+  const [needSource, setNeedSource] = useState(false); // server could not open the RE/MAX page: paste its source instead
+  const [srcHtml, setSrcHtml] = useState('');
   const set = (k, v) => setF((p) => ({ ...p, [k]: v }));
 
   const addPhotos = async (files) => {
@@ -79,7 +81,7 @@ function Editor({ row, onClose, onSaved }) {
     } catch (e) { setErr('Fotoğraf yüklenemedi: ' + e.message); }
     setUploading(false);
   };
-  const importFromUrl = async () => {
+  const importFromUrl = async (useSource = false) => {
     const url = f.external_url.trim();
     if (!url) { setErr('Önce RE/MAX ilan linkini yapıştırın.'); return; }
     if (f.images.length || f.title_tr.trim()) {
@@ -87,11 +89,16 @@ function Editor({ row, onClose, onSaved }) {
     }
     setImporting(true); setErr(''); setNote('');
     try {
-      const { data, error } = await supabase.functions.invoke('listing-import', { body: { url, id } });
-      if (error || !data?.ok) {
-        const code = data?.error || error?.message || '';
-        throw new Error(code === 'unsupported_url' ? 'Yalnızca remax.com ilan linkleri desteklenir (…/residential/property/…).' : code === 'parse_failed' ? 'Sayfadan ilan bilgisi okunamadı.' : code === 'fetch_failed' ? 'RE/MAX sayfasına ulaşılamadı.' : 'İçe aktarma başarısız: ' + code);
+      const { data, error } = await supabase.functions.invoke('listing-import', { body: { url, id, ...(useSource && srcHtml.length > 2000 ? { html: srcHtml } : {}) } });
+      let code = data?.error || '';
+      if (!code && error) {
+        try { code = (await error.context?.json?.())?.error || error.message || ''; } catch { code = error.message || ''; }
       }
+      if (error || !data?.ok) {
+        if (code === 'fetch_failed' && /remax\.es/i.test(url)) setNeedSource(true);
+        throw new Error(code === 'unsupported_url' ? 'RE/MAX ilan linki gerekli: remax.com/…/residential/property/… ya da remax.es/buscador-de-inmuebles/…' : code === 'parse_failed' ? 'Sayfadan ilan bilgisi okunamadı.' : code === 'fetch_failed' ? (/remax\.es/i.test(url) ? 'RE/MAX sayfasına sunucudan ulaşılamadı. Aşağıya sayfa kaynağını yapıştırıp devam edebilirsiniz.' : 'RE/MAX sayfasına ulaşılamadı.') : 'İçe aktarma başarısız: ' + code);
+      }
+      setNeedSource(false); setSrcHtml('');
       const x = data.fields;
       setF((p) => ({
         ...p,
@@ -152,9 +159,9 @@ function Editor({ row, onClose, onSaved }) {
         <div className="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
           <Field label="RE/MAX ilan linki (isteğe bağlı)">
             <div className="flex gap-2">
-              <input className={inputCls} value={f.external_url} onChange={(e) => set('external_url', e.target.value)} placeholder="https://www.remax.com/esp/en/residential/property/..." />
+              <input className={inputCls} value={f.external_url} onChange={(e) => set('external_url', e.target.value)} placeholder="remax.com/…/residential/property/… ya da remax.es/buscador-de-inmuebles/…" />
               {isNew && (
-                <button type="button" onClick={importFromUrl} disabled={importing || uploading || !f.external_url.trim()} className="inline-flex items-center gap-2 px-3 py-2 bg-[#C9A84C] text-black rounded-lg text-sm font-semibold whitespace-nowrap disabled:opacity-50">
+                <button type="button" onClick={() => importFromUrl(false)} disabled={importing || uploading || !f.external_url.trim()} className="inline-flex items-center gap-2 px-3 py-2 bg-[#C9A84C] text-black rounded-lg text-sm font-semibold whitespace-nowrap disabled:opacity-50">
                   {importing ? <Loader2 size={15} className="animate-spin" /> : <Download size={15} />} {importing ? 'Çekiliyor…' : 'Linkten çek'}
                 </button>
               )}
@@ -163,6 +170,15 @@ function Editor({ row, onClose, onSaved }) {
             <p className="text-[11px] text-[#6A6A7A] mt-1">{isNew ? 'RE/MAX ilanıysa linki yapıştırıp "Linkten çek"e basın; fotoğraflar, bilgiler ve 4 dilde metin otomatik dolar. Kendi bulduğunuz bir evse bu alanı boş bırakıp aşağıyı elle doldurun.' : 'Sadece sizin için not; sitede gösterilmez.'}</p>
             {importing && <p className="text-[11px] text-[#C9A84C] mt-1">Fotoğraflar kopyalanıyor ve metinler hazırlanıyor, yarım dakika kadar sürebilir.</p>}
             {note && <p className="text-[11px] text-green-400 mt-1">{note}</p>}
+            {needSource && (
+              <div className="mt-3 rounded-lg p-3 border border-[#2A2A3A] bg-[#0B0B11]">
+                <p className="text-xs text-[#C9C9D4] mb-2">Sayfayı tarayıcıda açın, sağ tıklayıp "Sayfa kaynağını görüntüle"yi seçin, tümünü kopyalayın (Ctrl+A, Ctrl+C) ve buraya yapıştırın.</p>
+                <textarea className={`${inputCls} h-20 font-mono text-[11px]`} value={srcHtml} onChange={(e) => setSrcHtml(e.target.value)} placeholder="Sayfa kaynağı (&lt;html …)" aria-label="Sayfa kaynağı" />
+                <button type="button" onClick={() => importFromUrl(true)} disabled={importing || srcHtml.length < 2000} className="mt-2 inline-flex items-center gap-2 px-3 py-2 bg-[#C9A84C] text-black rounded-lg text-sm font-semibold disabled:opacity-50">
+                  {importing ? <Loader2 size={15} className="animate-spin" /> : <Download size={15} />} Kaynaktan çek
+                </button>
+              </div>
+            )}
           </Field>
 
           {/* Photos */}
