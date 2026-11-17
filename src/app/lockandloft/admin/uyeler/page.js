@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
 import AdminLayout, { ADMIN_BASE } from '@/components/admin/AdminLayout';
+import LeadQuick from '@/components/admin/LeadQuick';
 import { channelLabel, CHANNEL_COLOR, scoreTone, needsAttention, waitingDays } from '@/lib/leads';
 import {
   Search,
@@ -439,6 +440,7 @@ export default function AdminMembersPage() {
                                 {l.followup_due ? 'Bugün ara' : `${waitingDays(l)} gündür bekliyor`}
                               </span>
                             )}
+                            {needsAttention(l) && <LeadQuick id={member.id} onChanged={(id) => setLeads((all) => ({ ...all, [id]: { ...all[id], needs_followup: false, followup_due: false } }))} />}
                           </>
                         );
                       })()}

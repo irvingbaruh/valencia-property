@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { Flame, Compass, StickyNote, MessagesSquare, Pin, Trash2, Phone, Mail, MessageCircle, CalendarClock, ArrowDownLeft, ArrowUpRight } from 'lucide-react';
+import LeadQuick from '@/components/admin/LeadQuick';
 import { channelLabel, CHANNEL_COLOR, STAGES, scoreTone, leadReasons, needsAttention, waitingDays, COMM_CHANNELS } from '@/lib/leads';
 
 const card = { background: '#151521', border: '1px solid #1E1E2E' };
@@ -85,6 +86,7 @@ export default function LeadPanel({ member }) {
                 {lead.is_client && <span className="text-xs px-2.5 py-1 rounded-full bg-[#22C55E]/15 text-[#22C55E]">Hizmet alıyor</span>}
               </div>
             ) : <p className="mt-2 text-sm text-[#9A9AAA]">Admin hesapları için puan hesaplanmaz.</p>}
+            {lead && needsAttention(lead) && <div className="mt-3"><LeadQuick id={id} size="md" onChanged={load} /></div>}
             {lead && <p className="mt-3 text-sm text-[#9A9AAA]">{leadReasons(lead).join(' · ') || 'Henüz bir işaret yok.'}</p>}
           </div>
           <div className="flex gap-2">
