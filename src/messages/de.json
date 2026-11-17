@@ -1366,6 +1366,8 @@
     "type_content_hint": "Wenn neue Inhalte veröffentlicht werden.",
     "type_account": "Neuigkeiten zu meinem Konto",
     "type_account_hint": "Meine Dateien, Leistungen und alle Hinweise in meinem Konto.",
+    "type_announce": "Mitteilungen von Lock & Loft",
+    "type_announce_hint": "Neuigkeiten, Gelegenheiten und wichtige Hinweise für Sie.",
     "type_rate_alert": "EUR/TRY-Kurswarnung",
     "type_rate_alert_hint": "Meldet sich, wenn der Kurs Ihren Wert erreicht.",
     "type_rate_daily": "Täglicher Kursüberblick",

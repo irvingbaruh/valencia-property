@@ -1366,6 +1366,8 @@
     "type_content_hint": "When new content is published.",
     "type_account": "Updates about my account",
     "type_account_hint": "My files, services and everything in my account notifications.",
+    "type_announce": "Updates from Lock & Loft",
+    "type_announce_hint": "News, opportunities and important reminders for you.",
     "type_rate_alert": "EUR/TRY rate alert",
     "type_rate_alert_hint": "Tells you when the rate reaches a value you set.",
     "type_rate_daily": "Daily rate summary",

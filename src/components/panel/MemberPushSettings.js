@@ -8,7 +8,7 @@ import { useAuth } from '@/components/providers/AuthProvider';
 import { MEMBER_DEFAULTS, isIos, isStandalone, pushCapable, currentSubscription, enableMemberPush, disableMemberPush, setPushOptOut } from '@/lib/memberPush';
 import InstallButton from '@/components/app/InstallButton';
 
-const TYPES = ['new_listing', 'favorite_change', 'content', 'account'];
+const TYPES = ['new_listing', 'favorite_change', 'content', 'account', 'announce'];
 const num = (v) => { const n = parseFloat(String(v).replace(',', '.')); return isFinite(n) && n > 0 ? n : null; };
 
 export default function MemberPushSettings() {

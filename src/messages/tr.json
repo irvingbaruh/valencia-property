@@ -1366,6 +1366,8 @@
     "type_content_hint": "Yeni içerik yayınlandığında.",
     "type_account": "Hesabımla ilgili gelişmeler",
     "type_account_hint": "Dosyalarım, hizmetlerim ve panelimdeki tüm bildirimler.",
+    "type_announce": "Lock & Loft'tan duyurular",
+    "type_announce_hint": "Size özel haberler, fırsatlar ve önemli hatırlatmalar.",
     "type_rate_alert": "EUR/TRY kuru uyarısı",
     "type_rate_alert_hint": "Kur belirlediğiniz değere ulaşınca haber verir.",
     "type_rate_daily": "Günlük kur özeti",

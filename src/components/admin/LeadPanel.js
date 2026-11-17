@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
-import { Flame, Compass, StickyNote, MessagesSquare, Pin, Trash2, Phone, Mail, MessageCircle, CalendarClock, ArrowDownLeft, ArrowUpRight } from 'lucide-react';
+import { Flame, Compass, StickyNote, MessagesSquare, Pin, Trash2, Phone, Mail, MessageCircle, Bell, CalendarClock, ArrowDownLeft, ArrowUpRight } from 'lucide-react';
+import PushComposer from '@/components/admin/PushComposer';
 import LeadQuick from '@/components/admin/LeadQuick';
 import { channelLabel, CHANNEL_COLOR, STAGES, scoreTone, leadReasons, needsAttention, waitingDays, COMM_CHANNELS } from '@/lib/leads';
 
@@ -188,6 +189,27 @@ export default function LeadPanel({ member }) {
             ))}
             {log.length === 0 && <li className="text-sm text-[#9A9AAA]">Henüz kayıt yok.</li>}
           </ul>
+        </section>
+
+        <section className="rounded-xl p-5" style={card}>
+          <details>
+            <summary className="flex items-center gap-2 text-base font-semibold text-white cursor-pointer"><Bell className="w-4 h-4 text-[#C9A84C]" />Bu üyeye bildirim gönder</summary>
+            <div className="mt-4">
+              {lead && !lead.has_push && <p className="mb-4 text-sm text-[#9A9AAA]">Bu üyenin telefonunda bildirim kapalı. Uygulamayı kurup bildirimi açınca buradan gönderebilirsiniz.</p>}
+              <PushComposer
+                audience={{
+                  mode: 'users', ids: [id], lang: 'all',
+                  blocked: lead && lead.has_push ? null : 'Bu üyenin bildirimi kapalı, gönderilemez.',
+                  who: `${member.full_name || 'bu'} adlı üyeye`, button: 'Üyeye gönder',
+                }}
+                onSent={async (_r, m) => {
+                  // a personal push counts as contact: it clears "waiting for a reply"
+                  if (me) await supabase.from('communication_log').insert({ user_id: id, channel: 'other', direction: 'outbound', summary: `Push bildirim: ${m.title} — ${m.body}`.slice(0, 2000), contact_date: new Date().toISOString(), logged_by: me });
+                  load();
+                }}
+              />
+            </div>
+          </details>
         </section>
       </div>
     </>

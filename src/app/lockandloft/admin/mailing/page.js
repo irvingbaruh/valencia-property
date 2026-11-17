@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
+import MessagingTabs from '@/components/admin/MessagingTabs';
 import AdminLayout from '@/components/admin/AdminLayout';
 import { Plus, Send, Save, Trash2, Mail, Users, X, FlaskConical } from 'lucide-react';
 
@@ -145,6 +146,7 @@ export default function MailingPage() {
   return (
     <AdminLayout activeSection="mailing">
       <div className="space-y-6">
+        <MessagingTabs active="mail" />
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-white">Mailing</h1>

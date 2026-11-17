@@ -45,7 +45,7 @@ const navItems = [
   { id: 'yorumlar', href: '/yorumlar', icon: Star, label: 'Yorumlar' },
   { id: 'hizmetler', href: '/hizmetler', icon: Briefcase, label: 'Hizmetler' },
   { id: 'blog', href: '/blog', icon: PenSquare, label: 'Blog' },
-  { id: 'mailing', href: '/mailing', icon: Mail, label: 'Mailing' },
+  { id: 'mailing', href: '/mailing', icon: Mail, label: 'Mailing & Push' },
   { id: 'otomatik-mailler', href: '/otomatik-mailler', icon: MailCheck, label: 'Otomatik Mailler' },
   { id: 'dosyalar', href: '/dosyalar', icon: FileText, label: 'Dosyalar' },
   { id: 'bildirimler', href: '/bildirimler', icon: Bell, label: 'Bildirimler' },

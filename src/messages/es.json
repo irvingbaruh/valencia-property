@@ -1366,6 +1366,8 @@
     "type_content_hint": "Cuando se publica contenido nuevo.",
     "type_account": "Novedades de mi cuenta",
     "type_account_hint": "Mis archivos, servicios y todos los avisos de mi cuenta.",
+    "type_announce": "Avisos de Lock & Loft",
+    "type_announce_hint": "Novedades, oportunidades y recordatorios importantes para ti.",
     "type_rate_alert": "Alerta del cambio EUR/TRY",
     "type_rate_alert_hint": "Te avisa cuando el cambio llega al valor que indiques.",
     "type_rate_daily": "Resumen diario del cambio",

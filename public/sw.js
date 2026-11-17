@@ -11,6 +11,7 @@ self.addEventListener('push', (event) => {
       body: d.body || '',
       icon: '/brand/app-192.png',
       badge: '/brand/app-192.png',
+      image: d.image || undefined,
       tag: d.tag || undefined,
       renotify: !!d.tag,
       data: { url: d.url || '/' },
@@ -21,8 +22,11 @@ self.addEventListener('push', (event) => {
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
   const url = (event.notification.data && event.notification.data.url) || '/';
+  let external = false;
+  try { external = new URL(url, self.location.origin).origin !== self.location.origin; } catch (e) {}
   event.waitUntil(
     self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
+      if (external) return self.clients.openWindow(url);
       for (const c of list) {
         if (c.url.indexOf('/lockandloft/admin/') === -1 && 'focus' in c) {
           return c.focus().then(() => ('navigate' in c ? c.navigate(url) : undefined));

@@ -5,8 +5,8 @@ import { supabase } from '@/lib/supabase';
 export const VAPID_PUBLIC = 'BIptClcjt6sreGecTMgpNdjq94guhUOk6xMk3LkPKunCpJl0JwiV1MnBozM2qEde1tKWcKgV7o5NEnYvSQbSWQo';
 
 // Notification types a member can switch on or off. rate_alert and rate_daily stay off until chosen.
-export const MEMBER_EVENTS = ['new_listing', 'favorite_change', 'content', 'account', 'rate_alert', 'rate_daily'];
-export const MEMBER_DEFAULTS = { new_listing: true, favorite_change: true, content: true, account: true, rate_alert: false, rate_daily: false };
+export const MEMBER_EVENTS = ['new_listing', 'favorite_change', 'content', 'account', 'announce', 'rate_alert', 'rate_daily'];
+export const MEMBER_DEFAULTS = { new_listing: true, favorite_change: true, content: true, account: true, announce: true, rate_alert: false, rate_daily: false };
 
 const b64ToBytes = (s) => {
   const pad = '='.repeat((4 - (s.length % 4)) % 4);
