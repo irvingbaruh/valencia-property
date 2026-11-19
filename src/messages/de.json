@@ -523,6 +523,8 @@
     "resetSentDesc": "Falls zu dieser Adresse ein Konto besteht, haben wir einen Link zum Zurücksetzen gesendet. Prüfen Sie Posteingang und Spam-Ordner.",
     "backToLogin": "Zurück zur Anmeldung",
     "newPasswordTitle": "Neues Passwort festlegen",
+    "forceTitle": "Willkommen, wählen Sie Ihr Passwort",
+    "forceIntro": "Ihr Konto wurde vom Lock & Loft-Team mit einem temporären Passwort angelegt. Bevor Sie fortfahren, wählen Sie bitte ein neues Passwort.",
     "newPassword": "Neues Passwort",
     "savePassword": "Passwort speichern",
     "passwordUpdated": "Ihr Passwort wurde aktualisiert. Sie werden zu Ihrem Konto weitergeleitet.",

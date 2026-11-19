@@ -523,6 +523,8 @@
     "resetSentDesc": "Bu adrese kayıtlı bir hesap varsa şifre sıfırlama bağlantısını gönderdik. Gelen kutunuzu ve spam klasörünü kontrol edin.",
     "backToLogin": "Girişe dön",
     "newPasswordTitle": "Yeni şifre belirleyin",
+    "forceTitle": "Hoş geldiniz, şifrenizi belirleyin",
+    "forceIntro": "Hesabınız Lock & Loft ekibi tarafından açıldı ve size geçici bir şifre verildi. Devam etmeden önce kendinize yeni bir şifre belirleyin.",
     "newPassword": "Yeni şifre",
     "savePassword": "Şifreyi kaydet",
     "passwordUpdated": "Şifreniz güncellendi. Panelinize yönlendiriliyorsunuz.",

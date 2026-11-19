@@ -7,6 +7,7 @@ import Footer from '@/components/layout/Footer';
 import ChatWidget from '@/components/chat/ChatWidget';
 import Tracker from '@/components/analytics/Tracker';
 import SiteApp from '@/components/app/SiteApp';
+import ForcePasswordChange from '@/components/auth/ForcePasswordChange';
 import { AuthProvider } from '@/components/providers/AuthProvider';
 
 export function generateStaticParams() {
@@ -43,6 +44,7 @@ export default async function LocaleLayout({ children, params }) {
         <ChatWidget />
         <Tracker />
         <SiteApp />
+        <ForcePasswordChange />
       </AuthProvider>
     </NextIntlClientProvider>
   );

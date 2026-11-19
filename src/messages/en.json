@@ -523,6 +523,8 @@
     "resetSentDesc": "If an account exists for this address, we have sent a password reset link. Check your inbox and spam folder.",
     "backToLogin": "Back to sign in",
     "newPasswordTitle": "Set a new password",
+    "forceTitle": "Welcome, choose your password",
+    "forceIntro": "Your account was created by the Lock & Loft team with a temporary password. Before you continue, choose a new password of your own.",
     "newPassword": "New password",
     "savePassword": "Save password",
     "passwordUpdated": "Your password has been updated. Taking you to your account.",

@@ -523,6 +523,8 @@
     "resetSentDesc": "Si existe una cuenta con esta dirección, hemos enviado un enlace para restablecer la contraseña. Revise su bandeja de entrada y el spam.",
     "backToLogin": "Volver a iniciar sesión",
     "newPasswordTitle": "Cree una nueva contraseña",
+    "forceTitle": "Bienvenido, elija su contraseña",
+    "forceIntro": "Nuestro equipo de Lock & Loft ha creado su cuenta con una contraseña temporal. Antes de continuar, elija una contraseña nueva.",
     "newPassword": "Nueva contraseña",
     "savePassword": "Guardar contraseña",
     "passwordUpdated": "Su contraseña se ha actualizado. Le llevamos a su cuenta.",
