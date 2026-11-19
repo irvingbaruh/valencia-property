@@ -901,7 +901,7 @@
       {
         "h": "Ziyaret istatistikleri",
         "p": [
-          "Sitenin hangi sayfalarının ve bağlantılarının kullanıldığını anlamak için çerezsiz, anonim bir istatistik tutarız: açılan sayfa, tıklanan düğme veya bağlantı, görüntülenen konutlar, dil, ülke ve cihaz türü (telefon/bilgisayar). IP adresiniz ve tarayıcı bilgileriniz saklanmaz; yalnızca aynı gün içinde sizi tekrar saymamak için geri döndürülemeyen günlük bir özet değeri kullanılır ve ertesi gün başka bir değere dönüşür. Bu veriler sizi tanımlamaz, üçüncü taraflarla paylaşılmaz ve en fazla 400 gün saklanır."
+          "Sitenin hangi sayfalarının ve bağlantılarının kullanıldığını anlamak için çerezsiz, anonim bir istatistik tutarız: açılan sayfa, tıklanan düğme veya bağlantı, görüntülenen konutlar, dil, ülke, şehir ve cihaz türü (telefon/bilgisayar). IP adresiniz ve tarayıcı bilgileriniz saklanmaz; ülke ve şehri bulmak için IP adresiniz günde bir kez anlık olarak bir konum servisine (ipwho.is) iletilir, kaydedilmez, yalnızca sonuç olan ülke ve şehir tutulur; yalnızca aynı gün içinde sizi tekrar saymamak için geri döndürülemeyen günlük bir özet değeri kullanılır ve ertesi gün başka bir değere dönüşür. Bu veriler sizi tanımlamaz, üçüncü taraflarla paylaşılmaz ve en fazla 400 gün saklanır."
         ]
       },
       {

@@ -3,6 +3,8 @@ import { createClient } from 'npm:@supabase/supabase-js@2';
 // Cookieless first-party analytics. Stores page views, clicks and listing impressions.
 // No cookies, no IP stored: a visitor is a per-day hash of IP + browser + secret, so the same
 // person cannot be followed from one day to the next.
+// Country/city: Supabase does not forward Cloudflare's geo headers, so the first request of a visitor each
+// day asks a geo-IP service (ipwho.is) for country + city only; the IP is never written anywhere.
 const CORS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'content-type, authorization, apikey, x-client-info',
@@ -15,6 +17,18 @@ const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const clip = (v: unknown, n: number) => (typeof v === 'string' ? v.trim().slice(0, n) : '');
 
 const device = (ua: string) => (/ipad|tablet|android(?!.*mobile)/i.test(ua) ? 'tablet' : /mobi|iphone|android/i.test(ua) ? 'mobile' : 'desktop');
+const PRIVATE_IP = /^(x|10\.|127\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.|169\.254\.|::1|fc|fd|fe80)/i;
+const geoLookup = async (ip: string): Promise<{ country: string; city: string }> => {
+  if (PRIVATE_IP.test(ip)) return { country: '', city: '' };
+  try {
+    const r = await fetch(`https://ipwho.is/${encodeURIComponent(ip)}?fields=success,country_code,city`, { signal: AbortSignal.timeout(1500) });
+    const j = await r.json();
+    if (!j?.success) return { country: '', city: '' };
+    return { country: String(j.country_code || '').toUpperCase(), city: String(j.city || '').slice(0, 60) };
+  } catch {
+    return { country: '', city: '' };
+  }
+};
 const sha = async (s: string) => {
   const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
   return [...new Uint8Array(b)].slice(0, 8).map((x) => x.toString(16).padStart(2, '0')).join('');
@@ -34,7 +48,7 @@ Deno.serve(async (req) => {
     const day = new Date().toISOString().slice(0, 10);
     const sb = createClient(Deno.env.get('SUPABASE_URL')!, Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!);
     const vh = await sha(`${ip}|${ua}|${day}|${Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!.slice(-24)}`);
-    const country = (req.headers.get('cf-ipcountry') || '').toUpperCase();
+    let country = (req.headers.get('cf-ipcountry') || '').toUpperCase();
     let city = '';
     try { city = decodeURIComponent(req.headers.get('cf-ipcity') || '').slice(0, 60); } catch { city = ''; }
     if (raw?.debug === true) return ok({ headers: [...req.headers.keys()] });
@@ -44,6 +58,19 @@ Deno.serve(async (req) => {
     const since = new Date(Date.now() - 24 * 3600 * 1000).toISOString();
     const { count } = await sb.from('site_events').select('id', { count: 'exact', head: true }).eq('vh', vh).gte('created_at', since);
     if ((count || 0) > 300) return ok({ skipped: 'rate' });
+
+    // location: reuse what this visitor already got today, otherwise look it up once
+    if (!/^[A-Z]{2}$/.test(country)) {
+      const { data: prev } = await sb.from('site_events').select('country,city').eq('vh', vh).gte('created_at', `${day}T00:00:00Z`).not('country', 'is', null).limit(1);
+      if (prev?.[0]?.country) {
+        country = prev[0].country;
+        city = prev[0].city || '';
+      } else {
+        const g = await geoLookup(ip);
+        country = g.country;
+        city = g.city;
+      }
+    }
 
     const rows = list
       .filter((e: any) => KINDS.includes(e?.k) && typeof e?.p === 'string' && e.p.startsWith('/'))

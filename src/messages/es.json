@@ -901,7 +901,7 @@
       {
         "h": "Estadísticas de visitas",
         "p": [
-          "Para saber qué páginas y enlaces del sitio se usan, llevamos estadísticas anónimas y sin cookies: página abierta, botón o enlace pulsado, inmuebles mostrados, idioma, país y tipo de dispositivo (móvil/ordenador). No guardamos su dirección IP ni los datos de su navegador; solo se usa un valor resumen diario e irreversible para no contarle dos veces el mismo día, que cambia al día siguiente. Estos datos no le identifican, no se comparten con terceros y se conservan como máximo 400 días."
+          "Para saber qué páginas y enlaces del sitio se usan, llevamos estadísticas anónimas y sin cookies: página abierta, botón o enlace pulsado, inmuebles mostrados, idioma, país, ciudad y tipo de dispositivo (móvil/ordenador). No guardamos su dirección IP ni los datos de su navegador; para averiguar el país y la ciudad, su IP se envía una vez al día, solo en el momento, a un servicio de geolocalización (ipwho.is) y no se almacena, solo se conserva el país y la ciudad resultantes; solo se usa un valor resumen diario e irreversible para no contarle dos veces el mismo día, que cambia al día siguiente. Estos datos no le identifican, no se comparten con terceros y se conservan como máximo 400 días."
         ]
       },
       {
