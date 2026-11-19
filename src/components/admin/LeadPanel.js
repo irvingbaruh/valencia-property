@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase';
 import { Flame, Compass, StickyNote, MessagesSquare, Pin, Trash2, Phone, Mail, MessageCircle, Bell, CalendarClock, ArrowDownLeft, ArrowUpRight } from 'lucide-react';
 import PushComposer from '@/components/admin/PushComposer';
 import LeadQuick from '@/components/admin/LeadQuick';
+import ResetPasswordBox from '@/components/admin/ResetPasswordBox';
 import { channelLabel, CHANNEL_COLOR, STAGES, scoreTone, leadReasons, needsAttention, waitingDays, COMM_CHANNELS } from '@/lib/leads';
 
 const card = { background: '#151521', border: '1px solid #1E1E2E' };
@@ -190,6 +191,8 @@ export default function LeadPanel({ member }) {
             {log.length === 0 && <li className="text-sm text-[#9A9AAA]">Henüz kayıt yok.</li>}
           </ul>
         </section>
+
+        <ResetPasswordBox member={{ ...member, id }} />
 
         <section className="rounded-xl p-5" style={card}>
           <details>

@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import AdminLayout, { ADMIN_BASE } from '@/components/admin/AdminLayout';
 import LeadQuick from '@/components/admin/LeadQuick';
 import NewMemberModal from '@/components/admin/NewMemberModal';
+import ResetPasswordBox from '@/components/admin/ResetPasswordBox';
 import { channelLabel, CHANNEL_COLOR, scoreTone, needsAttention, waitingDays } from '@/lib/leads';
 import {
   Search,
@@ -114,6 +115,8 @@ function MemberDetailModal({ member, onClose, onRoleChange }) {
             value={member.role === 'admin' ? 'Admin' : 'Üye'}
           />
         </div>
+
+        <div className="mb-4"><ResetPasswordBox member={member} /></div>
 
         {/* Role Change */}
         <div className="rounded-lg p-4 mb-4" style={{ background: '#0B0B11', border: '1px solid #1E1E2E' }}>

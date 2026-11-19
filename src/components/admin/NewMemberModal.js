@@ -9,16 +9,23 @@ const SITE = 'https://lockandloft.com';
 const LANGS = [['tr', 'Türkçe'], ['es', 'Español'], ['en', 'English'], ['de', 'Deutsch']];
 
 // the message that goes to the client together with the login (WhatsApp / SMS / mail), in the client's language
-const messageFor = (lang, name, email, password) => {
+export const messageFor = (lang, name, email, password, kind = 'new') => {
   const first = (name || '').split(' ')[0];
   const url = `${SITE}/${lang}/giris`;
+  const R = {
+    tr: `Merhaba ${first}, Lock & Loft hesabınız için yeni bir geçici şifre oluşturdum.\n\nGiriş: ${url}\nE-posta: ${email}\nGeçici şifre: ${password}\n\nGirişte kendi şifrenizi belirlemeniz istenecek.`,
+    es: `Hola ${first}, he creado una nueva contraseña temporal para su cuenta de Lock & Loft.\n\nAcceso: ${url}\nCorreo: ${email}\nContraseña temporal: ${password}\n\nAl entrar se le pedirá que elija su propia contraseña.`,
+    en: `Hi ${first}, I have created a new temporary password for your Lock & Loft account.\n\nSign in: ${url}\nEmail: ${email}\nTemporary password: ${password}\n\nYou will be asked to choose your own password when you sign in.`,
+    de: `Hallo ${first}, ich habe ein neues temporäres Passwort für Ihr Lock & Loft-Konto erstellt.\n\nAnmeldung: ${url}\nE-Mail: ${email}\nTemporäres Passwort: ${password}\n\nBeim Login werden Sie gebeten, ein eigenes Passwort zu wählen.`,
+  };
   const M = {
     tr: `Merhaba ${first}, Lock & Loft hesabınızı açtım.\n\nGiriş: ${url}\nE-posta: ${email}\nGeçici şifre: ${password}\n\nİlk girişte kendi şifrenizi belirlemeniz istenecek. Her şey için bu hesaptan bana yazabilirsiniz.`,
     es: `Hola ${first}, he creado su cuenta de Lock & Loft.\n\nAcceso: ${url}\nCorreo: ${email}\nContraseña temporal: ${password}\n\nAl entrar por primera vez se le pedirá que elija su propia contraseña.`,
     en: `Hi ${first}, I have set up your Lock & Loft account.\n\nSign in: ${url}\nEmail: ${email}\nTemporary password: ${password}\n\nYou will be asked to choose your own password the first time you sign in.`,
     de: `Hallo ${first}, ich habe Ihr Lock & Loft-Konto angelegt.\n\nAnmeldung: ${url}\nE-Mail: ${email}\nTemporäres Passwort: ${password}\n\nBeim ersten Login werden Sie gebeten, ein eigenes Passwort zu wählen.`,
   };
-  return M[lang] || M.tr;
+  const X = kind === 'reset' ? R : M;
+  return X[lang] || X.tr;
 };
 
 const ERRORS = {
