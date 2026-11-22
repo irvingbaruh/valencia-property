@@ -14,6 +14,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
 import { uploadDocument, openDocument, adminDeleteDocument, DOC_ACCEPT } from '@/lib/documents';
 import { notifyMember, TEXT } from '@/lib/adminServices';
+import MailCheck from '@/components/admin/MailCheck';
 import { FileText, Folder, FolderPlus, Upload, Download, Trash2, Check, X, Pencil } from 'lucide-react';
 
 const STR = {
@@ -286,6 +287,7 @@ export default function DocumentManager({ memberId, isAdmin = false, lang = 'tr'
           {uploading ? L.uploading : L.choose}
           <input type="file" accept={DOC_ACCEPT} className="hidden" disabled={uploading} onChange={onFile} />
         </label>
+        {isAdmin && <MailCheck scope="dm" label="Yükleme / onay işleminde üyeye e-posta ile de bildir" className="w-full" />}
       </div>
       {error && (
         <p className="text-sm text-red-500" role="alert">
@@ -438,6 +440,7 @@ export default function DocumentManager({ memberId, isAdmin = false, lang = 'tr'
               <>
                 <h3 className="text-lg font-semibold">{L.sure}</h3>
                 <p className={`text-sm ${T.muted}`}>{L.deleteBody(modal.doc.file_name)}</p>
+                {isAdmin && <MailCheck scope="dm" label="Üyeye e-posta ile de bildir" />}
                 <div className="flex justify-end gap-2">
                   <button onClick={() => setModal(null)} disabled={busy} className={`${btn} ${T.chip}`}>{L.cancel}</button>
                   <button onClick={confirmDelete} disabled={busy} className={`${btn} bg-[#DC1C2E] text-white disabled:opacity-50`}>{L.yesDelete}</button>
@@ -469,6 +472,7 @@ export default function DocumentManager({ memberId, isAdmin = false, lang = 'tr'
               <>
                 <h3 className="text-lg font-semibold">{L.reject}</h3>
                 <input value={reason} onChange={(e) => setReason(e.target.value)} placeholder={L.rejectReason} className={`w-full px-3 py-2.5 rounded-lg text-sm outline-none ${T.input}`} />
+                {isAdmin && <MailCheck scope="dm" label="Üyeye e-posta ile de bildir" />}
                 <div className="flex justify-end gap-2">
                   <button onClick={() => setModal(null)} className={`${btn} ${T.chip}`}>{L.cancel}</button>
                   <button onClick={() => review(modal.doc, 'rejected', reason)} className={`${btn} bg-[#DC1C2E] text-white`}>{L.reject}</button>

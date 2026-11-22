@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 import AdminLayout, { ADMIN_BASE } from '@/components/admin/AdminLayout';
 import { notifyMember, TEXT } from '@/lib/adminServices';
+import MailCheck from '@/components/admin/MailCheck';
 import { openDocument, adminDeleteDocument } from '@/lib/documents';
 import { FileText, Download, Check, X, Search, Trash2 } from 'lucide-react';
 
@@ -119,6 +120,7 @@ function Files() {
       <div>
         <h1 className="text-2xl font-semibold text-white">Dosyalar</h1>
         <p className="text-sm text-[#9A9AAA] mt-1">Üyelerin yüklediği tüm belgeler. Onaylayınca ya da reddedince üyeye bildirim gider.</p>
+        <MailCheck scope="files" label="Sıradaki onay / red / silme işleminde üyeye e-posta ile de bildir" className="mt-3" />
       </div>
 
       <div className="flex flex-wrap items-center gap-3">

@@ -7,6 +7,7 @@ import { supabase } from '@/lib/supabase';
 import AdminLayout, { ADMIN_BASE } from '@/components/admin/AdminLayout';
 import { assignService, setStageStatus, setServiceStatus, notifyMember, TEXT } from '@/lib/adminServices';
 import DocumentManager from '@/components/documents/DocumentManager';
+import MailCheck from '@/components/admin/MailCheck';
 import LeadPanel from '@/components/admin/LeadPanel';
 import trMessages from '@/messages/tr.json';
 import {
@@ -136,6 +137,7 @@ function ServiceCard({ service, stages, memberId, onChanged }) {
         </div>
       )}
 
+      <MailCheck scope={`svc-${service.id}`} label="Aşama / durum değişikliğinde üyeye e-posta ile de bildir" className="mb-3" />
       <ol className="space-y-2">
         {stages.map((st, idx) => {
           const sc = STAGE_STATUS[st.status] || STAGE_STATUS.pending;
@@ -249,6 +251,7 @@ function AssignBox({ memberId, templates, onAssigned }) {
         style={{ background: '#151521', border: '1px solid #1E1E2E' }}
       />
       {error && <p className="text-sm text-red-400">{error}</p>}
+      <MailCheck scope="assign" />
       <div className="flex gap-2">
         <button
           onClick={submit}
@@ -289,10 +292,11 @@ function DocumentsSection({ memberId, services }) {
           placeholder="Üyeden istenen belge (örn. Pasaport kopyası)"
           className="flex-1 min-w-[12rem] px-3 py-2 rounded-lg bg-[#0E0E18] border border-[#2A2A3C] text-white text-sm focus:outline-none focus:border-[#C9A84C]"
         />
+        <MailCheck scope="docreq" className="w-full" />
         <button onClick={requestDoc} disabled={!note.trim()} className="px-3 py-2 rounded-lg text-sm font-medium disabled:opacity-40" style={{ background: 'rgba(201,168,76,0.15)', color: '#C9A84C' }}>
           Belge iste
         </button>
-        {sent && <span className="text-xs text-green-400">Üyeye bildirim ve e-posta gönderildi.</span>}
+        {sent && <span className="text-xs text-green-400">Üyeye bildirim gönderildi.</span>}
       </div>
       <DocumentManager memberId={memberId} isAdmin lang="tr" services={services.map((s) => ({ id: s.id, name: s.service_template?.name_tr }))} />
     </section>
@@ -360,6 +364,7 @@ function IntakeCard({ intake, services, templates, memberId, onChanged }) {
       {requested.length > 0 && (
         <div>
           <p className="text-xs text-[#9A9AAA] mb-2">İstenen hizmetler</p>
+          <MailCheck scope="intake" className="mb-2" />
           <div className="flex flex-wrap gap-2">
             {requested.map((tpl) =>
               assigned.has(tpl.slug) ? (

@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
 import AdminLayout from '@/components/admin/AdminLayout';
 import { notifyMember, TEXT } from '@/lib/adminServices';
+import MailCheck from '@/components/admin/MailCheck';
 import {
   Search,
   Plus,
@@ -330,6 +331,7 @@ function AssignServiceModal({ onClose, onAssigned, serviceTemplates }) {
               className="w-full px-4 py-3 rounded-lg text-sm text-white placeholder:text-[#6A6A7A] outline-none resize-none focus:ring-2 focus:ring-[#C9A84C]/50 mb-4"
               style={{ background: '#0B0B11', border: '1px solid #1E1E2E' }}
             />
+            <MailCheck scope="assign" className="mb-4" />
             <button
               onClick={handleAssign}
               disabled={loading}
@@ -505,6 +507,8 @@ function ServiceDetailModal({ service, onClose, onUpdate }) {
             />
           </div>
         </div>
+
+        <MailCheck scope="stage" label="Aşama değişikliğinde üyeye e-posta ile de bildir" className="mb-3" />
 
         {/* Stages Pipeline */}
         {loading ? (
