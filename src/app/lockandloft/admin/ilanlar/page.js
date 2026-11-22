@@ -4,8 +4,13 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { supabase } from '@/lib/supabase';
 import AdminLayout from '@/components/admin/AdminLayout';
 import {
-  Search, Plus, Edit3, Trash2, Star, Eye, EyeOff, X, Save, ImagePlus, ChevronLeft, ChevronRight, ExternalLink, Loader2, Download,
+  Search, Plus, Edit3, Trash2, Star, Eye, EyeOff, X, Save, ImagePlus, ChevronLeft, ChevronRight, ExternalLink, Loader2, Download, GripVertical,
 } from 'lucide-react';
+import {
+  DndContext, closestCenter, PointerSensor, TouchSensor, KeyboardSensor, useSensor, useSensors,
+} from '@dnd-kit/core';
+import { SortableContext, verticalListSortingStrategy, arrayMove, useSortable, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
 const LANGS = [
   { k: 'tr', label: 'Türkçe' },
@@ -36,6 +41,38 @@ async function shrink(file) {
   c.height = Math.round(bmp.height * scale);
   c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
   return new Promise((res) => c.toBlob(res, 'image/jpeg', 0.85));
+}
+
+// Starred (featured) listings always come first; inside each group the manual order (sort_order) decides.
+const orderRows = (rs) => [...rs].sort((a, b) =>
+  (b.is_featured ? 1 : 0) - (a.is_featured ? 1 : 0)
+  || (a.sort_order ?? 1e9) - (b.sort_order ?? 1e9)
+  || String(b.created_at).localeCompare(String(a.created_at)));
+
+// One listing row that can be picked up by its grip and dropped between two others (mouse, finger or keyboard).
+function SortableRow({ id, enabled, children }) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id, disabled: !enabled });
+  return (
+    <div
+      ref={setNodeRef}
+      style={{ transform: CSS.Transform.toString(transform), transition, zIndex: isDragging ? 20 : undefined, position: 'relative' }}
+      className={isDragging ? 'opacity-90 shadow-2xl shadow-black/60 rounded-xl' : ''}
+    >
+      {children(enabled ? (
+        <button
+          type="button"
+          {...attributes}
+          {...listeners}
+          title="Sürüklemek için tutun"
+          aria-label="Sırayı değiştirmek için sürükleyin"
+          style={{ touchAction: 'none' }}
+          className="shrink-0 -ml-1 p-1.5 rounded-md text-[#6A6A7A] hover:text-white hover:bg-white/5 cursor-grab active:cursor-grabbing"
+        >
+          <GripVertical size={18} />
+        </button>
+      ) : <span className="w-7 shrink-0" />)}
+    </div>
+  );
 }
 
 const inputCls = 'w-full bg-[#0B0B11] border border-[#2A2A3A] rounded-lg px-3 py-2 text-sm text-white placeholder:text-[#6A6A7A] focus:border-[#C9A84C] focus:outline-none';
@@ -277,8 +314,8 @@ export default function AdminIlanlarPage() {
 
   // Only the first load shows the spinner; later refreshes swap data in place so the scroll position stays.
   const load = useCallback(async () => {
-    const { data } = await supabase.from('properties').select('*').order('created_at', { ascending: false });
-    setRows(data || []);
+    const { data } = await supabase.from('properties').select('*');
+    setRows(orderRows(data || []));
     setLoading(false);
   }, []);
   const patchRow = (id, patch) => setRows((rs) => rs.map((r) => (r.id === id ? { ...r, ...patch } : r)));
@@ -287,16 +324,51 @@ export default function AdminIlanlarPage() {
   const flash = (m) => { setMsg(m); setTimeout(() => setMsg(''), 4000); };
   const featuredCount = rows.filter((r) => r.is_featured).length;
 
+  // Saves the whole order in one call (position 1 = first). On failure the list is reloaded from the server.
+  const saveOrder = async (next) => {
+    setRows(next);
+    const { error } = await supabase.rpc('set_property_order', { ids: next.map((x) => x.id) });
+    if (error) { flash('Sıralama kaydedilemedi: ' + error.message); load(); }
+  };
+  // A listing that changes group (starred / unstarred) goes to the top of its new group.
+  const regroup = (id, patch) => {
+    const moved = { ...rows.find((x) => x.id === id), ...patch };
+    const rest = rows.filter((x) => x.id !== id);
+    const featured = rest.filter((x) => x.is_featured);
+    const others = rest.filter((x) => !x.is_featured);
+    return moved.is_featured ? [moved, ...featured, ...others] : [...featured, moved, ...others];
+  };
+
   const toggleActive = async (r) => {
     if (!r.is_active && (!r.title_tr || !r.price)) { flash('Yayına almak için başlık ve fiyat gerekli.'); return; }
     const patch = r.is_active ? { is_active: false, is_featured: false } : { is_active: true };
     const { error } = await supabase.from('properties').update(patch).eq('id', r.id);
-    if (error) flash(error.message); else patchRow(r.id, patch);
+    if (error) { flash(error.message); return; }
+    if (r.is_featured && patch.is_featured === false) saveOrder(regroup(r.id, patch)); else patchRow(r.id, patch);
   };
   const toggleFeatured = async (r) => {
     if (!r.is_featured && !r.is_active) { flash('Seçkin yapmak için önce ilanı aktif edin.'); return; }
-    const { error } = await supabase.from('properties').update({ is_featured: !r.is_featured }).eq('id', r.id);
-    if (error) flash(error.message.includes('En fazla 3') ? 'En fazla 3 seçkin konut olabilir. Önce birinin yıldızını kaldırın.' : error.message); else patchRow(r.id, { is_featured: !r.is_featured });
+    const patch = { is_featured: !r.is_featured };
+    const { error } = await supabase.from('properties').update(patch).eq('id', r.id);
+    if (error) { flash(error.message.includes('En fazla 3') ? 'En fazla 3 seçkin konut olabilir. Önce birinin yıldızını kaldırın.' : error.message); return; }
+    saveOrder(regroup(r.id, patch));
+  };
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
+    useSensor(TouchSensor, { activationConstraint: { delay: 120, tolerance: 8 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+  );
+  const onDragEnd = ({ active, over }) => {
+    if (!over || active.id === over.id) return;
+    const from = rows.findIndex((x) => x.id === active.id);
+    const to = rows.findIndex((x) => x.id === over.id);
+    if (from < 0 || to < 0) return;
+    if (!!rows[from].is_featured !== !!rows[to].is_featured) {
+      flash('Seçkin evler kendi arasında, diğerleri kendi arasında sıralanır. Bir evi seçkin yapmak için yıldızına tıklayın.');
+      return;
+    }
+    saveOrder(arrayMove(rows, from, to));
   };
   const remove = async (r) => {
     if (r.images?.length) {
@@ -308,6 +380,7 @@ export default function AdminIlanlarPage() {
     if (error) flash(error.message); else setRows((rs) => rs.filter((x) => x.id !== r.id));
   };
 
+  const canDrag = !q.trim() && status === 'all';
   const list = useMemo(() => rows.filter((r) => {
     if (status === 'active' && !r.is_active) return false;
     if (status === 'passive' && r.is_active) return false;
@@ -342,11 +415,22 @@ export default function AdminIlanlarPage() {
         {loading ? <div className="py-20 text-center text-[#9A9AAA]">Yükleniyor…</div> : list.length === 0 ? (
           <div className="py-20 text-center text-[#9A9AAA]">Henüz ilan yok. “Yeni ilan” ile ekleyin.</div>
         ) : (
+          <>
+          <p className="mb-3 text-xs text-[#6A6A7A]">
+            {canDrag
+              ? 'Sırayı değiştirmek için evin solundaki tutamaçtan tutup iki ev arasına bırakın. Yıldızlı evler her zaman en üsttedir (en fazla 3).'
+              : 'Sürükleyerek sıralamak için arama ve filtreyi temizleyin (liste "Tümü" olmalı).'}
+          </p>
+          <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={onDragEnd}>
+          <SortableContext items={list.map((r) => r.id)} strategy={verticalListSortingStrategy}>
           <div className="space-y-3">
             {list.map((r) => {
               const langsDone = LANGS.filter((l) => r[`title_${l.k}`] && r[`description_${l.k}`]).length;
               return (
-                <div key={r.id} className="flex items-center gap-4 p-3 rounded-xl border border-[#2A2A3A] bg-[#151521]">
+                <SortableRow key={r.id} id={r.id} enabled={canDrag}>
+                {(grip) => (
+                <div className={`flex items-center gap-3 p-3 rounded-xl border bg-[#151521] ${r.is_featured ? 'border-[#C9A84C]/50' : 'border-[#2A2A3A]'}`}>
+                  {grip}
                   <div className="w-24 h-16 rounded-lg overflow-hidden bg-[#0B0B11] shrink-0">
                     {(r.cover_image || r.images?.[0]) && <img src={r.cover_image || r.images[0]} alt="" className="w-full h-full object-cover" />}
                   </div>
@@ -366,9 +450,14 @@ export default function AdminIlanlarPage() {
                   <button title="Düzenle" onClick={() => setEditor(r)} className="text-[#9A9AAA] hover:text-white"><Edit3 size={17} /></button>
                   <button title="Sil" onClick={() => setDel(r)} className="text-[#9A9AAA] hover:text-[#DC1C2E]"><Trash2 size={17} /></button>
                 </div>
+                )}
+                </SortableRow>
               );
             })}
           </div>
+          </SortableContext>
+          </DndContext>
+          </>
         )}
       </div>
 

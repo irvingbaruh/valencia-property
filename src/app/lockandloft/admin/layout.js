@@ -1,5 +1,6 @@
 import { AuthProvider } from '@/components/providers/AuthProvider';
 import AdminPwa from '@/components/admin/AdminPwa';
+import MailChoiceBar from '@/components/admin/MailChoiceBar';
 
 export const metadata = {
   title: { absolute: 'Yönetim | Lock & Loft' },
@@ -20,6 +21,7 @@ export default function AdminRootLayout({ children }) {
   return (
     <AuthProvider>
       <AdminPwa />
+      <MailChoiceBar />
       {children}
     </AuthProvider>
   );

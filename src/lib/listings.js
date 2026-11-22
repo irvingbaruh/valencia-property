@@ -4,10 +4,12 @@ import { localePath } from './routes';
 const COLS =
   'id,title_tr,title_es,title_en,title_de,description_tr,description_es,description_en,description_de,property_type,price,currency,bedrooms,bathrooms,area_sqm,land_sqm,region,city,neighborhood,latitude,longitude,images,cover_image,is_featured,published_at,created_at,features';
 
-// Active listings, newest activation first. Featured ones can be requested alone.
-export async function fetchListings({ featured = false, limit = 60 } = {}) {
+// Active listings. Default order is the one the admin set by dragging (starred ones first, then their manual order);
+// order: 'new' gives newest activation first (used by the "new listings" strip). Featured ones can be requested alone.
+export async function fetchListings({ featured = false, limit = 60, order = 'manual' } = {}) {
   let q = supabase.from('properties').select(COLS).eq('is_active', true);
   if (featured) q = q.eq('is_featured', true);
+  if (order === 'manual') q = q.order('is_featured', { ascending: false }).order('sort_order', { ascending: true, nullsFirst: false });
   const { data, error } = await q
     .order('published_at', { ascending: false, nullsFirst: false })
     .limit(limit);

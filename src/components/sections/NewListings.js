@@ -139,7 +139,7 @@ export default function NewListings() {
 
   useEffect(() => {
     let off = false;
-    fetchListings({ limit: 10 }).then((rows) => { if (!off) setLive(rows); });
+    fetchListings({ limit: 10, order: 'new' }).then((rows) => { if (!off) setLive(rows); });
     return () => { off = true; };
   }, []);
 

@@ -1,17 +1,17 @@
 import { supabase } from '@/lib/supabase';
-import { askSendMail } from '@/lib/askSendMail';
+import { takeMailChoice } from '@/lib/mailChoice';
 
 const LANGS = ['tr', 'es', 'en', 'de'];
 
 // text may be a plain Turkish string or { tr, es, en, de }
 const loc = (text) => (typeof text === 'string' ? { tr: text } : text || {});
 
-// Always creates the in-app notification (the phone push follows from it). The e-mail only goes when the admin says so:
-// the row is stored as "already mailed" otherwise, which the mail function skips.
+// Always creates the in-app notification (the phone push follows from it). The e-mail only goes when the admin ticked
+// the "send by e-mail too" box (src/lib/mailChoice.js); otherwise the row is stored as "already mailed", which the mail function skips.
 export async function notifyMember({ userId, type, title, body, clientServiceId }) {
   const ti = loc(title);
   const bo = loc(body);
-  const sendMail = await askSendMail(`"${ti.tr || ''}"`);
+  const sendMail = takeMailChoice();
   const row = { user_id: userId, type, client_service_id: clientServiceId || null, email_sent: !sendMail, email_sent_at: sendMail ? null : new Date().toISOString() };
   LANGS.forEach((l) => {
     row[`title_${l}`] = ti[l] || (l === 'tr' ? '' : null);
