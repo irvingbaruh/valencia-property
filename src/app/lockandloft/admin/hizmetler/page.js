@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
 import AdminLayout from '@/components/admin/AdminLayout';
-import { notifyMember, TEXT } from '@/lib/adminServices';
+import { notifyMember, TEXT, undoStage } from '@/lib/adminServices';
 import MailCheck from '@/components/admin/MailCheck';
 import {
   Search,
@@ -450,6 +450,24 @@ function ServiceDetailModal({ service, onClose, onUpdate }) {
     }
   };
 
+  const handleUndo = async (stage) => {
+    if (!window.confirm(`"${stage.stage_template?.name_tr}" aşamasını geri almak istediğinize emin misiniz?\n\nAşama "Beklemede" durumuna döner ve başlangıç/bitiş tarihi silinir. Bu aşamayı tamamlamak sonraki aşamayı otomatik başlattıysa o da geri alınır. Üyeye bildirim gitmez.`)) return;
+    setUpdatingStage(stage.id);
+    const { error } = await undoStage({ service, stages, stageId: stage.id });
+    if (error) { window.alert('Geri alınamadı: ' + error.message); setUpdatingStage(null); return; }
+    const { data } = await supabase
+      .from('client_service_stages')
+      .select(`
+        id, status, started_at, completed_at, notes, sort_order,
+        stage_template:stage_template_id (id, name_tr, name_es, name_en, name_de, description_tr, estimated_days)
+      `)
+      .eq('client_service_id', service.id)
+      .order('sort_order');
+    setStages(data || []);
+    setUpdatingStage(null);
+    onUpdate();
+  };
+
   const completedCount = stages.filter((s) => s.status === 'completed').length;
   const progress = stages.length > 0 ? Math.round((completedCount / stages.length) * 100) : 0;
 
@@ -567,6 +585,17 @@ function ServiceDetailModal({ service, onClose, onUpdate }) {
                     {/* Action buttons */}
                     {stage.status === 'pending' && idx > 0 && stages[idx - 1]?.status !== 'completed' ? null : (
                       <div className="flex gap-1 shrink-0">
+                        {stage.status !== 'pending' && (
+                          <button
+                            onClick={() => handleUndo(stage)}
+                            disabled={isUpdating}
+                            title="Bu aşamayı geri al (beklemeye döner, üyeye bildirim gitmez)"
+                            className="px-2 py-1 rounded text-xs text-[#9A9AAA] hover:text-white transition-colors"
+                            style={{ border: '1px solid #2A2A3C' }}
+                          >
+                            Geri al
+                          </button>
+                        )}
                         {stage.status === 'pending' && (
                           <button
                             onClick={() => handleAdvanceStage(stage.id, 'in_progress')}

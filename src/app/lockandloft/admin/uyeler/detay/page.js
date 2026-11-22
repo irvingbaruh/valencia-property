@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 import AdminLayout, { ADMIN_BASE } from '@/components/admin/AdminLayout';
-import { assignService, setStageStatus, setServiceStatus, notifyMember, TEXT } from '@/lib/adminServices';
+import { assignService, setStageStatus, setServiceStatus, undoStage, notifyMember, TEXT } from '@/lib/adminServices';
 import DocumentManager from '@/components/documents/DocumentManager';
 import MailCheck from '@/components/admin/MailCheck';
 import LeadPanel from '@/components/admin/LeadPanel';
@@ -91,6 +91,15 @@ function ServiceCard({ service, stages, memberId, onChanged }) {
     onChanged();
   };
 
+  const undo = async (stageId, name) => {
+    if (!window.confirm(`"${name}" aşamasını geri almak istediğinize emin misiniz?\n\nAşama "Beklemede" durumuna döner ve başlangıç/bitiş tarihi silinir. Bu aşamayı tamamlamak sonraki aşamayı otomatik başlattıysa o da geri alınır. Üyeye bildirim gitmez.`)) return;
+    setBusy(stageId);
+    const { error } = await undoStage({ service, stages, stageId });
+    setBusy(null);
+    if (error) { window.alert('Geri alınamadı: ' + error.message); return; }
+    onChanged();
+  };
+
   const changeStatus = async (status) => {
     setBusy('service');
     await setServiceStatus({ service, memberId, status });
@@ -160,6 +169,17 @@ function ServiceCard({ service, stages, memberId, onChanged }) {
                 {st.completed_at && <p className="text-[11px] text-[#6A6A7A]">Bitti: {fmtDate(st.completed_at)}</p>}
               </div>
               <Pill color={sc.color}>{sc.label}</Pill>
+              {st.status !== 'pending' && (
+                <button
+                  disabled={busy === st.id}
+                  onClick={() => undo(st.id, st.stage_template?.name_tr)}
+                  title="Bu aşamayı geri al (beklemeye döner, üyeye bildirim gitmez)"
+                  className="text-xs px-2.5 py-1.5 rounded-lg text-[#9A9AAA] hover:text-white disabled:opacity-50"
+                  style={{ border: '1px solid #2A2A3C' }}
+                >
+                  Geri al
+                </button>
+              )}
               {st.status === 'pending' && (
                 <button
                   disabled={busy === st.id}
@@ -454,7 +474,7 @@ function MemberDetail() {
     if (ids.length) {
       const { data: st } = await supabase
         .from('client_service_stages')
-        .select('id, client_service_id, status, completed_at, sort_order, stage_template:stage_template_id (name_tr, name_es, name_en, name_de)')
+        .select('id, client_service_id, status, started_at, completed_at, sort_order, stage_template:stage_template_id (name_tr, name_es, name_en, name_de)')
         .in('client_service_id', ids)
         .order('sort_order');
       const grouped = {};

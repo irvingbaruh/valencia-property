@@ -180,6 +180,32 @@ export async function setStageStatus({ service, memberId, stages, stageId, newSt
   return {};
 }
 
+// Takes a stage back to "pending" (a mistaken Start or Complete). If completing it had started the next stage automatically
+// (same moment), that one goes back too. The service's current stage is recalculated and a "completed" service becomes active
+// again. The member is NOT notified. stages: the service's stages in order (with status / started_at / completed_at).
+export async function undoStage({ service, stages, stageId }) {
+  const now = new Date().toISOString();
+  const idx = stages.findIndex((s) => s.id === stageId);
+  const stage = stages[idx];
+  if (!stage || stage.status === 'pending') return {};
+  const reset = [stageId];
+  const next = stages[idx + 1];
+  if (stage.status === 'completed' && next && next.status === 'in_progress' && stage.completed_at && next.started_at
+      && Math.abs(new Date(next.started_at) - new Date(stage.completed_at)) < 5000) reset.push(next.id);
+
+  const { error } = await supabase.from('client_service_stages')
+    .update({ status: 'pending', started_at: null, completed_at: null, updated_at: now })
+    .in('id', reset);
+  if (error) return { error };
+
+  const after = stages.map((s) => (reset.includes(s.id) ? { ...s, status: 'pending' } : s));
+  const current = after.find((s) => s.status === 'in_progress') || after.find((s) => s.status === 'pending');
+  const patch = { current_stage_id: current?.id || null, updated_at: now };
+  if (service.status === 'completed') { patch.status = 'active'; patch.completed_at = null; }
+  const { error: e2 } = await supabase.from('client_services').update(patch).eq('id', service.id);
+  return e2 ? { error: e2 } : {};
+}
+
 export async function setServiceStatus({ service, memberId, status }) {
   const now = new Date().toISOString();
   const updates = { status, updated_at: now };
