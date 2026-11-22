@@ -44,6 +44,11 @@ function mapTypeEs(slug: string) {
   if (/local|oficina|nave|negocio|hotel|edificio/.test(t)) return 'commercial';
   return 'other';
 }
+// remax.com: listings with a private address are identified by ?RID=... — without it the site shows a generic search page.
+const pageUrl = (u: URL) => {
+  const rid = u.searchParams.get('RID');
+  return u.origin + u.pathname + (rid && /^[\w-]{3,60}$/.test(rid) ? `?RID=${rid}` : '');
+};
 const BROWSER_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
 // Follows redirects by hand: keeps cookies and forces https on the same host (remax.es can bounce between http and https).
 async function getPage(start: string) {
@@ -184,7 +189,7 @@ Deno.serve(async (req) => {
     let text = typeof body.html === 'string' && body.html.length > 2000 && body.html.length < 4_000_000 ? body.html : '';
     if (!text) {
       let r: Response;
-      try { r = await getPage(u.toString().split('?')[0]); } catch (e) { return out({ error: 'fetch_failed', status: 0, detail: String(e).slice(0, 80) }, 502); }
+      try { r = await getPage(isCom ? pageUrl(u) : u.toString().split('?')[0]); } catch (e) { return out({ error: 'fetch_failed', status: 0, detail: String(e).slice(0, 80) }, 502); }
       if (!r.ok) return out({ error: 'fetch_failed', status: r.status }, 502);
       text = await r.text();
     }
@@ -206,7 +211,7 @@ Deno.serve(async (req) => {
     const rid = String(listing.identifier?.value || listing.identifier || '') || (u.pathname.match(/\/address-private\/([^/?]+)/) || [])[1] || '';
     const addr = prop.address || {};
     const d: any = {
-      id: rid, url: u.origin + u.pathname, description: listing.description || prop.description || '',
+      id: rid, url: pageUrl(u), description: listing.description || prop.description || '',
       price: Number(offer.price) || null, currency: offer.priceCurrency || 'EUR',
       available: !offer.availability || /InStock/i.test(String(offer.availability)),
       beds: prop.numberOfBedrooms ?? null, baths: prop.numberOfBathroomsTotal ?? null,
