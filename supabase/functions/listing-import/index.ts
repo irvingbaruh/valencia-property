@@ -28,7 +28,7 @@ function lenientJson(src: string) {
 }
 function jsonld(html: string) {
   const nodes: any[] = [];
-  for (const m of html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
+  for (const m of html.matchAll(/<script[^>]*application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi)) {
     try { const x = lenientJson(m[1]); (x['@graph'] || [x]).forEach((n: any) => nodes.push(n)); } catch (_) { /* ignore */ }
   }
   return nodes;
@@ -216,7 +216,11 @@ Deno.serve(async (req) => {
       city: addr.addressLocality || '', region: addr.addressRegion || '',
       lat: prop.geo?.latitude ?? null, lng: prop.geo?.longitude ?? null, yearBuilt: prop.yearBuilt ?? null,
     };
-    if (!d.id || (!d.price && !srcImgs.length && !d.description)) return out({ error: 'parse_failed' }, 422);
+    if (!d.id || (!d.price && !srcImgs.length && !d.description)) {
+      // what the server actually received, so a blocked / different page can be told apart from a changed layout
+      const title = (text.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || '';
+      return out({ error: 'parse_failed', detail: { len: text.length, title: strip(title).slice(0, 80), ld: nodes.length, from: body.html ? 'paste' : 'fetch' } }, 422);
+    }
 
     return await finish(d, srcImgs, id);
   } catch (e) {

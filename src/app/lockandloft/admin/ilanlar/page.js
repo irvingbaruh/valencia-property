@@ -91,12 +91,18 @@ function Editor({ row, onClose, onSaved }) {
     try {
       const { data, error } = await supabase.functions.invoke('listing-import', { body: { url, id, ...(useSource && srcHtml.length > 2000 ? { html: srcHtml } : {}) } });
       let code = data?.error || '';
+      let det = data?.detail;
       if (!code && error) {
-        try { code = (await error.context?.json?.())?.error || error.message || ''; } catch { code = error.message || ''; }
+        try { const j = await error.context?.json?.(); code = j?.error || error.message || ''; det = j?.detail; } catch { code = error.message || ''; }
       }
       if (error || !data?.ok) {
-        if (code === 'fetch_failed' && /remax\.es/i.test(url)) setNeedSource(true);
-        throw new Error(code === 'unsupported_url' ? 'RE/MAX ilan linki gerekli: remax.com/…/residential/property/… ya da remax.es/buscador-de-inmuebles/…' : code === 'parse_failed' ? 'Sayfadan ilan bilgisi okunamadı.' : code === 'fetch_failed' ? (/remax\.es/i.test(url) ? 'RE/MAX sayfasına sunucudan ulaşılamadı. Aşağıya sayfa kaynağını yapıştırıp devam edebilirsiniz.' : 'RE/MAX sayfasına ulaşılamadı.') : 'İçe aktarma başarısız: ' + code);
+        // the server could not open or read the page: let the admin paste the page source instead
+        if (code === 'fetch_failed' || code === 'parse_failed') setNeedSource(true);
+        if (code === 'parse_failed') {
+          const seen = det && typeof det === 'object' ? ` (sunucunun aldığı sayfa: "${det.title || 'başlıksız'}", ${det.len} karakter)` : '';
+          throw new Error(`Sayfadan ilan bilgisi okunamadı${seen}. Aşağıya sayfa kaynağını yapıştırıp devam edebilirsiniz.`);
+        }
+        throw new Error(code === 'unsupported_url' ? 'RE/MAX ilan linki gerekli: remax.com/…/residential/property/… ya da remax.es/buscador-de-inmuebles/…'  : code === 'fetch_failed' ? 'RE/MAX sayfasına sunucudan ulaşılamadı. Aşağıya sayfa kaynağını yapıştırıp devam edebilirsiniz.' : 'İçe aktarma başarısız: ' + code);
       }
       setNeedSource(false); setSrcHtml('');
       const x = data.fields;
