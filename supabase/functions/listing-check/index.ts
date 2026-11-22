@@ -1,12 +1,12 @@
 import { createClient } from 'npm:@supabase/supabase-js@2';
 
-// Weekly check of RE/MAX listing pages. A listing that is sold or gone is switched off; members who saved it as a
+// Daily check of RE/MAX listing pages (remax.com and remax.es). A listing that is sold or gone is switched off; members who saved it as a
 // favourite get a notification (in-app + push + e-mail through the notifications table) and it leaves their favourites.
 // Called by pg_cron with the shared token. Body: { dry: true } only reports; { wait: true } processes one batch inline.
 const TOKEN = '646b7b1fd5552979ad2a68905cc68a30fb1658a0b26b1513';
 const LANGS = ['tr', 'es', 'en', 'de'];
-const BATCH = 25;
-const STALE_DAYS = 6;
+const BATCH = 12; // small batches + 3.5s between pages: remax.com answers 202 (slow down) when asked too fast
+const STALE_HOURS = 20; // checked once a day (the daily window starts 24h after the last run)
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const TEXT: Record<string, { title: string; body: (t: string) => string }> = {
   tr: { title: 'Favorinizdeki ev satıldı', body: (t) => `"${t}" artık satışta değil; favorilerinizden kaldırdık.` },
@@ -16,7 +16,60 @@ const TEXT: Record<string, { title: string; body: (t: string) => string }> = {
 };
 
 type Result = { state: 'available' | 'sold' | 'gone' | 'unreachable'; code: number; note?: string };
+// remax.es puts raw line breaks inside JSON strings; escape control characters that sit inside strings.
+function lenientJson(src: string) {
+  try { return JSON.parse(src); } catch (_) { /* repair below */ }
+  let o = '', inStr = false, esc = false;
+  for (const ch of src) {
+    if (inStr) {
+      if (esc) { o += ch; esc = false; continue; }
+      if (ch === '\\') { o += ch; esc = true; continue; }
+      if (ch === '"') { inStr = false; o += ch; continue; }
+      if (ch === '\n') { o += '\\n'; continue; }
+      if (ch === '\r') continue;
+      if (ch === '\t') { o += ' '; continue; }
+      o += ch;
+    } else { if (ch === '"') inStr = true; o += ch; }
+  }
+  return JSON.parse(o);
+}
+const BROWSER_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
+// remax.es: follows redirects by hand. A redirect that leaves the listing's own address (e.g. to the search page) means the listing is gone.
+async function lookEs(start: string): Promise<Result> {
+  const segs = new URL(start).pathname.split('/').filter(Boolean);
+  const ref = (segs[segs.length - 1] || '').toLowerCase();
+  let url = start; const jar: Record<string, string> = {};
+  for (let hop = 0; hop < 6; hop++) {
+    let r: Response;
+    const cookie = Object.entries(jar).map(([k, v]) => `${k}=${v}`).join('; ');
+    try { r = await fetch(url, { redirect: 'manual', headers: { 'user-agent': BROWSER_UA, accept: 'text/html', 'accept-language': 'es-ES,es;q=0.9', ...(cookie ? { cookie } : {}) } }); } catch (_) { return { state: 'unreachable', code: 0 }; }
+    for (const c of (r.headers as any).getSetCookie?.() || []) { const kv = c.split(';')[0]; const i = kv.indexOf('='); if (i > 0) jar[kv.slice(0, i)] = kv.slice(i + 1); }
+    if (r.status >= 300 && r.status < 400 && r.headers.get('location')) {
+      const next = new URL(r.headers.get('location')!, url);
+      await r.body?.cancel();
+      if (!next.pathname.toLowerCase().includes(ref)) return { state: 'gone', code: r.status, note: 'redirect ' + next.pathname.slice(0, 60) };
+      if (next.hostname.replace(/^www\./, '') === new URL(url).hostname.replace(/^www\./, '')) next.protocol = 'https:';
+      url = next.toString();
+      continue;
+    }
+    if (r.status === 404 || r.status === 410) return { state: 'gone', code: r.status };
+    if (r.status !== 200) return { state: 'unreachable', code: r.status };
+    const html = await r.text();
+    const nodes: any[] = [];
+    for (const m of html.matchAll(/<script[^>]*application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi)) {
+      try { const x = lenientJson(m[1]); (x['@graph'] || [x]).forEach((n: any) => nodes.push(n)); } catch (_) { /* ignore */ }
+    }
+    const prod = nodes.find((n) => n['@type'] === 'Product' || n.offers);
+    if (!prod) { const title = (html.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || ''; return { state: 'unreachable', code: 200, note: `${title.trim().slice(0, 80)} | len=${html.length}` }; }
+    const offer = Array.isArray(prod.offers) ? prod.offers[0] : (prod.offers || {});
+    if (offer.availability && !/InStock/i.test(String(offer.availability))) return { state: 'sold', code: 200 };
+    return { state: 'available', code: 200 };
+  }
+  return { state: 'unreachable', code: 0, note: 'redirect_loop' };
+}
+
 async function look(url: string): Promise<Result> {
+  if (/remax\.es/i.test(url)) return lookEs(url);
   let r: Response;
   try { r = await fetch(url, { headers: { 'user-agent': 'Mozilla/5.0 (compatible; LockLoftListingCheck/1.0; +https://lockandloft.com)', accept: 'text/html' } }); } catch (_) { return { state: 'unreachable', code: 0 }; }
   if (r.status === 404 || r.status === 410) return { state: 'gone', code: r.status };
@@ -59,17 +112,17 @@ async function markSold(sb: any, p: any) {
 }
 
 async function batch(sb: any, dry: boolean, skip: string[] = []) {
-  const cutoff = new Date(Date.now() - (dry ? -1 : STALE_DAYS) * 86400000).toISOString();
-  const retry = new Date(Date.now() - (dry ? -1 : 3 * 3600000)).toISOString(); // an attempt that failed is retried after 3 hours
+  const cutoff = new Date(Date.now() - (dry ? -1 : STALE_HOURS) * 3600000).toISOString();
+  const retry = new Date(Date.now() - (dry ? -1 : 3600000)).toISOString(); // an attempt that failed is retried after 1 hour
   let q = sb.from('properties').select('id,external_url,is_active,check_failures,last_checked_at,title_tr,title_es,title_en,title_de')
-    .eq('is_active', true).ilike('external_url', '%remax.com%').or(`last_checked_at.is.null,last_checked_at.lt.${cutoff}`).or(`check_attempted_at.is.null,check_attempted_at.lt.${retry}`)
+    .eq('is_active', true).or('external_url.ilike.*remax.com*,external_url.ilike.*remax.es*').or(`last_checked_at.is.null,last_checked_at.lt.${cutoff}`).or(`check_attempted_at.is.null,check_attempted_at.lt.${retry}`)
     .order('last_checked_at', { ascending: true, nullsFirst: true }).limit(BATCH);
   if (skip.length) q = q.not('id', 'in', `(${skip.join(',')})`);
   const { data: list } = await q;
   const out = { checked: 0, available: 0, sold: 0, unreachable: 0, notified: 0, codes: {} as Record<string, number>, detail: undefined as string[] | undefined };
   const decisions: { p: any; state: string }[] = [];
   for (const p of list || []) {
-    await sleep(2000);
+    await sleep(3500);
     let res = await look(p.external_url);
     // 202/403/429 = the site is rate-limiting or showing a bot check; 404/410 = confirm once before believing it
     if (res.state === 'gone') { await sleep(3000); res = await look(p.external_url); }
