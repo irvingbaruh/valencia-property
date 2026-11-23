@@ -424,7 +424,7 @@ export default function AdminBlogPage() {
   return (
     <AdminLayout>
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <div>
           <h1 className="text-2xl font-bold text-white">Blog Yönetimi</h1>
           <p className="text-sm text-[#9A9AAA] mt-1">Blog yazılarını oluşturun, düzenleyin ve yayınlayın.</p>
@@ -470,17 +470,8 @@ export default function AdminBlogPage() {
         </div>
       </div>
 
-      {/* Posts table */}
-      <div className="bg-[#151521] border border-[#2A2A3A] rounded-2xl overflow-hidden">
-        {/* Table header */}
-        <div className="grid grid-cols-[1fr_150px_120px_100px_80px] gap-4 px-6 py-3 border-b border-[#2A2A3A] text-xs text-[#6A6A7A] uppercase tracking-wider">
-          <span>Başlık</span>
-          <span>Kategori</span>
-          <span>Durum</span>
-          <span>Tarih</span>
-          <span className="text-right">İşlem</span>
-        </div>
-
+      {/* Posts list */}
+      <div>
         {loading ? (
           <div className="flex items-center justify-center py-16">
             <div className="w-6 h-6 border-2 border-[#C9A84C] border-t-transparent rounded-full animate-spin" />
@@ -497,72 +488,33 @@ export default function AdminBlogPage() {
             </button>
           </div>
         ) : (
-          posts.map(post => (
-            <div
-              key={post.id}
-              className="grid grid-cols-[1fr_150px_120px_100px_80px] gap-4 items-center px-6 py-4 border-b border-[#2A2A3A]/50 hover:bg-[#1E1E2E]/50 transition-colors"
-            >
-              {/* Title + slug */}
-              <div className="min-w-0">
-                <p className="text-sm text-white font-medium truncate">{post.title_tr || post.title_en || 'Başlıksız'}</p>
-                <p className="text-xs text-[#6A6A7A] truncate mt-0.5">/{post.slug}</p>
-              </div>
-
-              {/* Category */}
-              <div>
-                {post.category ? (
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#1E1E2E] border border-[#2A2A3A] rounded-full text-xs text-[#9A9AAA]">
-                    <Tag size={10} />
-                    {post.category}
-                  </span>
-                ) : (
-                  <span className="text-xs text-[#6A6A7A]">—</span>
-                )}
-              </div>
-
-              {/* Status */}
-              <div>
+          <div className="space-y-3">
+            {posts.map(post => (
+              <div key={post.id} className="flex items-center gap-3 sm:gap-4 p-4 rounded-xl border border-[#2A2A3A] bg-[#151521]">
+                <div className="flex-1 min-w-0">
+                  <div
+                    className="text-white font-medium break-words"
+                    style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}
+                  >
+                    {post.title_tr || post.title_en || 'Başlıksız'}
+                  </div>
+                  <div className="text-xs text-[#9A9AAA] mt-1 truncate">
+                    {post.category || '—'} · {formatDate(post.published_at || post.created_at)}
+                  </div>
+                  <div className="text-xs text-[#6A6A7A] mt-0.5 truncate">/{post.slug}</div>
+                </div>
                 <button
                   onClick={() => togglePublish(post)}
-                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${
-                    post.status === 'published'
-                      ? 'bg-green-500/10 text-green-400 hover:bg-green-500/20'
-                      : 'bg-[#6A6A7A]/10 text-[#9A9AAA] hover:bg-[#6A6A7A]/20'
-                  }`}
+                  className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium ${post.status === 'published' ? 'bg-[#22C55E]/15 text-[#22C55E]' : 'bg-[#1E1E2E] text-[#9A9AAA]'}`}
                 >
-                  {post.status === 'published' ? <Eye size={12} /> : <EyeOff size={12} />}
+                  {post.status === 'published' ? <Eye size={14} /> : <EyeOff size={14} />}
                   {post.status === 'published' ? 'Yayında' : 'Taslak'}
                 </button>
+                <button title="Düzenle" onClick={() => setEditorPost(post)} className="shrink-0 text-[#9A9AAA] hover:text-white"><Edit3 size={17} /></button>
+                <button title="Sil" onClick={() => setDeleteConfirm(post.id)} className="shrink-0 text-[#9A9AAA] hover:text-[#DC1C2E]"><Trash2 size={17} /></button>
               </div>
-
-              {/* Date */}
-              <span className="text-xs text-[#9A9AAA]">{formatDate(post.published_at || post.created_at)}</span>
-
-              {/* Actions */}
-              <div className="flex items-center justify-end gap-1">
-                <button
-                  onClick={() => setEditorPost(post)}
-                  className="p-1.5 text-[#9A9AAA] hover:text-[#C9A84C] transition-colors"
-                  title="Düzenle"
-                >
-                  <Edit3 size={14} />
-                </button>
-                <button
-                  onClick={() => setDeleteConfirm(post.id)}
-                  className="p-1.5 text-[#9A9AAA] hover:text-[#DC1C2E] transition-colors"
-                  title="Sil"
-                >
-                  <Trash2 size={14} />
-                </button>
-              </div>
-            </div>
-          ))
-        )}
-
-        {/* Footer */}
-        {posts.length > 0 && (
-          <div className="px-6 py-3 text-xs text-[#6A6A7A]">
-            Toplam {posts.length} yazı
+            ))}
+            <div className="px-1 pt-1 text-xs text-[#6A6A7A]">Toplam {posts.length} yazı</div>
           </div>
         )}
       </div>
