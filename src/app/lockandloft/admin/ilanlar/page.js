@@ -429,26 +429,33 @@ export default function AdminIlanlarPage() {
               return (
                 <SortableRow key={r.id} id={r.id} enabled={canDrag}>
                 {(grip) => (
-                <div className={`flex items-center gap-3 p-3 rounded-xl border bg-[#151521] ${r.is_featured ? 'border-[#C9A84C]/50' : 'border-[#2A2A3A]'}`}>
-                  {grip}
-                  <div className="w-24 h-16 rounded-lg overflow-hidden bg-[#0B0B11] shrink-0">
-                    {(r.cover_image || r.images?.[0]) && <img src={r.cover_image || r.images[0]} alt="" className="w-full h-full object-cover" />}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-white font-medium truncate">{r.title_tr}</div>
-                    <div className="text-xs text-[#9A9AAA] truncate">
-                      {[r.neighborhood, r.city, r.region].filter(Boolean).join(', ') || '—'} · {eur(r.price)} · {r.bedrooms ? r.bedrooms + ' oda · ' : ''}{r.area_sqm ? r.area_sqm + ' m²' : ''}
+                <div className={`rounded-xl border bg-[#151521] p-3 flex flex-col gap-3 sm:flex-row sm:items-center ${r.is_featured ? 'border-[#C9A84C]/50' : 'border-[#2A2A3A]'}`}>
+                  <div className="flex min-w-0 flex-1 items-start gap-3 sm:items-center">
+                    {grip}
+                    <div className="w-20 h-20 sm:w-24 sm:h-16 rounded-lg overflow-hidden bg-[#0B0B11] shrink-0">
+                      {(r.cover_image || r.images?.[0]) && <img src={r.cover_image || r.images[0]} alt="" className="w-full h-full object-cover" />}
                     </div>
-                    <div className="text-[11px] text-[#6A6A7A] mt-0.5">{r.images?.length || 0} foto · diller {langsDone}/4{r.source_status === 'sold' ? ' · RE/MAX: satıldı' : ''}</div>
+                    <div className="min-w-0 flex-1">
+                      <div className="text-white font-medium leading-snug line-clamp-2 sm:truncate sm:line-clamp-none">{r.title_tr}</div>
+                      <div className="text-xs text-[#9A9AAA] mt-0.5 truncate">
+                        {[r.neighborhood, r.city, r.region].filter(Boolean).join(', ') || '—'}
+                      </div>
+                      <div className="text-xs text-[#C8C8D4] mt-0.5">
+                        {eur(r.price)}{r.bedrooms ? ` · ${r.bedrooms} oda` : ''}{r.area_sqm ? ` · ${r.area_sqm} m²` : ''}
+                      </div>
+                      <div className="text-[11px] text-[#6A6A7A] mt-0.5">{r.images?.length || 0} foto · diller {langsDone}/4{r.source_status === 'sold' ? ' · RE/MAX: satıldı' : ''}</div>
+                    </div>
                   </div>
-                  <button title="Seçkin" onClick={() => toggleFeatured(r)} className={r.is_featured ? 'text-[#C9A84C]' : 'text-[#6A6A7A] hover:text-white'}>
-                    <Star size={18} fill={r.is_featured ? '#C9A84C' : 'none'} />
-                  </button>
-                  <button onClick={() => toggleActive(r)} className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium ${r.is_active ? 'bg-[#22C55E]/15 text-[#22C55E]' : 'bg-[#1E1E2E] text-[#9A9AAA]'}`}>
-                    {r.is_active ? <Eye size={14} /> : <EyeOff size={14} />} {r.is_active ? 'Aktif' : 'Pasif'}
-                  </button>
-                  <button title="Düzenle" onClick={() => setEditor(r)} className="text-[#9A9AAA] hover:text-white"><Edit3 size={17} /></button>
-                  <button title="Sil" onClick={() => setDel(r)} className="text-[#9A9AAA] hover:text-[#DC1C2E]"><Trash2 size={17} /></button>
+                  <div className="flex items-center justify-between gap-3 border-t border-[#2A2A3A] pt-3 sm:justify-end sm:border-t-0 sm:pt-0 sm:shrink-0">
+                    <button title="Seçkin" aria-label="Seçkin" onClick={() => toggleFeatured(r)} className={`p-1.5 ${r.is_featured ? 'text-[#C9A84C]' : 'text-[#6A6A7A] hover:text-white'}`}>
+                      <Star size={20} fill={r.is_featured ? '#C9A84C' : 'none'} />
+                    </button>
+                    <button onClick={() => toggleActive(r)} className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium ${r.is_active ? 'bg-[#22C55E]/15 text-[#22C55E]' : 'bg-[#1E1E2E] text-[#9A9AAA]'}`}>
+                      {r.is_active ? <Eye size={14} /> : <EyeOff size={14} />} {r.is_active ? 'Aktif' : 'Pasif'}
+                    </button>
+                    <button title="Düzenle" aria-label="Düzenle" onClick={() => setEditor(r)} className="p-1.5 text-[#9A9AAA] hover:text-white"><Edit3 size={19} /></button>
+                    <button title="Sil" aria-label="Sil" onClick={() => setDel(r)} className="p-1.5 text-[#9A9AAA] hover:text-[#DC1C2E]"><Trash2 size={19} /></button>
+                  </div>
                 </div>
                 )}
                 </SortableRow>
