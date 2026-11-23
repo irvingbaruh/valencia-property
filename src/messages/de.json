@@ -487,7 +487,8 @@
     "copyright": "© 2026 Lock & Loft. Alle Rechte vorbehalten.",
     "remax_note": "Service in Partnerschaft mit RE/MAX.",
     "privacy": "Datenschutzerklärung",
-    "guide": "Valencia & Alicante Ratgeber"
+    "guide": "Valencia & Alicante Ratgeber",
+    "how": "So funktioniert es"
   },
   "interstitials": {
     "interstitial1_line1": "Leben am",
@@ -1406,5 +1407,9 @@
     "feedAll": "Alle Marktnotizen",
     "feedBlogTitle": "Aus dem Blog",
     "feedBlogAll": "Alle Beiträge"
+  },
+  "howPage": {
+    "title": "So funktioniert die Mitgliedschaft",
+    "subtitle": "Mit dem kostenlosen Konto liegen Favoriten, Dokumente, Leistungsfortschritt und Hinweise in einem Panel. Sehen Sie anschaulich, was es bietet."
   }
 }

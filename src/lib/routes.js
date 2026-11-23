@@ -30,6 +30,7 @@ export const ROUTES = {
   nerede: { tr: 'nerede', es: 'que-ver', en: 'whats-where', de: 'was-wo' },
   aktiviteler: { tr: 'aktiviteler', es: 'actividades', en: 'activities', de: 'aktivitaeten' },
   sozluk: { tr: 'sozluk', es: 'glosario', en: 'glossary', de: 'glossar' },
+  'nasil-calisir': { tr: 'nasil-calisir', es: 'como-funciona', en: 'how-it-works', de: 'so-funktioniert-es' },
   'sifre-yenile': { tr: 'sifre-yenile', es: 'restablecer-contrasena', en: 'reset-password', de: 'passwort-zuruecksetzen' },
 };
 
