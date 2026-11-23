@@ -17,12 +17,12 @@ export const HOW = {
   guest: L('Üyeliksiz', 'Sin cuenta', 'Without an account', 'Ohne Konto'),
   member: L('Ücretsiz üyeyle', 'Con cuenta gratuita', 'With a free account', 'Mit kostenlosem Konto'),
   guestItems: [
-    L('İlanlara göz atarsınız', 'Ves los anuncios', 'Browse the listings', 'Inserate ansehen'),
+    L('İlk 15 ilanı görürsünüz', 'Ves los primeros 15 anuncios', 'See the first 15 listings', 'Sie sehen die ersten 15 Inserate'),
     L('Rehberin ilk bölümlerini okursunuz', 'Lees el principio de la guía', 'Read the first part of the guide', 'Den Anfang des Ratgebers lesen'),
     L('Her şeyi kendiniz takip edersiniz', 'Sigues todo por tu cuenta', 'You keep track of everything yourself', 'Sie behalten alles selbst im Blick'),
   ],
   memberItems: [
-    L('Tüm ilanlar ve rehberin tamamı açılır', 'Todos los anuncios y la guía completa', 'All listings and the full guide open up', 'Alle Inserate und der ganze Ratgeber'),
+    L('Tüm ilanlar ve rehberin tamamı açılır (15 ilan sınırı kalkar)', 'Todos los anuncios y la guía completa (sin el límite de 15)', 'All listings and the full guide open up (no 15-listing limit)', 'Alle Inserate und der ganze Ratgeber (ohne 15er-Grenze)'),
     L('Beğendiğiniz evler kaydedilir, fiyat değişince haber alırsınız', 'Tus favoritos se guardan y te avisamos si cambia el precio', 'Favourites are saved and you hear about price changes', 'Favoriten werden gespeichert, Preisänderungen melden wir'),
     L('Belgeleriniz ve süreciniz tek yerde, aşama aşama', 'Documentos y proceso en un solo lugar, paso a paso', 'Documents and progress in one place, stage by stage', 'Dokumente und Fortschritt an einem Ort, Schritt für Schritt'),
     L('Telefonunuza bildirim gelir', 'Recibes avisos en el móvil', 'Alerts arrive on your phone', 'Hinweise kommen aufs Handy'),
