@@ -12,16 +12,16 @@ const KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const STORE = 'll_chat_v1';
 const CONTACT_SLUG = { tr: 'iletisim', es: 'contacto', en: 'contact', de: 'kontakt' };
 // Members get a direct WhatsApp line next to the assistant.
-const WA = {
+export const WA = {
   tr: { label: 'WhatsApp’tan yazın', text: (n) => `Merhaba, Lock & Loft üyesiyim${n ? ` (${n})` : ''}. Bir sorum var: ` },
   es: { label: 'Escríbenos por WhatsApp', text: (n) => `Hola, soy miembro de Lock & Loft${n ? ` (${n})` : ''}. Tengo una pregunta: ` },
   en: { label: 'Message us on WhatsApp', text: (n) => `Hello, I am a Lock & Loft member${n ? ` (${n})` : ''}. I have a question: ` },
   de: { label: 'Per WhatsApp schreiben', text: (n) => `Hallo, ich bin Mitglied bei Lock & Loft${n ? ` (${n})` : ''}. Ich habe eine Frage: ` },
 };
-const WaIcon = () => (
+export const WaIcon = ({ size = 28 }) => (
   <span className="relative flex items-center justify-center" aria-hidden="true">
-    <MessageCircle size={28} color="#fff" strokeWidth={1.8} />
-    <Phone size={11} color="#fff" strokeWidth={2.6} className="absolute" />
+    <MessageCircle size={size} color="#fff" strokeWidth={1.8} />
+    <Phone size={Math.round(size * 0.4)} color="#fff" strokeWidth={2.6} className="absolute" />
   </span>
 );
 
