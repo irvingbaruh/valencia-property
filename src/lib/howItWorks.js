@@ -70,8 +70,8 @@ export const HOW = {
 
   // Home teaser
   teaser: {
-    title: L('Bu sistem size ne sunar?', '¿Qué te ofrece este sistema?', 'What does this system offer you?', 'Was bietet Ihnen dieses System?'),
-    text: L('Üye olunca favorileriniz, belgeleriniz, hizmet süreciniz ve bildirimleriniz tek panelde. Nasıl çalıştığını görsellerle anlatalım.', 'Al hacerte miembro, favoritos, documentos, avance del servicio y avisos quedan en un solo panel. Te lo mostramos con imágenes.', 'Once you join, your favourites, documents, service progress and alerts sit in one panel. See how it works, with pictures.', 'Als Mitglied haben Sie Favoriten, Dokumente, Leistungsfortschritt und Hinweise in einem Panel. So funktioniert es, anschaulich erklärt.'),
+    title: L('Ev alma yolculuğunuz, tek panelde', 'Tu camino a casa, en un solo panel', 'Your home-buying journey, in one panel', 'Ihr Weg zur Immobilie, in einem Panel'),
+    text: L('Favorileriniz, belgeleriniz, hizmet süreciniz ve bildirimleriniz tek yerde. Nasıl çalıştığını görsellerle gösterelim.', 'Favoritos, documentos, avance del servicio y avisos en un solo lugar. Te lo mostramos con imágenes.', 'Your favourites, documents, service progress and alerts in one place. See how it works, with pictures.', 'Favoriten, Dokumente, Leistungsfortschritt und Hinweise an einem Ort. So funktioniert es, anschaulich erklärt.'),
     btn: L('Nasıl çalıştığını gör', 'Ver cómo funciona', 'See how it works', 'So funktioniert es'),
     chips: [L('Favoriler', 'Favoritos', 'Favourites', 'Favoriten'), L('Belgeler', 'Documentos', 'Documents', 'Dokumente'), L('Süreç takibi', 'Seguimiento', 'Progress', 'Fortschritt'), L('Bildirimler', 'Avisos', 'Alerts', 'Hinweise')],
   },
