@@ -32,7 +32,7 @@ export default function AppPromo({ variant = 'strip' }) {
   }
 
   return (
-    <section className="bg-dark text-white" aria-label={t('promoTitle')}>
+    <section className="bg-[#1D1D2A] text-white border-y border-gold/25" aria-label={t('promoTitle')}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row md:items-center gap-6">
         <img src="/brand/app-192.png" alt="" width={64} height={64} className="rounded-2xl shrink-0" loading="lazy" />
         <div className="flex-1">
