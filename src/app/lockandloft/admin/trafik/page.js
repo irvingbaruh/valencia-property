@@ -117,7 +117,7 @@ const CTX = {
   listing: 'İlan sayfasındaki davet',
   cost: 'Maliyet hesaplayıcıdaki davet',
   save_search: 'Aramayı kaydet düğmesi',
-  gate: '15 ilan sınırı kartı',
+  gate: 'İlan sınırı kartı',
   join: 'Sınır kartı: Ücretsiz üye ol',
   login: 'Sınır kartı: Giriş yap',
   guide_sample: 'Rehber örnek sayfası',
@@ -137,7 +137,7 @@ function Funnel({ f }) {
   const rows = [
     ['Ziyaretçi', f.visitors],
     ['İlan sayfasını açan', f.listing_page],
-    ['Üyelik kartını gören (15 ilan sınırı ya da rehberin devamı)', v('gate_view')],
+    ['Üyelik kartını gören (ilan sınırı ya da rehberin devamı)', v('gate_view')],
     ['Üyelik kartında düğmeye basan', v('gate_click')],
     ['Başka bir davete basan (favori, ilan, hesaplayıcı, arama)', v('invite_click')],
     ['Giriş/kayıt sayfasını açan', v('auth_view')],

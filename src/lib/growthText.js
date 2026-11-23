@@ -3,8 +3,8 @@
 const T = {
   tr: {
     gate: {
-      title: (shown, total) => `${total} ilandan ${shown} tanesini görüyorsunuz`,
-      text: (hidden) => `Geri kalan ${hidden} ilan ücretsiz üyelikle açılır.`,
+      title: (shown) => `Şu anda ${shown} ilanı görüyorsunuz`,
+      text: () => `Diğer tüm ilanlar ücretsiz üyelikle açılır.`,
       peek: (places, range) => `Üyelere açık ilanlar: ${places}. Fiyatlar ${range} arasında.`,
       bullets: [
         'Tüm ilanları görün, filtreleyin ve sıralayın',
@@ -100,8 +100,8 @@ const T = {
 
   es: {
     gate: {
-      title: (shown, total) => `Estás viendo ${shown} de ${total} propiedades`,
-      text: (hidden) => `Las otras ${hidden} se desbloquean con una cuenta gratuita.`,
+      title: (shown) => `Estás viendo ${shown} propiedades`,
+      text: () => `El resto de los anuncios se desbloquean con una cuenta gratuita.`,
       peek: (places, range) => `Disponibles para miembros: ${places}. Precios entre ${range}.`,
       bullets: [
         'Ve, filtra y ordena todas las propiedades',
@@ -197,8 +197,8 @@ const T = {
 
   en: {
     gate: {
-      title: (shown, total) => `You are seeing ${shown} of ${total} listings`,
-      text: (hidden) => `The other ${hidden} open with a free account.`,
+      title: (shown) => `You are seeing ${shown} listings`,
+      text: () => `All the other listings open with a free account.`,
       peek: (places, range) => `Open to members: ${places}. Prices between ${range}.`,
       bullets: [
         'See, filter and sort every listing',
@@ -294,8 +294,8 @@ const T = {
 
   de: {
     gate: {
-      title: (shown, total) => `Sie sehen ${shown} von ${total} Inseraten`,
-      text: (hidden) => `Die übrigen ${hidden} sind mit einem kostenlosen Konto sichtbar.`,
+      title: (shown) => `Sie sehen ${shown} Inserate`,
+      text: () => `Alle weiteren Inserate sind mit einem kostenlosen Konto sichtbar.`,
       peek: (places, range) => `Für Mitglieder offen: ${places}. Preise zwischen ${range}.`,
       bullets: [
         'Alle Inserate sehen, filtern und sortieren',
