@@ -6,6 +6,7 @@ import { useAuth } from '@/components/providers/AuthProvider';
 import { supabase } from '@/lib/supabase';
 import Logo from '@/components/brand/Logo';
 import Link from 'next/link';
+import { LangSwitch } from '@/components/admin/AdminI18n';
 import {
   LayoutDashboard,
   Users,
@@ -196,6 +197,7 @@ export default function AdminLayout({ children, activeSection = 'dashboard' }) {
 
         {/* Bottom section */}
         <div className="shrink-0 p-4" style={{ borderTop: '1px solid #1E1E2E' }}>
+          <div className="px-3 pb-2"><LangSwitch /></div>
           <Link
             href="/tr/"
             className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-[#9A9AAA] hover:text-white hover:bg-white/5 transition-colors"

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { supabase } from '@/lib/supabase';
 import Logo from '@/components/brand/Logo';
+import { LangSwitch } from '@/components/admin/AdminI18n';
 import { Lock, Mail, LogOut, ShieldCheck } from 'lucide-react';
 
 export default function AdminLoginPage() {
@@ -67,6 +68,7 @@ export default function AdminLoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center px-4" style={{ background: '#0B0B11', color: '#F5F0E8' }}>
       <div className="w-full max-w-sm rounded-2xl p-8" style={{ background: '#151521', border: '1px solid #1E1E2E' }}>
+        <div className="flex justify-end mb-4"><LangSwitch /></div>
         <div className="flex items-center gap-3 mb-8">
           <Logo icon variant="dark" className="h-11 w-auto" />
           <div>
