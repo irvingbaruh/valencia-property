@@ -13,9 +13,9 @@ export default function HowTeaser() {
   const l = useLocale();
   const T = HOW.teaser;
   return (
-    <section className="bg-band py-16 sm:py-20">
+    <section className="bg-[#1D1D2A] text-white border-t border-gold/25 py-12 sm:py-16">
       <ScrollReveal className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-dark text-white p-8 md:p-12 grid md:grid-cols-[1.2fr_1fr] gap-8 items-center border border-gold/30">
+        <div className="grid md:grid-cols-[1.2fr_1fr] gap-8 items-center">
           <div>
             <h2 className="text-3xl md:text-4xl font-serif text-white mb-3">{hw(T.title, l)}</h2>
             <p className="text-white/90 leading-relaxed mb-6">{hw(T.text, l)}</p>
