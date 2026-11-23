@@ -153,9 +153,10 @@ function ServiceCard({ service, stages, memberId, onChanged }) {
           return (
             <li
               key={st.id}
-              className="flex items-center gap-3 px-3 py-2.5 rounded-lg"
+              className="flex flex-col gap-2 px-3 py-2.5 rounded-lg sm:flex-row sm:items-center sm:gap-3"
               style={{ background: st.status === 'in_progress' ? 'rgba(59,130,246,0.08)' : '#151521' }}
             >
+             <div className="flex min-w-0 flex-1 items-center gap-3">
               <span
                 className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold text-white shrink-0"
                 style={{ background: sc.color }}
@@ -168,6 +169,8 @@ function ServiceCard({ service, stages, memberId, onChanged }) {
                 </p>
                 {st.completed_at && <p className="text-[11px] text-[#6A6A7A]">Bitti: {fmtDate(st.completed_at)}</p>}
               </div>
+             </div>
+             <div className="flex shrink-0 flex-wrap items-center justify-end gap-2 pl-9 sm:pl-0">
               <Pill color={sc.color}>{sc.label}</Pill>
               {st.status !== 'pending' && (
                 <button
@@ -200,6 +203,7 @@ function ServiceCard({ service, stages, memberId, onChanged }) {
                   Tamamla
                 </button>
               )}
+             </div>
             </li>
           );
         })}

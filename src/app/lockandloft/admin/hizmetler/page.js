@@ -547,7 +547,8 @@ function ServiceDetailModal({ service, onClose, onUpdate }) {
                     border: `1px solid ${stage.status === 'in_progress' ? 'rgba(59, 130, 246, 0.3)' : '#1E1E2E'}`,
                   }}
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
+                   <div className="flex min-w-0 flex-1 items-center gap-3">
                     {/* Step number */}
                     <div
                       className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
@@ -571,6 +572,8 @@ function ServiceDetailModal({ service, onClose, onUpdate }) {
                       )}
                     </div>
 
+                   </div>
+                   <div className="flex shrink-0 flex-wrap items-center justify-end gap-2 pl-10 sm:pl-0">
                     {/* Status badge */}
                     <span
                       className="text-xs px-2 py-0.5 rounded-full shrink-0"
@@ -618,6 +621,7 @@ function ServiceDetailModal({ service, onClose, onUpdate }) {
                         )}
                       </div>
                     )}
+                   </div>
                   </div>
                 </div>
               );
