@@ -131,22 +131,25 @@ export default function BlogPage() {
             <p>{t.noPosts}</p>
           </div>
         ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredPosts.map(post => (
+          <div className="grid md:grid-cols-2 gap-6">
+            {filteredPosts.map((post, i) => {
+              // Odd count: the first post spans both columns so the last row is never half empty.
+              const large = i === 0 && filteredPosts.length > 1 && filteredPosts.length % 2 === 1;
+              return (
               <a
                 key={post.id}
                 href={`/${locale}/blog/yazi/?s=${post.slug}`}
-                className="group dark-card rounded-2xl overflow-hidden border border-white/10 hover:border-gold/40 hover:shadow-card-hover transition-all duration-300"
+                className={`group dark-card rounded-2xl overflow-hidden border border-white/10 hover:border-gold/40 hover:shadow-card-hover transition-all duration-300 flex flex-col ${large ? 'md:col-span-2 md:flex-row' : ''}`}
               >
-                <div className="relative h-52 overflow-hidden bg-gray-100">
+                <div className={`relative overflow-hidden bg-gray-100 shrink-0 ${large ? 'md:w-1/2 aspect-[16/10] md:aspect-auto md:min-h-[320px]' : 'aspect-[16/10]'}`}>
                   {post.cover_image ? (
                     <img
                       src={post.cover_image}
                       alt={getLocalized(post, 'title')}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gold/10 to-gold/5">
+                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gold/10 to-gold/5">
                       <Tag size={32} className="text-gold/30" />
                     </div>
                   )}
@@ -158,24 +161,25 @@ export default function BlogPage() {
                     </div>
                   )}
                 </div>
-                <div className="p-5">
+                <div className={`p-5 flex flex-col flex-1 ${large ? 'md:p-8 md:justify-center' : ''}`}>
                   <div className="flex items-center gap-1.5 text-text-muted text-xs mb-3">
                     <Calendar size={13} />
                     <span>{formatDate(post.published_at)}</span>
                   </div>
-                  <h3 className="font-serif text-lg text-dark leading-snug mb-2 group-hover:text-gold transition-colors duration-300">
+                  <h3 className={`font-serif text-dark leading-snug mb-2 group-hover:text-gold transition-colors duration-300 ${large ? 'text-2xl md:text-3xl' : 'text-xl'}`}>
                     {getLocalized(post, 'title')}
                   </h3>
                   {getLocalized(post, 'excerpt') && (
-                    <p className="text-sm text-text-muted line-clamp-2 mb-3">{getLocalized(post, 'excerpt')}</p>
+                    <p className={`text-sm text-text-muted mb-3 ${large ? 'line-clamp-4' : 'line-clamp-2'}`}>{getLocalized(post, 'excerpt')}</p>
                   )}
-                  <span className="inline-flex items-center gap-1.5 text-sm text-gold font-medium">
+                  <span className="inline-flex items-center gap-1.5 text-sm text-gold font-medium mt-auto">
                     {t.readMore}
                     <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
                   </span>
                 </div>
               </a>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
