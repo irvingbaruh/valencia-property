@@ -18,7 +18,7 @@ export default function AppTabBar() {
   const { user, profile } = useAuth();
   const contact = useContactSettings();
   const wa = WA[locale] || WA.en;
-  const showWa = !!user && profile?.role !== 'admin' && !!waDigits(contact.whatsapp);
+  const showWa = !!user && !!profile && profile.role !== 'admin' && !!waDigits(contact.whatsapp);
   const items = [
     { href: localePath(locale, 'panel'), label: t('tabAccount'), icon: User, match: (p) => p.startsWith(localePath(locale, 'panel').replace(/\/$/, '')) },
     { href: `/${locale}/`, label: t('tabHome'), icon: Home, match: (p) => p === `/${locale}` || p === `/${locale}/` },

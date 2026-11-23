@@ -120,7 +120,7 @@ export default function ChatWidget() {
   const { user, profile } = useAuth();
   const contact = useContactSettings();
   const wa = WA[locale] || WA.en;
-  const showWa = !!user && profile?.role !== 'admin' && !!waDigits(contact.whatsapp);
+  const showWa = !!user && !!profile && profile.role !== 'admin' && !!waDigits(contact.whatsapp);
   const suggestions = [t('s1'), t('s2'), t('s3')];
   const contactUrl = `/${locale}/${CONTACT_SLUG[locale]}/`;
 
