@@ -9,6 +9,7 @@
     "services": "Servicios",
     "calculator": "Calculadora ROI",
     "blog": "Blog",
+    "guide": "Guía de vida",
     "about": "Nosotros",
     "contact": "Contacto",
     "login": "Acceso",
@@ -493,6 +494,7 @@
   "interstitials": {
     "interstitial1_line1": "Vida en",
     "interstitial1_line2": "el Mediterráneo",
+    "interstitial1_cta": "Descubre la guía de vida",
     "interstitial2_line1": "Tu Inversión,",
     "interstitial2_line2": "Tu Futuro"
   },

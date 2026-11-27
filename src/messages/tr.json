@@ -9,6 +9,7 @@
     "services": "Hizmetler",
     "calculator": "ROI Hesapla",
     "blog": "Blog",
+    "guide": "Yaşam Rehberi",
     "about": "Hakkımızda",
     "contact": "İletişim",
     "login": "Giriş",
@@ -493,6 +494,7 @@
   "interstitials": {
     "interstitial1_line1": "Akdeniz'de",
     "interstitial1_line2": "Hayalinizdeki Yaşam",
+    "interstitial1_cta": "Yaşam rehberini keşfedin",
     "interstitial2_line1": "Yatırımınız,",
     "interstitial2_line2": "Geleceğiniz"
   },

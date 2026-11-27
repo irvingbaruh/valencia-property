@@ -31,6 +31,7 @@ export default function ParallaxBreak({
   height = '70vh',
   overlay = 0.4,
   video = '',
+  cta = null,
 }) {
   const ref = useRef(null);
   const videoRef = useRef(null);
@@ -150,6 +151,14 @@ export default function ParallaxBreak({
           >
             {line2}
           </motion.p>
+        )}
+        {cta && (
+          <motion.div style={{ opacity: textOpacity }} className="mt-8">
+            <a href={cta.href} className="inline-flex items-center gap-2 rounded-xl bg-gold text-dark font-semibold px-6 py-3.5 text-sm sm:text-base hover:bg-white transition-colors">
+              {cta.label}
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          </motion.div>
         )}
       </div>
 
