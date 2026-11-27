@@ -9,6 +9,8 @@ import { guide } from '@/lib/guideContent';
 import { PAGES, STR } from '@/lib/guideUi';
 import GuideShell from '@/components/guide/GuideShell';
 import GuideHubCards from '@/components/guide/GuideHubCards';
+import MemberBlock from '@/components/guide/MemberBlock';
+import { lifeUi } from '@/lib/lifeContent';
 import { CostOfLiving, AreaDays, AreaCompare, Community, Roadmap, Sources } from '@/components/guide/LifeScreens';
 import { Visas, Tax, SchoolSystem, Climate, Health, Events, Quiz, Cons, Sources2 } from '@/components/guide/LifeScreens2';
 
@@ -310,7 +312,7 @@ export default function GuideScreens({ page }) {
     <GuideShell page={page} sources={page !== 'nerede' && page !== 'aktiviteler' && page !== 'yasam' && page !== 'rehber' && !LIFE_PAGES.includes(page) && !LIFE2_PAGES.includes(page)}>
       {page === 'rehber' && <Hub locale={locale} g={g} />}
       {page === 'yasam' && <Life locale={locale} g={g} />}
-      {page === 'semtler' && <><AreaCompare /><AreaDays /><Areas locale={locale} cities={['valencia', 'alicante']} ui={ui} /></>}
+      {page === 'semtler' && <><MemberBlock id="semtler_compare" title={lifeUi(locale).compare.title}><AreaCompare /></MemberBlock><Areas locale={locale} cities={['valencia', 'alicante']} ui={ui} /><MemberBlock id="semtler_days" title={lifeUi(locale).day.title}><AreaDays /></MemberBlock></>}
       {page === 'yasam-maliyeti' && <CostOfLiving />}
       {page === 'turk-toplulugu' && <Community />}
       {page === 'tasinma' && <Roadmap />}

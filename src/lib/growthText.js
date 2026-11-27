@@ -45,7 +45,7 @@ const T = {
       newBuild: 'Yeni yapı',
     },
     guide: {
-      sample: 'Bu sayfa örnek olarak herkese açık. Valencia & Alicante rehberinin diğer bölümleri ücretsiz üyelere açık.',
+      sample: 'Bu sayfa herkese açık. Karşılaştırma araçları, hesaplayıcılar ve adım adım takip ücretsiz üyelere açık.',
       join: 'Ücretsiz üye ol, tüm rehberi aç',
       more: 'Tüm rehber',
       try: (n) => `Önce örnek bir sayfaya göz atın: ${n}`,
@@ -142,7 +142,7 @@ const T = {
       newBuild: 'Obra nueva',
     },
     guide: {
-      sample: 'Esta página es pública como ejemplo. El resto de la guía de Valencia y Alicante es para miembros gratuitos.',
+      sample: 'Esta página es pública. Las herramientas de comparación, las calculadoras y el seguimiento paso a paso son para miembros gratuitos.',
       join: 'Crear cuenta gratis y abrir toda la guía',
       more: 'Toda la guía',
       try: (n) => `Echa un vistazo antes a una página de ejemplo: ${n}`,
@@ -239,7 +239,7 @@ const T = {
       newBuild: 'New build',
     },
     guide: {
-      sample: 'This page is public as a sample. The rest of the Valencia & Alicante guide is open to free members.',
+      sample: 'This page is public. The comparison tools, calculators and step-by-step tracking are open to free members.',
       join: 'Create a free account and open the whole guide',
       more: 'Whole guide',
       try: (n) => `Have a look at a sample page first: ${n}`,
@@ -336,7 +336,7 @@ const T = {
       newBuild: 'Neubau',
     },
     guide: {
-      sample: 'Diese Seite ist als Beispiel öffentlich. Der Rest des Ratgebers Valencia & Alicante steht kostenlosen Mitgliedern offen.',
+      sample: 'Diese Seite ist öffentlich. Vergleichstools, Rechner und die Schritt-für-Schritt-Begleitung stehen kostenlosen Mitgliedern offen.',
       join: 'Kostenloses Konto erstellen und den ganzen Ratgeber öffnen',
       more: 'Ganzer Ratgeber',
       try: (n) => `Werfen Sie zuerst einen Blick auf eine Beispielseite: ${n}`,

@@ -7,7 +7,8 @@ import { localePath } from '@/lib/routes';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { areaUi, SOURCES } from '@/lib/areaContent';
 import { benefits } from '@/lib/memberBenefits';
-import { PAGES, PAGE_ORDER, STR, pageVisible } from '@/lib/guideUi';
+import { PAGES, PAGE_ORDER, STR, pageShown } from '@/lib/guideUi';
+import { useTurkishAudience } from '@/lib/audience';
 import GuideCta from '@/components/sections/GuideCta';
 import { gt } from '@/lib/growthText';
 import { trackFunnel } from '@/lib/funnel';
@@ -18,6 +19,7 @@ const PAYWALL_LD = JSON.stringify({ '@context': 'https://schema.org', '@type': '
 
 // Horizontal pill menu with a fade and arrow on the right edge so it is clear there is more to swipe to.
 function SubNav({ page, locale }) {
+  const turkish = useTurkishAudience(locale);
   const ref = useRef(null);
   const [more, setMore] = useState(false);
   const check = () => {
@@ -35,7 +37,7 @@ function SubNav({ page, locale }) {
   return (
     <nav aria-label="Guide" className="relative bg-soft border-b border-border">
       <div ref={ref} onScroll={check} className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {PAGE_ORDER.filter((k) => pageVisible(k, locale)).map((k) => (
+        {PAGE_ORDER.filter((k) => pageShown(k, locale, turkish)).map((k) => (
           <a key={k} href={localePath(locale, k)} aria-current={k === page ? 'page' : undefined}
             className={`shrink-0 rounded-full border px-4 py-2 text-sm transition-colors ${k === page ? 'bg-gold text-dark border-gold font-semibold' : 'border-border text-dark hover:border-gold hover:text-gold'}`}>
             {t(PAGES[k].nav, locale)}
@@ -59,8 +61,10 @@ export default function GuideShell({ page, children, sources = true }) {
   const P = PAGES[page];
   const isMember = !!user;
   const g = gt(locale).guide;
-  const visible = pageVisible(page, locale); // some pages exist only in Turkish
-  const full = isMember || !!P.open; // the hub, the sample page and the quiz are open to everyone
+  const turkish = useTurkishAudience(locale);
+  const visible = pageShown(page, locale, turkish); // some pages are for the Turkish audience only
+  const full = isMember || !!P.open;
+  const [clipM, clipD] = P.clip || [1500, 1150]; // the hub, the sample page and the quiz are open to everyone
   // Guests (and the static HTML, before the session is known) get the first part of the page; the rest opens with a free membership.
   const clipped = visible && !full;
   const showJoin = clipped && !loading;
@@ -98,7 +102,7 @@ export default function GuideShell({ page, children, sources = true }) {
             </div>
           )}
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-14">
-            <div className={clipped ? 'guide-gated relative max-h-[1500px] sm:max-h-[1150px] overflow-hidden' : undefined}>
+            <div className={clipped ? 'guide-gated relative max-h-[var(--clip-m)] sm:max-h-[var(--clip-d)] overflow-hidden' : undefined} style={clipped ? { '--clip-m': `${clipM}px`, '--clip-d': `${clipD}px` } : undefined}>
               <div className="space-y-14">{children}</div>
               {clipped && <div className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[var(--color-soft,#f5f5f5)] via-[var(--color-soft,#f5f5f5)]/85 to-transparent" />}
             </div>

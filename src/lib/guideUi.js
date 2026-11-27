@@ -9,7 +9,7 @@ export const PAGES = {
     sub: L('Günlük hayat nasıl, nasıl dolaşılır, nelere dikkat edilir.', 'Cómo es el día a día, cómo moverse y a qué prestar atención.', 'What daily life is like, how to get around and what to watch for.', 'Wie der Alltag aussieht, wie man sich bewegt und worauf man achten sollte.'),
     hero: 'altea-flowers', meta: L('Valencia ve Alicante’de yaşam, ulaşım ve güvenlik', 'Vida, transporte y seguridad en Valencia y Alicante', 'Life, transport and safety in Valencia and Alicante', 'Alltag, Verkehr und Sicherheit in Valencia und Alicante') },
   semtler: { nav: L('Semtler', 'Barrios', 'Neighbourhoods', 'Viertel'), title: L('Valencia ve Alicante semtleri', 'Barrios de Valencia y Alicante', 'Valencia and Alicante neighbourhoods', 'Viertel in Valencia und Alicante'),
-    sub: L('Fiyat, kira ve karakter bir arada.', 'Precio, alquiler y carácter en un solo lugar.', 'Price, rent and character in one place.', 'Preis, Miete und Charakter an einem Ort.'), hero: 'alicante' },
+    sub: L('Fiyat, kira ve karakter bir arada.', 'Precio, alquiler y carácter en un solo lugar.', 'Price, rent and character in one place.', 'Preis, Miete und Charakter an einem Ort.'), hero: 'alicante', open: true },
   bolgeler: { nav: L('Costa Blanca', 'Costa Blanca', 'Costa Blanca', 'Costa Blanca'), title: L('Costa Blanca kasabaları', 'Pueblos de la Costa Blanca', 'Costa Blanca towns', 'Orte der Costa Blanca'),
     sub: L('Altea, Calpe, Benidorm, Jávea ve diğerleri: hangisi kime uygun.', 'Altea, Calpe, Benidorm, Jávea y más: cuál encaja con cada perfil.', 'Altea, Calpe, Benidorm, Jávea and more: which suits whom.', 'Altea, Calpe, Benidorm, Jávea und mehr: was zu wem passt.'), hero: 'benidorm',
     meta: L('Costa Blanca kasabaları: Altea, Calpe, Benidorm, Jávea', 'Pueblos de la Costa Blanca: Altea, Calpe, Benidorm, Jávea', 'Costa Blanca towns: Altea, Calpe, Benidorm, Jávea', 'Orte der Costa Blanca: Altea, Calpe, Benidorm, Jávea') },
@@ -24,19 +24,19 @@ export const PAGES = {
   'yasam-maliyeti': { nav: L('Yaşam maliyeti', 'Coste de vida', 'Cost of living', 'Lebenshaltung'), title: L('Yaşam maliyeti hesaplayıcı', 'Calculadora de coste de vida', 'Cost of living calculator', 'Lebenshaltungskosten-Rechner'),
     sub: L('Market, faturalar, okul, sağlık ve konut: ayda ne kadar harcarsınız?', 'Compra, facturas, colegio, sanidad y vivienda: ¿cuánto gastarás al mes?', 'Groceries, bills, school, health and housing: what will you spend each month?', 'Einkauf, Rechnungen, Schule, Gesundheit, Wohnen: Was kostet ein Monat?'), hero: 'v-mercado' },
   tasinma: { nav: L('Taşınma adımları', 'Mudanza paso a paso', 'Moving step by step', 'Umzug Schritt für Schritt'), title: L('Taşınma yol haritası', 'Hoja de ruta para mudarte', 'Moving roadmap', 'Umzugsfahrplan'),
-    sub: L('NIE, ikamet kaydı, banka, sağlık kartı, okul ve ehliyet: hangi sırayla, nerede, ne kadar sürede.', 'NIE, padrón, banco, tarjeta sanitaria y colegio: en qué orden, dónde y cuánto tarda.', 'NIE, padrón, bank, health card and school: in what order, where and how long.', 'NIE, Padrón, Bank, Gesundheitskarte und Schule: Reihenfolge, Ort und Dauer.'), hero: 'v-colon' },
+    sub: L('NIE, ikamet kaydı, banka, sağlık kartı, okul ve ehliyet: hangi sırayla, nerede, ne kadar sürede.', 'NIE, padrón, banco, tarjeta sanitaria y colegio: en qué orden, dónde y cuánto tarda.', 'NIE, padrón, bank, health card and school: in what order, where and how long.', 'NIE, Padrón, Bank, Gesundheitskarte und Schule: Reihenfolge, Ort und Dauer.'), hero: 'v-colon', clip: [2700, 2200] },
   'turk-toplulugu': { nav: L('Türk topluluğu', 'Comunidad turca', 'Turkish community', 'Türkische Gemeinde'), title: L('Türk topluluğu ve tanıdık lezzetler', 'Comunidad turca', 'Turkish community', 'Türkische Gemeinde'),
-    sub: L('Türk restoranları, helal market, cami, konsolosluk ve Türkiye’ye direkt uçuşlar.', '', '', ''), hero: 'v-oldtown', locales: ['tr'] },
+    sub: L('Türk restoranları, helal market, cami, konsolosluk ve Türkiye’ye direkt uçuşlar.', 'Restaurantes turcos, tiendas halal, mezquita, consulado y vuelos directos a Turquía.', 'Turkish restaurants, halal shops, mosque, consulate and direct flights to Türkiye.', 'Türkische Restaurants, Halal-Läden, Moschee, Konsulat und Direktflüge in die Türkei.'), hero: 'v-oldtown', locales: ['tr'], turkOnly: true },
   'valencia-mi-alicante-mi': { nav: L('Valencia mı, Alicante mı?', '¿Valencia o Alicante?', 'Valencia or Alicante?', 'Valencia oder Alicante?'), title: L('Valencia mı, Alicante mı?', '¿Valencia o Alicante?', 'Valencia or Alicante?', 'Valencia oder Alicante?'),
     sub: L('Sekiz kısa soruyla size hangi şehrin uyduğunu görün.', 'Ocho preguntas para ver qué ciudad encaja contigo.', 'Eight quick questions to see which city suits you.', 'Acht kurze Fragen: Welche Stadt passt zu Ihnen?'), hero: 'alicante', open: true },
   iklim: { nav: L('İklim', 'Clima', 'Climate', 'Klima'), title: L('Ay ay iklim', 'El clima mes a mes', 'Climate month by month', 'Klima Monat für Monat'),
-    sub: L('Sıcaklık, nem, güneş ve yağmur; yazın neminden de dürüstçe bahsediyoruz.', 'Temperatura, humedad, sol y lluvia, también la humedad del verano.', 'Temperature, humidity, sun and rain, including the summer humidity.', 'Temperatur, Feuchte, Sonne und Regen, auch die Sommerschwüle.'), hero: 'benidorm' },
+    sub: L('Sıcaklık, nem, güneş ve yağmur; yazın neminden de dürüstçe bahsediyoruz.', 'Temperatura, humedad, sol y lluvia, también la humedad del verano.', 'Temperature, humidity, sun and rain, including the summer humidity.', 'Temperatur, Feuchte, Sonne und Regen, auch die Sommerschwüle.'), hero: 'benidorm', open: true },
   vize: { nav: L('Vize ve oturum', 'Visados', 'Visas', 'Visa'), title: L('Vize ve oturum seçenekleri', 'Visados y residencia', 'Visas and residence', 'Visa und Aufenthalt'),
     sub: L('Altın vize kalktı. Non-lucrative, dijital göçebe, çalışma ve öğrenci yolları 2026 şartlarıyla.', 'Sin golden visa: no lucrativa, nómada digital, trabajo y estudios con los requisitos de 2026.', 'No more golden visa: non-lucrative, digital nomad, work and study routes with 2026 requirements.', 'Kein Golden Visa mehr: nicht erwerbstätig, Digital Nomad, Arbeit und Studium mit den Anforderungen 2026.'), hero: 'v-artes' },
   vergi: { nav: L('Vergi', 'Impuestos', 'Tax', 'Steuern'), title: L('Vergi rehberi', 'Guía de impuestos', 'Tax guide', 'Steuerratgeber'),
     sub: L('Yerleşik olan ve olmayan ev sahibi farkı, kira geliri, dünya geliri ve servet vergisi.', 'Residente y no residente, alquiler, renta mundial y patrimonio.', 'Resident vs non-resident owners, rental income, worldwide income and wealth tax.', 'Ansässig oder nicht, Mieteinnahmen, Welteinkommen und Vermögensteuer.'), hero: 'v-carmen' },
   saglik: { nav: L('Sağlık', 'Sanidad', 'Healthcare', 'Gesundheit'), title: L('Sağlık sistemi', 'Sistema sanitario', 'Healthcare', 'Gesundheitssystem'),
-    sub: L('Kamu ve özel sistem, sigorta fiyatları ve başlıca hastaneler.', 'Pública y privada, precios de seguros y hospitales principales.', 'Public and private care, insurance prices and the main hospitals.', 'Öffentlich und privat, Versicherungspreise und wichtige Kliniken.'), hero: 'v-artes2' },
+    sub: L('Kamu ve özel sistem, sigorta fiyatları ve başlıca hastaneler.', 'Pública y privada, precios de seguros y hospitales principales.', 'Public and private care, insurance prices and the main hospitals.', 'Öffentlich und privat, Versicherungspreise und wichtige Kliniken.'), hero: 'v-artes2', open: true },
   takvim: { nav: L('Etkinlik takvimi', 'Calendario', 'Events', 'Kalender'), title: L('Etkinlik takvimi', 'Calendario de fiestas', 'Events calendar', 'Veranstaltungskalender'),
     sub: L('Fallas, Hogueras, plaj sezonu ve Noel: ay ay ne oluyor.', 'Fallas, Hogueras, playa y Navidad: qué pasa cada mes.', 'Fallas, Hogueras, beach season and Christmas: what happens each month.', 'Fallas, Hogueras, Badesaison und Weihnachten: was wann passiert.'), hero: 'a-santacruz' },
   dezavantajlar: { nav: L('Dikkat edilecekler', 'A tener en cuenta', 'Things to be aware of', 'Gut zu wissen'), title: L('Dikkat etmeniz gereken noktalar', 'Cosas a tener en cuenta', 'Things to be aware of', 'Worauf man achten sollte'),
@@ -44,6 +44,9 @@ export const PAGES = {
 };
 export const PAGE_ORDER = ['rehber', 'valencia-mi-alicante-mi', 'yasam', 'yasam-maliyeti', 'semtler', 'nerede', 'bolgeler', 'iklim', 'aktiviteler', 'takvim', 'okullar', 'saglik', 'vize', 'tasinma', 'vergi', 'dezavantajlar', 'turk-toplulugu'];
 export const pageVisible = (k, locale) => !PAGES[k]?.locales || PAGES[k].locales.includes(locale);
+// Shown on screen: Turkish-only pages also open for Turkish-speaking or Türkiye-based visitors on the other language sites.
+// (Search engines still get the static rule above, so those pages stay out of the index outside Turkish.)
+export const pageShown = (k, locale, turkish) => pageVisible(k, locale) || (!!PAGES[k]?.turkOnly && !!turkish);
 
 // Page <title> and description. Guide pages are indexable: guests see the first part of each page,
 // the rest opens with a free membership. Pages that do not exist in a language stay out of the index there.
@@ -70,7 +73,7 @@ export const HUB = {
   vize: { icon: 'Stamp', img: 'v-artes', text: L('2026 şartlarıyla oturum yolları', 'Vías de residencia 2026', 'Residence routes for 2026', 'Aufenthaltswege 2026') },
   vergi: { icon: 'Receipt', img: 'v-carmen', text: L('Yerleşik ve yerleşik olmayan', 'Residente y no residente', 'Resident and non-resident', 'Ansässig und nicht ansässig') },
   dezavantajlar: { icon: 'Lightbulb', img: 'calpe-stairs', text: L('Bilmenizde fayda olan noktalar', 'Lo que conviene saber de antemano', 'Good to know before you decide', 'Gut zu wissen vor der Entscheidung') },
-  'turk-toplulugu': { icon: 'Users', img: 'v-oldtown', text: L('Türk restoranları, helal market, konsolosluk', '', '', '') },
+  'turk-toplulugu': { icon: 'Users', img: 'v-oldtown', text: L('Türk restoranları, helal market, konsolosluk', 'Restaurantes turcos, tiendas halal, consulado', 'Turkish restaurants, halal shops, consulate', 'Türkische Restaurants, Halal-Läden, Konsulat') },
 };
 
 export const STR = {
