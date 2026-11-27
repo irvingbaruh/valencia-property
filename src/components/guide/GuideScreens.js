@@ -10,6 +10,7 @@ import { PAGES, STR } from '@/lib/guideUi';
 import GuideShell from '@/components/guide/GuideShell';
 import GuideHubCards from '@/components/guide/GuideHubCards';
 import MemberBlock from '@/components/guide/MemberBlock';
+import LiveWeather from '@/components/guide/LiveWeather';
 import { lifeUi } from '@/lib/lifeContent';
 import { CostOfLiving, AreaDays, AreaCompare, Community, Roadmap, Sources } from '@/components/guide/LifeScreens';
 import { Visas, Tax, SchoolSystem, Climate, Health, Events, Quiz, Cons, Sources2 } from '@/components/guide/LifeScreens2';
@@ -109,6 +110,7 @@ function Hub({ locale, g }) {
   const nf = new Intl.NumberFormat(locale);
   return (
     <>
+      <LiveWeather />
       <div className="grid sm:grid-cols-2 gap-4">
         <Stat Icon={Building2} value={nf.format(CITY_STATS.valencia)} unit="€/m²" label={t(STR.stats.vcity, locale)} />
         <Stat Icon={Umbrella} value={nf.format(CITY_STATS.alicante)} unit="€/m²" label={t(STR.stats.acity, locale)} />
