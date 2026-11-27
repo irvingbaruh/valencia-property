@@ -67,15 +67,21 @@ export default function ValuationPage() {
     <div className="bg-soft min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqLd }} />
       <header className="bg-gradient-to-br from-[#0B0B11] to-[#1d2340] text-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-44 pb-12 sm:pb-16">
-          <h1 className="text-4xl sm:text-5xl font-serif mb-4 max-w-3xl">{vt(VAL.title, locale)}</h1>
-          <p className="text-lg text-white/85 max-w-2xl">{vt(VAL.sub, locale)}</p>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-40 pb-12 sm:pb-16 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div>
+            <h1 className="text-4xl sm:text-5xl font-serif mb-4">{vt(VAL.title, locale)}</h1>
+            <p className="text-lg text-white/85">{vt(VAL.sub, locale)}</p>
+          </div>
+          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/15 shadow-2xl">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/hero/entrance-perspective.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
+          </div>
         </div>
       </header>
 
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
         {state === 'done' ? (
-          <div className="rounded-2xl bg-white border border-gold/40 p-8 sm:p-10 max-w-2xl mx-auto">
+          <div className="rounded-2xl bg-white border border-gold/40 p-8 sm:p-10">
             {result && !result.none && (
               <div className="text-center mb-8 pb-8 border-b border-border">
                 <p className="text-sm text-text-muted mb-2">{vt(VAL.resTitle, locale)}</p>
@@ -91,7 +97,7 @@ export default function ValuationPage() {
             </div>
           </div>
         ) : (
-          <form onSubmit={submit} className="rounded-2xl bg-white border border-border p-6 sm:p-8 space-y-7 max-w-3xl mx-auto" noValidate>
+          <form onSubmit={submit} className="rounded-2xl bg-white border border-border p-6 sm:p-8 space-y-7" noValidate>
             <h2 className="font-serif text-2xl text-dark">{vt(VAL.formTitle, locale)}</h2>
 
             <div>
@@ -175,15 +181,21 @@ export default function ValuationPage() {
           </div>
         </section>
 
-        <section className="max-w-3xl">
+        <section>
           <h2 className="font-serif text-3xl text-dark mb-6">{vt(VAL.faqTitle, locale)}</h2>
-          <div className="space-y-3">
+          <div className="grid lg:grid-cols-5 gap-6 items-start">
+          <div className="lg:col-span-3 space-y-3">
             {VAL.faq.map(([q, a], i) => (
               <details key={i} className="rounded-xl bg-white border border-border p-5 group">
                 <summary className="cursor-pointer font-semibold text-dark list-none flex justify-between gap-4">{vt(q, locale)}<span className="text-gold group-open:rotate-45 transition-transform">+</span></summary>
                 <p className="text-text-muted mt-3">{vt(a, locale)}</p>
               </details>
             ))}
+          </div>
+          <div className="hidden lg:block lg:col-span-2 relative aspect-[4/5] rounded-2xl overflow-hidden border border-border">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/guide/v-oldtown.jpg" alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
+          </div>
           </div>
         </section>
       </main>
