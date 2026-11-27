@@ -13,6 +13,7 @@ import CTASection from '@/components/sections/CTASection';
 import ParallaxBreak from '@/components/ui/ParallaxBreak';
 import { InterstitialWrapper } from '@/components/ui/InterstitialWrapper';
 import HowTeaser from '@/components/sections/HowTeaser';
+import ValuationTeaser from '@/components/sections/ValuationTeaser';
 import GuideTeaser from '@/components/sections/GuideTeaser';
 import AppPromo from '@/components/app/AppPromo';
 import ScrollToHash from '@/components/ui/ScrollToHash';
@@ -46,6 +47,7 @@ export default async function HomePage({ params }) {
       <ROICalculator />
       <NewListings />
       <MarketNotes />
+      <ValuationTeaser />
       <AppPromo />
       <Reviews />
       <CTASection />

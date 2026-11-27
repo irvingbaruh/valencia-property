@@ -488,7 +488,8 @@
     "remax_note": "Serving in partnership with RE/MAX.",
     "privacy": "Privacy Policy",
     "guide": "Valencia & Alicante guide",
-    "how": "How it works"
+    "how": "How it works",
+    "valuation": "Sell my home"
   },
   "interstitials": {
     "interstitial1_line1": "Life Along",
@@ -1412,5 +1413,9 @@
   "howPage": {
     "title": "How membership works",
     "subtitle": "With a free account your favourites, documents, service progress and alerts sit in one panel. See what the panel offers, with pictures."
+  },
+  "valuationPage": {
+    "title": "Sell my home in Valencia: free valuation",
+    "subtitle": "Find out what your home in Valencia, Alicante or the Costa Blanca could be worth, then talk to an advisor about selling. Free and non-binding."
   }
 }

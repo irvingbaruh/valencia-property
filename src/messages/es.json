@@ -488,7 +488,8 @@
     "remax_note": "Servicio en colaboración con RE/MAX.",
     "privacy": "Política de privacidad",
     "guide": "Guía de Valencia y Alicante",
-    "how": "¿Cómo funciona?"
+    "how": "¿Cómo funciona?",
+    "valuation": "Vender mi casa"
   },
   "interstitials": {
     "interstitial1_line1": "Vida en",
@@ -1412,5 +1413,9 @@
   "howPage": {
     "title": "¿Cómo funciona la cuenta?",
     "subtitle": "Con la cuenta gratuita, favoritos, documentos, avance del servicio y avisos quedan en un solo panel. Mira lo que ofrece, con imágenes."
+  },
+  "valuationPage": {
+    "title": "Vender mi casa en Valencia: valoración gratuita",
+    "subtitle": "Descubre cuánto puede valer tu vivienda en Valencia, Alicante y la Costa Blanca y habla con un asesor para venderla. Gratis y sin compromiso."
   }
 }

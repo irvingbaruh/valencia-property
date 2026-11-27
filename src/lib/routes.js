@@ -31,6 +31,7 @@ export const ROUTES = {
   aktiviteler: { tr: 'aktiviteler', es: 'actividades', en: 'activities', de: 'aktivitaeten' },
   sozluk: { tr: 'sozluk', es: 'glosario', en: 'glossary', de: 'glossar' },
   'nasil-calisir': { tr: 'nasil-calisir', es: 'como-funciona', en: 'how-it-works', de: 'so-funktioniert-es' },
+  'ev-degerleme': { tr: 'ev-degerleme', es: 'vender-mi-casa', en: 'sell-my-home', de: 'immobilie-verkaufen' },
   'sifre-yenile': { tr: 'sifre-yenile', es: 'restablecer-contrasena', en: 'reset-password', de: 'passwort-zuruecksetzen' },
 };
 

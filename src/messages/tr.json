@@ -488,7 +488,8 @@
     "remax_note": "RE/MAX işbirliği ile hizmet vermekteyiz.",
     "privacy": "Gizlilik Politikası",
     "guide": "Valencia ve Alicante rehberi",
-    "how": "Üyelik nasıl işler?"
+    "how": "Üyelik nasıl işler?",
+    "valuation": "Evinizi satmak mı istiyorsunuz?"
   },
   "interstitials": {
     "interstitial1_line1": "Akdeniz'de",
@@ -1412,5 +1413,9 @@
   "howPage": {
     "title": "Üyelik nasıl işler?",
     "subtitle": "Ücretsiz üyelikle favorileriniz, belgeleriniz, hizmet süreciniz ve bildirimleriniz tek panelde. Panelin neler sunduğunu görsellerle görün."
+  },
+  "valuationPage": {
+    "title": "Valencia'da Evinizi Satmak mı İstiyorsunuz? Ücretsiz Değerleme",
+    "subtitle": "Valencia, Alicante ve Costa Blanca'da evinizin tahmini değerini hemen öğrenin, ardından satış için danışmanımızla konuşun. Ücretsiz ve bağlayıcı değil."
   }
 }

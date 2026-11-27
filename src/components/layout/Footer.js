@@ -33,6 +33,7 @@ export default function Footer() {
         { label: t('blog'), href: `/${locale}/blog/` },
         { label: t('roi_calc'), href: localePath(locale, 'roi-hesaplama') },
         { label: t('how'), href: localePath(locale, 'nasil-calisir') },
+        { label: t('valuation'), href: localePath(locale, 'ev-degerleme') },
         { label: t('faq'), href: localePath(locale, 'sss') },
         { label: t('glossary'), href: localePath(locale, 'sozluk') },
       ],

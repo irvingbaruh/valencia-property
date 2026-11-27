@@ -488,7 +488,8 @@
     "remax_note": "Service in Partnerschaft mit RE/MAX.",
     "privacy": "Datenschutzerklärung",
     "guide": "Valencia & Alicante Ratgeber",
-    "how": "So funktioniert es"
+    "how": "So funktioniert es",
+    "valuation": "Immobilie verkaufen"
   },
   "interstitials": {
     "interstitial1_line1": "Leben am",
@@ -1412,5 +1413,9 @@
   "howPage": {
     "title": "So funktioniert die Mitgliedschaft",
     "subtitle": "Mit dem kostenlosen Konto liegen Favoriten, Dokumente, Leistungsfortschritt und Hinweise in einem Panel. Sehen Sie anschaulich, was es bietet."
+  },
+  "valuationPage": {
+    "title": "Haus in Valencia verkaufen: kostenlose Bewertung",
+    "subtitle": "Erfahren Sie, was Ihre Immobilie in Valencia, Alicante oder an der Costa Blanca wert sein könnte, und sprechen Sie mit einem Berater. Kostenlos und unverbindlich."
   }
 }

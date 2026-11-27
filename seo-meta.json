@@ -233,6 +233,24 @@
     "t": "So funktioniert die Mitgliedschaft | Lock & Loft",
     "d": "Mit dem kostenlosen Konto liegen Favoriten, Dokumente, Leistungsfortschritt und Hinweise in einem Panel. Sehen Sie anschaulich, was es bietet."
    }
+  },
+  "ev-degerleme": {
+   "tr": {
+    "t": "Valencia'da Evinizi Satmak mı İstiyorsunuz? Ücretsiz Değerleme | Lock & Loft",
+    "d": "Valencia, Alicante ve Costa Blanca'da evinizin tahmini değerini hemen öğrenin, ardından satış için danışmanımızla konuşun. Ücretsiz ve bağlayıcı değil."
+   },
+   "es": {
+    "t": "Vender mi casa en Valencia: valoración gratuita | Lock & Loft",
+    "d": "Descubre cuánto puede valer tu vivienda en Valencia, Alicante y la Costa Blanca y habla con un asesor para venderla. Gratis y sin compromiso."
+   },
+   "en": {
+    "t": "Sell my home in Valencia: free valuation | Lock & Loft",
+    "d": "Find out what your home in Valencia, Alicante or the Costa Blanca could be worth, then talk to an advisor about selling. Free and non-binding."
+   },
+   "de": {
+    "t": "Haus in Valencia verkaufen: kostenlose Bewertung | Lock & Loft",
+    "d": "Erfahren Sie, was Ihre Immobilie in Valencia, Alicante oder an der Costa Blanca wert sein könnte, und sprechen Sie mit einem Berater. Kostenlos und…"
+   }
   }
  },
  "services": {

@@ -112,6 +112,7 @@ const ROUTES = {
   aktiviteler: { es: 'actividades', en: 'activities', de: 'aktivitaeten' },
   sozluk: { es: 'glosario', en: 'glossary', de: 'glossar' },
   'nasil-calisir': { es: 'como-funciona', en: 'how-it-works', de: 'so-funktioniert-es' },
+  'ev-degerleme': { es: 'vender-mi-casa', en: 'sell-my-home', de: 'immobilie-verkaufen' },
   'sifre-yenile': { es: 'restablecer-contrasena', en: 'reset-password', de: 'passwort-zuruecksetzen' },
 };
 const SLUG_TO_CANONICAL = {};
@@ -186,7 +187,7 @@ const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 let SEO = { home: {}, pages: {}, services: {} };
 try { SEO = JSON.parse(fs.readFileSync(path.join(__dirname, 'seo-meta.json'), 'utf8')); } catch (e) { console.error('seo-meta.json missing'); }
 
-const PAGE_KEYS = ['iletisim', 'hizmetler', 'mulkler', 'roi-hesaplama', 'piyasa', 'blog', 'gizlilik', 'hakkimizda', 'remax', 'sss', 'sozluk', 'nasil-calisir'];
+const PAGE_KEYS = ['iletisim', 'hizmetler', 'mulkler', 'roi-hesaplama', 'piyasa', 'blog', 'gizlilik', 'hakkimizda', 'remax', 'sss', 'sozluk', 'nasil-calisir', 'ev-degerleme'];
 const SERVICE_KEYS = ['mulk-arama', 'hukuki-destek', 'dekorasyon-mobilya', 'renovasyon', 'kira-yonetimi', 'home-staging'];
 const NOINDEX_KEYS = ['giris', 'panel', 'sifre-yenile'];
 // City guide: indexable (guests see the first part of each page). Pages that exist only in Turkish are listed for /tr/ alone.
