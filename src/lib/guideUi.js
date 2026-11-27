@@ -2,7 +2,7 @@
 const L = (tr, es, en, de) => ({ tr, es, en, de });
 
 export const PAGES = {
-  rehber: { nav: L('Genel bakış', 'Resumen', 'Overview', 'Überblick'), title: L('Valencia & Alicante rehberi', 'Guía Valencia y Alicante', 'Valencia & Alicante guide', 'Valencia & Alicante Ratgeber'),
+  rehber: { nav: L('Yaşam rehberi', 'Guía de la ciudad', 'City guide', 'Stadtführer'), title: L('Valencia & Alicante rehberi', 'Guía Valencia y Alicante', 'Valencia & Alicante guide', 'Valencia & Alicante Ratgeber'),
     sub: L('Valencia, Alicante ve Costa Blanca: yaşam, semtler, okullar ve yapılacaklar.', 'Valencia, Alicante y la Costa Blanca: vida diaria, barrios, colegios y planes.', 'Valencia, Alicante and the Costa Blanca: daily life, neighbourhoods, schools and things to do.', 'Valencia, Alicante und Costa Blanca: Alltag, Viertel, Schulen und Aktivitäten.'),
     hero: 'calpe-bay', open: true, hub: true },
   yasam: { nav: L('Yaşam ve ulaşım', 'Vida y transporte', 'Life & transport', 'Alltag & Verkehr'), title: L('Yaşam, ulaşım ve güvenlik', 'Vida, transporte y seguridad', 'Life, transport and safety', 'Alltag, Verkehr und Sicherheit'),

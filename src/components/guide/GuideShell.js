@@ -30,7 +30,7 @@ function SubNav({ page, locale }) {
     check();
     const el = ref.current;
     const active = el && el.querySelector('[aria-current="page"]');
-    if (active && el) el.scrollLeft = Math.max(0, active.offsetLeft - 16);
+    if (active && el) el.scrollLeft = Math.max(0, el.scrollLeft + active.getBoundingClientRect().left - el.getBoundingClientRect().left - 24);
     window.addEventListener('resize', check);
     return () => window.removeEventListener('resize', check);
   }, []);
